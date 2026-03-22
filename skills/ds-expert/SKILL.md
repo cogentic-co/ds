@@ -8,7 +8,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 
 ## Package
 
-- **Package:** `@cogentic/ds` (GitHub Packages, `@cogentic` scope)
+- **Package:** `@cogentic/ds` (npm, public)
 - **Peer deps:** React 18/19, Next.js 15+, Tailwind CSS v4
 - **Import styles:** `@import "@cogentic/ds/styles.css"` in your globals.css
 - **Tailwind scanning:** `@source "../node_modules/@cogentic/ds/dist"` in globals.css

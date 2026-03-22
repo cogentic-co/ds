@@ -22,7 +22,7 @@ export default function GettingStartedPage() {
         <h1 className="font-bold text-3xl tracking-tight">Getting Started</h1>
         <p className="mt-2 text-muted-foreground">
           Set up <InlineCode>@cogentic/ds</InlineCode> in your Next.js project. The design system is
-          published as a private npm package on GitHub Packages.
+          published as a public npm package.
         </p>
       </div>
 
@@ -30,15 +30,7 @@ export default function GettingStartedPage() {
       <section className="space-y-6">
         <h2 className="font-semibold text-xl">Installation</h2>
         <Card className="space-y-4 p-6">
-          <CodeBlock title="1. Configure npm registry (one-time setup in .npmrc)">
-            {`@cogentic:registry=https://npm.pkg.github.com`}
-          </CodeBlock>
-          <p className="text-muted-foreground text-sm">
-            You will need a GitHub personal access token with <InlineCode>read:packages</InlineCode>{" "}
-            scope. Add it to your <InlineCode>~/.npmrc</InlineCode>:
-          </p>
-          <CodeBlock>{`//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN`}</CodeBlock>
-          <CodeBlock title="2. Install the package">{`pnpm add @cogentic/ds`}</CodeBlock>
+          <CodeBlock title="Install the package">{`pnpm add @cogentic/ds`}</CodeBlock>
         </Card>
       </section>
 
@@ -66,25 +58,6 @@ export default function GettingStartedPage() {
           <InlineCode>@source</InlineCode> path to point to the installed package's{" "}
           <InlineCode>dist</InlineCode> directory.
         </p>
-      </section>
-
-      <Separator />
-
-      {/* Next.js Config */}
-      <section className="space-y-6">
-        <h2 className="font-semibold text-xl">Next.js Config</h2>
-        <p className="text-muted-foreground text-sm">
-          Add <InlineCode>@cogentic/ds</InlineCode> to <InlineCode>transpilePackages</InlineCode> in
-          your <InlineCode>next.config.ts</InlineCode>:
-        </p>
-        <Card className="p-6">
-          <CodeBlock>
-            {`// next.config.ts
-const config = {
-  transpilePackages: ["@cogentic/ds"],
-}`}
-          </CodeBlock>
-        </Card>
       </section>
 
       <Separator />

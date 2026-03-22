@@ -1,22 +1,18 @@
 # Cogentic Design System
 
-Branded UI component library for all Cogentic projects — auth, app, landing, and POCs.
+UI component library for building modern compliance applications.
 
 **Package:** `@cogentic-co/ds`
-**Registry:** GitHub Packages (`@cogentic-co` scope)
+**Registry:** [npm](https://www.npmjs.com/package/@cogentic-co/ds)
 
 ---
 
 ## What's included
 
-- **90+ components** — UI primitives, blocks, charts, chatbot, workflow, shells
-- **8 blocks** — HeroSection, FeatureSection, PricingTable, AuthForm, StatCard, ArticleCard, PageCta, TeamCard
-- **6 chart variants** — AreaChart, BarChart, LineChart, PieChart, RadialChart + base primitives
-- **20 chatbot components** — Message, Conversation, ChainOfThought, PromptInput, and more
-- **14 workflow components** — React Flow nodes, edges, controls (requires `@xyflow/react`)
-- **7 animation components** — BgShader, FadeIn, Marquee, Typewriter, AnimatedCounter, StreamingCards, SubtleShader
-- **20 product animations** — code-split feature animations for onboarding and help
-- **10 hooks** — useMobile, useClipboard, useDebounce, useDisclosure, useLocalStorage, and more
+- **UI components** — Primitives, blocks, charts, chatbot, workflow, shells
+- **Animation components** — BgShader, FadeIn, Marquee, Typewriter, AnimatedCounter, StreamingCards, SubtleShader
+- **Product animations** — Code-split feature animations for onboarding and help
+- **Hooks** — useMobile, useClipboard, useDebounce, useDisclosure, useLocalStorage, and more
 - **Design tokens** — OKLch colors, light/dark themes, Geist + JetBrains Mono fonts
 
 ### Tech stack
@@ -35,10 +31,6 @@ Branded UI component library for all Cogentic projects — auth, app, landing, a
 ## Install
 
 ```bash
-# .npmrc (one-time setup)
-@cogentic-co:registry=https://npm.pkg.github.com
-
-# Install
 pnpm add @cogentic-co/ds
 ```
 
@@ -52,15 +44,6 @@ pnpm add @cogentic-co/ds
 
 /* Tell Tailwind to scan the package for class names */
 @source "../node_modules/@cogentic-co/ds/dist";
-```
-
-### Next.js config
-
-```ts
-// next.config.ts
-const nextConfig = {
-  transpilePackages: ["@cogentic-co/ds"],
-}
 ```
 
 ### Usage
@@ -104,35 +87,6 @@ Works with Claude Code, Cursor, Copilot, Cline, Windsurf, and 30+ other agents.
 | `@cogentic-co/ds/blocks/*` | Block components (code-split) |
 | `@cogentic-co/ds/charts` | Chart variants (requires recharts) |
 | `@cogentic-co/ds/workflow` | Workflow components (requires @xyflow/react) |
-
----
-
-## Architecture
-
-```
-src/
-├── components/        # 56 UI components + animation components
-├── blocks/            # 8 page-level blocks
-├── charts/            # 6 chart variants
-├── chatbot/           # 20 conversational UI components
-├── shells/            # AppShell full-app layout
-├── workflow/          # 14 React Flow components
-├── animations/        # 20 product animations (code-split)
-├── hooks/             # 10 utility hooks
-├── lib/
-│   ├── utils.ts       # cn() helper
-│   └── animation.ts   # Shared animation constants
-├── styles/
-│   └── globals.css    # OKLch design tokens, light/dark themes
-└── index.ts           # Barrel export
-```
-
-### Build & publish
-
-```bash
-pnpm build:pkg    # tsup -> ESM + types to dist/
-pnpm publish      # Publish to GitHub Packages
-```
 
 ---
 
@@ -183,15 +137,3 @@ Key tokens:
 - **Fonts:** Geist (sans), JetBrains Mono (mono)
 - **Radii:** Base `0.625rem` with sm/md/lg/xl variants
 - Dark mode via `.dark` class (not `@media`)
-
----
-
-## Migrating from shadcn/ui
-
-Codemods automate migration from shadcn/ui:
-
-```bash
-npx tsx codemods/migrate.ts src/
-```
-
-This rewrites imports (`@/components/ui/*` -> `@cogentic-co/ds`) and transforms `asChild` -> `render` prop (Radix -> Base UI).

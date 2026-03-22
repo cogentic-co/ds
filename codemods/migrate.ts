@@ -30,25 +30,6 @@ function run(cmd: string) {
 function setupProjectConfig(projectDir: string) {
   console.log("\n📦 Setting up project config...\n")
 
-  // .npmrc
-  const npmrcPath = join(projectDir, ".npmrc")
-  const npmrcContent = `@cogentic-co:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=\${DS_AUTH_TOKEN}
-always-auth=true`
-
-  if (!existsSync(npmrcPath)) {
-    writeFileSync(npmrcPath, `${npmrcContent}\n`)
-    console.log("   ✓ Created .npmrc with @cogentic-co registry config")
-  } else {
-    const existing = readFileSync(npmrcPath, "utf-8")
-    if (!existing.includes("@cogentic-co")) {
-      writeFileSync(npmrcPath, `${existing.trimEnd()}\n${npmrcContent}\n`)
-      console.log("   ✓ Appended @cogentic-co registry config to .npmrc")
-    } else {
-      console.log("   – .npmrc already configured")
-    }
-  }
-
   // globals.css
   const cssGlobs = ["src/app/globals.css", "app/globals.css", "src/styles/globals.css"]
   for (const cssPath of cssGlobs) {

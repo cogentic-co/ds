@@ -1,7 +1,8 @@
 {
   "name": "@cogentic-co/ds",
   "version": "0.4.1",
-  "description": "Cogentic Design System — shared UI components for all Cogentic projects",
+  "description": "Cogentic Design System — UI components for building modern compliance applications",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -47,13 +48,28 @@
     "*.css"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
+  "homepage": "https://cogentic.co",
   "repository": {
     "type": "git",
     "url": "https://github.com/cogentic-co/ds.git"
   },
+  "bugs": {
+    "url": "https://github.com/cogentic-co/ds/issues"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "tailwindcss",
+    "typescript",
+    "ui",
+    "compliance",
+    "nextjs",
+    "base-ui",
+    "cogentic"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

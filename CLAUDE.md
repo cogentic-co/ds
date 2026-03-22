@@ -1,10 +1,10 @@
 # Cogentic Design System
 
-Private npm package (`@cogentic/ds`) providing branded UI components for all Cogentic projects — auth, app, landing, POCs.
+Public npm package (`@cogentic-co/ds`) providing UI components for building modern compliance applications.
 
 ## Architecture
 
-This is an **npm package** published to GitHub Packages. Components are imported directly — not copied in.
+This is a **public npm package**. Components are imported directly — not copied in.
 
 ```
 src/
@@ -25,14 +25,13 @@ blocks/                ← Product animation blocks from signal-landing (preview
 
 1. Author/edit in `src/components/`
 2. `pnpm build:pkg` → tsup builds ESM + types to `dist/`
-3. `pnpm publish` → publishes to GitHub Packages (`@cogentic` scope)
+3. `pnpm publish` → publishes to npm (public)
 4. Consuming projects: `pnpm add @cogentic/ds`
 
 ### Distribution
 
-- **Registry:** GitHub Packages (npm)
-- **Scope:** `@cogentic` — restricted to org members with repo read access
-- **Auth:** `.npmrc` with `@cogentic:registry=https://npm.pkg.github.com` + `GITHUB_TOKEN`
+- **Registry:** npm (public)
+- **Scope:** `@cogentic-co`
 
 ## Tech Stack
 
@@ -53,10 +52,6 @@ blocks/                ← Product animation blocks from signal-landing (preview
 
 ### Install
 ```bash
-# .npmrc (one-time setup)
-@cogentic:registry=https://npm.pkg.github.com
-
-# Install
 pnpm add @cogentic/ds
 ```
 
@@ -193,7 +188,7 @@ This runs all codemods in sequence, then configures `.npmrc` and `globals.css`.
 | `pnpm lint` | Biome (lint + format) |
 | `pnpm lint:fix` | Auto-fix lint/format issues |
 | `pnpm format` | Format all files |
-| `pnpm publish` | Publish to GitHub Packages |
+| `pnpm publish` | Publish to npm |
 
 ## Git Conventions
 

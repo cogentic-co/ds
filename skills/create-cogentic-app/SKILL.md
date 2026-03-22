@@ -22,7 +22,6 @@ Ask the user:
 
 ```
 <project-name>/
-├── .npmrc
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
@@ -45,11 +44,6 @@ Ask the user:
 ```
 
 ### 3. File Contents
-
-#### `.npmrc`
-```
-@cogentic:registry=https://npm.pkg.github.com
-```
 
 #### `package.json`
 ```json
@@ -110,9 +104,7 @@ Ask the user:
 ```ts
 import type { NextConfig } from "next"
 
-const nextConfig: NextConfig = {
-  transpilePackages: ["@cogentic/ds"],
-}
+const nextConfig: NextConfig = {}
 
 export default nextConfig
 ```
@@ -302,6 +294,5 @@ Edit src/components/app-sidebar-config.ts to customize navigation.
 - The `(app)` route group wraps all authenticated pages in the AppShell
 - The `(auth)` route group is for unauthenticated pages (login, register)
 - Keep route pages minimal — just enough structure to show the page works
-- Include `transpilePackages: ["@cogentic/ds"]` in next.config.ts
 - Include `@source` directive in globals.css for Tailwind to scan DS classes
 - Add `geist` font package to dependencies if using GeistSans/GeistMono
