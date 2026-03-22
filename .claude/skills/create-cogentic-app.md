@@ -1,0 +1,1 @@
+../../skills/create-cogentic-app/SKILL.md

@@ -1,0 +1,510 @@
+"use client"
+
+import {
+  BarChart3,
+  Blocks,
+  BookOpen,
+  Bot,
+  Braces,
+  Component,
+  Layout,
+  MessageSquare,
+  Moon,
+  Move,
+  Paintbrush,
+  Palette,
+  Play,
+  Search,
+  Sun,
+  Type,
+  Workflow,
+} from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+function CogenticLogo({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" className={className}>
+      <path
+        fill="currentColor"
+        d="M77.268 97.78a1 1 0 0 1-.066-1.659l41.948-30.653a15 15 0 0 1 17.7 0l41.933 30.643a1 1 0 0 1-.076 1.664l-18.156 10.894a1 1 0 0 1-1.081-.033l-30.345-20.863a2 2 0 0 0-2.255-.008l-30.835 20.873a1 1 0 0 1-1.085.024zM46.565 113.336c-10.625 8.21-10.113 24.409 1.01 31.932l71.918 48.64a16 16 0 0 0 17.987-.041l71.019-48.501c11.108-7.586 11.584-23.802.94-32.027a.79.79 0 0 0-.908-.042l-78.435 49.692a3 3 0 0 1-3.197.009l-79.433-49.707a.79.79 0 0 0-.9.045"
+      />
+    </svg>
+  )
+}
+
+import type { NavGroup } from "@/src/shells/app-shell"
+import { AppShell } from "@/src/shells/app-shell"
+import { CommandSearch } from "./command-search"
+import { componentMeta, statusConfig } from "./component-meta"
+
+function toTitle(slug: string) {
+  return slug
+    .replace(/^animation-/, "")
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ")
+}
+
+type SidebarGroupDef = {
+  label: string
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  items: string[]
+  basePath?: string
+}
+
+const componentGroups: SidebarGroupDef[] = [
+  {
+    label: "Actions",
+    items: ["button", "button-group", "toggle", "toggle-group", "dropdown-menu", "context-menu"],
+  },
+  {
+    label: "Forms",
+    items: [
+      "input",
+      "textarea",
+      "select",
+      "native-select",
+      "checkbox",
+      "radio-group",
+      "switch",
+      "slider",
+      "number-input",
+      "input-group",
+      "input-otp",
+      "combobox",
+      "search-input",
+      "calendar",
+      "date-picker",
+      "file-upload",
+      "inline-edit",
+      "segmented-control",
+      "label",
+      "field",
+      "form",
+    ],
+  },
+  {
+    label: "Layout",
+    items: [
+      "card",
+      "item",
+      "separator",
+      "aspect-ratio",
+      "resizable",
+      "scroll-area",
+      "collapsible",
+      "accordion",
+      "tabs",
+      "grid",
+      "direction",
+    ],
+  },
+  {
+    label: "Feedback",
+    items: [
+      "alert",
+      "alert-dialog",
+      "callout",
+      "dialog",
+      "drawer",
+      "sheet",
+      "popover",
+      "tooltip",
+      "hover-card",
+      "sonner",
+      "progress",
+      "skeleton",
+      "spinner",
+      "loading-overlay",
+      "empty",
+    ],
+  },
+  {
+    label: "Navigation",
+    items: [
+      "breadcrumb",
+      "pagination",
+      "navigation-menu",
+      "menubar",
+      "command",
+      "sidebar",
+      "stepper",
+      "timeline",
+    ],
+  },
+  {
+    label: "Data Display",
+    items: [
+      "table",
+      "data-table",
+      "badge",
+      "tag",
+      "avatar",
+      "carousel",
+      "chart",
+      "stat",
+      "risk-gauge",
+      "entity-header",
+      "logo-vasp",
+      "description-list",
+      "code-block",
+      "copy-button",
+      "kbd",
+      "typography",
+      "visually-hidden",
+    ],
+  },
+  {
+    label: "Animation",
+    items: [
+      "bg-shader",
+      "blocky-shader",
+      "ascii-shader",
+      "subtle-shader",
+      "fade-in",
+      "marquee",
+      "typewriter",
+      "animated-counter",
+      "streaming-cards",
+    ],
+  },
+]
+
+const complianceItems = ["case-card"]
+
+const shellItems = ["app-shell"]
+
+const blockItems = [
+  "pricing-table",
+  "stat-card",
+  "feature-section",
+  "hero-section",
+  "auth-form",
+  "page-cta",
+  "article-card",
+  "team-card",
+]
+
+const chartItems = ["area-chart", "bar-chart", "line-chart", "pie-chart", "radial-chart"]
+
+const workflowItems = [
+  "workflow-canvas",
+  "workflow-node",
+  "workflow-gate",
+  "workflow-edge",
+  "workflow-connection",
+  "workflow-controls",
+  "workflow-label",
+  "workflow-panel",
+  "workflow-toolbar",
+  "workflow-minimap",
+  "workflow-group",
+  "workflow-handle",
+]
+
+const chatbotItems = [
+  "shimmer",
+  "suggestion",
+  "reasoning",
+  "sources",
+  "attachments",
+  "inline-citation",
+  "message",
+  "conversation",
+  "prompt-input",
+  "chain-of-thought",
+  "confirmation",
+  "context",
+  "checkpoint",
+  "plan",
+  "task",
+  "tool",
+  "queue",
+  "model-selector",
+]
+
+const animationItems = [
+  "animation-ai-analysis",
+  "animation-audit-trail",
+  "animation-compliance-reports",
+  "animation-custom-rules",
+  "animation-jira-ticket",
+  "animation-jurisdiction-detection",
+  "animation-multi-protocol",
+  "animation-pricing-preview",
+  "animation-realtime-updates",
+  "animation-rest-api",
+  "animation-risk-scoring",
+  "animation-sandbox",
+  "animation-scheduled-reports",
+  "animation-secure-messaging",
+  "animation-slack-notification",
+  "animation-sop-mapping",
+  "animation-team-routing",
+  "animation-teams-notification",
+  "animation-vasp-identification",
+  "animation-webhooks",
+]
+
+function buildNav(pathname: string): NavGroup[] {
+  const nav: NavGroup[] = [
+    {
+      title: "Foundations",
+      items: [
+        {
+          label: "Getting Started",
+          icon: BookOpen,
+          href: "/getting-started",
+          isActive: pathname === "/getting-started",
+        },
+        {
+          label: "Typography",
+          icon: Type,
+          href: "/foundations/typography",
+          isActive: pathname === "/foundations/typography",
+        },
+        {
+          label: "Colors",
+          icon: Palette,
+          href: "/foundations/colors",
+          isActive: pathname === "/foundations/colors",
+        },
+        {
+          label: "Tokens",
+          icon: Braces,
+          href: "/foundations/tokens",
+          isActive: pathname === "/foundations/tokens",
+        },
+        {
+          label: "Motion",
+          icon: Move,
+          href: "/foundations/motion",
+          isActive: pathname === "/foundations/motion",
+        },
+        {
+          label: "Theme Builder",
+          icon: Paintbrush,
+          href: "/foundations/theme-builder",
+          isActive: pathname === "/foundations/theme-builder",
+        },
+        {
+          label: "Claude Skills",
+          icon: Bot,
+          href: "/skills",
+          isActive: pathname === "/skills",
+        },
+      ],
+    },
+  ]
+
+  for (const group of componentGroups) {
+    nav.push({
+      title: group.label,
+      items: group.items.map((slug) => {
+        const href = `/components/${slug}`
+        const meta = componentMeta[slug]
+        const status = meta?.status
+        const showBadge = status && status !== "stable"
+        return {
+          label: toTitle(slug),
+          icon: Component,
+          href,
+          isActive: pathname === href,
+          badge: showBadge ? (
+            <span
+              className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
+            >
+              {statusConfig[status].label}
+            </span>
+          ) : undefined,
+        }
+      }),
+    })
+  }
+
+  nav.push({
+    title: "Compliance",
+    items: complianceItems.map((slug) => {
+      const href = `/components/${slug}`
+      const meta = componentMeta[slug]
+      const status = meta?.status
+      const showBadge = status && status !== "stable"
+      return {
+        label: toTitle(slug),
+        icon: Component,
+        href,
+        isActive: pathname === href,
+        badge: showBadge ? (
+          <span
+            className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
+          >
+            {statusConfig[status].label}
+          </span>
+        ) : undefined,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "Shells",
+    items: shellItems.map((slug) => {
+      const href = `/shells/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: Layout,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "Blocks",
+    items: blockItems.map((slug) => {
+      const href = `/blocks/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: Blocks,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "Charts",
+    items: chartItems.map((slug) => {
+      const href = `/components/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: BarChart3,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "Workflow",
+    items: workflowItems.map((slug) => {
+      const href = `/components/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: Workflow,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "AI / Chatbot",
+    items: chatbotItems.map((slug) => {
+      const href = `/components/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: MessageSquare,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  nav.push({
+    title: "Product Animations",
+    items: animationItems.map((slug) => {
+      const href = `/animations/${slug}`
+      return {
+        label: toTitle(slug),
+        icon: Play,
+        href,
+        isActive: pathname === href,
+      }
+    }),
+  })
+
+  return nav
+}
+
+function getBreadcrumbs(pathname: string) {
+  if (pathname === "/") return [{ label: "Home" }]
+  const segments = pathname.split("/").filter(Boolean)
+  return segments.map((seg, i) => ({
+    label: toTitle(seg),
+    href: i < segments.length - 1 ? `/${segments.slice(0, i + 1).join("/")}` : undefined,
+  }))
+}
+
+function DarkModeToggle() {
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"))
+  }, [])
+
+  const toggle = useCallback(() => {
+    const next = !dark
+    document.documentElement.classList.toggle("dark", next)
+    setDark(next)
+  }, [dark])
+
+  return (
+    <Button variant="ghost" size="icon" onClick={toggle}>
+      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+    </Button>
+  )
+}
+
+function filterNav(nav: NavGroup[], query: string): NavGroup[] {
+  if (!query) return nav
+  const q = query.toLowerCase()
+  return nav
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => item.label.toLowerCase().includes(q)),
+    }))
+    .filter((group) => group.items.length > 0)
+}
+
+export function PreviewShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const [search, setSearch] = useState("")
+
+  const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
+
+  return (
+    <AppShell
+      logo={{
+        icon: <CogenticLogo className="size-4" />,
+        title: "Cogentic DS",
+        subtitle: "Component Showcase",
+      }}
+      nav={nav}
+      breadcrumbs={getBreadcrumbs(pathname)}
+      headerActions={
+        <>
+          <CommandSearch />
+          <DarkModeToggle />
+        </>
+      }
+      sidebarHeaderExtra={
+        <div className="relative px-2">
+          <Search className="absolute top-1/2 left-4 size-3.5 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Filter..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="h-8 pl-8 text-sm"
+          />
+        </div>
+      }
+      linkComponent={Link}
+    >
+      {children}
+    </AppShell>
+  )
+}

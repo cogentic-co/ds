@@ -1,0 +1,7156 @@
+{
+  "accordion": [
+    {
+      "displayName": "Accordion",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AccordionRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AccordionItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AccordionItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AccordionTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AccordionItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AccordionContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AccordionPanelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "alert-dialog": [
+    {
+      "displayName": "AlertDialog",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "AlertDialogAction",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogCancel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogCloseState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null",
+          "required": false,
+          "defaultValue": "outline",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogDescriptionState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogMedia",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogOverlay",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogBackdropState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogPortal",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: State) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTitleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDialogTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "alert": [
+    {
+      "displayName": "Alert",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"destructive\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AlertAction",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animated-counter": [
+    {
+      "displayName": "AnimatedCounter",
+      "description": "",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": true,
+          "defaultValue": null,
+          "description": "Target value to animate to"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "defaultValue": "1000",
+          "description": "Animation duration in milliseconds. Default: 1000"
+        },
+        {
+          "name": "prefix",
+          "type": "string",
+          "required": false,
+          "defaultValue": "",
+          "description": "Optional prefix (e.g. \"$\")"
+        },
+        {
+          "name": "suffix",
+          "type": "string",
+          "required": false,
+          "defaultValue": "",
+          "description": "Optional suffix (e.g. \"%\")"
+        },
+        {
+          "name": "decimals",
+          "type": "number",
+          "required": false,
+          "defaultValue": "0",
+          "description": "Number of decimal places. Default: 0"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "aspect-ratio": [
+    {
+      "displayName": "AspectRatio",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "ratio",
+          "type": "number",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "avatar": [
+    {
+      "displayName": "Avatar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AvatarRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AvatarImage",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AvatarImageState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AvatarFallback",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: AvatarFallbackState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "AvatarGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AvatarGroupCount",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "AvatarBadge",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "badge": [
+    {
+      "displayName": "Badge",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"secondary\" | \"destructive\" | \"outline\" | \"ghost\" | \"link\" | \"tagline\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "bg-shader": [
+    {
+      "displayName": "BgShader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "breadcrumb": [
+    {
+      "displayName": "Breadcrumb",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbLink",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbPage",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "BreadcrumbEllipsis",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "button-group": [
+    {
+      "displayName": "ButtonGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ButtonGroupSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ButtonGroupText",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "button": [
+    {
+      "displayName": "Button",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "displayName": "Calendar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Class name to add to the root element."
+        },
+        {
+          "name": "buttonVariant",
+          "type": "\"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null",
+          "required": false,
+          "defaultValue": "ghost",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CalendarDayButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "locale",
+          "type": "Partial<DayPickerLocale>",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "callout": [
+    {
+      "displayName": "Callout",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"info\" | \"warning\" | \"danger\" | \"tip\" | null",
+          "required": false,
+          "defaultValue": "info",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "card": [
+    {
+      "displayName": "Card",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardAction",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CardContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "carousel": [
+    {
+      "displayName": "Carousel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "opts",
+          "type": "Partial<OptionsType>",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "plugins",
+          "type": "CreatePluginType<LoosePluginType, {}>[]",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "horizontal",
+          "description": ""
+        },
+        {
+          "name": "setApi",
+          "type": "((api: EmblaCarouselType) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CarouselContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CarouselItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CarouselPrevious",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"link\" | \"toggle\" | \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"callout\" | null",
+          "required": false,
+          "defaultValue": "outline",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": "icon-sm",
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CarouselNext",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"link\" | \"toggle\" | \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"callout\" | null",
+          "required": false,
+          "defaultValue": "outline",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": "icon-sm",
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "chart": [
+    {
+      "displayName": "ChartContainer",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "config",
+          "type": "ChartConfig",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Tooltip",
+      "description": "The Tooltip component displays a floating box with data values when hovering over or clicking on chart elements.\n\nIt can be configured to show information for individual data points or for all points at a specific axis coordinate.\nThe appearance and content of the tooltip can be customized via props.",
+      "props": []
+    },
+    {
+      "displayName": "ChartTooltipContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "hideLabel",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        },
+        {
+          "name": "hideIndicator",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        },
+        {
+          "name": "indicator",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "dot",
+          "description": ""
+        },
+        {
+          "name": "nameKey",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "labelKey",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Legend",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ChartLegendContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "payload",
+          "type": "{ value: string; type?: string; color?: string; dataKey?: string | undefined; }[] | undefined",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "verticalAlign",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "bottom",
+          "description": ""
+        },
+        {
+          "name": "hideIcon",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        },
+        {
+          "name": "nameKey",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ChartStyle",
+      "description": "",
+      "props": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "config",
+          "type": "ChartConfig",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "checkbox": [
+    {
+      "displayName": "Checkbox",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: CheckboxRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "code-block": [
+    {
+      "displayName": "CodeBlock",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "code",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": "The code content"
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Language label (shown in header)"
+        },
+        {
+          "name": "showLineNumbers",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Show line numbers"
+        },
+        {
+          "name": "showCopy",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Show copy button"
+        }
+      ]
+    }
+  ],
+  "collapsible": [
+    {
+      "displayName": "Collapsible",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: CollapsibleRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "CollapsibleTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: CollapsibleRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "CollapsibleContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: CollapsiblePanelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "combobox": [
+    {
+      "displayName": "ComboboxRoot",
+      "description": "Groups all parts of the combobox.\nDoesn't render its own HTML element.\n\nDocumentation: [Base UI Combobox](https://base-ui.com/react/components/combobox)",
+      "props": []
+    },
+    {
+      "displayName": "ComboboxInput",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxInputState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "showTrigger",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        },
+        {
+          "name": "showClear",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxListState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxGroupLabelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxCollection",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "ComboboxEmpty",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxEmptyState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxChips",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxChipsState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxChip",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxChipState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "showRemove",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxChipsInput",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxInputState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ComboboxTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ComboboxValue",
+      "description": "",
+      "props": []
+    }
+  ],
+  "command": [
+    {
+      "displayName": "Command",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandDialog",
+      "description": "",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Command Palette",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Search for a command to run...",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandInput",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandEmpty",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandShortcut",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "CommandSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "context-menu": [
+    {
+      "displayName": "ContextMenu",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "ContextMenuTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ContextMenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuCheckboxItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuCheckboxItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuRadioItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuGroupLabelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuShortcut",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuPortal",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: State) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuSub",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "ContextMenuSubContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuSubTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuSubmenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ContextMenuRadioGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "copy-button": [
+    {
+      "displayName": "CopyButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string | number | readonly string[]",
+          "required": false,
+          "defaultValue": null,
+          "description": "Text to copy to clipboard"
+        },
+        {
+          "name": "timeout",
+          "type": "number",
+          "required": false,
+          "defaultValue": "2000",
+          "description": "How long \"Copied!\" stays visible (ms). Default 2000"
+        }
+      ]
+    }
+  ],
+  "data-table": [
+    {
+      "displayName": "DataTable",
+      "description": "",
+      "props": [
+        {
+          "name": "table",
+          "type": "Table<TData>",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "columns",
+          "type": "ColumnDef<TData, unknown>[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "virtual",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Enable virtual scrolling for large datasets"
+        },
+        {
+          "name": "virtualHeight",
+          "type": "number",
+          "required": false,
+          "defaultValue": "400",
+          "description": "Fixed height for the virtual scroll container (default: 400)"
+        },
+        {
+          "name": "estimateSize",
+          "type": "number",
+          "required": false,
+          "defaultValue": "48",
+          "description": "Estimated row height for virtualizer (default: 48)"
+        },
+        {
+          "name": "emptyState",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": "Render function for empty state"
+        }
+      ]
+    },
+    {
+      "displayName": "DataTableColumnHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "column",
+          "type": "Column<TData, TValue>",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DataTableFacetedFilter",
+      "description": "",
+      "props": [
+        {
+          "name": "column",
+          "type": "Column<TData, TValue>",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "options",
+          "type": "DataTableFacetedFilterOption[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DataTablePagination",
+      "description": "",
+      "props": [
+        {
+          "name": "table",
+          "type": "Table<TData>",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "pageSizeOptions",
+          "type": "number[]",
+          "required": false,
+          "defaultValue": "[10, 20, 30, 40, 50]",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DataTableToolbar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "table",
+          "type": "Table<TData>",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "showViewOptions",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DataTableViewOptions",
+      "description": "",
+      "props": [
+        {
+          "name": "table",
+          "type": "Table<TData>",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "useDataTable",
+      "description": "",
+      "props": [
+        {
+          "name": "data",
+          "type": "TData[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "columns",
+          "type": "ColumnDef<TData, unknown>[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "getRowId",
+          "type": "((row: TData) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "initialSorting",
+          "type": "SortingState",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "initialGlobalFilter",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "initialFilters",
+          "type": "ColumnFiltersState",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "initialVisibility",
+          "type": "VisibilityState",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "initialSelection",
+          "type": "RowSelectionState",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "enableRowSelection",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "enablePagination",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "date-picker": [
+    {
+      "displayName": "DatePicker",
+      "description": "",
+      "props": [
+        {
+          "name": "value",
+          "type": "Date",
+          "required": false,
+          "defaultValue": null,
+          "description": "Currently selected date"
+        },
+        {
+          "name": "onChange",
+          "type": "((date: Date) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Callback when date changes"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Pick a date",
+          "description": "Placeholder text when no date selected"
+        },
+        {
+          "name": "dateFormat",
+          "type": "string",
+          "required": false,
+          "defaultValue": "PPP",
+          "description": "Date format string (date-fns format)"
+        },
+        {
+          "name": "presets",
+          "type": "DatePickerPreset[]",
+          "required": false,
+          "defaultValue": null,
+          "description": "Preset quick-select options"
+        },
+        {
+          "name": "align",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "start",
+          "description": "Alignment of the popover"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Additional className for the trigger button"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Disabled state"
+        },
+        {
+          "name": "calendarProps",
+          "type": "Omit<DayPickerProps & { buttonVariant?: \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null; }, \"mode\" | ... 1 more ... | \"onSelect\">",
+          "required": false,
+          "defaultValue": null,
+          "description": "Props forwarded to the Calendar"
+        }
+      ]
+    },
+    {
+      "displayName": "DateRangePicker",
+      "description": "",
+      "props": [
+        {
+          "name": "value",
+          "type": "DateRange",
+          "required": false,
+          "defaultValue": null,
+          "description": "Currently selected date range"
+        },
+        {
+          "name": "onChange",
+          "type": "((range: DateRange) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Callback when range changes"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Pick a date",
+          "description": "Placeholder text when no date selected"
+        },
+        {
+          "name": "dateFormat",
+          "type": "string",
+          "required": false,
+          "defaultValue": "LLL dd, y",
+          "description": "Date format string (date-fns format)"
+        },
+        {
+          "name": "numberOfMonths",
+          "type": "number",
+          "required": false,
+          "defaultValue": "2",
+          "description": "Number of months to display (default: 2)"
+        },
+        {
+          "name": "align",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "start",
+          "description": "Alignment of the popover"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Additional className for the trigger button"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": "Disabled state"
+        },
+        {
+          "name": "calendarProps",
+          "type": "Omit<DayPickerProps & { buttonVariant?: \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"link\" | \"callout\" | \"toggle\" | null; }, \"mode\" | ... 2 more ... | \"numberOfMonths\">",
+          "required": false,
+          "defaultValue": null,
+          "description": "Props forwarded to the Calendar"
+        }
+      ]
+    }
+  ],
+  "description-list": [
+    {
+      "displayName": "DescriptionList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DescriptionListItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DescriptionListTerm",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DescriptionListDetail",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "dialog": [
+    {
+      "displayName": "Dialog",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "DialogClose",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogCloseState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DialogContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DialogDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogDescriptionState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DialogFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DialogHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DialogOverlay",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogBackdropState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DialogPortal",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: State) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DialogTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTitleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DialogTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "direction": [
+    {
+      "displayName": "DirectionProvider",
+      "description": "Enables RTL behavior for Base UI components.\n\nDocumentation: [Base UI Direction Provider](https://base-ui.com/react/utils/direction-provider)",
+      "props": []
+    }
+  ],
+  "drawer": [
+    {
+      "displayName": "Drawer",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "DrawerPortal",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "DrawerOverlay",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerClose",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DrawerDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "dropdown-menu": [
+    {
+      "displayName": "DropdownMenu",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "DropdownMenuPortal",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: State) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuCheckboxItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuCheckboxItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuRadioGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuRadioItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuShortcut",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuSub",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "DropdownMenuSubTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuSubmenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "DropdownMenuSubContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "empty": [
+    {
+      "displayName": "Empty",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "EmptyHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "EmptyTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "EmptyDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "EmptyContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "EmptyMedia",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"icon\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "fade-in": [
+    {
+      "displayName": "FadeIn",
+      "description": "",
+      "props": [
+        {
+          "name": "as",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "div",
+          "description": ""
+        },
+        {
+          "name": "delay",
+          "type": "number",
+          "required": false,
+          "defaultValue": "0",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "field": [
+    {
+      "displayName": "Field",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "orientation",
+          "type": "\"vertical\" | \"horizontal\" | \"responsive\" | null",
+          "required": false,
+          "defaultValue": "vertical",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldError",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "errors",
+          "type": "FieldErrorItem[]",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldLegend",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "legend",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldSet",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "FieldTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "file-upload": [
+    {
+      "displayName": "FileUpload",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Accepted file types (e.g. \"image/*,.pdf\")"
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Allow multiple files"
+        },
+        {
+          "name": "maxSize",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Max file size in bytes"
+        },
+        {
+          "name": "onChange",
+          "type": "((files: File[]) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Called when files are selected"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Disabled state"
+        }
+      ]
+    }
+  ],
+  "form": [
+    {
+      "displayName": "FormApi",
+      "description": "A class representing the Form API. It handles the logic and interactions with the form state.\n\nNormally, you will not need to create a new `FormApi` instance directly. Instead, you will use a framework\nhook/function like `useForm` or `createForm` to create a new instance for you that uses your framework's reactivity model.\nHowever, if you need to create a new instance manually, you can do so by calling the `new FormApi` constructor.",
+      "props": []
+    },
+    {
+      "displayName": "ReactFormExtendedApi",
+      "description": "An extended version of the `FormApi` class that includes React-specific functionalities from `ReactFormApi`",
+      "props": []
+    },
+    {
+      "displayName": "useField",
+      "description": "A hook for managing a field in a form.",
+      "props": []
+    },
+    {
+      "displayName": "useForm",
+      "description": "A custom React Hook that returns an extended instance of the `FormApi` class.\n\nThis API encapsulates all the necessary functionalities related to the form. It allows you to manage form state, handle submissions, and interact with form fields",
+      "props": []
+    }
+  ],
+  "grid": [
+    {
+      "displayName": "Grid",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "cols",
+          "type": "string | number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Number of columns (1–12) or a custom Tailwind class like \"grid-cols-[200px_1fr]\""
+        },
+        {
+          "name": "rows",
+          "type": "string | number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Number of rows (1–12) or a custom Tailwind class like \"grid-rows-[auto_1fr_auto]\""
+        },
+        {
+          "name": "flow",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": "Grid auto-flow: row | col | dense | row-dense | col-dense"
+        },
+        {
+          "name": "autoCols",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": "Auto columns: auto | min | max | fr"
+        },
+        {
+          "name": "autoRows",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": "Auto rows: auto | min | max | fr"
+        },
+        {
+          "name": "gap",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Gap (Tailwind spacing scale)"
+        },
+        {
+          "name": "gapX",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Column gap (Tailwind spacing scale)"
+        },
+        {
+          "name": "gapY",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Row gap (Tailwind spacing scale)"
+        }
+      ]
+    },
+    {
+      "displayName": "Col",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "span",
+          "type": "number | \"full\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Column span (1–12 or \"full\")"
+        },
+        {
+          "name": "start",
+          "type": "number | \"auto\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Column start line (1–13 or \"auto\")"
+        },
+        {
+          "name": "end",
+          "type": "number | \"auto\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Column end line (1–13 or \"auto\")"
+        },
+        {
+          "name": "rowSpan",
+          "type": "number | \"full\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Row span (1–12 or \"full\")"
+        },
+        {
+          "name": "rowStart",
+          "type": "number | \"auto\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Row start line (1–13 or \"auto\")"
+        },
+        {
+          "name": "rowEnd",
+          "type": "number | \"auto\"",
+          "required": false,
+          "defaultValue": null,
+          "description": "Row end line (1–13 or \"auto\")"
+        }
+      ]
+    }
+  ],
+  "hover-card": [
+    {
+      "displayName": "HoverCard",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "HoverCardTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PreviewCardTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "HoverCardContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PreviewCardPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "inline-edit": [
+    {
+      "displayName": "InlineEdit",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": "Current value"
+        },
+        {
+          "name": "onChange",
+          "type": "(value: string) => void",
+          "required": true,
+          "defaultValue": null,
+          "description": "Called when edit is confirmed"
+        },
+        {
+          "name": "renderDisplay",
+          "type": "((value: string) => ReactNode)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Render the display value (defaults to plain text)"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Click to edit",
+          "description": "Placeholder when value is empty"
+        }
+      ]
+    }
+  ],
+  "input-group": [
+    {
+      "displayName": "InputGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputGroupAddon",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "align",
+          "type": "\"inline-start\" | \"inline-end\" | \"block-start\" | \"block-end\" | null",
+          "required": false,
+          "defaultValue": "inline-start",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputGroupButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"link\" | \"toggle\" | \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"callout\" | null",
+          "required": false,
+          "defaultValue": "ghost",
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"icon-xs\" | \"icon-sm\" | null",
+          "required": false,
+          "defaultValue": "xs",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "button",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputGroupText",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputGroupInput",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputGroupTextarea",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "input-otp": [
+    {
+      "displayName": "InputOTP",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputOTPGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputOTPSlot",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InputOTPSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "input": [
+    {
+      "displayName": "Input",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "item": [
+    {
+      "displayName": "Item",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | \"muted\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"xs\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemMedia",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"image\" | \"default\" | \"icon\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemActions",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ItemTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ItemFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "kbd": [
+    {
+      "displayName": "Kbd",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "KbdGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "label": [
+    {
+      "displayName": "Label",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "loading-overlay": [
+    {
+      "displayName": "LoadingOverlay",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": true,
+          "defaultValue": null,
+          "description": "Whether the overlay is visible"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "Optional label"
+        }
+      ]
+    }
+  ],
+  "marquee": [
+    {
+      "displayName": "Marquee",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "defaultValue": "40",
+          "description": "Duration in seconds for one full loop. Default: 40"
+        },
+        {
+          "name": "direction",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "left",
+          "description": "Scroll direction. Default: \"left\""
+        },
+        {
+          "name": "pauseOnHover",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Pause on hover. Default: true"
+        },
+        {
+          "name": "fadeEdges",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Show fade edges. Default: true"
+        }
+      ]
+    }
+  ],
+  "menubar": [
+    {
+      "displayName": "Menubar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenubarState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarPortal",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: State) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarMenu",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "MenubarTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarShortcut",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarCheckboxItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuCheckboxItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarRadioGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarRadioItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuRadioItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarSub",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "MenubarSubTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuSubmenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "inset",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "MenubarSubContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: MenuPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "native-select": [
+    {
+      "displayName": "NativeSelect",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "NativeSelectOptGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "NativeSelectOption",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "navigation-menu": [
+    {
+      "displayName": "NavigationMenu",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuContentState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuIndicator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuIconState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuLink",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuLinkState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuListState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "NavigationMenuPositioner",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: NavigationMenuPositionerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "number-input": [
+    {
+      "displayName": "NumberInput",
+      "description": "",
+      "props": [
+        {
+          "name": "max",
+          "type": "string | number",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "min",
+          "type": "string | number",
+          "required": false,
+          "defaultValue": "-Infinity",
+          "description": ""
+        },
+        {
+          "name": "step",
+          "type": "string | number",
+          "required": false,
+          "defaultValue": "1",
+          "description": ""
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "required": false,
+          "defaultValue": "0",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "type": "((value: number) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "pagination": [
+    {
+      "displayName": "Pagination",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationEllipsis",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationLink",
+      "description": "",
+      "props": [
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": "icon",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationNext",
+      "description": "",
+      "props": [
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Next",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PaginationPrevious",
+      "description": "",
+      "props": [
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Previous",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "popover": [
+    {
+      "displayName": "Popover",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "PopoverContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PopoverPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "PopoverDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PopoverDescriptionState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "PopoverHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "PopoverTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PopoverTitleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "PopoverTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: PopoverTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "progress": [
+    {
+      "displayName": "Progress",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ProgressRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ProgressTrack",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ProgressRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ProgressIndicator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ProgressRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ProgressLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ProgressRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ProgressValue",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ProgressRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "radio-group": [
+    {
+      "displayName": "RadioGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: RadioGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "RadioGroupItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: RadioRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "resizable": [
+    {
+      "displayName": "ResizableHandle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class name.\n\nℹ️ Use the `data-separator` attribute for custom _hover_ and _active_ styles\n\n⚠️ The following properties cannot be overridden: `flex-grow`, `flex-shrink`"
+        },
+        {
+          "name": "withHandle",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ResizablePanel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class name.\n\nℹ️ Use the `data-separator` attribute for custom _hover_ and _active_ styles\n\n⚠️ The following properties cannot be overridden: `flex-grow`, `flex-shrink`"
+        }
+      ]
+    },
+    {
+      "displayName": "ResizablePanelGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class name.\n\nℹ️ Use the `data-separator` attribute for custom _hover_ and _active_ styles\n\n⚠️ The following properties cannot be overridden: `flex-grow`, `flex-shrink`"
+        }
+      ]
+    }
+  ],
+  "scroll-area": [
+    {
+      "displayName": "ScrollArea",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ScrollAreaRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "ScrollBar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ScrollAreaScrollbarState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "segmented-control": [
+    {
+      "displayName": "SegmentedControl",
+      "description": "",
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[]",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "options",
+          "type": "{ value: string; label: ReactNode; }[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "onChange",
+          "type": "((value: string) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "select": [
+    {
+      "displayName": "SelectRoot",
+      "description": "Groups all parts of the select.\nDoesn’t render its own HTML element.\n\nDocumentation: [Base UI Select](https://base-ui.com/react/components/select)",
+      "props": []
+    },
+    {
+      "displayName": "SelectContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectItemState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectGroupLabelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectScrollDownButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectScrollDownArrowState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectScrollUpButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectScrollUpArrowState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SelectTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SelectValue",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SelectValueState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "separator": [
+    {
+      "displayName": "Separator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "shadow-root-host": [
+    {
+      "displayName": "shadowroothost",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "mode",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "open",
+          "description": ""
+        },
+        {
+          "name": "delegatesFocus",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        },
+        {
+          "name": "as",
+          "type": "(\"symbol\" & ElementType<any, keyof IntrinsicElements>) | (\"object\" & ElementType<any, keyof IntrinsicElements>) | ... 178 more ...",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "sheet": [
+    {
+      "displayName": "Sheet",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "SheetTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SheetClose",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogCloseState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SheetContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "side",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "right",
+          "description": ""
+        },
+        {
+          "name": "showCloseButton",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SheetHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SheetFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SheetTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogTitleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SheetDescription",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: DialogDescriptionState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "sidebar": [
+    {
+      "displayName": "Sidebar",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "side",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "left",
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "sidebar",
+          "description": ""
+        },
+        {
+          "name": "collapsible",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "offcanvas",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarGroupAction",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarGroupContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarGroupLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarInput",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarInset",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenu",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuAction",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "showOnHover",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuBadge",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        },
+        {
+          "name": "tooltip",
+          "type": "string | (TooltipPopupProps & Pick<TooltipPositionerProps, \"side\" | \"align\" | \"alignOffset\" | \"sideOffset\">)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuSkeleton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "showIcon",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuSub",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuSubButton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "md",
+          "description": ""
+        },
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarMenuSubItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarProvider",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarRail",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SeparatorState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "SidebarTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ButtonState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"link\" | \"toggle\" | \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"destructive\" | \"callout\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"icon\" | \"default\" | \"sm\" | \"lg\" | \"xs\" | \"xl\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "font",
+          "type": "\"default\" | \"mono\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "skeleton": [
+    {
+      "displayName": "Skeleton",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "slider": [
+    {
+      "displayName": "Slider",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SliderRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "sonner": [
+    {
+      "displayName": "Toaster",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "spinner": [
+    {
+      "displayName": "Spinner",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "stat": [
+    {
+      "displayName": "Stat",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "StatLabel",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "StatValue",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "StatTrend",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "direction",
+          "type": "\"up\" | \"down\" | \"neutral\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "stepper": [
+    {
+      "displayName": "Stepper",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Step",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "upcoming",
+          "description": ""
+        },
+        {
+          "name": "index",
+          "type": "number",
+          "required": false,
+          "defaultValue": null,
+          "description": "Step number (1-based)"
+        }
+      ]
+    },
+    {
+      "displayName": "StepSeparator",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "streaming-cards": [
+    {
+      "displayName": "StreamingCards",
+      "description": "",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode[]",
+          "required": true,
+          "defaultValue": null,
+          "description": "Array of card content to cycle through"
+        },
+        {
+          "name": "maxVisible",
+          "type": "number",
+          "required": false,
+          "defaultValue": "3",
+          "description": "Number of cards visible at once. Default: 3"
+        },
+        {
+          "name": "interval",
+          "type": "number",
+          "required": false,
+          "defaultValue": "2800",
+          "description": "Milliseconds between each new card. Default: 2800"
+        },
+        {
+          "name": "fadeOlder",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Whether older cards fade to lower opacity. Default: true"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "switch": [
+    {
+      "displayName": "Switch",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: SwitchRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "table": [
+    {
+      "displayName": "Table",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableHeader",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableBody",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableFooter",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableHead",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableRow",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableCell",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TableCaption",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "displayName": "Tabs",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TabsRootState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "TabsList",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TabsListState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"line\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TabsTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TabsTabState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "TabsContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TabsPanelState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    }
+  ],
+  "tag": [
+    {
+      "displayName": "Tag",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"primary\" | \"secondary\" | \"destructive\" | \"success\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "onRemove",
+          "type": "(() => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Called when the remove button is clicked. If provided, shows the X button."
+        }
+      ]
+    }
+  ],
+  "textarea": [
+    {
+      "displayName": "Textarea",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "theme-script": [
+    {
+      "displayName": "ThemeScript",
+      "description": "Inline script that syncs the `.dark` class on `<html>` with the OS\ncolor-scheme preference. Drop this into `<head>` to avoid FOUC.\n\nWorks with the DS's `@custom-variant dark (&:is(.dark *))` directive.",
+      "props": []
+    }
+  ],
+  "timeline": [
+    {
+      "displayName": "Timeline",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TimelineItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TimelineDot",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TimelineContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TimelineTitle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "TimelineTime",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "toggle-group": [
+    {
+      "displayName": "ToggleGroup",
+      "description": "",
+      "props": [
+        {
+          "name": "orientation",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "horizontal",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string | ((state: ToggleGroupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "spacing",
+          "type": "number",
+          "required": false,
+          "defaultValue": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "ToggleGroupItem",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ToggleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "toggle": [
+    {
+      "displayName": "Toggle",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: ToggleState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"outline\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"lg\" | null",
+          "required": false,
+          "defaultValue": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "tooltip": [
+    {
+      "displayName": "Tooltip",
+      "description": "",
+      "props": []
+    },
+    {
+      "displayName": "TooltipTrigger",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TooltipTriggerState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "TooltipContent",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string | ((state: TooltipPopupState) => string)",
+          "required": false,
+          "defaultValue": null,
+          "description": "CSS class applied to the element, or a function that\nreturns a class based on the component’s state."
+        }
+      ]
+    },
+    {
+      "displayName": "TooltipProvider",
+      "description": "",
+      "props": []
+    }
+  ],
+  "typewriter": [
+    {
+      "displayName": "Typewriter",
+      "description": "",
+      "props": [
+        {
+          "name": "lines",
+          "type": "TypewriterLine[]",
+          "required": true,
+          "defaultValue": null,
+          "description": "Array of lines to reveal sequentially"
+        },
+        {
+          "name": "speed",
+          "type": "number",
+          "required": false,
+          "defaultValue": "80",
+          "description": "Milliseconds between each line appearing. Default: 80"
+        },
+        {
+          "name": "showLineNumbers",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Whether to show line numbers. Default: true"
+        },
+        {
+          "name": "showCursor",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "true",
+          "description": "Whether to show a blinking cursor while typing. Default: true"
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": "Whether to loop the animation. Default: false"
+        },
+        {
+          "name": "loopDelay",
+          "type": "number",
+          "required": false,
+          "defaultValue": "3000",
+          "description": "Milliseconds to pause before looping. Default: 3000"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "typography": [
+    {
+      "displayName": "Blockquote",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "H1",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "H2",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "H3",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "H4",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "InlineCode",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Large",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Lead",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "List",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "ordered",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Muted",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "P",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Prose",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"default\" | \"lg\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "displayName": "Small",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "visually-hidden": [
+    {
+      "displayName": "VisuallyHidden",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "app-shell": [
+    {
+      "displayName": "AppShell",
+      "description": "",
+      "props": [
+        {
+          "name": "logo",
+          "type": "AppShellLogo",
+          "required": true,
+          "defaultValue": null,
+          "description": "Logo/branding for the sidebar header"
+        },
+        {
+          "name": "nav",
+          "type": "NavGroup[]",
+          "required": true,
+          "defaultValue": null,
+          "description": "Main navigation groups rendered in the sidebar body"
+        },
+        {
+          "name": "footerNav",
+          "type": "NavGroup",
+          "required": false,
+          "defaultValue": null,
+          "description": "Optional footer navigation group (e.g. Help, Settings)"
+        },
+        {
+          "name": "user",
+          "type": "AppShellUser",
+          "required": false,
+          "defaultValue": null,
+          "description": "User data — renders a user menu in the sidebar footer"
+        },
+        {
+          "name": "breadcrumbs",
+          "type": "BreadcrumbSegment[]",
+          "required": false,
+          "defaultValue": null,
+          "description": "Breadcrumb segments for the header"
+        },
+        {
+          "name": "headerActions",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": "Extra content rendered on the right side of the header"
+        },
+        {
+          "name": "userMenuItems",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": "Custom user menu items rendered before the logout item"
+        },
+        {
+          "name": "onLogout",
+          "type": "(() => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": "Called when the user clicks \"Log out\""
+        },
+        {
+          "name": "linkComponent",
+          "type": "ElementType<any, keyof IntrinsicElements>",
+          "required": false,
+          "defaultValue": "a",
+          "description": "Component to use for links (e.g. Next.js Link). Defaults to `\"a\"`."
+        },
+        {
+          "name": "sidebarHeaderExtra",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": "Extra content rendered below the logo in the sidebar header"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "defaultValue": null,
+          "description": "Page content"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "article-card": [
+    {
+      "displayName": "articlecard",
+      "description": "",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "excerpt",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "defaultValue": "#",
+          "description": ""
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "date",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "author",
+          "type": "string",
+          "required": false,
+          "defaultValue": "Cogentic Team",
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "auth-form": [
+    {
+      "displayName": "AuthForm",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "onSubmit",
+          "type": "SubmitEventHandler<HTMLDivElement> | ((data: FormData) => void)",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "login",
+          "description": ""
+        },
+        {
+          "name": "logo",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "socialButtons",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false,
+          "defaultValue": "false",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "feature-section": [
+    {
+      "displayName": "FeatureSection",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "subtitle",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "features",
+          "type": "Feature[]",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "columns",
+          "type": "enum",
+          "required": false,
+          "defaultValue": "3",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "hero-section": [
+    {
+      "displayName": "HeroSection",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "\"default\" | \"centered\" | \"split\" | null",
+          "required": false,
+          "defaultValue": "centered",
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"full\" | null",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "subtitle",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "media",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "badge",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "page-cta": [
+    {
+      "displayName": "pagecta",
+      "description": "",
+      "props": [
+        {
+          "name": "headline",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "subheadline",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "primaryCta",
+          "type": "CtaLink",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "secondaryCta",
+          "type": "CtaLink",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "pricing-table": [
+    {
+      "displayName": "pricingtable",
+      "description": "",
+      "props": [
+        {
+          "name": "headline",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "subheadline",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "plans",
+          "type": "Plan[]",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "stat-card": [
+    {
+      "displayName": "StatCard",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string | number",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "trend",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "trendDirection",
+          "type": "enum",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "team-card": [
+    {
+      "displayName": "teamcard",
+      "description": "",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "role",
+          "type": "string",
+          "required": true,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "linkedinUrl",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-ai-analysis": [
+    {
+      "displayName": "animationaianalysis",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-audit-trail": [
+    {
+      "displayName": "animationaudittrail",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-compliance-reports": [
+    {
+      "displayName": "animationcompliancereports",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-custom-rules": [
+    {
+      "displayName": "animationcustomrules",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-jira-ticket": [
+    {
+      "displayName": "animationjiraticket",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-jurisdiction-detection": [
+    {
+      "displayName": "animationjurisdictiondetection",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-multi-protocol": [
+    {
+      "displayName": "animationmultiprotocol",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-pricing-preview": [
+    {
+      "displayName": "animationpricingpreview",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        },
+        {
+          "name": "plans",
+          "type": "Plan[]",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-realtime-updates": [
+    {
+      "displayName": "animationrealtimeupdates",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-rest-api": [
+    {
+      "displayName": "animationrestapi",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-risk-scoring": [
+    {
+      "displayName": "animationriskscoring",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-sandbox": [
+    {
+      "displayName": "animationsandbox",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-scheduled-reports": [
+    {
+      "displayName": "animationscheduledreports",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-secure-messaging": [
+    {
+      "displayName": "animationsecuremessaging",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-slack-notification": [
+    {
+      "displayName": "animationslacknotification",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-sop-mapping": [
+    {
+      "displayName": "animationsopmapping",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-team-routing": [
+    {
+      "displayName": "animationteamrouting",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-teams-notification": [
+    {
+      "displayName": "animationteamsnotification",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-vasp-identification": [
+    {
+      "displayName": "animationvaspidentification",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "animation-webhooks": [
+    {
+      "displayName": "animationwebhooks",
+      "description": "",
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "defaultValue": null,
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Main bundle",
+    "path": "dist/index.js",
+    "limit": "45 kB"
+  },
+  {
+    "name": "Animation bundles",
+    "path": "dist/animations/*.js",
+    "limit": "5 kB"
+  },
+  {
+    "name": "Block bundles",
+    "path": "dist/blocks/*.js",
+    "limit": "1 kB"
+  }
+]

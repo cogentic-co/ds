@@ -1,0 +1,181 @@
+"use client"
+
+import { cva } from "class-variance-authority"
+import { ChevronDown } from "lucide-react"
+import { type ComponentProps, createContext, useCallback, useContext, useId, useState } from "react"
+import { cn } from "../lib/utils"
+
+// ---------------------------------------------------------------------------
+// Queue section (collapsible group)
+// ---------------------------------------------------------------------------
+
+type QueueSectionContextValue = {
+  open: boolean
+  toggle: () => void
+  contentId: string
+}
+
+const QueueSectionContext = createContext<QueueSectionContextValue | null>(null)
+
+function QueueSection({
+  defaultOpen = true,
+  className,
+  children,
+  ...props
+}: ComponentProps<"div"> & { defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen)
+  const toggle = useCallback(() => setOpen((o) => !o), [])
+  const contentId = useId()
+
+  return (
+    <QueueSectionContext.Provider value={{ open, toggle, contentId }}>
+      <div data-slot="queue-section" className={cn("space-y-1", className)} {...props}>
+        {children}
+      </div>
+    </QueueSectionContext.Provider>
+  )
+}
+
+function QueueSectionTrigger({ className, ...props }: ComponentProps<"button">) {
+  const ctx = useContext(QueueSectionContext)
+  if (!ctx) throw new Error("QueueSectionTrigger must be used within <QueueSection>")
+
+  return (
+    <button
+      data-slot="queue-section-trigger"
+      type="button"
+      onClick={ctx.toggle}
+      aria-expanded={ctx.open}
+      aria-controls={ctx.contentId}
+      className={cn(
+        "flex w-full items-center gap-2 px-2 py-1.5 font-medium text-muted-foreground text-xs",
+        "rounded-md transition-colors hover:text-foreground",
+        className,
+      )}
+      {...props}
+    >
+      <ChevronDown
+        aria-hidden="true"
+        className={cn(
+          "size-3.5 shrink-0 transition-transform duration-200",
+          ctx.open && "rotate-180",
+        )}
+      />
+      {props.children}
+    </button>
+  )
+}
+
+function QueueSectionLabel({ className, ...props }: ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="queue-section-label"
+      className={cn("flex-1 text-left", className)}
+      {...props}
+    />
+  )
+}
+
+function QueueList({ className, ...props }: ComponentProps<"div">) {
+  const ctx = useContext(QueueSectionContext)
+  if (ctx && !ctx.open) return null
+
+  return (
+    <div
+      id={ctx?.contentId}
+      data-slot="queue-list"
+      role="list"
+      className={cn("space-y-1", className)}
+      {...props}
+    />
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Queue item
+// ---------------------------------------------------------------------------
+
+type QueueItemStatus = "pending" | "active" | "complete" | "error"
+
+const queueItemIndicatorVariants = cva("size-2 shrink-0 rounded-full", {
+  variants: {
+    status: {
+      pending: "bg-muted-foreground/30",
+      active: "bg-primary animate-pulse",
+      complete: "bg-emerald-500",
+      error: "bg-red-500",
+    },
+  },
+  defaultVariants: { status: "pending" },
+})
+
+function QueueItem({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="queue-item"
+      role="listitem"
+      className={cn(
+        "flex items-start gap-3 rounded-lg px-3 py-2.5",
+        "transition-colors hover:bg-muted/50",
+        className,
+      )}
+      {...props}
+    />
+  )
+}
+
+function QueueItemIndicator({
+  status = "pending",
+  className,
+  ...props
+}: ComponentProps<"span"> & { status?: QueueItemStatus }) {
+  return (
+    <span
+      data-slot="queue-item-indicator"
+      role="img"
+      aria-label={status}
+      className={cn(queueItemIndicatorVariants({ status }), "mt-1.5", className)}
+      {...props}
+    />
+  )
+}
+
+function QueueItemContent({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div data-slot="queue-item-content" className={cn("min-w-0 flex-1", className)} {...props} />
+  )
+}
+
+function QueueItemDescription({ className, ...props }: ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="queue-item-description"
+      className={cn("mt-0.5 text-muted-foreground text-xs", className)}
+      {...props}
+    />
+  )
+}
+
+function QueueItemActions({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="queue-item-actions"
+      className={cn("flex shrink-0 items-center gap-1", className)}
+      {...props}
+    />
+  )
+}
+
+export {
+  QueueSection,
+  QueueSectionTrigger,
+  QueueSectionLabel,
+  QueueList,
+  QueueItem,
+  QueueItemIndicator,
+  QueueItemContent,
+  QueueItemDescription,
+  QueueItemActions,
+  queueItemIndicatorVariants,
+}
+export type { QueueItemStatus }
