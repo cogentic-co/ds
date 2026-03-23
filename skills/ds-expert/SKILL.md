@@ -1,28 +1,28 @@
 ---
 name: ds-expert
-description: Expert guide for building UIs with the Cogentic Design System (@cogentic/ds). Covers all components, blocks, charts, workflow, hooks, design tokens, and patterns.
+description: Expert guide for building UIs with the Cogentic Design System (@cogentic-co/ds). Covers all components, blocks, charts, workflow, hooks, design tokens, and patterns.
 ---
 # Cogentic Design System Expert
 
-You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds`) and Tailwind CSS v4.
+You are an expert in building UIs with the Cogentic Design System (`@cogentic-co/ds`) and Tailwind CSS v4.
 
 ## Package
 
-- **Package:** `@cogentic/ds` (npm, public)
+- **Package:** `@cogentic-co/ds` (GitHub Packages, org-scoped)
 - **Peer deps:** React 18/19, Next.js 15+, Tailwind CSS v4
-- **Import styles:** `@import "@cogentic/ds/styles.css"` in your globals.css
-- **Tailwind scanning:** `@source "../node_modules/@cogentic/ds/dist"` in globals.css
+- **Import styles:** `@import "@cogentic-co/ds/styles.css"` in your globals.css
+- **Tailwind scanning:** `@source "../node_modules/@cogentic-co/ds/dist"` in globals.css
 
 ## Entry Points
 
 | Import path | Contents |
 |---|---|
-| `@cogentic/ds` | All UI components, hooks, utils, animation constants |
-| `@cogentic/ds/styles.css` | Design tokens CSS (must be imported) |
-| `@cogentic/ds/animations/*` | Individual product animations (code-split) |
-| `@cogentic/ds/blocks/*` | Blocks: pricing-table, stat-card, feature-section, hero-section, auth-form |
-| `@cogentic/ds/charts` | Chart variants (AreaChart, BarChart, LineChart, PieChart, RadialChart) |
-| `@cogentic/ds/workflow` | React Flow workflow components (requires @xyflow/react) |
+| `@cogentic-co/ds` | All UI components, hooks, utils, animation constants |
+| `@cogentic-co/ds/styles.css` | Design tokens CSS (must be imported) |
+| `@cogentic-co/ds/animations/*` | Individual product animations (code-split) |
+| `@cogentic-co/ds/blocks/*` | Blocks: pricing-table, stat-card, feature-section, hero-section, auth-form |
+| `@cogentic-co/ds/charts` | Chart variants (AreaChart, BarChart, LineChart, PieChart, RadialChart) |
+| `@cogentic-co/ds/workflow` | React Flow workflow components (requires @xyflow/react) |
 
 ## Available Components
 
@@ -30,6 +30,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `AppShell` — Full app shell with sidebar nav, breadcrumbs, user menu, header actions. Props: `logo`, `nav`, `footerNav`, `user`, `breadcrumbs`, `headerActions`, `linkComponent`, `children`
 - `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` — Composable card
 - `Grid`, `Col` — Responsive grid (1-12 columns), Col with `span` prop
+- `SplitPane`, `SplitPanePanel`, `SplitPaneDivider` — Resizable master-detail layout. Props: `direction` (horizontal/vertical)
 - `Separator` — Horizontal/vertical divider
 - `AspectRatio` — Constrain child to aspect ratio
 - `ScrollArea` — Custom scrollbar area
@@ -49,6 +50,10 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `Empty` — Empty state with icon, title, description, action
 - `Kbd` — Keyboard shortcut display
 - `CodeBlock` — Code display with language header, line numbers, copy button
+- `WaffleChart` — Canvas-based proportional chart with `mode="grid"` (waffle squares) or `mode="bar"` (horizontal stripes). Props: `segments`, `mode`, `size` (xs/sm/default/lg), `animate`, `duration`, `rows`/`cols` (grid), `stripes`/`dividers` (bar)
+- `ComplianceScore` — SVG donut gauge for compliance posture. Props: `score` (0-100), `size` (sm/default/lg), `showValue`, auto-colors by score range
+- `StatusIndicator` — Status dot with variants: online, offline, busy, away, pending. Props: `variant`, `size` (sm/default/lg), `pulse`, `label`
+- `RiskGauge` — Segmented bar gauge for risk scores. Props: `score`, `tier`, `size`, `label`
 
 ### Forms & Input
 - `Button` — Variants: default, destructive, outline, secondary, ghost, link. Sizes: default, sm, lg, icon
@@ -73,6 +78,8 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `FileUpload` — Drag-and-drop file upload with accept/multiple/maxSize
 - `InlineEdit` — Click-to-edit text field
 - `SegmentedControl` — iOS-style pill selector
+- `ApprovalActions` — Approve/reject/escalate button group with confirmation dialogs. Props: `onApprove`, `onReject`, `onEscalate`, `requireReason`, `disabled`
+- `FilterBar`, `FilterChip`, `FilterClear` — Composable filter chips matching DataTable faceted filter style. FilterChip props: `label`, `value`, `onRemove`
 
 ### Feedback & Overlay
 - `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter` — Modal dialog
@@ -92,6 +99,8 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `Spinner` — Loading spinner
 - `LoadingOverlay` — Overlay children during loading
 - `CopyButton` — Copy-to-clipboard button
+- `PolicyBanner` — Dismissible regulatory alert. Variants: info, warning, critical. Props: `variant`, `icon`, `action`, `dismissible`, `onDismiss`
+- `DeadlineCountdown` — Deadline tracker with auto-urgency (normal/warning/critical/overdue). Props: `deadline`, `urgency`, `warningDays`, `criticalDays`, `label`, `showDot`
 
 ### Navigation
 - `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` — Tab navigation
@@ -102,7 +111,8 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `Sidebar` + sub-components — Full sidebar system
 - `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent` — Expandable sections
 - `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` — Single collapsible
-- `Stepper`, `Step`, `StepSeparator` — Multi-step indicator
+- `Stepper`, `Step`, `StepSeparator` _(deprecated — use StepProgress)_
+- `StepProgress` — Multi-step process tracker with vertical/horizontal orientation. Sub-components: `StepProgressItem`, `StepProgressIndicator`, `StepProgressConnector`, `StepProgressContent`, `StepProgressTitle`, `StepProgressDescription`
 - `Timeline`, `TimelineItem`, `TimelineDot`, `TimelineContent`, `TimelineTitle`, `TimelineTime` — Vertical timeline
 
 ### Animation
@@ -121,6 +131,10 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 ### Typography
 - `H1`, `H2`, `H3`, `H4`, `P`, `Lead`, `Large`, `Small`, `Muted`, `InlineCode`, `Blockquote`, `Ul`, `Li` — Typography primitives
 
+### Compliance Components
+- `CommentThread`, `Comment`, `CommentAvatar`, `CommentBody`, `CommentHeader`, `CommentAuthor`, `CommentTime`, `CommentContent`, `CommentActions` — Threaded comments for cases/findings. `Comment` has `reply` prop for indented replies
+- `AuditLog`, `AuditLogEntry`, `AuditLogIcon`, `AuditLogContent`, `AuditLogMessage`, `AuditLogMeta`, `AuditLogTime`, `AuditLogDetail` — Structured audit log. Entry has `action` variants (create/update/delete/approve/reject/login/export)
+
 ## Blocks (code-split)
 
 - `PricingTable` — Pricing comparison with plan cards, feature lists, billing toggle
@@ -129,7 +143,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic/ds
 - `HeroSection` — Hero with variants: default, centered, split. Sizes: sm, default, lg
 - `AuthForm` — Login/register/forgot-password with social buttons support
 
-## Chart Variants (from `@cogentic/ds/charts`)
+## Chart Variants (from `@cogentic-co/ds/charts`)
 
 All chart components accept `data`, `config` (ChartConfig), and customize via props:
 - `AreaChart` — Gradient area with optional stacking
@@ -140,7 +154,7 @@ All chart components accept `data`, `config` (ChartConfig), and customize via pr
 
 Base primitives: `ChartContainer`, `ChartTooltip`, `ChartTooltipContent`, `ChartLegend`, `ChartLegendContent`
 
-## Workflow Components (from `@cogentic/ds/workflow`)
+## Workflow Components (from `@cogentic-co/ds/workflow`)
 
 Requires `@xyflow/react` as peer dependency:
 - `WorkflowCanvas` — ReactFlow wrapper with defaults (panOnScroll, fitView, selectionOnDrag)
@@ -226,7 +240,7 @@ Prefer composing small components over monolithic ones:
 ### AppShell for app pages
 Every app page should use AppShell:
 ```tsx
-import { AppShell } from "@cogentic/ds"
+import { AppShell } from "@cogentic-co/ds"
 import Link from "next/link"
 
 <AppShell
@@ -254,7 +268,7 @@ Use Field components for consistent form layouts:
 
 ### Data Tables
 ```tsx
-import { DataTable } from "@cogentic/ds"
+import { DataTable } from "@cogentic-co/ds"
 
 const columns = [
   { accessorKey: "name", header: "Name" },
@@ -298,8 +312,8 @@ import { Home, Settings, ChevronRight } from "lucide-react"
 For heavy components, import from specific entry points:
 ```tsx
 import dynamic from "next/dynamic"
-const PricingTable = dynamic(() => import("@cogentic/ds/blocks/pricing-table").then(m => m.PricingTable))
-const { WorkflowCanvas } = await import("@cogentic/ds/workflow")
+const PricingTable = dynamic(() => import("@cogentic-co/ds/blocks/pricing-table").then(m => m.PricingTable))
+const { WorkflowCanvas } = await import("@cogentic-co/ds/workflow")
 ```
 
 ## Common Patterns
@@ -351,7 +365,7 @@ const { WorkflowCanvas } = await import("@cogentic/ds/workflow")
 
 ### Landing page hero
 ```tsx
-import { HeroSection } from "@cogentic/ds/blocks/hero-section"
+import { HeroSection } from "@cogentic-co/ds/blocks/hero-section"
 
 <HeroSection
   variant="centered"
@@ -362,4 +376,122 @@ import { HeroSection } from "@cogentic/ds/blocks/hero-section"
   primaryAction={{ label: "Get Started", href: "/signup" }}
   secondaryAction={{ label: "Learn More", href: "/docs" }}
 />
+```
+
+## Compliance Patterns
+
+### Case review page
+```tsx
+import {
+  AppShell, Card, CardHeader, CardTitle, CardContent,
+  ApprovalActions, CommentThread, Comment, CommentAvatar, CommentBody,
+  CommentHeader, CommentAuthor, CommentTime, CommentContent, CommentActions,
+  AuditLog, AuditLogEntry, AuditLogIcon, AuditLogContent, AuditLogMessage,
+  AuditLogMeta, AuditLogTime, Timeline, TimelineItem, TimelineDot,
+  TimelineContent, TimelineTitle, TimelineTime, SplitPane, SplitPanePanel,
+  SplitPaneDivider,
+} from "@cogentic-co/ds"
+
+<AppShell ...>
+  <SplitPane direction="horizontal">
+    <SplitPanePanel>
+      <Card>
+        <CardHeader><CardTitle>Case #1042</CardTitle></CardHeader>
+        <CardContent>
+          {/* Case details */}
+          <ApprovalActions
+            onApprove={handleApprove}
+            onReject={handleReject}
+            onEscalate={handleEscalate}
+            requireReason
+          />
+        </CardContent>
+      </Card>
+      <CommentThread>
+        <Comment>
+          <CommentAvatar src="/avatars/ana.jpg" />
+          <CommentBody>
+            <CommentHeader>
+              <CommentAuthor>Ana</CommentAuthor>
+              <CommentTime>2h ago</CommentTime>
+            </CommentHeader>
+            <CommentContent>Reviewed — escalating to compliance lead.</CommentContent>
+            <CommentActions />
+          </CommentBody>
+        </Comment>
+      </CommentThread>
+    </SplitPanePanel>
+    <SplitPaneDivider />
+    <SplitPanePanel>
+      <AuditLog>
+        <AuditLogEntry action="create">
+          <AuditLogIcon />
+          <AuditLogContent>
+            <AuditLogMessage>Case created</AuditLogMessage>
+            <AuditLogMeta><AuditLogTime>3d ago</AuditLogTime></AuditLogMeta>
+          </AuditLogContent>
+        </AuditLogEntry>
+      </AuditLog>
+      <Timeline>
+        <TimelineItem>
+          <TimelineDot />
+          <TimelineContent>
+            <TimelineTitle>Initial review</TimelineTitle>
+            <TimelineTime>2d ago</TimelineTime>
+          </TimelineContent>
+        </TimelineItem>
+      </Timeline>
+    </SplitPanePanel>
+  </SplitPane>
+</AppShell>
+```
+
+### Dashboard with filters
+```tsx
+import {
+  AppShell, Card, CardHeader, CardTitle, CardContent,
+  FilterBar, FilterChip, FilterClear, WaffleChart, DataTable, Grid, Col, H2,
+} from "@cogentic-co/ds"
+
+<AppShell ...>
+  <div className="space-y-6">
+    <H2>Compliance Dashboard</H2>
+    <FilterBar>
+      <FilterChip label="Status" value="Open" onRemove={() => {}} />
+      <FilterChip label="Risk" value="High" onRemove={() => {}} />
+      <FilterClear onClick={clearAll} />
+    </FilterBar>
+    <Grid columns={3}>
+      <Col>
+        <Card>
+          <CardHeader><CardTitle>Control Coverage</CardTitle></CardHeader>
+          <CardContent>
+            <WaffleChart
+              mode="grid"
+              segments={[
+                { label: "Passed", value: 72, color: "var(--success)" },
+                { label: "Failed", value: 18, color: "var(--destructive)" },
+                { label: "Pending", value: 10, color: "var(--muted)" },
+              ]}
+              size="default"
+              animate
+            />
+          </CardContent>
+        </Card>
+      </Col>
+      <Col span={2}>
+        <Card>
+          <CardHeader><CardTitle>Risk Distribution</CardTitle></CardHeader>
+          <CardContent>
+            <WaffleChart mode="bar" segments={riskSegments} stripes={5} />
+          </CardContent>
+        </Card>
+      </Col>
+    </Grid>
+    <Card>
+      <CardHeader><CardTitle>Findings</CardTitle></CardHeader>
+      <CardContent><DataTable columns={findingsColumns} data={findings} /></CardContent>
+    </Card>
+  </div>
+</AppShell>
 ```

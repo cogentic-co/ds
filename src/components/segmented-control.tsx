@@ -34,8 +34,8 @@ function SegmentedControl({
       <div
         className="absolute inset-y-1 rounded-md bg-background shadow-sm transition-all duration-200"
         style={{
-          width: `${100 / options.length}%`,
-          left: `${(selectedIndex * 100) / options.length}%`,
+          width: `calc((100% - 8px) / ${options.length})`,
+          left: `calc(4px + ${selectedIndex} * (100% - 8px) / ${options.length})`,
         }}
       />
       {options.map((option) => (

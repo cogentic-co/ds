@@ -35,7 +35,7 @@ function Tag({ className, variant, children, onRemove, ...props }: TagProps) {
         <button
           type="button"
           onClick={onRemove}
-          className="ml-0.5 rounded-sm opacity-70 transition-opacity hover:opacity-100"
+          className="ml-0.5 cursor-pointer rounded-sm opacity-70 transition-opacity hover:opacity-100"
           aria-label="Remove"
         >
           <XIcon className="size-3" />

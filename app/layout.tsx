@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
+import { Toaster } from "@/src/components/sonner"
 import { fontMono, fontSans } from "@/src/lib/fonts"
 import { PreviewShell } from "./preview-shell"
 
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <PreviewShell>{children}</PreviewShell>
+        <Toaster />
       </body>
     </html>
   )

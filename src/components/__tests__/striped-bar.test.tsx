@@ -19,17 +19,17 @@ describe("StripedBar", () => {
 
   it("renders without crashing", () => {
     const { container } = render(<StripedBar segments={segments} />)
-    expect(container.querySelector("[data-slot='striped-bar']")).toBeInTheDocument()
+    expect(container.querySelector("[data-slot='waffle-chart']")).toBeInTheDocument()
   })
 
   it("has data-slot attribute", () => {
     const { container } = render(<StripedBar segments={segments} />)
-    expect(container.querySelector("[data-slot='striped-bar']")).toBeInTheDocument()
+    expect(container.querySelector("[data-slot='waffle-chart']")).toBeInTheDocument()
   })
 
   it("merges custom className", () => {
     const { container } = render(<StripedBar segments={segments} className="custom-bar" />)
-    expect(container.querySelector("[data-slot='striped-bar']")).toHaveClass("custom-bar")
+    expect(container.querySelector("[data-slot='waffle-chart']")).toHaveClass("custom-bar")
   })
 
   it("renders a canvas element", () => {
@@ -39,7 +39,7 @@ describe("StripedBar", () => {
 
   it("renders with empty segments", () => {
     const { container } = render(<StripedBar segments={[]} />)
-    expect(container.querySelector("[data-slot='striped-bar']")).toBeInTheDocument()
+    expect(container.querySelector("[data-slot='waffle-chart']")).toBeInTheDocument()
   })
 
   it("has no accessibility violations", async () => {

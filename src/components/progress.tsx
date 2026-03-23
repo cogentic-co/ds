@@ -19,11 +19,26 @@ function hasProgressTrack(children: React.ReactNode): boolean {
   return found
 }
 
-function Progress({ className, children, value, ...props }: ProgressPrimitive.Root.Props) {
+type ProgressProps = ProgressPrimitive.Root.Props & {
+  /** Animate the indicator from 0 on mount. Defaults to false. */
+  animate?: boolean
+}
+
+function Progress({ className, children, value, animate, ...props }: ProgressProps) {
   const hasCustomTrack = hasProgressTrack(children)
+  const [mountedValue, setMountedValue] = React.useState(animate ? 0 : value)
+
+  React.useEffect(() => {
+    if (animate) {
+      const id = requestAnimationFrame(() => setMountedValue(value))
+      return () => cancelAnimationFrame(id)
+    }
+    setMountedValue(value)
+  }, [animate, value])
+
   return (
     <ProgressPrimitive.Root
-      value={value}
+      value={mountedValue}
       data-slot="progress"
       className={cn("flex flex-wrap gap-3", className)}
       {...props}
@@ -31,7 +46,9 @@ function Progress({ className, children, value, ...props }: ProgressPrimitive.Ro
       {children}
       {!hasCustomTrack && (
         <ProgressTrack>
-          <ProgressIndicator />
+          <ProgressIndicator
+            className={animate ? "transition-all duration-700 ease-out" : undefined}
+          />
         </ProgressTrack>
       )}
     </ProgressPrimitive.Root>

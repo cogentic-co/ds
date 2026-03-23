@@ -1,12 +1,19 @@
 "use client"
 
+import { DrawerPreview as DrawerPrimitive } from "@base-ui/react/drawer"
+import { XIcon } from "lucide-react"
 import type * as React from "react"
-import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "../lib/utils"
+import { Button } from "./button"
 
-function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
+type DrawerDirection = "down" | "up" | "left" | "right"
+
+function Drawer({
+  swipeDirection = "down",
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Root> & { swipeDirection?: DrawerDirection }) {
+  return <DrawerPrimitive.Root data-slot="drawer" swipeDirection={swipeDirection} {...props} />
 }
 
 function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
@@ -24,12 +31,12 @@ function DrawerClose({ ...props }: React.ComponentProps<typeof DrawerPrimitive.C
 function DrawerOverlay({
   className,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
+}: React.ComponentProps<typeof DrawerPrimitive.Backdrop>) {
   return (
-    <DrawerPrimitive.Overlay
+    <DrawerPrimitive.Backdrop
       data-slot="drawer-overlay"
       className={cn(
-        "data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/10 data-closed:animate-out data-open:animate-in supports-backdrop-filter:backdrop-blur-xs",
+        "fixed inset-0 z-50 bg-black/10 transition-opacity duration-300 supports-backdrop-filter:backdrop-blur-xs [&[data-ending-style]]:opacity-0 [&[data-starting-style]]:opacity-0",
         className,
       )}
       {...props}
@@ -37,25 +44,69 @@ function DrawerOverlay({
   )
 }
 
+type DrawerContentProps = React.ComponentProps<typeof DrawerPrimitive.Popup> & {
+  direction?: DrawerDirection
+  showCloseButton?: boolean
+  showHandle?: boolean
+}
+
+const directionClasses: Record<DrawerDirection, string> = {
+  down: [
+    "inset-x-0 bottom-0 max-h-[80vh] rounded-t-xl border-t",
+    "[&[data-starting-style]]:translate-y-full [&[data-ending-style]]:translate-y-full",
+  ].join(" "),
+  up: [
+    "inset-x-0 top-0 max-h-[80vh] rounded-b-xl border-b",
+    "[&[data-starting-style]]:-translate-y-full [&[data-ending-style]]:-translate-y-full",
+  ].join(" "),
+  left: [
+    "inset-y-0 left-0 w-3/4 rounded-r-xl border-r sm:max-w-sm",
+    "[&[data-starting-style]]:-translate-x-full [&[data-ending-style]]:-translate-x-full",
+  ].join(" "),
+  right: [
+    "inset-y-0 right-0 w-3/4 rounded-l-xl border-l sm:max-w-sm",
+    "[&[data-starting-style]]:translate-x-full [&[data-ending-style]]:translate-x-full",
+  ].join(" "),
+}
+
 function DrawerContent({
   className,
   children,
+  direction = "down",
+  showCloseButton = true,
+  showHandle,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: DrawerContentProps) {
+  const showHandleResolved = showHandle ?? (direction === "down" || direction === "up")
   return (
-    <DrawerPortal data-slot="drawer-portal">
+    <DrawerPortal>
       <DrawerOverlay />
-      <DrawerPrimitive.Content
-        data-slot="drawer-content"
-        className={cn(
-          "group/drawer-content fixed z-50 flex h-auto flex-col bg-background text-sm data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=bottom]:rounded-t-xl data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=top]:rounded-b-xl data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=bottom]:border-t data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm",
-          className,
-        )}
-        {...props}
-      >
-        <div className="mx-auto mt-4 hidden h-1.5 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
-        {children}
-      </DrawerPrimitive.Content>
+      <DrawerPrimitive.Viewport>
+        <DrawerPrimitive.Popup
+          data-slot="drawer-content"
+          data-direction={direction}
+          className={cn(
+            "group/drawer-content fixed z-50 flex h-auto flex-col bg-background text-sm transition-transform duration-300 ease-out [&[data-swiping]]:transition-none",
+            directionClasses[direction],
+            className,
+          )}
+          {...props}
+        >
+          {showHandleResolved && (
+            <div className="mx-auto mt-4 h-1.5 w-[100px] shrink-0 rounded-full bg-muted" />
+          )}
+          {children}
+          {showCloseButton && (
+            <DrawerPrimitive.Close
+              data-slot="drawer-close"
+              render={<Button variant="ghost" className="absolute top-4 right-4" size="icon-sm" />}
+            >
+              <XIcon />
+              <span className="sr-only">Close</span>
+            </DrawerPrimitive.Close>
+          )}
+        </DrawerPrimitive.Popup>
+      </DrawerPrimitive.Viewport>
     </DrawerPortal>
   )
 }
@@ -65,7 +116,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drawer-header"
       className={cn(
-        "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-1.5 md:text-left",
+        "flex flex-col gap-0.5 p-4 group-data-[direction=down]/drawer-content:text-center group-data-[direction=up]/drawer-content:text-center md:gap-1.5 md:text-left",
         className,
       )}
       {...props}
@@ -118,3 +169,4 @@ export {
   DrawerTitle,
   DrawerDescription,
 }
+export type { DrawerContentProps, DrawerDirection }

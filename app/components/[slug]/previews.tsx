@@ -12,17 +12,21 @@ import {
   ClipboardIcon,
   Clock,
   CopyIcon,
+  DownloadIcon,
+  EditIcon,
   GitBranch,
   GitMerge,
   InboxIcon,
   ItalicIcon,
   MailIcon,
+  MessageCircleIcon,
   Package,
   PlusIcon,
   Route,
   ScissorsIcon,
   SearchIcon,
   SettingsIcon,
+  ShieldCheckIcon,
   StopCircle,
   TerminalIcon,
   Timer,
@@ -53,8 +57,19 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
+import { ApprovalActions } from "@/components/ui/approval-actions"
 import { AsciiShader } from "@/components/ui/ascii-shader"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import {
+  AuditLog,
+  AuditLogContent,
+  AuditLogDetail,
+  AuditLogEntry,
+  AuditLogIcon,
+  AuditLogMessage,
+  AuditLogMeta,
+  AuditLogTime,
+} from "@/components/ui/audit-log"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { BgShader } from "@/components/ui/bg-shader"
@@ -114,6 +129,18 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import {
+  Comment,
+  CommentActions,
+  CommentAuthor,
+  CommentAvatar,
+  CommentBody,
+  CommentContent,
+  CommentHeader,
+  CommentThread,
+  CommentTime,
+} from "@/components/ui/comment-thread"
+import { ComplianceScore } from "@/components/ui/compliance-score"
+import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
@@ -131,6 +158,7 @@ import {
   useDataTable,
 } from "@/components/ui/data-table"
 import { DatePicker, DateRangePicker } from "@/components/ui/date-picker"
+import { DeadlineCountdown } from "@/components/ui/deadline-countdown"
 import {
   DescriptionList,
   DescriptionListDetail,
@@ -170,6 +198,7 @@ import { EntityHeader } from "@/components/ui/entity-header"
 import { FadeIn } from "@/components/ui/fade-in"
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { FileUpload } from "@/components/ui/file-upload"
+import { FilterBar, FilterChip, FilterClear } from "@/components/ui/filter-bar"
 import { useForm } from "@/components/ui/form"
 import { Col, Grid } from "@/components/ui/grid"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
@@ -222,6 +251,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { PolicyBanner } from "@/components/ui/policy-banner"
 import {
   Popover,
   PopoverContent,
@@ -256,9 +286,20 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import { Slider } from "@/components/ui/slider"
 import { Spinner } from "@/components/ui/spinner"
+import { SplitPane, SplitPaneDivider, SplitPanePanel } from "@/components/ui/split-pane"
 import { Stat, StatLabel, StatTrend, StatValue } from "@/components/ui/stat"
-import { Step, Stepper, StepSeparator } from "@/components/ui/stepper"
+import { StatusIndicator } from "@/components/ui/status-indicator"
+import {
+  StepProgress,
+  StepProgressConnector,
+  StepProgressContent,
+  StepProgressDescription,
+  StepProgressIndicator,
+  StepProgressItem,
+  StepProgressTitle,
+} from "@/components/ui/step-progress"
 import { StreamingCards } from "@/components/ui/streaming-cards"
+import { StripedBar } from "@/components/ui/striped-bar"
 import { SubtleShader } from "@/components/ui/subtle-shader"
 import { Switch } from "@/components/ui/switch"
 import {
@@ -300,6 +341,7 @@ import {
   Small,
 } from "@/components/ui/typography"
 import { VisuallyHidden } from "@/components/ui/visually-hidden"
+import { WaffleChart } from "@/components/ui/waffle-chart"
 import { AreaChart as AreaChartComponent } from "@/src/charts/area-chart"
 import { BarChart as BarChartComponent } from "@/src/charts/bar-chart"
 import { LineChart as LineChartComponent } from "@/src/charts/line-chart"
@@ -413,6 +455,55 @@ function Section({ title, children }: { title: string; children: React.ReactNode
     <div className="space-y-3">
       <h3 className="font-medium text-muted-foreground text-sm">{title}</h3>
       <div className="flex flex-wrap items-center gap-3">{children}</div>
+    </div>
+  )
+}
+
+// ── ApprovalActions ──
+
+const approvalActionsControlDefs = {
+  requireReason: {
+    type: "boolean" as const,
+    defaultValue: false,
+    label: "Require Reason",
+  },
+  disabled: {
+    type: "boolean" as const,
+    defaultValue: false,
+    label: "Disabled",
+  },
+} satisfies ControlDefs
+
+function ApprovalActionsPreview() {
+  const controls = useControls(approvalActionsControlDefs)
+  const { requireReason, disabled } = controls.values
+
+  return (
+    <div className="space-y-6">
+      <Playground controls={controls}>
+        <div className="flex items-center justify-center py-4">
+          <ApprovalActions
+            onApprove={(reason) => toast.success(`Approved${reason ? `: ${reason}` : ""}`)}
+            onReject={(reason) => toast.error(`Rejected${reason ? `: ${reason}` : ""}`)}
+            onEscalate={(reason) => toast.warning(`Escalated${reason ? `: ${reason}` : ""}`)}
+            requireReason={requireReason}
+            disabled={disabled}
+          />
+        </div>
+      </Playground>
+
+      <Section title="With Required Reason">
+        <ApprovalActions
+          onApprove={(reason) => toast.success(`Approved: ${reason}`)}
+          onReject={(reason) => toast.error(`Rejected: ${reason}`)}
+          onEscalate={(reason) => toast.warning(`Escalated: ${reason}`)}
+          requireReason
+        />
+      </Section>
+
+      <Section title="Disabled">
+        <ApprovalActions onApprove={() => {}} onReject={() => {}} onEscalate={() => {}} disabled />
+      </Section>
     </div>
   )
 }
@@ -1134,17 +1225,24 @@ function SeparatorPreview() {
       <Playground controls={controls}>
         {isVertical ? (
           <div className="flex h-12 items-center gap-4 text-sm">
-            <span>Blog</span>
+            <span className="font-medium">Blog</span>
             <Separator orientation="vertical" />
-            <span>Docs</span>
+            <span className="font-medium">Docs</span>
             <Separator orientation="vertical" />
-            <span>Source</span>
+            <span className="font-medium">Source</span>
           </div>
         ) : (
-          <div>
-            <p className="text-muted-foreground text-sm">Content above</p>
-            <Separator className="my-4" />
-            <p className="text-muted-foreground text-sm">Content below</p>
+          <div className="space-y-0">
+            <div className="space-y-1 py-2">
+              <p className="font-medium text-sm">Cogentic Design System</p>
+              <p className="text-muted-foreground text-sm">An open-source UI component library.</p>
+            </div>
+            <Separator />
+            <div className="flex items-center gap-4 py-2 text-sm">
+              <span>Blog</span>
+              <span>Docs</span>
+              <span>Source</span>
+            </div>
           </div>
         )}
       </Playground>
@@ -1306,21 +1404,36 @@ const progressControlDefs = {
     step: 1,
     label: "Value",
   },
+  animate: {
+    type: "boolean" as const,
+    defaultValue: false,
+    label: "Animate",
+  },
 } satisfies ControlDefs
 
 function ProgressPreview() {
   const controls = useControls(progressControlDefs)
+  const { value, animate } = controls.values
 
   return (
     <div className="max-w-sm space-y-6">
       <Playground controls={controls}>
         <div className="space-y-2">
-          <p className="text-muted-foreground text-sm">{controls.values.value}%</p>
-          <Progress value={controls.values.value} />
+          <p className="text-muted-foreground text-sm">{value}%</p>
+          <Progress key={`${animate}-${value}`} value={value} animate={animate} />
         </div>
       </Playground>
 
-      <Section title="Examples">
+      <Section title="Animated on Mount">
+        <div className="w-full space-y-4">
+          <div className="space-y-2">
+            <p className="text-muted-foreground text-sm">75% (animated)</p>
+            <Progress value={75} animate />
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Static">
         <div className="w-full space-y-4">
           <div className="space-y-2">
             <p className="text-muted-foreground text-sm">25%</p>
@@ -2192,31 +2305,59 @@ function AlertDialogPreview() {
 
 function DrawerPreview() {
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>Make changes to your profile here.</DrawerDescription>
-        </DrawerHeader>
-        <div className="p-4">
-          <div className="grid gap-4">
-            <div className="grid gap-1.5">
-              <Label htmlFor="drawer-name">Name</Label>
-              <Input id="drawer-name" defaultValue="James Cooke" />
+    <div className="space-y-8">
+      <Section title="Bottom (default)">
+        <Drawer>
+          <DrawerTrigger render={<Button variant="outline" />}>Open Bottom Drawer</DrawerTrigger>
+          <DrawerContent direction="down">
+            <DrawerHeader>
+              <DrawerTitle>Edit profile</DrawerTitle>
+              <DrawerDescription>Make changes to your profile here.</DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <div className="grid gap-4">
+                <div className="grid gap-1.5">
+                  <Label htmlFor="drawer-name">Name</Label>
+                  <Input id="drawer-name" defaultValue="James Cooke" />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <DrawerFooter>
-          <Button>Save changes</Button>
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+            <DrawerFooter>
+              <Button>Save changes</Button>
+              <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </Section>
+      <Section title="Right">
+        <Drawer swipeDirection="right">
+          <DrawerTrigger render={<Button variant="outline" />}>Open Right Drawer</DrawerTrigger>
+          <DrawerContent direction="right" showHandle={false}>
+            <DrawerHeader>
+              <DrawerTitle>Details</DrawerTitle>
+              <DrawerDescription>Side panel content.</DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <p className="text-muted-foreground text-sm">Slide-out panel from the right edge.</p>
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </Section>
+      <Section title="Left">
+        <Drawer swipeDirection="left">
+          <DrawerTrigger render={<Button variant="outline" />}>Open Left Drawer</DrawerTrigger>
+          <DrawerContent direction="left" showHandle={false}>
+            <DrawerHeader>
+              <DrawerTitle>Navigation</DrawerTitle>
+              <DrawerDescription>Mobile navigation panel.</DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4">
+              <p className="text-muted-foreground text-sm">Slide-out panel from the left edge.</p>
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </Section>
+    </div>
   )
 }
 
@@ -3029,6 +3170,64 @@ function RiskGaugePreview() {
   )
 }
 
+const complianceScoreControlDefs = {
+  score: {
+    type: "number" as const,
+    defaultValue: 78,
+    min: 0,
+    max: 100,
+    step: 1,
+    label: "Score",
+  },
+  size: {
+    type: "radio" as const,
+    options: ["sm", "default", "lg"],
+    defaultValue: "default",
+    label: "Size",
+  },
+  showValue: {
+    type: "boolean" as const,
+    defaultValue: true,
+    label: "Show Value",
+  },
+} satisfies ControlDefs
+
+function ComplianceScorePreview() {
+  const controls = useControls(complianceScoreControlDefs)
+  const { score, size, showValue } = controls.values
+
+  return (
+    <div className="space-y-8">
+      <Playground controls={controls}>
+        <ComplianceScore
+          score={Number(score)}
+          size={size as "default"}
+          showValue={showValue as boolean}
+          label="Score"
+        />
+      </Playground>
+
+      <Section title="Score Ranges">
+        <ComplianceScore score={25} label="Low" />
+        <ComplianceScore score={55} label="Medium" />
+        <ComplianceScore score={88} label="High" />
+      </Section>
+
+      <Section title="In Context">
+        <Card className="w-64">
+          <CardHeader>
+            <CardTitle>Compliance Posture</CardTitle>
+            <CardDescription>Overall score across all frameworks</CardDescription>
+          </CardHeader>
+          <CardContent className="flex justify-center">
+            <ComplianceScore score={82} label="Score" size="lg" />
+          </CardContent>
+        </Card>
+      </Section>
+    </div>
+  )
+}
+
 const fadeInControlDefs = {
   delay: {
     type: "number" as const,
@@ -3755,17 +3954,369 @@ function NumberInputPreview() {
   )
 }
 
-function StepperPreview() {
+function DeadlineCountdownPreview() {
+  const now = new Date()
+  const inDays = (d: number) => {
+    const date = new Date(now)
+    date.setDate(date.getDate() + d)
+    return date
+  }
+  const ago = (d: number) => {
+    const date = new Date(now)
+    date.setDate(date.getDate() - d)
+    return date
+  }
   return (
-    <div className="space-y-6">
-      <Section title="Default">
-        <Stepper>
-          <Step status="complete">Account</Step>
-          <StepSeparator />
-          <Step status="current">Profile</Step>
-          <StepSeparator />
-          <Step status="upcoming">Review</Step>
-        </Stepper>
+    <div className="space-y-8">
+      <Section title="Normal (30 days out)">
+        <DeadlineCountdown deadline={inDays(30)} label="Due in" />
+      </Section>
+      <Section title="Warning (5 days out)">
+        <DeadlineCountdown deadline={inDays(5)} label="Due in" />
+      </Section>
+      <Section title="Critical (1 day out)">
+        <DeadlineCountdown deadline={inDays(1)} label="Due in" />
+      </Section>
+      <Section title="Overdue (3 days ago)">
+        <DeadlineCountdown deadline={ago(3)} label="Due in" />
+      </Section>
+      <Section title="Without Label or Dot">
+        <DeadlineCountdown deadline={inDays(14)} showDot={false} />
+      </Section>
+      <Section title="In Context">
+        <div className="flex items-center justify-between rounded-lg border p-4">
+          <div>
+            <p className="font-medium text-sm">AML Policy Review</p>
+            <p className="text-muted-foreground text-xs">Annual compliance requirement</p>
+          </div>
+          <DeadlineCountdown deadline={inDays(3)} label="Due" />
+        </div>
+      </Section>
+    </div>
+  )
+}
+
+function PolicyBannerPreview() {
+  return (
+    <div className="space-y-8">
+      <Section title="Info">
+        <PolicyBanner variant="info">
+          New FATF guidelines take effect on April 1, 2026. Review the updated compliance
+          procedures.
+        </PolicyBanner>
+      </Section>
+      <Section title="Warning">
+        <PolicyBanner variant="warning" icon={<AlertTriangleIcon className="size-4" />}>
+          Your AML policy expires in 7 days. Please renew to maintain compliance status.
+        </PolicyBanner>
+      </Section>
+      <Section title="Critical">
+        <PolicyBanner
+          variant="critical"
+          icon={<AlertCircleIcon className="size-4" />}
+          action={
+            <Button variant="destructive" size="sm">
+              Review Now
+            </Button>
+          }
+        >
+          Regulatory deadline missed. Immediate action required to avoid penalties.
+        </PolicyBanner>
+      </Section>
+      <Section title="Non-Dismissible">
+        <PolicyBanner variant="info" dismissible={false}>
+          This banner cannot be dismissed. It persists until the condition is resolved.
+        </PolicyBanner>
+      </Section>
+    </div>
+  )
+}
+
+const statusIndicatorControlDefs = {
+  variant: {
+    type: "select" as const,
+    options: ["online", "offline", "busy", "away", "pending"],
+    defaultValue: "online",
+    label: "Variant",
+  },
+  size: {
+    type: "select" as const,
+    options: ["sm", "default", "lg"],
+    defaultValue: "default",
+    label: "Size",
+  },
+  pulse: {
+    type: "boolean" as const,
+    defaultValue: false,
+    label: "Pulse",
+  },
+} satisfies ControlDefs
+
+function StatusIndicatorPreview() {
+  const controls = useControls(statusIndicatorControlDefs)
+  const { variant, size, pulse } = controls.values
+  return (
+    <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="flex items-center justify-center gap-3 py-4">
+          <StatusIndicator variant={variant as "online"} size={size as "default"} pulse={pulse} />
+          <span className="text-sm capitalize">{variant}</span>
+        </div>
+      </Playground>
+      <Section title="All Variants">
+        <div className="flex items-center gap-6">
+          {(["online", "offline", "busy", "away", "pending"] as const).map((v) => (
+            <div key={v} className="flex items-center gap-2">
+              <StatusIndicator variant={v} />
+              <span className="text-sm capitalize">{v}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section title="Sizes">
+        <div className="flex items-center gap-6">
+          {(["sm", "default", "lg"] as const).map((s) => (
+            <div key={s} className="flex items-center gap-2">
+              <StatusIndicator variant="online" size={s} />
+              <span className="text-sm">{s}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section title="With Pulse">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <StatusIndicator variant="online" pulse />
+            <span className="text-sm">Active</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <StatusIndicator variant="busy" pulse />
+            <span className="text-sm">Processing</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <StatusIndicator variant="pending" pulse />
+            <span className="text-sm">Syncing</span>
+          </div>
+        </div>
+      </Section>
+      <Section title="In Context (with Avatar)">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Avatar>
+              <AvatarFallback>JC</AvatarFallback>
+            </Avatar>
+            <StatusIndicator
+              variant="online"
+              size="sm"
+              pulse
+              className="absolute right-0 bottom-0 ring-2 ring-background"
+            />
+          </div>
+          <div>
+            <p className="font-medium text-sm">James Cooke</p>
+            <p className="text-muted-foreground text-xs">Online</p>
+          </div>
+        </div>
+      </Section>
+    </div>
+  )
+}
+
+const stripedBarControlDefs = {
+  animated: {
+    type: "boolean" as const,
+    defaultValue: true,
+    label: "Animated",
+  },
+  stripes: {
+    type: "number" as const,
+    defaultValue: 60,
+    min: 10,
+    max: 120,
+    label: "Stripes",
+  },
+  duration: {
+    type: "number" as const,
+    defaultValue: 800,
+    min: 200,
+    max: 3000,
+    label: "Duration (ms)",
+  },
+} satisfies ControlDefs
+
+function StripedBarPreview() {
+  const controls = useControls(stripedBarControlDefs)
+  const { animated, stripes, duration } = controls.values
+  return (
+    <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="w-full py-4">
+          <StripedBar
+            key={`${animated}-${stripes}-${duration}`}
+            segments={[
+              { value: 45, color: "#f87171", label: "Sanctions" },
+              { value: 25, color: "#fb923c", label: "Mixer" },
+              { value: 15, color: "#facc15", label: "Darknet" },
+            ]}
+            stripes={stripes}
+            animated={animated}
+            duration={duration}
+          />
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+            <div className="flex items-center gap-1.5 text-xs">
+              <span className="size-2.5 rounded-full" style={{ backgroundColor: "#f87171" }} />
+              <span className="text-muted-foreground">Sanctions 45%</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <span className="size-2.5 rounded-full" style={{ backgroundColor: "#fb923c" }} />
+              <span className="text-muted-foreground">Mixer 25%</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <span className="size-2.5 rounded-full" style={{ backgroundColor: "#facc15" }} />
+              <span className="text-muted-foreground">Darknet 15%</span>
+            </div>
+          </div>
+        </div>
+      </Playground>
+      <Section title="Single Segment">
+        <StripedBar segments={[{ value: 100, color: "#f87171" }]} />
+      </Section>
+      <Section title="No Color (uses primary)">
+        <StripedBar segments={[{ value: 70 }]} />
+      </Section>
+      <Section title="Multiple Segments with Dividers">
+        <StripedBar
+          segments={[
+            { value: 30, color: "#22c55e" },
+            { value: 20, color: "#3b82f6" },
+            { value: 25, color: "#f97316" },
+            { value: 15, color: "#ef4444" },
+          ]}
+        />
+      </Section>
+      <Section title="Taller Height">
+        <StripedBar
+          className="h-16"
+          segments={[
+            { value: 60, color: "#8b5cf6" },
+            { value: 30, color: "#06b6d4" },
+          ]}
+        />
+      </Section>
+    </div>
+  )
+}
+
+const waffleChartControlDefs = {
+  mode: {
+    type: "select" as const,
+    options: ["grid", "bar"],
+    defaultValue: "grid",
+    label: "Mode",
+  },
+  size: {
+    type: "select" as const,
+    options: ["xs", "sm", "default", "lg"],
+    defaultValue: "default",
+    label: "Size",
+  },
+  animate: {
+    type: "boolean" as const,
+    defaultValue: true,
+    label: "Animate",
+  },
+  duration: {
+    type: "number" as const,
+    defaultValue: 800,
+    min: 200,
+    max: 3000,
+    label: "Duration (ms)",
+  },
+} satisfies ControlDefs
+
+const exampleSegments = [
+  { value: 45, color: "#f87171", label: "Sanctions" },
+  { value: 25, color: "#fb923c", label: "Mixer" },
+  { value: 15, color: "#facc15", label: "Darknet" },
+]
+
+function WaffleChartPreview() {
+  const controls = useControls(waffleChartControlDefs)
+  const { mode, size, animate, duration } = controls.values
+  return (
+    <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="w-full py-4">
+          <WaffleChart
+            key={`${mode}-${size}-${animate}-${duration}`}
+            segments={exampleSegments}
+            mode={mode as "grid"}
+            size={size as "default"}
+            animate={animate}
+            duration={duration}
+          />
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+            {exampleSegments.map((seg) => (
+              <div key={seg.label} className="flex items-center gap-1.5 text-xs">
+                <span className="size-2.5 rounded-full" style={{ backgroundColor: seg.color }} />
+                <span className="text-muted-foreground">
+                  {seg.label} {seg.value}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Playground>
+      <Section title="Grid Mode (default)">
+        <div className="max-w-sm">
+          <WaffleChart segments={exampleSegments} animate={false} />
+        </div>
+      </Section>
+      <Section title="Bar Mode">
+        <WaffleChart segments={exampleSegments} mode="bar" animate={false} />
+      </Section>
+      <Section title="Bar Mode — No Dividers">
+        <WaffleChart segments={exampleSegments} mode="bar" dividers={false} animate={false} />
+      </Section>
+      <Section title="Custom Grid (5x20)">
+        <div className="max-w-xl">
+          <WaffleChart
+            segments={[
+              { value: 60, color: "#8b5cf6", label: "Compliant" },
+              { value: 25, color: "#f97316", label: "Pending" },
+              { value: 10, color: "#ef4444", label: "Failed" },
+            ]}
+            rows={5}
+            cols={20}
+            className="aspect-[4/1]"
+            animate={false}
+          />
+        </div>
+      </Section>
+      <Section title="Single Segment">
+        <div className="max-w-sm">
+          <WaffleChart segments={[{ value: 100, color: "#f87171" }]} animate={false} />
+        </div>
+      </Section>
+      <Section title="Bar Sizes">
+        <div className="space-y-4">
+          {(["xs", "sm", "default", "lg"] as const).map((s) => (
+            <div key={s}>
+              <p className="mb-1 text-muted-foreground text-xs">{s}</p>
+              <WaffleChart mode="bar" size={s} segments={exampleSegments} animate={false} />
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section title="Grid Sizes">
+        <div className="flex items-start gap-6">
+          {(["xs", "sm", "default", "lg"] as const).map((s) => (
+            <div key={s}>
+              <p className="mb-1 text-muted-foreground text-xs">{s}</p>
+              <WaffleChart mode="grid" size={s} segments={exampleSegments} animate={false} />
+            </div>
+          ))}
+        </div>
       </Section>
     </div>
   )
@@ -3773,29 +4324,116 @@ function StepperPreview() {
 
 function TimelinePreview() {
   return (
-    <Timeline>
-      <TimelineItem>
-        <TimelineDot />
-        <TimelineContent>
-          <TimelineTitle>Application submitted</TimelineTitle>
-          <TimelineTime>2 hours ago</TimelineTime>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineDot />
-        <TimelineContent>
-          <TimelineTitle>Review in progress</TimelineTitle>
-          <TimelineTime>1 hour ago</TimelineTime>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineDot />
-        <TimelineContent>
-          <TimelineTitle>Approved</TimelineTitle>
-          <TimelineTime>Just now</TimelineTime>
-        </TimelineContent>
-      </TimelineItem>
-    </Timeline>
+    <div className="space-y-8">
+      <Section title="Default">
+        <Timeline>
+          <TimelineItem>
+            <TimelineDot />
+            <TimelineContent>
+              <TimelineTitle>Application submitted</TimelineTitle>
+              <TimelineTime>2 hours ago</TimelineTime>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDot />
+            <TimelineContent>
+              <TimelineTitle>Review in progress</TimelineTitle>
+              <TimelineTime>1 hour ago</TimelineTime>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDot />
+            <TimelineContent>
+              <TimelineTitle>Approved</TimelineTitle>
+              <TimelineTime>Just now</TimelineTime>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
+      </Section>
+      <Section title="With Icons">
+        <Timeline>
+          <TimelineItem>
+            <TimelineDot className="border-emerald-500 bg-emerald-50 dark:bg-emerald-950">
+              <CheckCircle className="size-3 text-emerald-600" />
+            </TimelineDot>
+            <TimelineContent>
+              <TimelineTitle>KYC verification passed</TimelineTitle>
+              <TimelineTime>Mar 15, 2026 at 10:32 AM</TimelineTime>
+              <p className="mt-1 text-muted-foreground text-xs">
+                Identity documents verified. Risk score: Low.
+              </p>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDot className="border-amber-500 bg-amber-50 dark:bg-amber-950">
+              <AlertTriangleIcon className="size-3 text-amber-600" />
+            </TimelineDot>
+            <TimelineContent>
+              <TimelineTitle>Sanctions screening flagged</TimelineTitle>
+              <TimelineTime>Mar 15, 2026 at 11:15 AM</TimelineTime>
+              <p className="mt-1 text-muted-foreground text-xs">
+                Potential match found. Escalated to compliance officer.
+              </p>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDot className="border-blue-500 bg-blue-50 dark:bg-blue-950">
+              <UserIcon className="size-3 text-blue-600" />
+            </TimelineDot>
+            <TimelineContent>
+              <TimelineTitle>Manual review assigned</TimelineTitle>
+              <TimelineTime>Mar 15, 2026 at 11:45 AM</TimelineTime>
+              <p className="mt-1 text-muted-foreground text-xs">
+                Assigned to Sarah Chen for secondary review.
+              </p>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDot className="border-emerald-500 bg-emerald-50 dark:bg-emerald-950">
+              <CheckCircle className="size-3 text-emerald-600" />
+            </TimelineDot>
+            <TimelineContent>
+              <TimelineTitle>Case cleared</TimelineTitle>
+              <TimelineTime>Mar 16, 2026 at 9:20 AM</TimelineTime>
+              <p className="mt-1 text-muted-foreground text-xs">
+                False positive confirmed. No sanctions match.
+              </p>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
+      </Section>
+      <Section title="Compact (Audit Trail)">
+        <Timeline className="space-y-0">
+          <TimelineItem className="pb-4">
+            <TimelineDot className="size-2.5 border-0 bg-muted-foreground/40" />
+            <TimelineContent>
+              <div className="flex items-baseline gap-2">
+                <TimelineTitle className="text-xs">Policy updated</TimelineTitle>
+                <TimelineTime className="text-[10px]">2 min ago</TimelineTime>
+              </div>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem className="pb-4">
+            <TimelineDot className="size-2.5 border-0 bg-muted-foreground/40" />
+            <TimelineContent>
+              <div className="flex items-baseline gap-2">
+                <TimelineTitle className="text-xs">Report exported</TimelineTitle>
+                <TimelineTime className="text-[10px]">15 min ago</TimelineTime>
+              </div>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem className="pb-4">
+            <TimelineDot className="size-2.5 border-0 bg-muted-foreground/40" />
+            <TimelineContent>
+              <div className="flex items-baseline gap-2">
+                <TimelineTitle className="text-xs">User role changed</TimelineTitle>
+                <TimelineTime className="text-[10px]">1 hour ago</TimelineTime>
+              </div>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
+      </Section>
+    </div>
   )
 }
 
@@ -5301,7 +5939,308 @@ function CaseCardPreview() {
   )
 }
 
+// ── Audit Log ──
+
+function AuditLogPreview() {
+  return (
+    <div className="space-y-8">
+      <Section title="Compliance Audit Trail">
+        <AuditLog className="w-full max-w-lg rounded-md border">
+          <AuditLogEntry action="create">
+            <AuditLogIcon>
+              <PlusIcon className="size-3.5 text-emerald-600" />
+            </AuditLogIcon>
+            <AuditLogContent>
+              <AuditLogMessage>
+                <span className="font-medium">Sarah Chen</span> created case{" "}
+                <span className="font-medium">CASE-2024-001</span>
+              </AuditLogMessage>
+              <AuditLogMeta>
+                <span>Compliance Team</span>
+                <AuditLogTime dateTime="2024-03-15T09:30:00Z">Mar 15, 9:30 AM</AuditLogTime>
+              </AuditLogMeta>
+              <AuditLogDetail>
+                Flagged for unusual transaction pattern — 3 outbound transfers exceeding $50,000
+                within 24 hours.
+              </AuditLogDetail>
+            </AuditLogContent>
+          </AuditLogEntry>
+
+          <AuditLogEntry action="update">
+            <AuditLogIcon>
+              <EditIcon className="size-3.5 text-blue-600" />
+            </AuditLogIcon>
+            <AuditLogContent>
+              <AuditLogMessage>
+                <span className="font-medium">James Lee</span> updated risk level to{" "}
+                <span className="font-medium text-amber-600">High</span>
+              </AuditLogMessage>
+              <AuditLogMeta>
+                <span>Risk Assessment</span>
+                <AuditLogTime dateTime="2024-03-15T11:15:00Z">Mar 15, 11:15 AM</AuditLogTime>
+              </AuditLogMeta>
+            </AuditLogContent>
+          </AuditLogEntry>
+
+          <AuditLogEntry action="approve">
+            <AuditLogIcon>
+              <ShieldCheckIcon className="size-3.5 text-emerald-600" />
+            </AuditLogIcon>
+            <AuditLogContent>
+              <AuditLogMessage>
+                <span className="font-medium">Maria Gonzalez</span> approved escalation to senior
+                review
+              </AuditLogMessage>
+              <AuditLogMeta>
+                <span>Senior Compliance Officer</span>
+                <AuditLogTime dateTime="2024-03-15T14:00:00Z">Mar 15, 2:00 PM</AuditLogTime>
+              </AuditLogMeta>
+            </AuditLogContent>
+          </AuditLogEntry>
+
+          <AuditLogEntry action="export">
+            <AuditLogIcon>
+              <DownloadIcon className="size-3.5 text-muted-foreground" />
+            </AuditLogIcon>
+            <AuditLogContent>
+              <AuditLogMessage>
+                <span className="font-medium">Sarah Chen</span> exported STR report
+              </AuditLogMessage>
+              <AuditLogMeta>
+                <span>Compliance Team</span>
+                <AuditLogTime dateTime="2024-03-15T16:45:00Z">Mar 15, 4:45 PM</AuditLogTime>
+              </AuditLogMeta>
+              <AuditLogDetail>
+                Report exported as PDF — includes all linked transactions and evidence.
+              </AuditLogDetail>
+            </AuditLogContent>
+          </AuditLogEntry>
+        </AuditLog>
+      </Section>
+    </div>
+  )
+}
+
+// ── Comment Thread ──
+
+function CommentThreadPreview() {
+  return (
+    <div className="space-y-8">
+      <Section title="Case Discussion Thread">
+        <CommentThread className="w-full max-w-lg">
+          <Comment>
+            <CommentAvatar>SC</CommentAvatar>
+            <CommentBody>
+              <CommentHeader>
+                <CommentAuthor>Sarah Chen</CommentAuthor>
+                <CommentTime dateTime="2024-03-15T09:30:00Z">Mar 15, 9:30 AM</CommentTime>
+              </CommentHeader>
+              <CommentContent>
+                I've reviewed the transaction pattern for CASE-2024-001. The three outbound
+                transfers all went to the same beneficiary wallet within a 4-hour window. This looks
+                like structured layering — recommending escalation to senior review.
+              </CommentContent>
+              <CommentActions>
+                <Button variant="ghost" size="xs">
+                  <MessageCircleIcon className="mr-1 size-3" /> Reply
+                </Button>
+              </CommentActions>
+            </CommentBody>
+          </Comment>
+
+          <Comment reply>
+            <CommentAvatar>JL</CommentAvatar>
+            <CommentBody>
+              <CommentHeader>
+                <CommentAuthor>James Lee</CommentAuthor>
+                <CommentTime dateTime="2024-03-15T10:15:00Z">Mar 15, 10:15 AM</CommentTime>
+              </CommentHeader>
+              <CommentContent>
+                Agreed. I've cross-referenced with the VASP registry and the receiving entity is not
+                registered in any jurisdiction we monitor. Updating risk level to High.
+              </CommentContent>
+            </CommentBody>
+          </Comment>
+
+          <Comment>
+            <CommentAvatar>MG</CommentAvatar>
+            <CommentBody>
+              <CommentHeader>
+                <CommentAuthor>Maria Gonzalez</CommentAuthor>
+                <CommentTime dateTime="2024-03-15T14:00:00Z">Mar 15, 2:00 PM</CommentTime>
+              </CommentHeader>
+              <CommentContent>
+                Good catch, team. I've approved the escalation and assigned this for STR filing.
+                Please ensure all supporting documentation is attached before submission.
+              </CommentContent>
+            </CommentBody>
+          </Comment>
+        </CommentThread>
+      </Section>
+    </div>
+  )
+}
+
+// ── Filter Bar ──
+
+function FilterBarPreview() {
+  return (
+    <div className="space-y-8">
+      <Section title="With Active Filters">
+        <FilterBar>
+          <FilterChip label="Status" value="Under Review" onRemove={() => {}} />
+          <FilterChip label="Risk Level" value="High" onRemove={() => {}} />
+          <FilterChip label="Date Range" value="Mar 1 – Mar 15" onRemove={() => {}} />
+          <FilterClear onClick={() => {}} />
+        </FilterBar>
+      </Section>
+      <Section title="No Selection (placeholder)">
+        <FilterBar>
+          <FilterChip label="Status" />
+          <FilterChip label="Risk Level" />
+          <FilterChip label="Assignee" />
+        </FilterBar>
+      </Section>
+      <Section title="Mixed States">
+        <FilterBar>
+          <FilterChip label="Status" value="Flagged" onRemove={() => {}} />
+          <FilterChip label="Jurisdiction" />
+          <FilterChip label="Entity Type" value="VASP" onRemove={() => {}} />
+          <FilterClear onClick={() => {}} />
+        </FilterBar>
+      </Section>
+    </div>
+  )
+}
+
+// ── Split Pane ──
+
+function SplitPanePreview() {
+  return (
+    <div className="space-y-8">
+      <Section title="Master-Detail Layout">
+        <div className="h-80 w-full max-w-2xl rounded-md border">
+          <SplitPane direction="horizontal">
+            <SplitPanePanel defaultSize={35} minSize={20}>
+              <div className="h-full overflow-auto p-3">
+                <p className="mb-2 font-medium text-muted-foreground text-xs">Cases</p>
+                {[
+                  "CASE-001 — Suspicious Pattern",
+                  "CASE-002 — Threshold Breach",
+                  "CASE-003 — Sanctions Match",
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      "cursor-pointer rounded-md px-3 py-2 text-sm hover:bg-muted/50",
+                      i === 0 && "bg-muted",
+                    )}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </SplitPanePanel>
+            <SplitPaneDivider />
+            <SplitPanePanel defaultSize={65} minSize={30}>
+              <div className="h-full overflow-auto p-4">
+                <h3 className="font-semibold text-sm">CASE-001 — Suspicious Pattern</h3>
+                <p className="mt-1 text-muted-foreground text-xs">
+                  Opened Mar 15, 2024 &middot; Assigned to Sarah Chen
+                </p>
+                <div className="mt-3 rounded-md border bg-muted/30 p-3 text-muted-foreground text-xs">
+                  Three outbound transfers exceeding $50,000 within 24 hours to an unregistered
+                  VASP. Risk level: High. Status: Under Review.
+                </div>
+              </div>
+            </SplitPanePanel>
+          </SplitPane>
+        </div>
+      </Section>
+    </div>
+  )
+}
+
+// ── Step Progress ──
+
+const stepProgressControlDefs = {
+  orientation: {
+    type: "select" as const,
+    options: ["vertical", "horizontal"],
+    defaultValue: "vertical",
+    label: "Orientation",
+  },
+} satisfies ControlDefs
+
+function StepProgressPreview() {
+  const controls = useControls(stepProgressControlDefs)
+  const { orientation } = controls.values
+  return (
+    <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="w-full py-4">
+          <StepProgress orientation={orientation as "vertical"}>
+            <StepProgressItem status="complete">
+              <StepProgressIndicator status="complete" step={1} />
+              <StepProgressConnector data-complete="true" />
+              <StepProgressContent>
+                <StepProgressTitle>Identity Verification</StepProgressTitle>
+                <StepProgressDescription>
+                  Government ID and selfie verified.
+                </StepProgressDescription>
+              </StepProgressContent>
+            </StepProgressItem>
+            <StepProgressItem status="current">
+              <StepProgressIndicator status="current" step={2} />
+              <StepProgressConnector />
+              <StepProgressContent>
+                <StepProgressTitle>Document Review</StepProgressTitle>
+                <StepProgressDescription>Proof of address under review.</StepProgressDescription>
+              </StepProgressContent>
+            </StepProgressItem>
+            <StepProgressItem status="upcoming">
+              <StepProgressIndicator status="upcoming" step={3} />
+              <StepProgressContent>
+                <StepProgressTitle>Compliance Approval</StepProgressTitle>
+                <StepProgressDescription>
+                  Final sign-off from compliance officer.
+                </StepProgressDescription>
+              </StepProgressContent>
+            </StepProgressItem>
+          </StepProgress>
+        </div>
+      </Playground>
+
+      <Section title="Horizontal">
+        <StepProgress orientation="horizontal">
+          <StepProgressItem status="complete">
+            <StepProgressIndicator status="complete" step={1} />
+            <StepProgressConnector data-complete="true" />
+            <StepProgressContent>
+              <StepProgressTitle>Submitted</StepProgressTitle>
+            </StepProgressContent>
+          </StepProgressItem>
+          <StepProgressItem status="current">
+            <StepProgressIndicator status="current" step={2} />
+            <StepProgressConnector />
+            <StepProgressContent>
+              <StepProgressTitle>In Review</StepProgressTitle>
+            </StepProgressContent>
+          </StepProgressItem>
+          <StepProgressItem status="upcoming">
+            <StepProgressIndicator status="upcoming" step={3} />
+            <StepProgressContent>
+              <StepProgressTitle>Approved</StepProgressTitle>
+            </StepProgressContent>
+          </StepProgressItem>
+        </StepProgress>
+      </Section>
+    </div>
+  )
+}
+
 export const previews: Record<string, React.ComponentType> = {
+  "approval-actions": ApprovalActionsPreview,
   button: ButtonPreview,
   card: CardPreview,
   "case-card": CaseCardPreview,
@@ -5364,6 +6303,7 @@ export const previews: Record<string, React.ComponentType> = {
   command: CommandPreview,
   carousel: CarouselPreview,
   chart: ChartPreview,
+  "compliance-score": ComplianceScorePreview,
   "area-chart": AreaChartPreview,
   "bar-chart": BarChartPreview,
   "line-chart": LineChartPreview,
@@ -5379,12 +6319,15 @@ export const previews: Record<string, React.ComponentType> = {
   typewriter: TypewriterPreview,
   "animated-counter": AnimatedCounterPreview,
   "streaming-cards": StreamingCardsPreview,
+  "deadline-countdown": DeadlineCountdownPreview,
+  "policy-banner": PolicyBannerPreview,
+  "status-indicator": StatusIndicatorPreview,
+  "striped-bar": StripedBarPreview,
   // New components
   tag: TagPreview,
   stat: StatPreview,
   "description-list": DescriptionListPreview,
   "number-input": NumberInputPreview,
-  stepper: StepperPreview,
   timeline: TimelinePreview,
   "segmented-control": SegmentedControlPreview,
   callout: CalloutPreview,
@@ -5395,6 +6338,7 @@ export const previews: Record<string, React.ComponentType> = {
   "copy-button": CopyButtonPreview,
   "visually-hidden": VisuallyHiddenPreview,
   direction: DirectionPreview,
+  "waffle-chart": WaffleChartPreview,
   // Workflow
   "workflow-canvas": WorkflowCanvasPreview,
   "workflow-node": WorkflowNodePreview,
@@ -5427,4 +6371,10 @@ export const previews: Record<string, React.ComponentType> = {
   tool: ToolPreview,
   queue: QueuePreview,
   "model-selector": ModelSelectorPreview,
+  // New components (v0.5.0)
+  "audit-log": AuditLogPreview,
+  "comment-thread": CommentThreadPreview,
+  "filter-bar": FilterBarPreview,
+  "split-pane": SplitPanePreview,
+  "step-progress": StepProgressPreview,
 }

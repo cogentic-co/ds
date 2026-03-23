@@ -13,6 +13,8 @@ export type ComponentMeta = {
   codeExample?: string
   /** Import statement for copying */
   importStatement?: string
+  /** URL to the Base UI primitive docs (if this component wraps one) */
+  baseUiDoc?: string
 }
 
 /**
@@ -23,6 +25,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   // ── Actions ──
   button: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/button",
     description: "Trigger actions or navigation. Supports multiple variants and sizes.",
     since: "0.1.0",
     importStatement: 'import { Button } from "@cogentic/ds"',
@@ -62,6 +65,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   toggle: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/toggle",
     description: "Two-state button that can be on or off.",
     since: "0.1.0",
     importStatement: 'import { Toggle } from "@cogentic/ds"',
@@ -81,6 +85,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "toggle-group": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/toggle-group",
     description: "Group of toggles for selecting one or multiple options.",
     since: "0.1.0",
     importStatement: 'import { ToggleGroup, ToggleGroupItem } from "@cogentic/ds"',
@@ -102,6 +107,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "dropdown-menu": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/menu",
     description:
       "Contextual menu triggered by a button. Supports items, checkboxes, radios, and sub-menus.",
     since: "0.1.0",
@@ -119,6 +125,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "context-menu": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/context-menu",
     description: "Right-click context menu with the same structure as DropdownMenu.",
     since: "0.1.0",
     importStatement:
@@ -134,8 +141,33 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
 
   // ── Forms ──
+  "approval-actions": {
+    status: "new",
+    description:
+      "Compound component for compliance review workflows: approve, reject, or escalate with confirmation dialog and optional reason.",
+    since: "0.5.0",
+    importStatement: 'import { ApprovalActions } from "@cogentic/ds"',
+    dos: [
+      "Use in compliance and review workflows requiring explicit approve/reject/escalate",
+      "Enable requireReason for auditable decisions",
+      "Provide all three callbacks for full functionality",
+    ],
+    donts: [
+      "Don't use for simple yes/no confirmations — use AlertDialog instead",
+      "Don't omit all callbacks — at least one action should be wired up",
+    ],
+    codeExample: `import { ApprovalActions } from "@cogentic/ds"
+
+<ApprovalActions
+  onApprove={(reason) => console.log("Approved", reason)}
+  onReject={(reason) => console.log("Rejected", reason)}
+  onEscalate={(reason) => console.log("Escalated", reason)}
+  requireReason
+/>`,
+  },
   input: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/input",
     description: "Text input field with support for different types and states.",
     since: "0.1.0",
     importStatement: 'import { Input } from "@cogentic/ds"',
@@ -172,6 +204,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   select: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/select",
     description: "Dropdown selection from a list of options. Built on Base UI Select.",
     since: "0.1.0",
     importStatement:
@@ -212,6 +245,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   checkbox: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/checkbox",
     description: "Binary choice control. Built on Base UI Checkbox.",
     since: "0.1.0",
     importStatement: 'import { Checkbox } from "@cogentic/ds"',
@@ -232,6 +266,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   "radio-group": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/radio",
     description: "Single selection from a group of options. Built on Base UI RadioGroup.",
     since: "0.1.0",
     importStatement: 'import { RadioGroup, RadioGroupItem } from "@cogentic/ds"',
@@ -252,6 +287,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   switch: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/switch",
     description: "Toggle for enabling/disabling settings. Built on Base UI Switch.",
     since: "0.1.0",
     importStatement: 'import { Switch } from "@cogentic/ds"',
@@ -270,6 +306,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   },
   slider: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/slider",
     description: "Range input for selecting numeric values. Built on Base UI Slider.",
     since: "0.1.0",
     importStatement: 'import { Slider } from "@cogentic/ds"',
@@ -325,6 +362,7 @@ import { SearchIcon } from "lucide-react"
   },
   combobox: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/combobox",
     description: "Searchable select with autocomplete. Built on Base UI Combobox.",
     since: "0.1.0",
     importStatement: 'import { Combobox } from "@cogentic/ds"',
@@ -461,6 +499,28 @@ import { Input } from "@cogentic/ds"
   onClick={() => router.push("/cases/case-12345")}
 />`,
   },
+  "compliance-score": {
+    status: "new",
+    description:
+      "SVG donut gauge showing compliance posture as a percentage. Auto-colors by score range (red/amber/emerald).",
+    since: "0.5.0",
+    importStatement: 'import { ComplianceScore } from "@cogentic/ds"',
+    dos: [
+      "Use to show compliance posture at a glance",
+      "Pair with a Card for dashboard widgets",
+      "Use the label prop to provide context",
+    ],
+    donts: [
+      "Don't use for progress — use Progress instead",
+      "Don't override color unless the auto-coloring is inappropriate",
+      "Don't use at sm size without removing the label — it won't fit",
+    ],
+    codeExample: `import { ComplianceScore } from "@cogentic/ds"
+
+<ComplianceScore score={85} label="Score" />
+<ComplianceScore score={45} size="lg" />
+<ComplianceScore score={20} color="text-destructive" />`,
+  },
   item: {
     status: "new",
     description:
@@ -506,6 +566,7 @@ import { Settings } from "lucide-react"
   },
   separator: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/separator",
     description: "Visual divider between content sections.",
     since: "0.1.0",
     importStatement: 'import { Separator } from "@cogentic/ds"',
@@ -540,6 +601,7 @@ import { Settings } from "lucide-react"
   },
   "scroll-area": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/scroll-area",
     description: "Custom scrollbar with cross-browser consistency.",
     since: "0.1.0",
     importStatement: 'import { ScrollArea } from "@cogentic/ds"',
@@ -551,6 +613,7 @@ import { Settings } from "lucide-react"
   },
   collapsible: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/collapsible",
     description: "Expandable/collapsible content section.",
     since: "0.1.0",
     importStatement:
@@ -566,6 +629,7 @@ import { Settings } from "lucide-react"
   },
   accordion: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/accordion",
     description: "Vertically collapsible content panels. Built on Base UI Accordion.",
     since: "0.1.0",
     importStatement:
@@ -589,6 +653,7 @@ import { Settings } from "lucide-react"
   },
   tabs: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/tabs",
     description: "Tabbed content panels with multiple visual variants. Built on Base UI Tabs.",
     since: "0.1.0",
     importStatement: 'import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic/ds"',
@@ -652,6 +717,7 @@ import { Settings } from "lucide-react"
   },
   "alert-dialog": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/alert-dialog",
     description: "Modal confirmation dialog for destructive or irreversible actions.",
     since: "0.1.0",
     importStatement:
@@ -668,6 +734,7 @@ import { Settings } from "lucide-react"
   },
   dialog: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/dialog",
     description: "Modal overlay for focused tasks. Built on Base UI Dialog.",
     since: "0.1.0",
     importStatement:
@@ -693,6 +760,7 @@ import { Settings } from "lucide-react"
   },
   drawer: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/drawer",
     description: "Slide-in panel from the bottom on mobile.",
     since: "0.1.0",
     importStatement: 'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic/ds"',
@@ -704,21 +772,25 @@ import { Settings } from "lucide-react"
   },
   sheet: {
     status: "stable",
-    description: "Slide-in panel from any edge. Built on Base UI Dialog.",
+    baseUiDoc: "https://base-ui.com/react/components/dialog",
+    description:
+      "Slide-in side panel for forms, settings, and detail views. No swipe gestures — use Drawer for mobile-first bottom sheets.",
     since: "0.1.0",
     importStatement:
-      'import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@cogentic/ds"',
+      'import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@cogentic-co/ds"',
     dos: [
       "Use for secondary content that needs more space than a popover",
       "Use side='right' for detail panels, side='left' for navigation",
+      "Use Sheet for desktop side panels, Drawer for mobile bottom sheets",
     ],
     donts: [
       "Don't use for quick actions — use DropdownMenu or Popover",
-      "Don't open sheets from within sheets",
+      "Don't use for mobile bottom sheets — use Drawer with swipe gestures",
     ],
   },
   popover: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/popover",
     description: "Floating content panel anchored to a trigger. Built on Base UI Popover.",
     since: "0.1.0",
     importStatement: 'import { Popover, PopoverTrigger, PopoverContent } from "@cogentic/ds"',
@@ -730,6 +802,7 @@ import { Settings } from "lucide-react"
   },
   tooltip: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/tooltip",
     description: "Brief contextual information on hover/focus. Built on Base UI Tooltip.",
     since: "0.1.0",
     importStatement: 'import { Tooltip, TooltipTrigger, TooltipContent } from "@cogentic/ds"',
@@ -744,6 +817,7 @@ import { Settings } from "lucide-react"
   },
   "hover-card": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/preview-card",
     description: "Rich preview card shown on hover.",
     since: "0.1.0",
     importStatement: 'import { HoverCard, HoverCardTrigger, HoverCardContent } from "@cogentic/ds"',
@@ -776,6 +850,7 @@ toast.error("Something went wrong")`,
   },
   progress: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/progress",
     description: "Progress bar for loading or completion states.",
     since: "0.1.0",
     importStatement: 'import { Progress } from "@cogentic/ds"',
@@ -877,6 +952,34 @@ toast.error("Something went wrong")`,
   placeholder="Search..."
 />`,
   },
+  "segmented-control": {
+    status: "stable",
+    description:
+      "iOS-style pill selector for switching between a small set of options. Not a tab — use Tabs for content switching.",
+    since: "0.3.0",
+    importStatement: 'import { SegmentedControl } from "@cogentic-co/ds"',
+    dos: [
+      "Use for 2-4 mutually exclusive options",
+      "Keep labels short — single words work best",
+      "Use for view toggles (grid/list), time ranges (day/week/month), modes",
+    ],
+    donts: [
+      "Don't use for more than 4-5 options — use Select or Tabs instead",
+      "Don't use for navigation — use Tabs for content panels",
+      "Don't use long labels — they compress the pill indicator",
+    ],
+    codeExample: `import { SegmentedControl } from "@cogentic-co/ds"
+
+<SegmentedControl
+  options={[
+    { value: "daily", label: "Daily" },
+    { value: "weekly", label: "Weekly" },
+    { value: "monthly", label: "Monthly" },
+  ]}
+  defaultValue="weekly"
+  onChange={(value) => console.log(value)}
+/>`,
+  },
   empty: {
     status: "stable",
     description: "Empty state placeholder with icon, title, and action.",
@@ -925,6 +1028,7 @@ toast.error("Something went wrong")`,
   },
   "navigation-menu": {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/navigation-menu",
     description: "Top-level navigation with dropdown panels.",
     since: "0.1.0",
     importStatement:
@@ -940,6 +1044,7 @@ toast.error("Something went wrong")`,
   },
   menubar: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/menubar",
     description: "Application menu bar (File, Edit, View pattern).",
     since: "0.1.0",
     importStatement:
@@ -1034,6 +1139,7 @@ const { table } = useDataTable({ data, columns })
   },
   avatar: {
     status: "stable",
+    baseUiDoc: "https://base-ui.com/react/components/avatar",
     description: "User or entity avatar with image and fallback.",
     since: "0.1.0",
     importStatement: 'import { Avatar, AvatarImage, AvatarFallback } from "@cogentic/ds"',
@@ -1168,6 +1274,142 @@ const { table } = useDataTable({ data, columns })
   <SubtleShader palette="blue" />
   <div className="relative z-10">Content here</div>
 </div>`,
+  },
+  "deadline-countdown": {
+    status: "new",
+    description:
+      "Displays time remaining until a regulatory deadline with auto-detected urgency states.",
+    since: "0.5.0",
+    importStatement: 'import { DeadlineCountdown } from "@cogentic/ds"',
+    dos: [
+      "Use for regulatory deadlines, review due dates, expiration dates",
+      "Let urgency auto-detect based on thresholds unless you need to override",
+      "Add a label prefix for context (e.g. 'Due in')",
+    ],
+    donts: [
+      "Don't use for general timers — this is purpose-built for deadlines",
+      "Don't set warningDays lower than criticalDays",
+    ],
+    codeExample: `import { DeadlineCountdown } from "@cogentic/ds"
+
+<DeadlineCountdown deadline={new Date("2026-04-01")} label="Due in" />
+<DeadlineCountdown deadline={pastDate} urgency="overdue" />`,
+  },
+  "policy-banner": {
+    status: "new",
+    description:
+      "Dismissible banner for policy acknowledgments, regulatory alerts, or system-wide notices.",
+    since: "0.5.0",
+    importStatement: 'import { PolicyBanner } from "@cogentic/ds"',
+    dos: [
+      "Use for regulatory alerts, policy changes, or system-wide notices",
+      "Add an icon for quick visual scanning",
+      "Include an action button for critical banners that need immediate response",
+    ],
+    donts: [
+      "Don't use for toast notifications — use Sonner instead",
+      "Don't use for inline form errors — use Alert instead",
+      "Don't stack more than 2 banners on a page",
+    ],
+    codeExample: `import { PolicyBanner } from "@cogentic/ds"
+
+<PolicyBanner variant="warning" icon={<AlertTriangle />}>
+  Your AML policy expires in 7 days.
+</PolicyBanner>
+
+<PolicyBanner
+  variant="critical"
+  action={<Button size="sm">Review Now</Button>}
+>
+  Regulatory deadline missed.
+</PolicyBanner>`,
+  },
+  "status-indicator": {
+    status: "new",
+    description: "Coloured dot indicating live status — online, offline, busy, away, or pending.",
+    since: "0.5.0",
+    importStatement: 'import { StatusIndicator } from "@cogentic/ds"',
+    dos: [
+      "Use to show real-time entity status (users, services, agents)",
+      "Add pulse for active/processing states",
+      "Overlay on avatars with ring-2 ring-background for badge positioning",
+    ],
+    donts: [
+      "Don't use as a generic coloured dot — use Badge for labels",
+      "Don't pulse offline or away states",
+    ],
+    codeExample: `import { StatusIndicator } from "@cogentic/ds"
+
+<StatusIndicator variant="online" />
+<StatusIndicator variant="busy" pulse />
+<StatusIndicator variant="offline" size="lg" />`,
+  },
+  "striped-bar": {
+    status: "deprecated",
+    description:
+      'Deprecated — use WaffleChart with mode="bar" instead. Alias kept for backwards compatibility.',
+    since: "0.3.0",
+    importStatement: 'import { StripedBar } from "@cogentic/ds"',
+    dos: [
+      "Use for proportional breakdowns (exposure, allocation, composition)",
+      "Pair with a legend below showing segment labels and percentages",
+      "Use semantic colors that match your risk/category meanings",
+    ],
+    donts: [
+      "Don't use for progress — use Progress instead",
+      "Don't use more than 5-6 segments — it becomes hard to read",
+      "Don't use without a legend — colors alone are insufficient",
+    ],
+    codeExample: `import { StripedBar } from "@cogentic/ds"
+
+<StripedBar
+  segments={[
+    { value: 45, color: "#f87171", label: "Sanctions" },
+    { value: 25, color: "#fb923c", label: "Mixer" },
+    { value: 15, color: "#facc15", label: "Darknet" },
+  ]}
+  stripes={60}
+  animated
+  duration={800}
+/>`,
+  },
+  "waffle-chart": {
+    status: "new",
+    description:
+      "Canvas-based animated proportional chart with two modes: grid (waffle squares) and bar (horizontal stripes).",
+    since: "0.5.0",
+    importStatement: 'import { WaffleChart } from "@cogentic/ds"',
+    dos: [
+      "Use grid mode for part-to-whole comparisons where magnitude matters",
+      "Use bar mode for compact inline breakdowns",
+      "Pair with a legend showing segment labels and percentages",
+      "Use the animate prop for entry animations on scroll",
+    ],
+    donts: [
+      "Don't use more than 5-6 segments — too many colors become hard to read",
+      "Don't use without a legend — colors alone are insufficient",
+      "Don't use for continuous data — use LineChart or AreaChart instead",
+    ],
+    codeExample: `import { WaffleChart } from "@cogentic/ds"
+
+// Grid mode (default)
+<WaffleChart
+  segments={[
+    { value: 45, color: "#f87171", label: "Sanctions" },
+    { value: 25, color: "#fb923c", label: "Mixer" },
+  ]}
+  animate
+/>
+
+// Bar mode
+<WaffleChart
+  mode="bar"
+  segments={[
+    { value: 45, color: "#f87171", label: "Sanctions" },
+    { value: 25, color: "#fb923c", label: "Mixer" },
+  ]}
+  stripes={80}
+/>`,
   },
   "risk-gauge": {
     status: "new",
@@ -2227,6 +2469,252 @@ function CustomNode() {
     </ModelSelectorList>
   </ModelSelectorContent>
 </ModelSelector>`,
+  },
+  timeline: {
+    status: "stable",
+    description:
+      "Vertical timeline for displaying chronological events like audit trails, case history, or activity logs.",
+    since: "0.3.0",
+    importStatement:
+      'import { Timeline, TimelineItem, TimelineDot, TimelineContent, TimelineTitle, TimelineTime } from "@cogentic/ds"',
+    dos: [
+      "Use for chronological event sequences (audit trails, case history)",
+      "Add icons to TimelineDot for visual categorisation",
+      "Include descriptions for important events",
+      "Use colour-coded dots to indicate event severity or type",
+    ],
+    donts: [
+      "Don't use for step-by-step processes — use Stepper instead",
+      "Don't overload with too many events — paginate or virtualise long lists",
+      "Don't omit timestamps — they're essential for audit context",
+    ],
+    codeExample: `import {
+  Timeline, TimelineItem, TimelineDot,
+  TimelineContent, TimelineTitle, TimelineTime,
+} from "@cogentic/ds"
+
+<Timeline>
+  <TimelineItem>
+    <TimelineDot />
+    <TimelineContent>
+      <TimelineTitle>KYC verification passed</TimelineTitle>
+      <TimelineTime>2 hours ago</TimelineTime>
+    </TimelineContent>
+  </TimelineItem>
+  <TimelineItem>
+    <TimelineDot>
+      <CheckCircle className="size-3 text-emerald-600" />
+    </TimelineDot>
+    <TimelineContent>
+      <TimelineTitle>Case approved</TimelineTitle>
+      <TimelineTime>Just now</TimelineTime>
+    </TimelineContent>
+  </TimelineItem>
+</Timeline>`,
+  },
+  // ── New components (v0.5.0) ──
+  "audit-log": {
+    status: "new",
+    description:
+      "Chronological feed of system or user actions. Ideal for compliance trails and activity history.",
+    since: "0.5.0",
+    importStatement: `import {
+  AuditLog, AuditLogEntry, AuditLogIcon,
+  AuditLogContent, AuditLogMessage, AuditLogMeta,
+  AuditLogTime, AuditLogDetail,
+} from "@cogentic/ds"`,
+    dos: [
+      "Use for compliance audit trails and activity logs",
+      "Include timestamps and actor information on every entry",
+      "Use the action variant to semantically categorize entries",
+      "Add AuditLogDetail for supplementary context when needed",
+    ],
+    donts: [
+      "Don't use for real-time chat — use CommentThread instead",
+      "Don't omit timestamps — audit logs require temporal context",
+      "Don't nest AuditLog components",
+    ],
+    codeExample: `import {
+  AuditLog, AuditLogEntry, AuditLogIcon,
+  AuditLogContent, AuditLogMessage, AuditLogMeta,
+  AuditLogTime, AuditLogDetail,
+} from "@cogentic/ds"
+import { PlusIcon } from "lucide-react"
+
+<AuditLog>
+  <AuditLogEntry action="create">
+    <AuditLogIcon>
+      <PlusIcon className="size-3.5 text-emerald-600" />
+    </AuditLogIcon>
+    <AuditLogContent>
+      <AuditLogMessage>
+        <span className="font-medium">Sarah Chen</span> created case CASE-001
+      </AuditLogMessage>
+      <AuditLogMeta>
+        <span>Compliance Team</span>
+        <AuditLogTime>Mar 15, 9:30 AM</AuditLogTime>
+      </AuditLogMeta>
+      <AuditLogDetail>Flagged for unusual transaction pattern.</AuditLogDetail>
+    </AuditLogContent>
+  </AuditLogEntry>
+</AuditLog>`,
+  },
+  "comment-thread": {
+    status: "new",
+    description:
+      "Threaded conversation UI with avatars, timestamps, and reply indentation. For case discussions and review comments.",
+    since: "0.5.0",
+    importStatement: `import {
+  CommentThread, Comment, CommentAvatar, CommentBody,
+  CommentHeader, CommentAuthor, CommentTime,
+  CommentContent, CommentActions,
+} from "@cogentic/ds"`,
+    dos: [
+      "Use for case discussions and review comments",
+      "Show avatar initials or images for each commenter",
+      "Use the reply prop for indented replies",
+      "Include timestamps on every comment",
+    ],
+    donts: [
+      "Don't use for audit logs — use AuditLog instead",
+      "Don't nest CommentThread components",
+      "Don't omit CommentAuthor — comments need attribution",
+    ],
+    codeExample: `import {
+  CommentThread, Comment, CommentAvatar,
+  CommentBody, CommentHeader, CommentAuthor,
+  CommentTime, CommentContent,
+} from "@cogentic/ds"
+
+<CommentThread>
+  <Comment>
+    <CommentAvatar>SC</CommentAvatar>
+    <CommentBody>
+      <CommentHeader>
+        <CommentAuthor>Sarah Chen</CommentAuthor>
+        <CommentTime>Mar 15, 9:30 AM</CommentTime>
+      </CommentHeader>
+      <CommentContent>Recommending escalation.</CommentContent>
+    </CommentBody>
+  </Comment>
+  <Comment reply>
+    <CommentAvatar>JL</CommentAvatar>
+    <CommentBody>
+      <CommentHeader>
+        <CommentAuthor>James Lee</CommentAuthor>
+        <CommentTime>Mar 15, 10:15 AM</CommentTime>
+      </CommentHeader>
+      <CommentContent>Agreed, updating risk level.</CommentContent>
+    </CommentBody>
+  </Comment>
+</CommentThread>`,
+  },
+  "filter-bar": {
+    status: "new",
+    description:
+      "Horizontal bar of removable filter chips with a clear-all action. For data table and list filtering.",
+    since: "0.5.0",
+    importStatement: `import { FilterBar, FilterChip, FilterClear } from "@cogentic/ds"`,
+    dos: [
+      "Place above the data table or list it filters",
+      "Show label:value pairs for clarity",
+      "Include a Clear All action when multiple filters are active",
+      "Use onRemove to allow individual chip removal",
+    ],
+    donts: [
+      "Don't use for static tags — use Tag or Badge instead",
+      "Don't show the filter bar when no filters are active",
+      "Don't put form inputs inside FilterBar — use it for applied filter display only",
+    ],
+    codeExample: `import { FilterBar, FilterChip, FilterClear } from "@cogentic/ds"
+
+<FilterBar>
+  <FilterChip label="Status" value="Under Review" onRemove={() => {}} />
+  <FilterChip label="Risk Level" value="High" onRemove={() => {}} />
+  <FilterClear onClick={() => {}} />
+</FilterBar>`,
+  },
+  "split-pane": {
+    status: "new",
+    description:
+      "Resizable split-view layout built on react-resizable-panels. For master-detail and side-by-side views.",
+    since: "0.5.0",
+    importStatement: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic/ds"`,
+    dos: [
+      "Use for master-detail layouts (list + detail view)",
+      "Set sensible minSize values to prevent panels from collapsing",
+      "Use direction='vertical' for top/bottom splits",
+      "Wrap in a container with a fixed height",
+    ],
+    donts: [
+      "Don't nest more than two levels of split panes",
+      "Don't use without a fixed-height parent container",
+      "Don't use for simple two-column layouts — use Grid instead",
+    ],
+    codeExample: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic/ds"
+
+<div className="h-[500px]">
+  <SplitPane direction="horizontal">
+    <SplitPanePanel defaultSize={35} minSize={20}>
+      <div className="p-4">Left panel</div>
+    </SplitPanePanel>
+    <SplitPaneDivider />
+    <SplitPanePanel defaultSize={65} minSize={30}>
+      <div className="p-4">Right panel</div>
+    </SplitPanePanel>
+  </SplitPane>
+</div>`,
+  },
+  "step-progress": {
+    status: "new",
+    description:
+      "Vertical or horizontal step indicator with complete, current, and upcoming states. For multi-step workflows.",
+    since: "0.5.0",
+    importStatement: `import {
+  StepProgress, StepProgressItem, StepProgressIndicator,
+  StepProgressConnector, StepProgressContent,
+  StepProgressTitle, StepProgressDescription,
+} from "@cogentic/ds"`,
+    dos: [
+      "Use for multi-step workflows like KYC, onboarding, or review processes",
+      "Mark completed steps with status='complete' for the checkmark indicator",
+      "Include StepProgressConnector between steps for visual continuity",
+      "Use StepProgressDescription for additional context on each step",
+    ],
+    donts: [
+      "Don't use for navigation tabs — use Tabs instead",
+      "Don't use more than 7 steps — simplify the workflow or group steps",
+      "Don't omit the status prop — every step needs a clear state",
+    ],
+    codeExample: `import {
+  StepProgress, StepProgressItem, StepProgressIndicator,
+  StepProgressConnector, StepProgressContent,
+  StepProgressTitle, StepProgressDescription,
+} from "@cogentic/ds"
+
+<StepProgress>
+  <StepProgressItem status="complete">
+    <StepProgressIndicator status="complete" />
+    <StepProgressConnector data-complete="true" />
+    <StepProgressContent>
+      <StepProgressTitle>Identity Verification</StepProgressTitle>
+      <StepProgressDescription>ID verified successfully.</StepProgressDescription>
+    </StepProgressContent>
+  </StepProgressItem>
+  <StepProgressItem status="current">
+    <StepProgressIndicator status="current" step={2} />
+    <StepProgressConnector />
+    <StepProgressContent>
+      <StepProgressTitle>Document Review</StepProgressTitle>
+    </StepProgressContent>
+  </StepProgressItem>
+  <StepProgressItem status="upcoming">
+    <StepProgressIndicator status="upcoming" step={3} />
+    <StepProgressContent>
+      <StepProgressTitle>Approval</StepProgressTitle>
+    </StepProgressContent>
+  </StepProgressItem>
+</StepProgress>`,
   },
 }
 

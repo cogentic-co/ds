@@ -5,6 +5,7 @@ import {
   CheckIcon,
   ClipboardIcon,
   Columns2,
+  ExternalLinkIcon,
   Monitor,
   Smartphone,
   Square,
@@ -214,6 +215,17 @@ export default function ComponentPage({ params }: { params: Promise<{ slug: stri
             {meta && <StatusBadge status={meta.status} />}
             {meta?.since && <span className="text-muted-foreground text-xs">v{meta.since}</span>}
             {meta?.importStatement && <CopyImportButton importStatement={meta.importStatement} />}
+            {meta?.baseUiDoc && (
+              <a
+                href={meta.baseUiDoc}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2.5 py-1 text-muted-foreground text-xs transition-colors hover:text-foreground"
+              >
+                Base UI
+                <ExternalLinkIcon className="size-3" />
+              </a>
+            )}
           </div>
           {meta?.description && <p className="mt-2 text-muted-foreground">{meta.description}</p>}
         </div>
