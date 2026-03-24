@@ -2305,59 +2305,31 @@ function AlertDialogPreview() {
 
 function DrawerPreview() {
   return (
-    <div className="space-y-8">
-      <Section title="Bottom (default)">
-        <Drawer>
-          <DrawerTrigger render={<Button variant="outline" />}>Open Bottom Drawer</DrawerTrigger>
-          <DrawerContent direction="down">
-            <DrawerHeader>
-              <DrawerTitle>Edit profile</DrawerTitle>
-              <DrawerDescription>Make changes to your profile here.</DrawerDescription>
-            </DrawerHeader>
-            <div className="p-4">
-              <div className="grid gap-4">
-                <div className="grid gap-1.5">
-                  <Label htmlFor="drawer-name">Name</Label>
-                  <Input id="drawer-name" defaultValue="James Cooke" />
-                </div>
-              </div>
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerDescription>Make changes to your profile here.</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-4">
+          <div className="grid gap-4">
+            <div className="grid gap-1.5">
+              <Label htmlFor="drawer-name">Name</Label>
+              <Input id="drawer-name" defaultValue="James Cooke" />
             </div>
-            <DrawerFooter>
-              <Button>Save changes</Button>
-              <DrawerClose render={<Button variant="outline" />}>Cancel</DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
-      </Section>
-      <Section title="Right">
-        <Drawer swipeDirection="right">
-          <DrawerTrigger render={<Button variant="outline" />}>Open Right Drawer</DrawerTrigger>
-          <DrawerContent direction="right" showHandle={false}>
-            <DrawerHeader>
-              <DrawerTitle>Details</DrawerTitle>
-              <DrawerDescription>Side panel content.</DrawerDescription>
-            </DrawerHeader>
-            <div className="p-4">
-              <p className="text-muted-foreground text-sm">Slide-out panel from the right edge.</p>
-            </div>
-          </DrawerContent>
-        </Drawer>
-      </Section>
-      <Section title="Left">
-        <Drawer swipeDirection="left">
-          <DrawerTrigger render={<Button variant="outline" />}>Open Left Drawer</DrawerTrigger>
-          <DrawerContent direction="left" showHandle={false}>
-            <DrawerHeader>
-              <DrawerTitle>Navigation</DrawerTitle>
-              <DrawerDescription>Mobile navigation panel.</DrawerDescription>
-            </DrawerHeader>
-            <div className="p-4">
-              <p className="text-muted-foreground text-sm">Slide-out panel from the left edge.</p>
-            </div>
-          </DrawerContent>
-        </Drawer>
-      </Section>
-    </div>
+          </div>
+        </div>
+        <DrawerFooter>
+          <Button>Save changes</Button>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   )
 }
 

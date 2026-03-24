@@ -53,6 +53,7 @@ export default defineConfig({
     "lucide-react",
     "@base-ui/react",
     "cmdk",
+    "vaul",
     "sonner",
     "embla-carousel-react",
     "recharts",

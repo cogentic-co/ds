@@ -760,8 +760,7 @@ import { Settings } from "lucide-react"
   },
   drawer: {
     status: "stable",
-    baseUiDoc: "https://base-ui.com/react/components/drawer",
-    description: "Slide-in panel from the bottom on mobile.",
+    description: "Swipe-to-dismiss bottom sheet for mobile. Built on vaul.",
     since: "0.1.0",
     importStatement: 'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic/ds"',
     dos: ["Use on mobile as an alternative to Dialog", "Include a drag handle for dismissal"],
