@@ -61,7 +61,6 @@ export default defineConfig({
     "@tanstack/react-form",
     "@tanstack/react-table",
     "@tanstack/react-virtual",
-    "zod",
     "date-fns",
     "react-day-picker",
     "input-otp",
