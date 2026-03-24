@@ -6,10 +6,11 @@ on:
 
 jobs:
   publish:
-    name: Publish to npm
+    name: Publish to npm + GitHub Packages
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -31,7 +32,14 @@ jobs:
       - name: Build
         run: pnpm build:pkg
 
-      - name: Publish
+      - name: Publish to npm
         run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_DS_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        run: |
+          echo "@cogentic-co:registry=https://npm.pkg.github.com" > .npmrc
+          pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
