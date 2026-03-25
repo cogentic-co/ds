@@ -6,82 +6,67 @@ import { cn } from "../lib/utils"
 
 // 4×4 Bayer dithering matrix (normalised to 0–1)
 const BAYER = [
-  0 / 16,
-  8 / 16,
-  2 / 16,
-  10 / 16,
-  12 / 16,
-  4 / 16,
-  14 / 16,
-  6 / 16,
-  3 / 16,
-  11 / 16,
-  1 / 16,
-  9 / 16,
-  15 / 16,
-  7 / 16,
-  13 / 16,
-  5 / 16,
+  0 / 16, 8 / 16, 2 / 16, 10 / 16, 12 / 16, 4 / 16, 14 / 16, 6 / 16, 3 / 16, 11 / 16, 1 / 16,
+  9 / 16, 15 / 16, 7 / 16, 13 / 16, 5 / 16,
 ]
 
 const BAYER_SCALE = 4
 const DOWNSAMPLE = 4
 
-function parseCssColor(value: string): [number, number, number] | null {
-  // Handles "rgb(r, g, b)" and "rgba(r, g, b, a)" returned by getComputedStyle
-  const match = value.match(/[\d.]+/g)
-  if (match && match.length >= 3) {
-    return [
-      Math.round(Number(match[0])),
-      Math.round(Number(match[1])),
-      Math.round(Number(match[2])),
-    ]
-  }
-  return null
+type RGB = [number, number, number]
+
+type ThemeColors = {
+  fg: RGB
+  bg: RGB
 }
 
-function resolveColors(): { fg: [number, number, number]; bg: [number, number, number] } {
-  // Use a probe element to force the browser to resolve CSS custom properties
-  // into computed rgb() values that the canvas pixel renderer can consume.
-  const probe = document.createElement("div")
-  probe.style.display = "none"
-  probe.style.color = "var(--foreground)"
-  probe.style.backgroundColor = "var(--background)"
-  document.body.appendChild(probe)
-  const probeStyle = getComputedStyle(probe)
-  const fgRgb = parseCssColor(probeStyle.color)
-  const bgRgb = parseCssColor(probeStyle.backgroundColor)
-  document.body.removeChild(probe)
+const DEFAULT_COLORS = {
+  light: { fg: [0xdc, 0xdf, 0xe3] as RGB, bg: [0xfa, 0xfa, 0xfa] as RGB },
+  dark: { fg: [0x1a, 0x23, 0x34] as RGB, bg: [0x3a, 0x4a, 0x5c] as RGB },
+}
 
-  // Fallback values (light mode defaults)
-  const fg: [number, number, number] = fgRgb ?? [0xdc, 0xdf, 0xe3]
-  const bg: [number, number, number] = bgRgb ?? [0xfa, 0xfa, 0xfa]
-  return { fg, bg }
+function isDark() {
+  return document.documentElement.classList.contains("dark")
 }
 
 interface BgShaderProps {
   className?: string
+  /** Override foreground/background colors for light and dark modes. Accepts RGB tuples. */
+  colors?: { light: ThemeColors; dark: ThemeColors }
 }
 
-function BgShader({ className }: BgShaderProps) {
+function BgShader({ className, colors = DEFAULT_COLORS }: BgShaderProps) {
+  const colorsRef = useRef(colors)
+  colorsRef.current = colors
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number>(0)
   const visibleRef = useRef(false)
   const frameCount = useRef(0)
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const reducedMotion = mq.matches
+    let reducedMotion = mq.matches
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      reducedMotion = e.matches
+    }
+    mq.addEventListener("change", onMotionChange)
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let { fg, bg } = resolveColors()
+    const resolve = () => {
+      const c = colorsRef.current
+      return isDark() ? c.dark : c.light
+    }
+
+    let { fg, bg } = resolve()
 
     const updateColors = () => {
-      const resolved = resolveColors()
+      const resolved = resolve()
       fg = resolved.fg
       bg = resolved.bg
     }
@@ -107,6 +92,9 @@ function BgShader({ className }: BgShaderProps) {
     ioObs.observe(canvas)
 
     const startTime = performance.now()
+    let cachedImageData: ImageData | null = null
+    let cachedW = 0
+    let cachedH = 0
 
     const render = (now: number) => {
       if (!visibleRef.current || reducedMotion) return
@@ -132,9 +120,13 @@ function BgShader({ className }: BgShaderProps) {
         canvas.height = ch
       }
 
-      const imageData = ctx.createImageData(cw, ch)
-      const data = imageData.data
+      if (!cachedImageData || cachedW !== cw || cachedH !== ch) {
+        cachedImageData = ctx.createImageData(cw, ch)
+        cachedW = cw
+        cachedH = ch
+      }
 
+      const data = cachedImageData.data
       const time = ((now - startTime) / 1000) * 0.5
       const t3 = time / 3
       const aspect = w / h
@@ -162,20 +154,15 @@ function BgShader({ className }: BgShaderProps) {
           const threshold = BAYER[bx + by * 4]
 
           const idx = (py * cw + px) * 4
-          if (gray > threshold) {
-            data[idx] = fg[0]
-            data[idx + 1] = fg[1]
-            data[idx + 2] = fg[2]
-          } else {
-            data[idx] = bg[0]
-            data[idx + 1] = bg[1]
-            data[idx + 2] = bg[2]
-          }
+          const c = gray > threshold ? fg : bg
+          data[idx] = c[0]
+          data[idx + 1] = c[1]
+          data[idx + 2] = c[2]
           data[idx + 3] = 255
         }
       }
 
-      ctx.putImageData(imageData, 0, 0)
+      ctx.putImageData(cachedImageData, 0, 0)
       rafRef.current = requestAnimationFrame(render)
     }
 
@@ -227,6 +214,7 @@ function BgShader({ className }: BgShaderProps) {
       ioObs.disconnect()
       mutObs.disconnect()
       darkMq.removeEventListener("change", updateColors)
+      mq.removeEventListener("change", onMotionChange)
     }
   }, [])
 
@@ -242,3 +230,4 @@ function BgShader({ className }: BgShaderProps) {
 }
 
 export { BgShader }
+export type { BgShaderProps, ThemeColors, RGB }
