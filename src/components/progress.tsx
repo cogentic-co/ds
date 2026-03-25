@@ -33,7 +33,7 @@ function Progress({ className, children, value, animate, ...props }: ProgressPro
       const id = requestAnimationFrame(() => setMountedValue(value))
       return () => cancelAnimationFrame(id)
     }
-    setMountedValue(value)
+    setMountedValue((prev) => (prev === value ? prev : value))
   }, [animate, value])
 
   return (

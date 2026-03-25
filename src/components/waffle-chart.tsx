@@ -113,8 +113,8 @@ function WaffleChart({
   }, [segments, totalCells, mode])
 
   // ── Bar mode data ──
-  const barBlockData = React.useMemo(() => {
-    if (mode !== "bar") return []
+  const { barBlocks: barBlockData, barDividerCount } = React.useMemo(() => {
+    if (mode !== "bar") return { barBlocks: [] as { color: string | null; useDefault: boolean; dividerAfter: boolean }[], barDividerCount: 0 }
     const blocks: { color: string | null; useDefault: boolean; dividerAfter: boolean }[] = []
     for (const seg of segments) {
       const count = Math.round((seg.value / 100) * stripes)
@@ -137,7 +137,7 @@ function WaffleChart({
     if (blocks.length > 0) {
       blocks[blocks.length - 1].dividerAfter = false
     }
-    return blocks
+    return { barBlocks: blocks, barDividerCount: blocks.filter((b) => b.dividerAfter).length }
   }, [segments, stripes, dividers, mode])
 
   // Resolve theme colors once on mount
@@ -207,7 +207,7 @@ function WaffleChart({
       const rowGap = gap
       const colGap = gap
       const dividerGap = 10
-      const dividerCount = barBlockData.filter((b) => b.dividerAfter).length
+      const dividerCount = barDividerCount
 
       const targetSize = 4
       const barRows = Math.max(1, Math.floor((h + rowGap) / (targetSize + rowGap)))
@@ -278,14 +278,18 @@ function WaffleChart({
     const h = rect.height
     if (w === 0 || h === 0) return
 
-    canvas.width = w * dpr
-    canvas.height = h * dpr
-    canvas.style.width = `${w}px`
-    canvas.style.height = `${h}px`
+    const newW = Math.round(w * dpr)
+    const newH = Math.round(h * dpr)
+    if (canvas.width !== newW || canvas.height !== newH) {
+      canvas.width = newW
+      canvas.height = newH
+      canvas.style.width = `${w}px`
+      canvas.style.height = `${h}px`
+    }
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
-    ctx.scale(dpr, dpr)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.clearRect(0, 0, w, h)
 
     if (mode === "grid") {

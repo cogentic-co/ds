@@ -181,7 +181,7 @@ function BgShader({ className, colors = DEFAULT_COLORS }: BgShaderProps) {
     }
 
     if (reducedMotion) {
-      requestAnimationFrame(() => {
+      rafRef.current = requestAnimationFrame(() => {
         visibleRef.current = true
         frameCount.current = 1
         const w = canvas.clientWidth

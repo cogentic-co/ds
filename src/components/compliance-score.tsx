@@ -86,6 +86,8 @@ function ComplianceScore({
       return
     }
 
+    let rafId: number
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || hasAnimated.current) return
@@ -96,19 +98,21 @@ function ComplianceScore({
 
         function tick(now: number) {
           const progress = Math.min((now - start) / duration, 1)
-          // Cubic ease-out
           const eased = 1 - (1 - progress) ** 3
           setAnimatedScore(Math.round(clampedScore * eased))
-          if (progress < 1) requestAnimationFrame(tick)
+          if (progress < 1) rafId = requestAnimationFrame(tick)
         }
 
-        requestAnimationFrame(tick)
+        rafId = requestAnimationFrame(tick)
       },
       { threshold: 0.5 },
     )
 
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(rafId)
+    }
   }, [clampedScore])
 
   const dashOffset = circumference - (animatedScore / 100) * circumference
