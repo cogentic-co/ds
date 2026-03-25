@@ -1,4 +1,3 @@
-import { cva, type VariantProps } from "class-variance-authority"
 import type * as React from "react"
 import { cn } from "../lib/utils"
 
@@ -13,35 +12,18 @@ function AuditLog({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-const auditLogEntryVariants = cva(
-  "flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-muted/50",
-  {
-    variants: {
-      action: {
-        create: "",
-        update: "",
-        delete: "",
-        approve: "",
-        reject: "",
-        login: "",
-        export: "",
-        default: "",
-      },
-    },
-    defaultVariants: {
-      action: "default",
-    },
-  },
-)
+type AuditLogAction = "create" | "update" | "delete" | "approve" | "reject" | "login" | "export" | "default"
 
-type AuditLogEntryProps = React.ComponentProps<"div"> & VariantProps<typeof auditLogEntryVariants>
+type AuditLogEntryProps = React.ComponentProps<"div"> & {
+  action?: AuditLogAction
+}
 
-function AuditLogEntry({ action, className, ...props }: AuditLogEntryProps) {
+function AuditLogEntry({ action = "default", className, ...props }: AuditLogEntryProps) {
   return (
     <div
       data-slot="audit-log-entry"
-      data-action={action ?? "default"}
-      className={cn(auditLogEntryVariants({ action }), className)}
+      data-action={action}
+      className={cn("flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-muted/50", className)}
       {...props}
     />
   )
@@ -112,6 +94,5 @@ export {
   AuditLogMeta,
   AuditLogTime,
   AuditLogDetail,
-  auditLogEntryVariants,
 }
-export type { AuditLogEntryProps }
+export type { AuditLogEntryProps, AuditLogAction }

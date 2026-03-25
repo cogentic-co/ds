@@ -34,7 +34,7 @@ function FilterChip({
       )}
       {...props}
     >
-      <PlusCircleIcon className="size-3.5 text-muted-foreground" />
+      {!value && <PlusCircleIcon className="size-3.5 text-muted-foreground" />}
       <span className="font-medium">{label}</span>
       {value && (
         <>

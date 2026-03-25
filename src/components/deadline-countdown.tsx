@@ -1,5 +1,7 @@
+"use client"
+
 import { cva, type VariantProps } from "class-variance-authority"
-import type * as React from "react"
+import * as React from "react"
 import { cn } from "../lib/utils"
 
 type Urgency = "normal" | "warning" | "critical" | "overdue"
@@ -84,6 +86,13 @@ function DeadlineCountdown({
   className,
   ...props
 }: DeadlineCountdownProps) {
+  // Re-render every 60s so the displayed time stays current
+  const [, setTick] = React.useState(0)
+  React.useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 60_000)
+    return () => clearInterval(id)
+  }, [])
+
   const urgency = urgencyOverride ?? getAutoUrgency(deadline, warningDays, criticalDays)
   const timeText = formatTimeRemaining(deadline)
 

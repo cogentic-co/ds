@@ -23,6 +23,9 @@ type ApprovalActionsProps = {
   onApprove?: (reason?: string) => void
   onReject?: (reason?: string) => void
   onEscalate?: (reason?: string) => void
+  /** Show confirmation dialog before action. Defaults to true when requireReason is true, false otherwise. */
+  confirm?: boolean
+  /** Require a reason in the confirmation dialog. Defaults to false. */
   requireReason?: boolean
   disabled?: boolean
   className?: string
@@ -136,11 +139,13 @@ function ApprovalDialog({
 
 function ApprovalButton({
   action,
+  showDialog = false,
   requireReason = false,
   onAction,
   disabled,
 }: {
   action: ApprovalAction
+  showDialog?: boolean
   requireReason?: boolean
   onAction?: (reason?: string) => void
   disabled?: boolean
@@ -157,8 +162,7 @@ function ApprovalButton({
     )
   }
 
-  // No dialog needed when reason isn't required — fire directly
-  if (!requireReason) {
+  if (!showDialog) {
     return (
       <Button className={config.triggerClassName} disabled={disabled} onClick={() => onAction()}>
         <Icon className="size-4" />
@@ -181,26 +185,31 @@ function ApprovalActions({
   onApprove,
   onReject,
   onEscalate,
+  confirm: confirmProp,
   requireReason = false,
   disabled,
   className,
 }: ApprovalActionsProps) {
+  const showDialog = confirmProp ?? requireReason
   return (
     <div data-slot="approval-actions" className={cn("flex items-center gap-2", className)}>
       <ApprovalButton
         action="approve"
+        showDialog={showDialog}
         requireReason={requireReason}
         onAction={onApprove}
         disabled={disabled}
       />
       <ApprovalButton
         action="reject"
+        showDialog={showDialog}
         requireReason={requireReason}
         onAction={onReject}
         disabled={disabled}
       />
       <ApprovalButton
         action="escalate"
+        showDialog={showDialog}
         requireReason={requireReason}
         onAction={onEscalate}
         disabled={disabled}
