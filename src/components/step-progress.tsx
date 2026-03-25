@@ -24,6 +24,7 @@ function StepProgress({ orientation, className, ...props }: StepProgressProps) {
     <div
       data-slot="step-progress"
       data-orientation={orientation ?? "vertical"}
+      role="list"
       className={cn(stepProgressVariants({ orientation }), className)}
       {...props}
     />
@@ -39,6 +40,8 @@ function StepProgressItem({ status = "upcoming", className, ...props }: StepProg
     <div
       data-slot="step-progress-item"
       data-status={status}
+      role="listitem"
+      aria-current={status === "current" ? "step" : undefined}
       className={cn(
         "relative flex",
         // Vertical: row layout, bottom padding

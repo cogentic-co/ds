@@ -127,6 +127,7 @@ function SubtleShader({
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       data-slot="subtle-shader"
       className={cn("absolute inset-0 h-full w-full", className)}
       style={{ imageRendering: "auto", filter: "blur(40px)" }}

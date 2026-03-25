@@ -342,10 +342,14 @@ function WaffleChart({
     }
   }, [draw])
 
+  const ariaLabel = segments.filter(s => s.label).map(s => `${s.label} ${s.value}%`).join(", ") || "Chart"
+
   return (
     <div
       ref={containerRef}
       data-slot="waffle-chart"
+      role="img"
+      aria-label={ariaLabel}
       className={cn(waffleChartVariants({ mode, size }), className)}
       {...props}
     >

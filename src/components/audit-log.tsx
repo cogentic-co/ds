@@ -6,6 +6,7 @@ function AuditLog({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="audit-log"
       role="log"
+      aria-live="polite"
       className={cn("space-y-0 divide-y divide-border", className)}
       {...props}
     />

@@ -137,6 +137,7 @@ function AsciiShader({ paused = false, className, ...props }: AsciiShaderProps) 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       data-slot="ascii-shader"
       className={cn("absolute inset-0 h-full w-full", className)}
       {...props}

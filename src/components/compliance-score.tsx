@@ -123,6 +123,11 @@ function ComplianceScore({
     <div
       ref={ref}
       data-slot="compliance-score"
+      role="meter"
+      aria-valuenow={score}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={label ? `${label}: ${score}%` : `Compliance score: ${score}%`}
       className={cn(complianceScoreVariants({ size }), className)}
       {...props}
     >

@@ -75,5 +75,5 @@ export default defineConfig({
     "@xyflow/react/dist/style.css",
   ],
   treeshake: true,
-  onSuccess: `node -e "var fs=require('fs'),path=require('path');function walk(d){fs.readdirSync(d,{withFileTypes:true}).forEach(function(f){var fp=path.join(d,f.name);if(f.isDirectory()){walk(fp);return}if(!f.name.endsWith('.js'))return;var c=fs.readFileSync(fp,'utf8');if(c.indexOf('use client')<0){fs.writeFileSync(fp,'\\\"use client\\\";\\n'+c)}})}walk('dist')"`,
+  onSuccess: `node -e "var fs=require('fs'),path=require('path');function walk(d){fs.readdirSync(d,{withFileTypes:true}).forEach(function(f){var fp=path.join(d,f.name);if(f.isDirectory()){walk(fp);return}if(!f.name.endsWith('.js'))return;var c=fs.readFileSync(fp,'utf8');if(c.indexOf('use client')>=0)return;if(c.indexOf('from \\'react\\'')>=0||c.indexOf('from \\'react/jsx-runtime\\'')>=0){fs.writeFileSync(fp,'\\\"use client\\\";\\n'+c)}})}walk('dist')"`,
 })

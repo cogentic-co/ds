@@ -118,6 +118,11 @@ function RiskGauge({
     <div
       ref={ref}
       data-slot="risk-gauge"
+      role="meter"
+      aria-valuenow={score}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={label ?? `Risk score: ${score}/100`}
       className={cn("flex flex-col gap-1.5", className)}
       {...props}
     >

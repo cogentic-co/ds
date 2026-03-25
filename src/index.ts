@@ -1,26 +1,6 @@
 // Components
-
-// Product animations
-export { default as AnimationAiAnalysis } from "./animations/animation-ai-analysis"
-export { default as AnimationAuditTrail } from "./animations/animation-audit-trail"
-export { default as AnimationComplianceReports } from "./animations/animation-compliance-reports"
-export { default as AnimationCustomRules } from "./animations/animation-custom-rules"
-export { default as AnimationJiraTicket } from "./animations/animation-jira-ticket"
-export { default as AnimationJurisdictionDetection } from "./animations/animation-jurisdiction-detection"
-export { default as AnimationMultiProtocol } from "./animations/animation-multi-protocol"
-export { default as AnimationPricingPreview } from "./animations/animation-pricing-preview"
-export { default as AnimationRealtimeUpdates } from "./animations/animation-realtime-updates"
-export { default as AnimationRestApi } from "./animations/animation-rest-api"
-export { default as AnimationRiskScoring } from "./animations/animation-risk-scoring"
-export { default as AnimationSandbox } from "./animations/animation-sandbox"
-export { default as AnimationScheduledReports } from "./animations/animation-scheduled-reports"
-export { default as AnimationSecureMessaging } from "./animations/animation-secure-messaging"
-export { default as AnimationSlackNotification } from "./animations/animation-slack-notification"
-export { default as AnimationSopMapping } from "./animations/animation-sop-mapping"
-export { default as AnimationTeamRouting } from "./animations/animation-team-routing"
-export { default as AnimationTeamsNotification } from "./animations/animation-teams-notification"
-export { default as AnimationVaspIdentification } from "./animations/animation-vasp-identification"
-export { default as AnimationWebhooks } from "./animations/animation-webhooks"
+// Animations are NOT re-exported from main barrel to avoid bundling motion/react.
+// Import from "@cogentic-co/ds/animations/*" instead.
 export type { ArticleCardProps } from "./blocks/article-card"
 export { ArticleCard } from "./blocks/article-card"
 export type { AuthFormProps, AuthFormVariant } from "./blocks/auth-form"
@@ -39,8 +19,8 @@ export type { StatCardProps } from "./blocks/stat-card"
 export { StatCard } from "./blocks/stat-card"
 export type { TeamCardProps } from "./blocks/team-card"
 export { TeamCard } from "./blocks/team-card"
-// Charts
-export * from "./charts"
+// Charts are NOT re-exported from main barrel to avoid bundling recharts.
+// Import from "@cogentic-co/ds/charts" instead.
 export * from "./components/accordion"
 export * from "./components/alert"
 export * from "./components/alert-dialog"
@@ -125,7 +105,8 @@ export * from "./components/split-pane"
 export * from "./components/stat"
 export * from "./components/status-indicator"
 export * from "./components/step-progress"
-export * from "./components/streaming-cards"
+// StreamingCards uses motion/react — import directly if needed:
+// import { StreamingCards } from "@cogentic-co/ds/components/streaming-cards"
 export * from "./components/striped-bar"
 export * from "./components/subtle-shader"
 export * from "./components/switch"

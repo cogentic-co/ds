@@ -233,13 +233,13 @@ function BgShader({ className, colors = DEFAULT_COLORS }: BgShaderProps) {
   }, [])
 
   return (
-    <section className={cn("absolute inset-0 opacity-50", className)} data-slot="bg-shader">
+    <div aria-hidden="true" className={cn("absolute inset-0 opacity-50", className)} data-slot="bg-shader">
       <canvas
         ref={canvasRef}
         className="block h-full w-full"
         style={{ imageRendering: "pixelated" }}
       />
-    </section>
+    </div>
   )
 }
 

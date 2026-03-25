@@ -99,6 +99,8 @@ function DeadlineCountdown({
   return (
     <span
       data-slot="deadline-countdown"
+      aria-live="polite"
+      aria-atomic="true"
       className={cn(deadlineCountdownVariants({ urgency }), className)}
       {...props}
     >

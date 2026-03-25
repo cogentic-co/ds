@@ -133,6 +133,7 @@ function BlockyShader({ paused = false, className, ...props }: BlockyShaderProps
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       data-slot="blocky-shader"
       className={cn("absolute inset-0 h-full w-full", className)}
       {...props}
