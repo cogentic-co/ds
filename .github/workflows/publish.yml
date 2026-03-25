@@ -29,7 +29,7 @@ jobs:
       - run: pnpm build:pkg
 
       - name: Publish
-        run: npm publish --provenance --access public
+        run: pnpm publish --no-git-checks --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_DS_TOKEN }}
 
@@ -58,6 +58,6 @@ jobs:
       - run: pnpm build:pkg
 
       - name: Publish
-        run: npm publish --no-git-checks
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
