@@ -1367,6 +1367,12 @@ function SkeletonPreview() {
 }
 
 const spinnerControlDefs = {
+  variant: {
+    type: "select" as const,
+    options: ["circle", "lines"],
+    defaultValue: "circle",
+    label: "Variant",
+  },
   size: {
     type: "select" as const,
     options: ["sm", "md", "lg"],
@@ -1388,7 +1394,7 @@ function SpinnerPreview() {
     <div className="space-y-6">
       <Playground controls={controls}>
         <div className="flex items-center justify-center py-4">
-          <Spinner className={spinnerSizeClasses[controls.values.size]} />
+          <Spinner variant={controls.values.variant as "circle"} className={spinnerSizeClasses[controls.values.size]} />
         </div>
       </Playground>
     </div>
