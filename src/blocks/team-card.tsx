@@ -12,9 +12,10 @@ interface TeamCardProps {
   imageUrl?: string
   linkedinUrl?: string
   className?: string
+  children?: React.ReactNode
 }
 
-function TeamCard({ name, role, imageUrl, linkedinUrl, className }: TeamCardProps) {
+function TeamCard({ name, role, imageUrl, linkedinUrl, className, children }: TeamCardProps) {
   const initials = name
     .split(" ")
     .map((n) => n[0])
@@ -61,6 +62,7 @@ function TeamCard({ name, role, imageUrl, linkedinUrl, className }: TeamCardProp
           </div>
         )}
       </CardFooter>
+      {children}
     </Card>
   )
 }
