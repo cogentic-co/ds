@@ -233,7 +233,11 @@ function BgShader({ className, colors = DEFAULT_COLORS }: BgShaderProps) {
   }, [])
 
   return (
-    <div aria-hidden="true" className={cn("absolute inset-0 opacity-50", className)} data-slot="bg-shader">
+    <div
+      aria-hidden="true"
+      className={cn("absolute inset-0 opacity-50", className)}
+      data-slot="bg-shader"
+    >
       <canvas
         ref={canvasRef}
         className="block h-full w-full"

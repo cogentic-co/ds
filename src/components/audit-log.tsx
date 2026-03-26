@@ -13,7 +13,15 @@ function AuditLog({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-type AuditLogAction = "create" | "update" | "delete" | "approve" | "reject" | "login" | "export" | "default"
+type AuditLogAction =
+  | "create"
+  | "update"
+  | "delete"
+  | "approve"
+  | "reject"
+  | "login"
+  | "export"
+  | "default"
 
 type AuditLogEntryProps = React.ComponentProps<"div"> & {
   action?: AuditLogAction
@@ -24,7 +32,10 @@ function AuditLogEntry({ action = "default", className, ...props }: AuditLogEntr
     <div
       data-slot="audit-log-entry"
       data-action={action}
-      className={cn("flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-muted/50", className)}
+      className={cn(
+        "flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-muted/50",
+        className,
+      )}
       {...props}
     />
   )

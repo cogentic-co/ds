@@ -114,7 +114,11 @@ function WaffleChart({
 
   // ── Bar mode data ──
   const { barBlocks: barBlockData, barDividerCount } = React.useMemo(() => {
-    if (mode !== "bar") return { barBlocks: [] as { color: string | null; useDefault: boolean; dividerAfter: boolean }[], barDividerCount: 0 }
+    if (mode !== "bar")
+      return {
+        barBlocks: [] as { color: string | null; useDefault: boolean; dividerAfter: boolean }[],
+        barDividerCount: 0,
+      }
     const blocks: { color: string | null; useDefault: boolean; dividerAfter: boolean }[] = []
     for (const seg of segments) {
       const count = Math.round((seg.value / 100) * stripes)
@@ -342,7 +346,11 @@ function WaffleChart({
     }
   }, [draw])
 
-  const ariaLabel = segments.filter(s => s.label).map(s => `${s.label} ${s.value}%`).join(", ") || "Chart"
+  const ariaLabel =
+    segments
+      .filter((s) => s.label)
+      .map((s) => `${s.label} ${s.value}%`)
+      .join(", ") || "Chart"
 
   return (
     <div
