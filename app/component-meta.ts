@@ -28,7 +28,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/button",
     description: "Trigger actions or navigation. Supports multiple variants and sizes.",
     since: "0.1.0",
-    importStatement: 'import { Button } from "@cogentic/ds"',
+    importStatement: 'import { Button } from "@cogentic-co/ds/button"',
     dos: [
       "Use primary variant for the main action on a page",
       "Use destructive variant for irreversible actions",
@@ -40,7 +40,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use a button where a link (<a>) is more appropriate",
       "Don't disable buttons without explaining why",
     ],
-    codeExample: `import { Button } from "@cogentic/ds"
+    codeExample: `import { Button } from "@cogentic-co/ds/button"
 
 <Button variant="default">Click me</Button>
 <Button variant="destructive">Delete</Button>
@@ -50,13 +50,14 @@ export const componentMeta: Record<string, ComponentMeta> = {
     status: "stable",
     description: "Group related buttons with consistent spacing.",
     since: "0.1.0",
-    importStatement: 'import { ButtonGroup } from "@cogentic/ds"',
+    importStatement: 'import { ButtonGroup } from "@cogentic-co/ds/button-group"',
     dos: [
       "Group related actions together (e.g. Save / Cancel)",
       "Use consistent button variants within a group",
     ],
     donts: ["Don't mix too many variants in one group", "Don't use for unrelated actions"],
-    codeExample: `import { Button, ButtonGroup } from "@cogentic/ds"
+    codeExample: `import { ButtonGroup } from "@cogentic-co/ds/button-group"
+import { Button } from "@cogentic-co/ds/button"
 
 <ButtonGroup>
   <Button variant="outline">Cancel</Button>
@@ -68,7 +69,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/toggle",
     description: "Two-state button that can be on or off.",
     since: "0.1.0",
-    importStatement: 'import { Toggle } from "@cogentic/ds"',
+    importStatement: 'import { Toggle } from "@cogentic-co/ds/toggle"',
     dos: [
       "Use for binary on/off actions (bold, italic, mute)",
       "Use clear icons that indicate the toggled state",
@@ -77,7 +78,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for navigation — use Button or Link",
       "Don't use when Switch is more appropriate (settings)",
     ],
-    codeExample: `import { Toggle } from "@cogentic/ds"
+    codeExample: `import { Toggle } from "@cogentic-co/ds/toggle"
 
 <Toggle aria-label="Toggle bold">
   <Bold className="size-4" />
@@ -88,7 +89,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/toggle-group",
     description: "Group of toggles for selecting one or multiple options.",
     since: "0.1.0",
-    importStatement: 'import { ToggleGroup, ToggleGroupItem } from "@cogentic/ds"',
+    importStatement: 'import { ToggleGroup, ToggleGroupItem } from "@cogentic-co/ds/toggle-group"',
     dos: [
       "Use type='single' for mutually exclusive options",
       "Use type='multiple' for independent toggles",
@@ -97,7 +98,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for more than 5-6 options — use Select instead",
       "Don't mix icons and text labels in the same group",
     ],
-    codeExample: `import { ToggleGroup, ToggleGroupItem } from "@cogentic/ds"
+    codeExample: `import { ToggleGroup, ToggleGroupItem } from "@cogentic-co/ds/toggle-group"
 
 <ToggleGroup type="single">
   <ToggleGroupItem value="left">Left</ToggleGroupItem>
@@ -112,7 +113,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Contextual menu triggered by a button. Supports items, checkboxes, radios, and sub-menus.",
     since: "0.1.0",
     importStatement:
-      'import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@cogentic/ds"',
+      'import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@cogentic-co/ds/dropdown-menu"',
     dos: [
       "Group related actions with separators",
       "Include keyboard shortcuts in menu items",
@@ -129,7 +130,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     description: "Right-click context menu with the same structure as DropdownMenu.",
     since: "0.1.0",
     importStatement:
-      'import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "@cogentic/ds"',
+      'import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "@cogentic-co/ds/context-menu"',
     dos: [
       "Use for secondary actions on interactive elements",
       "Mirror common OS context menu patterns",
@@ -146,7 +147,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     description:
       "Compound component for compliance review workflows: approve, reject, or escalate with confirmation dialog and optional reason.",
     since: "0.5.0",
-    importStatement: 'import { ApprovalActions } from "@cogentic/ds"',
+    importStatement: 'import { ApprovalActions } from "@cogentic-co/ds/approval-actions"',
     dos: [
       "Use in compliance and review workflows requiring explicit approve/reject/escalate",
       "Enable requireReason for auditable decisions",
@@ -156,7 +157,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for simple yes/no confirmations — use AlertDialog instead",
       "Don't omit all callbacks — at least one action should be wired up",
     ],
-    codeExample: `import { ApprovalActions } from "@cogentic/ds"
+    codeExample: `import { ApprovalActions } from "@cogentic-co/ds/approval-actions"
 
 <ApprovalActions
   onApprove={(reason) => console.log("Approved", reason)}
@@ -170,7 +171,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/input",
     description: "Text input field with support for different types and states.",
     since: "0.1.0",
-    importStatement: 'import { Input } from "@cogentic/ds"',
+    importStatement: 'import { Input } from "@cogentic-co/ds/input"',
     dos: [
       "Always pair with a label (use Field component)",
       "Use placeholder text as a hint, not a label",
@@ -180,7 +181,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use placeholder as a replacement for labels",
       "Don't disable inputs without clear context",
     ],
-    codeExample: `import { Input } from "@cogentic/ds"
+    codeExample: `import { Input } from "@cogentic-co/ds/input"
 
 <Input type="email" placeholder="you@example.com" />
 <Input disabled placeholder="Disabled" />`,
@@ -189,7 +190,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     status: "stable",
     description: "Multi-line text input.",
     since: "0.1.0",
-    importStatement: 'import { Textarea } from "@cogentic/ds"',
+    importStatement: 'import { Textarea } from "@cogentic-co/ds/textarea"',
     dos: [
       "Set a reasonable min-height for the expected content",
       "Use with Field for labels and validation",
@@ -198,7 +199,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for single-line input — use Input instead",
       "Don't disable resize unless you have a good reason",
     ],
-    codeExample: `import { Textarea } from "@cogentic/ds"
+    codeExample: `import { Textarea } from "@cogentic-co/ds/textarea"
 
 <Textarea placeholder="Write a message..." />`,
   },
@@ -208,7 +209,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     description: "Dropdown selection from a list of options. Built on Base UI Select.",
     since: "0.1.0",
     importStatement:
-      'import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@cogentic/ds"',
+      'import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@cogentic-co/ds/select"',
     dos: [
       "Use placeholder text to describe the expected selection",
       "Group options with SelectGroup for long lists",
@@ -217,7 +218,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for fewer than 3 options — use RadioGroup instead",
       "Don't use for searchable lists — use Combobox",
     ],
-    codeExample: `import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@cogentic/ds"
+    codeExample: `import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@cogentic-co/ds/select"
 
 <Select>
   <SelectTrigger>
@@ -233,7 +234,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     status: "stable",
     description: "Native HTML select element with consistent styling.",
     since: "0.1.0",
-    importStatement: 'import { NativeSelect } from "@cogentic/ds"',
+    importStatement: 'import { NativeSelect } from "@cogentic-co/ds/native-select"',
     dos: [
       "Use when you need native mobile picker behavior",
       "Use for simple forms that don't need custom styling",
@@ -248,7 +249,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/checkbox",
     description: "Binary choice control. Built on Base UI Checkbox.",
     since: "0.1.0",
-    importStatement: 'import { Checkbox } from "@cogentic/ds"',
+    importStatement: 'import { Checkbox } from "@cogentic-co/ds/checkbox"',
     dos: [
       "Always provide a visible label",
       "Use for independent boolean choices",
@@ -258,7 +259,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for mutually exclusive options — use RadioGroup",
       "Don't use without a label — screen readers need it",
     ],
-    codeExample: `import { Checkbox } from "@cogentic/ds"
+    codeExample: `import { Checkbox } from "@cogentic-co/ds/checkbox"
 
 <Checkbox />
 <Checkbox defaultChecked />
@@ -269,7 +270,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/radio",
     description: "Single selection from a group of options. Built on Base UI RadioGroup.",
     since: "0.1.0",
-    importStatement: 'import { RadioGroup, RadioGroupItem } from "@cogentic/ds"',
+    importStatement: 'import { RadioGroup, RadioGroupItem } from "@cogentic-co/ds/radio-group"',
     dos: [
       "Use for 2-5 mutually exclusive options",
       "Always show all options — don't hide behind a dropdown",
@@ -278,7 +279,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for more than 5 options — use Select instead",
       "Don't use for independent choices — use Checkbox",
     ],
-    codeExample: `import { RadioGroup, RadioGroupItem } from "@cogentic/ds"
+    codeExample: `import { RadioGroup, RadioGroupItem } from "@cogentic-co/ds/radio-group"
 
 <RadioGroup defaultValue="a">
   <RadioGroupItem value="a" label="Option A" />
@@ -290,7 +291,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/switch",
     description: "Toggle for enabling/disabling settings. Built on Base UI Switch.",
     since: "0.1.0",
-    importStatement: 'import { Switch } from "@cogentic/ds"',
+    importStatement: 'import { Switch } from "@cogentic-co/ds/switch"',
     dos: [
       "Use for settings that take effect immediately",
       "Place the label on the left, switch on the right",
@@ -299,7 +300,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
       "Don't use for actions that require a submit — use Checkbox",
       "Don't use without a label",
     ],
-    codeExample: `import { Switch } from "@cogentic/ds"
+    codeExample: `import { Switch } from "@cogentic-co/ds/switch"
 
 <Switch />
 <Switch defaultChecked />`,
@@ -309,13 +310,13 @@ export const componentMeta: Record<string, ComponentMeta> = {
     baseUiDoc: "https://base-ui.com/react/components/slider",
     description: "Range input for selecting numeric values. Built on Base UI Slider.",
     since: "0.1.0",
-    importStatement: 'import { Slider } from "@cogentic/ds"',
+    importStatement: 'import { Slider } from "@cogentic-co/ds/slider"',
     dos: ["Show the current value near the slider", "Use sensible min/max/step values"],
     donts: [
       "Don't use for precise numeric input — use NumberInput",
       "Don't use without showing the value somewhere",
     ],
-    codeExample: `import { Slider } from "@cogentic/ds"
+    codeExample: `import { Slider } from "@cogentic-co/ds/slider"
 
 <Slider defaultValue={[50]} max={100} step={1} />`,
   },
@@ -323,13 +324,14 @@ export const componentMeta: Record<string, ComponentMeta> = {
     status: "stable",
     description: "Compose inputs with addons, buttons, and icons.",
     since: "0.1.0",
-    importStatement: 'import { InputGroup, InputGroupAddon } from "@cogentic/ds"',
+    importStatement: 'import { InputGroup, InputGroupAddon } from "@cogentic-co/ds/input-group"',
     dos: [
       "Use addons for prefixes/suffixes (icons, labels, buttons)",
       "Keep addons small and non-interactive when possible",
     ],
     donts: ["Don't nest InputGroups", "Don't use addons that are wider than the input itself"],
-    codeExample: `import { Input, InputGroup, InputGroupAddon } from "@cogentic/ds"
+    codeExample: `import { InputGroup, InputGroupAddon } from "@cogentic-co/ds/input-group"
+import { Input } from "@cogentic-co/ds/input"
 import { SearchIcon } from "lucide-react"
 
 <InputGroup>
@@ -341,13 +343,13 @@ import { SearchIcon } from "lucide-react"
     status: "stable",
     description: "One-time password input with individual digit fields.",
     since: "0.1.0",
-    importStatement: 'import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic/ds"',
+    importStatement: 'import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic-co/ds/input-otp"',
     dos: ["Set maxLength to match the expected code length", "Auto-focus the first slot on mount"],
     donts: [
       "Don't use for regular text input",
       "Don't use without clear instructions about the code",
     ],
-    codeExample: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic/ds"
+    codeExample: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic-co/ds/input-otp"
 
 <InputOTP maxLength={6}>
   <InputOTPGroup>
@@ -365,7 +367,7 @@ import { SearchIcon } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/combobox",
     description: "Searchable select with autocomplete. Built on Base UI Combobox.",
     since: "0.1.0",
-    importStatement: 'import { Combobox } from "@cogentic/ds"',
+    importStatement: 'import { Combobox } from "@cogentic-co/ds/combobox"',
     dos: ["Use for lists with more than 10 options", "Provide helpful placeholder text"],
     donts: [
       "Don't use for short lists — use Select or RadioGroup",
@@ -376,7 +378,7 @@ import { SearchIcon } from "lucide-react"
     status: "stable",
     description: "Date selection calendar. Uses react-day-picker with custom styling.",
     since: "0.1.0",
-    importStatement: 'import { Calendar } from "@cogentic/ds"',
+    importStatement: 'import { Calendar } from "@cogentic-co/ds/calendar"',
     dos: ["Use inside a Popover for inline date picking", "Disable dates outside valid ranges"],
     donts: [
       "Don't use standalone — wrap in DatePicker for a full experience",
@@ -387,7 +389,7 @@ import { SearchIcon } from "lucide-react"
     status: "new",
     description: "Date and date range picker with popover and optional presets.",
     since: "0.2.0",
-    importStatement: 'import { DatePicker, DateRangePicker } from "@cogentic/ds"',
+    importStatement: 'import { DatePicker, DateRangePicker } from "@cogentic-co/ds/date-picker"',
     dos: [
       "Use DatePicker for single date, DateRangePicker for ranges",
       "Provide presets for common selections (today, last 7 days)",
@@ -398,7 +400,7 @@ import { SearchIcon } from "lucide-react"
     status: "stable",
     description: "Form label element with consistent styling.",
     since: "0.1.0",
-    importStatement: 'import { Label } from "@cogentic/ds"',
+    importStatement: 'import { Label } from "@cogentic-co/ds/label"',
     dos: ["Always associate with an input via htmlFor", "Keep labels concise and descriptive"],
     donts: [
       "Don't use Label alone — use Field for full form structure",
@@ -410,15 +412,15 @@ import { SearchIcon } from "lucide-react"
     description: "Form field wrapper with label, description, error, and layout variants.",
     since: "0.1.0",
     importStatement:
-      'import { Field, FieldLabel, FieldDescription, FieldError } from "@cogentic/ds"',
+      'import { Field, FieldLabel, FieldDescription, FieldError } from "@cogentic-co/ds/field"',
     dos: [
       "Use Field to wrap every form input for consistent structure",
       "Use FieldDescription for helper text below inputs",
       "Use FieldError to display validation messages",
     ],
     donts: ["Don't use Field without a label — use sr-only if needed"],
-    codeExample: `import { Field, FieldLabel, FieldDescription, FieldError } from "@cogentic/ds"
-import { Input } from "@cogentic/ds"
+    codeExample: `import { Field, FieldLabel, FieldDescription, FieldError } from "@cogentic-co/ds/field"
+import { Input } from "@cogentic-co/ds/input"
 
 <Field>
   <FieldLabel>Email</FieldLabel>
@@ -443,13 +445,13 @@ import { Input } from "@cogentic/ds"
     description: "Contained surface for grouping related content.",
     since: "0.1.0",
     importStatement:
-      'import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@cogentic/ds"',
+      'import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@cogentic-co/ds/card"',
     dos: [
       "Use CardHeader + CardContent for consistent structure",
       "Use CardAction for top-right actions (settings, close)",
     ],
     donts: ["Don't nest cards inside cards", "Don't overload a single card with too many actions"],
-    codeExample: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@cogentic/ds"
+    codeExample: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@cogentic-co/ds/card"
 
 <Card>
   <CardHeader>
@@ -468,7 +470,7 @@ import { Input } from "@cogentic/ds"
     description:
       "Compact card for displaying compliance cases on boards and lists. Shows SLA status, priority, assignee, and linked alerts/transactions.",
     since: "0.3.8",
-    importStatement: 'import { CaseCard, type CaseCardProps } from "@cogentic/ds"',
+    importStatement: 'import { CaseCard, type CaseCardProps } from "@cogentic-co/ds/case-card"',
     dos: [
       "Use in board (kanban) and list views for case management",
       "Pass linkedAlerts and linkedTransactions for hover-card previews",
@@ -480,7 +482,7 @@ import { Input } from "@cogentic/ds"
       "Don't use for non-case entities — use Card or Item instead",
       "Don't render outside a scrollable container without constraining width",
     ],
-    codeExample: `import { CaseCard } from "@cogentic/ds"
+    codeExample: `import { CaseCard } from "@cogentic-co/ds/case-card"
 
 <CaseCard
   id="case-12345"
@@ -504,7 +506,7 @@ import { Input } from "@cogentic/ds"
     description:
       "SVG donut gauge showing compliance posture as a percentage. Auto-colors by score range (red/amber/emerald).",
     since: "0.5.0",
-    importStatement: 'import { ComplianceScore } from "@cogentic/ds"',
+    importStatement: 'import { ComplianceScore } from "@cogentic-co/ds/compliance-score"',
     dos: [
       "Use to show compliance posture at a glance",
       "Pair with a Card for dashboard widgets",
@@ -515,7 +517,7 @@ import { Input } from "@cogentic/ds"
       "Don't override color unless the auto-coloring is inappropriate",
       "Don't use at sm size without removing the label — it won't fit",
     ],
-    codeExample: `import { ComplianceScore } from "@cogentic/ds"
+    codeExample: `import { ComplianceScore } from "@cogentic-co/ds/compliance-score"
 
 <ComplianceScore score={85} label="Score" />
 <ComplianceScore score={45} size="lg" />
@@ -527,7 +529,7 @@ import { Input } from "@cogentic/ds"
       "Versatile compound component for displaying content with media, title, description, and actions.",
     since: "0.3.7",
     importStatement:
-      'import { Item, ItemGroup, ItemSeparator, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions, ItemHeader, ItemFooter } from "@cogentic/ds"',
+      'import { Item, ItemGroup, ItemSeparator, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions, ItemHeader, ItemFooter } from "@cogentic-co/ds/item"',
     dos: [
       "Use ItemGroup to group related items with consistent spacing",
       "Use ItemMedia with variant='icon' for icon containers",
@@ -540,7 +542,7 @@ import { Input } from "@cogentic/ds"
       "Don't nest Items inside other Items",
       "Don't use without ItemContent — it provides the flex layout",
     ],
-    codeExample: `import { Item, ItemGroup, ItemSeparator, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions } from "@cogentic/ds"
+    codeExample: `import { Item, ItemGroup, ItemSeparator, ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions } from "@cogentic-co/ds/item"
 import { Settings } from "lucide-react"
 
 <ItemGroup>
@@ -569,7 +571,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/separator",
     description: "Visual divider between content sections.",
     since: "0.1.0",
-    importStatement: 'import { Separator } from "@cogentic/ds"',
+    importStatement: 'import { Separator } from "@cogentic-co/ds/separator"',
     dos: [
       "Use to divide related content groups",
       "Use orientation='vertical' for horizontal layouts",
@@ -580,7 +582,7 @@ import { Settings } from "lucide-react"
     status: "stable",
     description: "Maintain consistent width-to-height ratio for media.",
     since: "0.1.0",
-    importStatement: 'import { AspectRatio } from "@cogentic/ds"',
+    importStatement: 'import { AspectRatio } from "@cogentic-co/ds/aspect-ratio"',
     dos: [
       "Use for images and videos to prevent layout shift",
       "Common ratios: 16/9 (video), 1 (square), 4/3 (photo)",
@@ -592,7 +594,7 @@ import { Settings } from "lucide-react"
     description: "Resizable panel layout with draggable handles.",
     since: "0.1.0",
     importStatement:
-      'import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@cogentic/ds"',
+      'import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@cogentic-co/ds/resizable"',
     dos: [
       "Set sensible minSize values to prevent panels from collapsing",
       "Use direction='horizontal' or 'vertical' to match layout",
@@ -604,7 +606,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/scroll-area",
     description: "Custom scrollbar with cross-browser consistency.",
     since: "0.1.0",
-    importStatement: 'import { ScrollArea } from "@cogentic/ds"',
+    importStatement: 'import { ScrollArea } from "@cogentic-co/ds/scroll-area"',
     dos: [
       "Set a fixed height or max-height on the container",
       "Use for long lists, code blocks, or sidebar content",
@@ -617,7 +619,7 @@ import { Settings } from "lucide-react"
     description: "Expandable/collapsible content section.",
     since: "0.1.0",
     importStatement:
-      'import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@cogentic/ds"',
+      'import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@cogentic-co/ds/collapsible"',
     dos: [
       "Use for progressive disclosure of secondary content",
       "Indicate the collapsed/expanded state visually",
@@ -633,7 +635,7 @@ import { Settings } from "lucide-react"
     description: "Vertically collapsible content panels. Built on Base UI Accordion.",
     since: "0.1.0",
     importStatement:
-      'import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@cogentic/ds"',
+      'import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@cogentic-co/ds/accordion"',
     dos: [
       "Use type='single' for FAQ-style content",
       "Use type='multiple' when users may need several open",
@@ -642,7 +644,7 @@ import { Settings } from "lucide-react"
       "Don't nest accordions inside accordions",
       "Don't use for navigation — use sidebar or tabs",
     ],
-    codeExample: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@cogentic/ds"
+    codeExample: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@cogentic-co/ds/accordion"
 
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
@@ -656,7 +658,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/tabs",
     description: "Tabbed content panels with multiple visual variants. Built on Base UI Tabs.",
     since: "0.1.0",
-    importStatement: 'import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic/ds"',
+    importStatement: 'import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic-co/ds/tabs"',
     dos: [
       "Use for switching between related views in the same context",
       "Keep tab labels short (1-2 words)",
@@ -665,7 +667,7 @@ import { Settings } from "lucide-react"
       "Don't use more than 6-7 tabs — use navigation instead",
       "Don't use for sequential steps — use Stepper",
     ],
-    codeExample: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic/ds"
+    codeExample: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic-co/ds/tabs"
 
 <Tabs defaultValue="tab1">
   <TabsList>
@@ -680,13 +682,13 @@ import { Settings } from "lucide-react"
     status: "new",
     description: "CSS Grid wrapper with typed props for all Tailwind grid classes.",
     since: "0.2.0",
-    importStatement: 'import { Grid, Col } from "@cogentic/ds"',
+    importStatement: 'import { Grid, Col } from "@cogentic-co/ds/grid"',
     dos: ["Use Grid + Col for page layouts and card grids", "Use gap prop for consistent spacing"],
     donts: [
       "Don't use Grid for simple flex layouts — use flex utilities instead",
       "Don't set both cols and className grid-cols — pick one",
     ],
-    codeExample: `import { Grid, Col } from "@cogentic/ds"
+    codeExample: `import { Grid, Col } from "@cogentic-co/ds/grid"
 
 <Grid cols={3} gap={4}>
   <Col span={2}>Wide column</Col>
@@ -699,7 +701,7 @@ import { Settings } from "lucide-react"
     status: "stable",
     description: "Inline notification for important messages.",
     since: "0.1.0",
-    importStatement: 'import { Alert, AlertTitle, AlertDescription } from "@cogentic/ds"',
+    importStatement: 'import { Alert, AlertTitle, AlertDescription } from "@cogentic-co/ds/alert"',
     dos: [
       "Use variant to communicate severity (default, warning, destructive)",
       "Keep alert messages concise and actionable",
@@ -708,7 +710,7 @@ import { Settings } from "lucide-react"
       "Don't use for transient messages — use toast (Sonner)",
       "Don't stack multiple alerts — consolidate the message",
     ],
-    codeExample: `import { Alert, AlertTitle, AlertDescription } from "@cogentic/ds"
+    codeExample: `import { Alert, AlertTitle, AlertDescription } from "@cogentic-co/ds/alert"
 
 <Alert>
   <AlertTitle>Heads up!</AlertTitle>
@@ -721,7 +723,7 @@ import { Settings } from "lucide-react"
     description: "Modal confirmation dialog for destructive or irreversible actions.",
     since: "0.1.0",
     importStatement:
-      'import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogAction, AlertDialogCancel } from "@cogentic/ds"',
+      'import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogAction, AlertDialogCancel } from "@cogentic-co/ds/alert-dialog"',
     dos: [
       "Use for destructive actions (delete, discard)",
       "Include a clear cancel option",
@@ -738,7 +740,7 @@ import { Settings } from "lucide-react"
     description: "Modal overlay for focused tasks. Built on Base UI Dialog.",
     since: "0.1.0",
     importStatement:
-      'import { Dialog, DialogTrigger, DialogPopup, DialogTitle, DialogDescription, DialogClose } from "@cogentic/ds"',
+      'import { Dialog, DialogTrigger, DialogPopup, DialogTitle, DialogDescription, DialogClose } from "@cogentic-co/ds/dialog"',
     dos: [
       "Always include DialogTitle for accessibility",
       "Use for focused tasks that need user attention",
@@ -747,7 +749,7 @@ import { Settings } from "lucide-react"
       "Don't use for simple confirmations — use AlertDialog",
       "Don't put long forms in dialogs — use a full page instead",
     ],
-    codeExample: `import { Dialog, DialogTrigger, DialogPopup, DialogTitle, DialogDescription, DialogClose } from "@cogentic/ds"
+    codeExample: `import { Dialog, DialogTrigger, DialogPopup, DialogTitle, DialogDescription, DialogClose } from "@cogentic-co/ds/dialog"
 
 <Dialog>
   <DialogTrigger render={<Button />}>Open</DialogTrigger>
@@ -762,7 +764,7 @@ import { Settings } from "lucide-react"
     status: "stable",
     description: "Swipe-to-dismiss bottom sheet for mobile. Built on vaul.",
     since: "0.1.0",
-    importStatement: 'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic/ds"',
+    importStatement: 'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic-co/ds/drawer"',
     dos: ["Use on mobile as an alternative to Dialog", "Include a drag handle for dismissal"],
     donts: [
       "Don't use on desktop — use Dialog or Sheet instead",
@@ -776,7 +778,7 @@ import { Settings } from "lucide-react"
       "Slide-in side panel for forms, settings, and detail views. No swipe gestures — use Drawer for mobile-first bottom sheets.",
     since: "0.1.0",
     importStatement:
-      'import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@cogentic-co/ds"',
+      'import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@cogentic-co/ds/sheet"',
     dos: [
       "Use for secondary content that needs more space than a popover",
       "Use side='right' for detail panels, side='left' for navigation",
@@ -792,7 +794,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/popover",
     description: "Floating content panel anchored to a trigger. Built on Base UI Popover.",
     since: "0.1.0",
-    importStatement: 'import { Popover, PopoverTrigger, PopoverContent } from "@cogentic/ds"',
+    importStatement: 'import { Popover, PopoverTrigger, PopoverContent } from "@cogentic-co/ds/popover"',
     dos: ["Use for contextual actions or settings", "Keep popover content focused and concise"],
     donts: [
       "Don't use for long forms — use Dialog or Sheet",
@@ -804,7 +806,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/tooltip",
     description: "Brief contextual information on hover/focus. Built on Base UI Tooltip.",
     since: "0.1.0",
-    importStatement: 'import { Tooltip, TooltipTrigger, TooltipContent } from "@cogentic/ds"',
+    importStatement: 'import { Tooltip, TooltipTrigger, TooltipContent } from "@cogentic-co/ds/tooltip"',
     dos: [
       "Use for supplementary info that doesn't fit in the UI",
       "Keep tooltip content brief (1-2 lines)",
@@ -819,7 +821,7 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/preview-card",
     description: "Rich preview card shown on hover.",
     since: "0.1.0",
-    importStatement: 'import { HoverCard, HoverCardTrigger, HoverCardContent } from "@cogentic/ds"',
+    importStatement: 'import { HoverCard, HoverCardTrigger, HoverCardContent } from "@cogentic-co/ds/hover-card"',
     dos: [
       "Use for previewing linked content (user profiles, pages)",
       "Include relevant details without overwhelming",
@@ -833,7 +835,7 @@ import { Settings } from "lucide-react"
     status: "stable",
     description: "Toast notifications via the Sonner library.",
     since: "0.1.0",
-    importStatement: 'import { toast } from "@cogentic/ds"',
+    importStatement: 'import { toast } from "@cogentic-co/ds/sonner"',
     dos: [
       "Use for transient success/error messages",
       "Include an action button for undo-able operations",
@@ -852,13 +854,13 @@ toast.error("Something went wrong")`,
     baseUiDoc: "https://base-ui.com/react/components/progress",
     description: "Progress bar for loading or completion states.",
     since: "0.1.0",
-    importStatement: 'import { Progress } from "@cogentic/ds"',
+    importStatement: 'import { Progress } from "@cogentic-co/ds/progress"',
     dos: [
       "Show a numeric percentage alongside the bar when possible",
       "Use for determinate progress (uploads, multi-step flows)",
     ],
     donts: ["Don't use for indeterminate loading — use Spinner"],
-    codeExample: `import { Progress } from "@cogentic/ds"
+    codeExample: `import { Progress } from "@cogentic-co/ds/progress"
 
 <Progress value={66} />`,
   },
@@ -866,7 +868,7 @@ toast.error("Something went wrong")`,
     status: "stable",
     description: "Placeholder loading animation for content.",
     since: "0.1.0",
-    importStatement: 'import { Skeleton } from "@cogentic/ds"',
+    importStatement: 'import { Skeleton } from "@cogentic-co/ds/skeleton"',
     dos: [
       "Match the skeleton shape to the expected content",
       "Use multiple skeletons to represent a full layout",
@@ -875,7 +877,7 @@ toast.error("Something went wrong")`,
       "Don't use for interactive loading — use Spinner or Progress",
       "Don't show skeletons longer than 3 seconds without feedback",
     ],
-    codeExample: `import { Skeleton } from "@cogentic/ds"
+    codeExample: `import { Skeleton } from "@cogentic-co/ds/skeleton"
 
 <Skeleton className="h-4 w-[200px]" />
 <Skeleton className="h-4 w-[150px]" />`,
@@ -884,7 +886,7 @@ toast.error("Something went wrong")`,
     status: "stable",
     description: "Animated loading indicator.",
     since: "0.1.0",
-    importStatement: 'import { Spinner } from "@cogentic/ds"',
+    importStatement: 'import { Spinner } from "@cogentic-co/ds/spinner"',
     dos: [
       "Use for indeterminate loading states",
       "Size appropriately — small for buttons, larger for page loading",
@@ -899,7 +901,7 @@ toast.error("Something went wrong")`,
     description:
       "Header block for entity pages with avatar, name, metadata, and right column slot.",
     since: "0.4.0",
-    importStatement: 'import { EntityHeader } from "@cogentic/ds"',
+    importStatement: 'import { EntityHeader } from "@cogentic-co/ds/entity-header"',
     dos: [
       "Use for entity detail pages (companies, users, organisations)",
       "Provide meta items for key attributes",
@@ -908,7 +910,7 @@ toast.error("Something went wrong")`,
       "Don't nest EntityHeader inside Card — it's designed to be standalone",
       "Don't use for page headers without an entity context",
     ],
-    codeExample: `import { EntityHeader } from "@cogentic/ds"
+    codeExample: `import { EntityHeader } from "@cogentic-co/ds/entity-header"
 
 <EntityHeader
   name="Acme Corp"
@@ -921,10 +923,10 @@ toast.error("Something went wrong")`,
     status: "new",
     description: "VASP Track product logo as an SVG component with size variants.",
     since: "0.4.0",
-    importStatement: 'import { LogoVasp } from "@cogentic/ds"',
+    importStatement: 'import { LogoVasp } from "@cogentic-co/ds/logo-vasp"',
     dos: ["Use currentColor for theming — wrap in a coloured container if needed"],
     donts: ["Don't stretch or distort — use the size prop"],
-    codeExample: `import { LogoVasp } from "@cogentic/ds"
+    codeExample: `import { LogoVasp } from "@cogentic-co/ds/logo-vasp"
 
 <LogoVasp size="lg" />`,
   },
@@ -932,7 +934,7 @@ toast.error("Something went wrong")`,
     status: "new",
     description: "Generic search combobox with async results, keyboard nav, and custom rendering.",
     since: "0.4.0",
-    importStatement: 'import { SearchInput } from "@cogentic/ds"',
+    importStatement: 'import { SearchInput } from "@cogentic-co/ds/search-input"',
     dos: [
       "Provide an async onSearch callback",
       "Use renderItem for custom result rendering",
@@ -942,7 +944,7 @@ toast.error("Something went wrong")`,
       "Don't use for static/predefined options — use Combobox instead",
       "Don't forget to handle the loading state in your search function",
     ],
-    codeExample: `import { SearchInput } from "@cogentic/ds"
+    codeExample: `import { SearchInput } from "@cogentic-co/ds/search-input"
 
 <SearchInput
   onSearch={async (q) => fetchResults(q)}
@@ -956,7 +958,7 @@ toast.error("Something went wrong")`,
     description:
       "iOS-style pill selector for switching between a small set of options. Not a tab — use Tabs for content switching.",
     since: "0.3.0",
-    importStatement: 'import { SegmentedControl } from "@cogentic-co/ds"',
+    importStatement: 'import { SegmentedControl } from "@cogentic-co/ds/segmented-control"',
     dos: [
       "Use for 2-4 mutually exclusive options",
       "Keep labels short — single words work best",
@@ -967,7 +969,7 @@ toast.error("Something went wrong")`,
       "Don't use for navigation — use Tabs for content panels",
       "Don't use long labels — they compress the pill indicator",
     ],
-    codeExample: `import { SegmentedControl } from "@cogentic-co/ds"
+    codeExample: `import { SegmentedControl } from "@cogentic-co/ds/segmented-control"
 
 <SegmentedControl
   options={[
@@ -983,7 +985,7 @@ toast.error("Something went wrong")`,
     status: "stable",
     description: "Empty state placeholder with icon, title, and action.",
     since: "0.1.0",
-    importStatement: 'import { Empty } from "@cogentic/ds"',
+    importStatement: 'import { Empty } from "@cogentic-co/ds/empty"',
     dos: [
       "Include a clear CTA to help users take the next step",
       "Use a relevant icon to communicate the empty state",
@@ -1000,7 +1002,7 @@ toast.error("Something went wrong")`,
     description: "Hierarchical page location indicator.",
     since: "0.1.0",
     importStatement:
-      'import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@cogentic/ds"',
+      'import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "@cogentic-co/ds/breadcrumb"',
     dos: [
       "Show the full path from root to current page",
       "Make all breadcrumb items except the last one clickable",
@@ -1015,7 +1017,7 @@ toast.error("Something went wrong")`,
     description: "Page navigation for large data sets.",
     since: "0.1.0",
     importStatement:
-      'import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from "@cogentic/ds"',
+      'import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from "@cogentic-co/ds/pagination"',
     dos: [
       "Show current page and total pages",
       "Include previous/next buttons for keyboard navigation",
@@ -1031,7 +1033,7 @@ toast.error("Something went wrong")`,
     description: "Top-level navigation with dropdown panels.",
     since: "0.1.0",
     importStatement:
-      'import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@cogentic/ds"',
+      'import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent } from "@cogentic-co/ds/navigation-menu"',
     dos: [
       "Use for marketing/landing page top navigation",
       "Group related links in dropdown panels",
@@ -1047,7 +1049,7 @@ toast.error("Something went wrong")`,
     description: "Application menu bar (File, Edit, View pattern).",
     since: "0.1.0",
     importStatement:
-      'import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem } from "@cogentic/ds"',
+      'import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem } from "@cogentic-co/ds/menubar"',
     dos: [
       "Use for desktop-style application menus",
       "Include keyboard shortcuts for common actions",
@@ -1062,7 +1064,7 @@ toast.error("Something went wrong")`,
     description: "Command palette / searchable command list.",
     since: "0.1.0",
     importStatement:
-      'import { Command, CommandDialog, CommandInput, CommandList, CommandGroup, CommandItem } from "@cogentic/ds"',
+      'import { Command, CommandDialog, CommandInput, CommandList, CommandGroup, CommandItem } from "@cogentic-co/ds/command"',
     dos: [
       "Use CommandDialog for Cmd+K search patterns",
       "Group commands by category with CommandGroup",
@@ -1074,7 +1076,7 @@ toast.error("Something went wrong")`,
     description: "Application sidebar navigation.",
     since: "0.1.0",
     importStatement:
-      'import { Sidebar, SidebarProvider, SidebarContent, SidebarMenu } from "@cogentic/ds"',
+      'import { Sidebar, SidebarProvider, SidebarContent, SidebarMenu } from "@cogentic-co/ds/sidebar"',
     dos: ["Use with AppShell for full application layouts", "Group navigation items by section"],
     donts: ["Don't use for marketing pages — use NavigationMenu"],
   },
@@ -1085,7 +1087,7 @@ toast.error("Something went wrong")`,
     description: "Basic HTML table with consistent styling.",
     since: "0.1.0",
     importStatement:
-      'import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@cogentic/ds"',
+      'import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@cogentic-co/ds/table"',
     dos: ["Use for simple static data display", "Align numbers to the right for easy scanning"],
     donts: [
       "Don't use for large or interactive datasets — use DataTable",
@@ -1097,7 +1099,7 @@ toast.error("Something went wrong")`,
     description:
       "Full-featured data table with sorting, filtering, pagination, and virtualization. Built on TanStack Table.",
     since: "0.2.0",
-    importStatement: 'import { DataTable, useDataTable, type ColumnDef } from "@cogentic/ds"',
+    importStatement: 'import { DataTable, useDataTable, type ColumnDef } from "@cogentic-co/ds/data-table"',
     dos: [
       "Use useDataTable hook for state management",
       "Enable virtual mode for tables with 100+ rows",
@@ -1107,7 +1109,7 @@ toast.error("Something went wrong")`,
       "Don't use DataTable for simple static tables — use Table instead",
       "Don't load all data client-side for very large datasets (1000+ rows)",
     ],
-    codeExample: `import { DataTable, useDataTable, type ColumnDef } from "@cogentic/ds"
+    codeExample: `import { DataTable, useDataTable, type ColumnDef } from "@cogentic-co/ds/data-table"
 
 const columns: ColumnDef<Row>[] = [
   { accessorKey: "name", header: "Name" },
@@ -1121,7 +1123,7 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Small label for status, categories, or counts.",
     since: "0.1.0",
-    importStatement: 'import { Badge } from "@cogentic/ds"',
+    importStatement: 'import { Badge } from "@cogentic-co/ds/badge"',
     dos: [
       "Use semantic variants (destructive for errors, secondary for neutral)",
       "Keep badge text short (1-2 words)",
@@ -1130,7 +1132,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use badges for interactive tags — use Tag component",
       "Don't use for long text — it should be scannable",
     ],
-    codeExample: `import { Badge } from "@cogentic/ds"
+    codeExample: `import { Badge } from "@cogentic-co/ds/badge"
 
 <Badge>Default</Badge>
 <Badge variant="secondary">Secondary</Badge>
@@ -1141,13 +1143,13 @@ const { table } = useDataTable({ data, columns })
     baseUiDoc: "https://base-ui.com/react/components/avatar",
     description: "User or entity avatar with image and fallback.",
     since: "0.1.0",
-    importStatement: 'import { Avatar, AvatarImage, AvatarFallback } from "@cogentic/ds"',
+    importStatement: 'import { Avatar, AvatarImage, AvatarFallback } from "@cogentic-co/ds/avatar"',
     dos: ["Always provide AvatarFallback with initials", "Use consistent sizes across your app"],
     donts: [
       "Don't use decorative images as avatars",
       "Don't show broken image states — always have a fallback",
     ],
-    codeExample: `import { Avatar, AvatarImage, AvatarFallback } from "@cogentic/ds"
+    codeExample: `import { Avatar, AvatarImage, AvatarFallback } from "@cogentic-co/ds/avatar"
 
 <Avatar>
   <AvatarImage src="/avatar.jpg" alt="User" />
@@ -1159,7 +1161,7 @@ const { table } = useDataTable({ data, columns })
     description: "Scrollable content carousel.",
     since: "0.1.0",
     importStatement:
-      'import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@cogentic/ds"',
+      'import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@cogentic-co/ds/carousel"',
     dos: ["Show navigation arrows and dot indicators", "Use for visual content (images, cards)"],
     donts: [
       "Don't auto-play without a pause control",
@@ -1171,7 +1173,7 @@ const { table } = useDataTable({ data, columns })
     description: "Chart wrapper using Recharts with design system theming.",
     since: "0.1.0",
     importStatement:
-      'import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@cogentic/ds"',
+      'import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@cogentic-co/ds/chart"',
     dos: [
       "Use ChartConfig for consistent colors across themes",
       "Always include ChartTooltip for interactivity",
@@ -1185,13 +1187,13 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Keyboard shortcut display element.",
     since: "0.1.0",
-    importStatement: 'import { Kbd } from "@cogentic/ds"',
+    importStatement: 'import { Kbd } from "@cogentic-co/ds/kbd"',
     dos: [
       "Use to display keyboard shortcuts in menus and tooltips",
       "Use platform-appropriate symbols (⌘ on Mac, Ctrl on Windows)",
     ],
     donts: ["Don't use for regular text styling"],
-    codeExample: `import { Kbd } from "@cogentic/ds"
+    codeExample: `import { Kbd } from "@cogentic-co/ds/kbd"
 
 <Kbd>⌘K</Kbd>
 <Kbd>Ctrl+S</Kbd>`,
@@ -1200,7 +1202,7 @@ const { table } = useDataTable({ data, columns })
     status: "new",
     description: "Semantic text components (H1-H4, P, Lead, Blockquote, etc.) and Prose container.",
     since: "0.2.0",
-    importStatement: 'import { H1, H2, H3, P, Lead, Prose } from "@cogentic/ds"',
+    importStatement: 'import { H1, H2, H3, P, Lead, Prose } from "@cogentic-co/ds/typography"',
     dos: [
       "Use Prose for markdown/rich content rendering",
       "Use semantic heading levels (H1 → H2 → H3)",
@@ -1209,7 +1211,7 @@ const { table } = useDataTable({ data, columns })
       "Don't skip heading levels for styling — use className instead",
       "Don't use H1 more than once per page",
     ],
-    codeExample: `import { H1, P, Lead, Prose } from "@cogentic/ds"
+    codeExample: `import { H1, P, Lead, Prose } from "@cogentic-co/ds/typography"
 
 <H1>Page Title</H1>
 <Lead>A brief introduction to the page.</Lead>
@@ -1221,7 +1223,7 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Canvas-based dithered animated background, theme-aware.",
     since: "0.1.0",
-    importStatement: 'import { BgShader } from "@cogentic/ds"',
+    importStatement: 'import { BgShader } from "@cogentic-co/ds/bg-shader"',
     dos: ["Use as a hero or section background", "Let it respond to theme changes automatically"],
     donts: [
       "Don't use multiple BgShaders on one page — it's GPU intensive",
@@ -1232,10 +1234,10 @@ const { table } = useDataTable({ data, columns })
     status: "new",
     description: "ASCII art canvas shader with monospace character density mapping.",
     since: "0.4.0",
-    importStatement: 'import { BlockyShader } from "@cogentic/ds"',
+    importStatement: 'import { BlockyShader } from "@cogentic-co/ds/blocky-shader"',
     dos: ["Use as a subtle background texture", "Pair with content that has sufficient contrast"],
     donts: ["Don't use alongside other shaders on the same page"],
-    codeExample: `import { BlockyShader } from "@cogentic/ds"
+    codeExample: `import { BlockyShader } from "@cogentic-co/ds/blocky-shader"
 
 <div className="relative h-64">
   <BlockyShader />
@@ -1247,10 +1249,10 @@ const { table } = useDataTable({ data, columns })
     description:
       "Animated ASCII art shader with opacity-scaled characters and mobile optimization.",
     since: "0.4.0",
-    importStatement: 'import { AsciiShader } from "@cogentic/ds"',
+    importStatement: 'import { AsciiShader } from "@cogentic-co/ds/ascii-shader"',
     dos: ["Use as an ambient background effect", "Uses larger cells on mobile for performance"],
     donts: ["Don't use alongside other shaders on the same page"],
-    codeExample: `import { AsciiShader } from "@cogentic/ds"
+    codeExample: `import { AsciiShader } from "@cogentic-co/ds/ascii-shader"
 
 <div className="relative h-64">
   <AsciiShader />
@@ -1261,13 +1263,13 @@ const { table } = useDataTable({ data, columns })
     status: "new",
     description: "Canvas radial gradient blob animation with palette options.",
     since: "0.4.0",
-    importStatement: 'import { SubtleShader } from "@cogentic/ds"',
+    importStatement: 'import { SubtleShader } from "@cogentic-co/ds/subtle-shader"',
     dos: [
       "Use as a subtle ambient background effect",
       "Choose a palette that complements the section content",
     ],
     donts: ["Don't layer over low-contrast text", "Don't use alongside BgShader — pick one"],
-    codeExample: `import { SubtleShader } from "@cogentic/ds"
+    codeExample: `import { SubtleShader } from "@cogentic-co/ds/subtle-shader"
 
 <div className="relative h-64">
   <SubtleShader palette="blue" />
@@ -1279,7 +1281,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Displays time remaining until a regulatory deadline with auto-detected urgency states.",
     since: "0.5.0",
-    importStatement: 'import { DeadlineCountdown } from "@cogentic/ds"',
+    importStatement: 'import { DeadlineCountdown } from "@cogentic-co/ds/deadline-countdown"',
     dos: [
       "Use for regulatory deadlines, review due dates, expiration dates",
       "Let urgency auto-detect based on thresholds unless you need to override",
@@ -1289,7 +1291,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use for general timers — this is purpose-built for deadlines",
       "Don't set warningDays lower than criticalDays",
     ],
-    codeExample: `import { DeadlineCountdown } from "@cogentic/ds"
+    codeExample: `import { DeadlineCountdown } from "@cogentic-co/ds/deadline-countdown"
 
 <DeadlineCountdown deadline={new Date("2026-04-01")} label="Due in" />
 <DeadlineCountdown deadline={pastDate} urgency="overdue" />`,
@@ -1299,7 +1301,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Dismissible banner for policy acknowledgments, regulatory alerts, or system-wide notices.",
     since: "0.5.0",
-    importStatement: 'import { PolicyBanner } from "@cogentic/ds"',
+    importStatement: 'import { PolicyBanner } from "@cogentic-co/ds/policy-banner"',
     dos: [
       "Use for regulatory alerts, policy changes, or system-wide notices",
       "Add an icon for quick visual scanning",
@@ -1310,7 +1312,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use for inline form errors — use Alert instead",
       "Don't stack more than 2 banners on a page",
     ],
-    codeExample: `import { PolicyBanner } from "@cogentic/ds"
+    codeExample: `import { PolicyBanner } from "@cogentic-co/ds/policy-banner"
 
 <PolicyBanner variant="warning" icon={<AlertTriangle />}>
   Your AML policy expires in 7 days.
@@ -1327,7 +1329,7 @@ const { table } = useDataTable({ data, columns })
     status: "new",
     description: "Coloured dot indicating live status — online, offline, busy, away, or pending.",
     since: "0.5.0",
-    importStatement: 'import { StatusIndicator } from "@cogentic/ds"',
+    importStatement: 'import { StatusIndicator } from "@cogentic-co/ds/status-indicator"',
     dos: [
       "Use to show real-time entity status (users, services, agents)",
       "Add pulse for active/processing states",
@@ -1337,7 +1339,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use as a generic coloured dot — use Badge for labels",
       "Don't pulse offline or away states",
     ],
-    codeExample: `import { StatusIndicator } from "@cogentic/ds"
+    codeExample: `import { StatusIndicator } from "@cogentic-co/ds/status-indicator"
 
 <StatusIndicator variant="online" />
 <StatusIndicator variant="busy" pulse />
@@ -1348,7 +1350,7 @@ const { table } = useDataTable({ data, columns })
     description:
       'Deprecated — use WaffleChart with mode="bar" instead. Alias kept for backwards compatibility.',
     since: "0.3.0",
-    importStatement: 'import { StripedBar } from "@cogentic/ds"',
+    importStatement: 'import { StripedBar } from "@cogentic-co/ds/striped-bar"',
     dos: [
       "Use for proportional breakdowns (exposure, allocation, composition)",
       "Pair with a legend below showing segment labels and percentages",
@@ -1359,7 +1361,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use more than 5-6 segments — it becomes hard to read",
       "Don't use without a legend — colors alone are insufficient",
     ],
-    codeExample: `import { StripedBar } from "@cogentic/ds"
+    codeExample: `import { StripedBar } from "@cogentic-co/ds/striped-bar"
 
 <StripedBar
   segments={[
@@ -1377,7 +1379,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Canvas-based animated proportional chart with two modes: grid (waffle squares) and bar (horizontal stripes).",
     since: "0.5.0",
-    importStatement: 'import { WaffleChart } from "@cogentic/ds"',
+    importStatement: 'import { WaffleChart } from "@cogentic-co/ds/waffle-chart"',
     dos: [
       "Use grid mode for part-to-whole comparisons where magnitude matters",
       "Use bar mode for compact inline breakdowns",
@@ -1389,7 +1391,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use without a legend — colors alone are insufficient",
       "Don't use for continuous data — use LineChart or AreaChart instead",
     ],
-    codeExample: `import { WaffleChart } from "@cogentic/ds"
+    codeExample: `import { WaffleChart } from "@cogentic-co/ds/waffle-chart"
 
 // Grid mode (default)
 <WaffleChart
@@ -1414,13 +1416,13 @@ const { table } = useDataTable({ data, columns })
     status: "new",
     description: "Segmented bar gauge for displaying risk scores or trust levels.",
     since: "0.4.0",
-    importStatement: 'import { RiskGauge } from "@cogentic/ds"',
+    importStatement: 'import { RiskGauge } from "@cogentic-co/ds/risk-gauge"',
     dos: ["Use tier to communicate severity semantically", "Provide a label for context"],
     donts: [
       "Don't use for progress indicators — use Progress instead",
       "Don't use arbitrary tier names — stick to predefined tiers",
     ],
-    codeExample: `import { RiskGauge } from "@cogentic/ds"
+    codeExample: `import { RiskGauge } from "@cogentic-co/ds/risk-gauge"
 
 <RiskGauge score={75} tier="high" label="Risk Level" />
 <RiskGauge score={90} tier="critical" size="lg" label="Trust Score" />`,
@@ -1429,7 +1431,7 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "CSS scroll-triggered fade-up via IntersectionObserver.",
     since: "0.1.0",
-    importStatement: 'import { FadeIn } from "@cogentic/ds"',
+    importStatement: 'import { FadeIn } from "@cogentic-co/ds/fade-in"',
     dos: [
       "Use for content that should animate on scroll",
       "Stagger delays for sequential elements",
@@ -1438,7 +1440,7 @@ const { table } = useDataTable({ data, columns })
       "Don't animate above-the-fold content — it should be visible immediately",
       "Don't use on critical interactive elements",
     ],
-    codeExample: `import { FadeIn } from "@cogentic/ds"
+    codeExample: `import { FadeIn } from "@cogentic-co/ds/fade-in"
 
 <FadeIn delay={200}>
   <Card>Fades in on scroll</Card>
@@ -1448,13 +1450,13 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Infinite horizontal scroll with fade edges.",
     since: "0.1.0",
-    importStatement: 'import { Marquee } from "@cogentic/ds"',
+    importStatement: 'import { Marquee } from "@cogentic-co/ds/marquee"',
     dos: ["Use for logo walls or testimonial tickers", "Set a comfortable speed (30-60s duration)"],
     donts: [
       "Don't use for important content users need to read",
       "Don't use for interactive elements",
     ],
-    codeExample: `import { Marquee } from "@cogentic/ds"
+    codeExample: `import { Marquee } from "@cogentic-co/ds/marquee"
 
 <Marquee duration={40}>
   <Logo1 /><Logo2 /><Logo3 />
@@ -1464,7 +1466,7 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Line-by-line code/text reveal animation.",
     since: "0.1.0",
-    importStatement: 'import { Typewriter } from "@cogentic/ds"',
+    importStatement: 'import { Typewriter } from "@cogentic-co/ds/typewriter"',
     dos: [
       "Use for code demos and terminal-style reveals",
       "Keep the content short enough to maintain interest",
@@ -1475,10 +1477,10 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Animated numeric value with easing.",
     since: "0.1.0",
-    importStatement: 'import { AnimatedCounter } from "@cogentic/ds"',
+    importStatement: 'import { AnimatedCounter } from "@cogentic-co/ds/animated-counter"',
     dos: ["Use for KPI displays and stat sections", "Trigger on scroll visibility for best effect"],
     donts: ["Don't use for rapidly updating values — it can't keep up"],
-    codeExample: `import { AnimatedCounter } from "@cogentic/ds"
+    codeExample: `import { AnimatedCounter } from "@cogentic-co/ds/animated-counter"
 
 <AnimatedCounter value={1234} duration={2000} />`,
   },
@@ -1486,7 +1488,7 @@ const { table } = useDataTable({ data, columns })
     status: "stable",
     description: "Sequential card reveal with AnimatePresence.",
     since: "0.1.0",
-    importStatement: 'import { StreamingCards } from "@cogentic/ds"',
+    importStatement: 'import { StreamingCards } from "@cogentic-co/ds/streaming-cards"',
     dos: [
       "Use for onboarding flows or feature showcases",
       "Keep the number of cards manageable (3-6)",
@@ -1500,7 +1502,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Filled area chart with gradient support, stacking, and multi-series. Built on Recharts with automatic tooltip and legend integration.",
     since: "0.2.4",
-    importStatement: 'import { AreaChart } from "@cogentic/ds/charts"',
+    importStatement: 'import { AreaChart } from "@cogentic-co/ds/charts"',
     dos: [
       "Use gradient fill (default) for a polished look",
       "Enable stacked mode when comparing parts of a whole over time",
@@ -1510,7 +1512,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use for categorical data — use BarChart instead",
       "Don't stack more than 3-4 series (becomes unreadable)",
     ],
-    codeExample: `import { AreaChart } from "@cogentic/ds/charts"
+    codeExample: `import { AreaChart } from "@cogentic-co/ds/charts"
 
 <AreaChart
   data={data}
@@ -1526,14 +1528,14 @@ const { table } = useDataTable({ data, columns })
     description:
       "Vertical or horizontal bar chart with configurable radius, stacking, and multi-series. Built on Recharts.",
     since: "0.2.4",
-    importStatement: 'import { BarChart } from "@cogentic/ds/charts"',
+    importStatement: 'import { BarChart } from "@cogentic-co/ds/charts"',
     dos: [
       "Use horizontal mode for long category labels",
       "Set radius for rounded bar corners (default 4px)",
       "Use stacked mode when comparing compositions",
     ],
     donts: ["Don't use too many series without a legend"],
-    codeExample: `import { BarChart } from "@cogentic/ds/charts"
+    codeExample: `import { BarChart } from "@cogentic-co/ds/charts"
 
 <BarChart
   data={data}
@@ -1549,14 +1551,14 @@ const { table } = useDataTable({ data, columns })
     description:
       "Line chart with configurable curve type, dot visibility, and multi-series. Supports natural, linear, step, and monotone interpolation.",
     since: "0.2.4",
-    importStatement: 'import { LineChart } from "@cogentic/ds/charts"',
+    importStatement: 'import { LineChart } from "@cogentic-co/ds/charts"',
     dos: [
       "Use 'natural' curve for smooth data, 'step' for discrete changes",
       "Show dots when there are few data points",
       "Hide dots when there are many data points (>20)",
     ],
     donts: ["Don't plot more than 5 lines on one chart"],
-    codeExample: `import { LineChart } from "@cogentic/ds/charts"
+    codeExample: `import { LineChart } from "@cogentic-co/ds/charts"
 
 <LineChart
   data={data}
@@ -1572,7 +1574,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Pie or donut chart with optional center label/value. Supports legend and tooltip. Each slice uses a named colour from the config.",
     since: "0.2.4",
-    importStatement: 'import { PieChart } from "@cogentic/ds/charts"',
+    importStatement: 'import { PieChart } from "@cogentic-co/ds/charts"',
     dos: [
       "Use donut mode with a center label for KPI-style displays",
       "Keep slices to 5-7 max for readability",
@@ -1582,7 +1584,7 @@ const { table } = useDataTable({ data, columns })
       "Don't use for time-series data — use LineChart or AreaChart",
       "Don't use tiny slices — aggregate into 'Other'",
     ],
-    codeExample: `import { PieChart } from "@cogentic/ds/charts"
+    codeExample: `import { PieChart } from "@cogentic-co/ds/charts"
 
 <PieChart
   data={[
@@ -1603,13 +1605,13 @@ const { table } = useDataTable({ data, columns })
     description:
       "Radar/spider chart for comparing multiple dimensions. Built on Recharts RadarChart with polar grid and angle axis.",
     since: "0.2.4",
-    importStatement: 'import { RadialChart } from "@cogentic/ds/charts"',
+    importStatement: 'import { RadialChart } from "@cogentic-co/ds/charts"',
     dos: [
       "Use for comparing entities across 5-8 dimensions",
       "Enable legend when comparing multiple data keys",
     ],
     donts: ["Don't use for fewer than 3 dimensions", "Don't use for time-series data"],
-    codeExample: `import { RadialChart } from "@cogentic/ds/charts"
+    codeExample: `import { RadialChart } from "@cogentic-co/ds/charts"
 
 <RadialChart
   data={data}
@@ -1626,7 +1628,7 @@ const { table } = useDataTable({ data, columns })
     description:
       "Interactive canvas powered by React Flow for building visual workflows. Wraps ReactFlow with sensible defaults (pan-on-scroll, fit-view, delete keys) and a dotted background.",
     since: "0.2.4",
-    importStatement: 'import { Canvas } from "@cogentic/ds"',
+    importStatement: 'import { Canvas } from "@cogentic-co/ds/workflow"',
     dos: [
       "Set layout='vertical' for top-to-bottom flows (default) or 'horizontal' for left-to-right",
       "Provide nodeTypes and edgeTypes maps for custom node/edge rendering",
@@ -1638,7 +1640,7 @@ const { table } = useDataTable({ data, columns })
       "Don't forget to import '@xyflow/react/dist/style.css' (Canvas does this internally)",
       "Don't use raw ReactFlow when Canvas provides the themed wrapper",
     ],
-    codeExample: `import { Canvas, WorkflowNode, SolidEdge } from "@cogentic/ds"
+    codeExample: `import { Canvas, WorkflowNode, SolidEdge } from "@cogentic-co/ds/workflow"
 
 const nodes = [
   { id: "1", type: "custom", position: { x: 0, y: 0 }, data: { label: "Start" } },
@@ -1665,7 +1667,7 @@ const edges = [{ id: "e1-2", source: "1", target: "2", type: "solid" }]
   WorkflowNodeContent,
   WorkflowNodeRow,
   WorkflowNodeSeparator,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/workflow"`,
     dos: [
       "Use the state prop ('default' | 'selected' | 'dotted') for visual states",
       "Use handles={{ target: true, source: true }} to show connection handles",
@@ -1678,7 +1680,7 @@ const edges = [{ id: "e1-2", source: "1", target: "2", type: "solid" }]
       "Don't put too many rows in a single node — consider splitting into multiple nodes",
       "Don't use the dotted state for active nodes — it's for placeholders",
     ],
-    codeExample: `import { WorkflowNode, WorkflowNodeRow } from "@cogentic/ds"
+    codeExample: `import { WorkflowNode, WorkflowNodeRow } from "@cogentic-co/ds/workflow"
 import { Mail } from "lucide-react"
 
 <WorkflowNode
@@ -1704,7 +1706,7 @@ import { Mail } from "lucide-react"
   DashedEdge,
   AnimatedEdge,
   TemporaryEdge,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/workflow"`,
     dos: [
       "Register edge types in the edgeTypes prop of Canvas",
       "Use Solid for standard connections, Dotted for optional paths",
@@ -1717,7 +1719,7 @@ import { Mail } from "lucide-react"
       "Don't use WorkflowEdge namespace directly as an edge type — use individual exports (SolidEdge, etc.)",
       "Don't mix too many edge types in a single workflow — keep it visually consistent",
     ],
-    codeExample: `import { SolidEdge, AnimatedEdge, TemporaryEdge } from "@cogentic/ds"
+    codeExample: `import { SolidEdge, AnimatedEdge, TemporaryEdge } from "@cogentic-co/ds/workflow"
 
 const edgeTypes = {
   solid: SolidEdge,
@@ -1743,7 +1745,7 @@ const edges = [{
   WorkflowConnection,
   WorkflowConnectionDotted,
   WorkflowConnectionAnimated,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/workflow"`,
     dos: [
       "Pass as connectionLineComponent prop to Canvas",
       "Match the connection style to your edge style for visual consistency",
@@ -1753,7 +1755,7 @@ const edges = [{
       "Don't forget onConnect — without it, connections won't be saved",
       "Don't use connection lines outside a Canvas context",
     ],
-    codeExample: `import { Canvas, WorkflowConnectionAnimated } from "@cogentic/ds"
+    codeExample: `import { Canvas, WorkflowConnectionAnimated } from "@cogentic-co/ds/workflow"
 import { addEdge } from "@xyflow/react"
 
 const [edges, setEdges] = useState([])
@@ -1770,13 +1772,13 @@ const onConnect = (conn) => setEdges(prev => addEdge(conn, prev))
     description:
       "Zoom and fit-view controls overlay for the workflow canvas. Renders in the bottom-left corner by default.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowControls } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowControls } from "@cogentic-co/ds/workflow"',
     dos: [
       "Place as a child of Canvas",
       "Use when the workflow may be zoomed or panned extensively",
     ],
     donts: ["Don't render outside a Canvas — it depends on ReactFlow context"],
-    codeExample: `import { Canvas, WorkflowControls } from "@cogentic/ds"
+    codeExample: `import { Canvas, WorkflowControls } from "@cogentic-co/ds/workflow"
 
 <Canvas nodes={nodes} edges={edges} ...>
   <WorkflowControls />
@@ -1787,7 +1789,7 @@ const onConnect = (conn) => setEdges(prev => addEdge(conn, prev))
     description:
       "Positioned overlay panel for workflow metadata, actions, or status. Renders as a card anchored to a corner of the canvas.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowPanel } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowPanel } from "@cogentic-co/ds/workflow"',
     dos: [
       "Place as a child of Canvas",
       "Use position prop ('top-left', 'top-right', 'bottom-left', 'bottom-right')",
@@ -1798,7 +1800,7 @@ const onConnect = (conn) => setEdges(prev => addEdge(conn, prev))
       "Don't put large forms or modals inside a panel — use a dialog instead",
       "Don't render outside a Canvas",
     ],
-    codeExample: `import { Canvas, WorkflowPanel } from "@cogentic/ds"
+    codeExample: `import { Canvas, WorkflowPanel } from "@cogentic-co/ds/workflow"
 
 <Canvas ...>
   <WorkflowPanel position="top-left">
@@ -1814,7 +1816,7 @@ const onConnect = (conn) => setEdges(prev => addEdge(conn, prev))
     description:
       "Floating toolbar that appears when a workflow node is selected. Positioned below the node by default. Use for quick actions like edit, delete, or duplicate.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowToolbar } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowToolbar } from "@cogentic-co/ds/workflow"',
     dos: [
       "Render inside a custom node component (as a child of WorkflowNode)",
       "Add icon buttons for common actions (edit, delete, copy)",
@@ -1824,7 +1826,7 @@ const onConnect = (conn) => setEdges(prev => addEdge(conn, prev))
       "Don't render outside a ReactFlow node — it uses NodeToolbar internally",
       "Don't put text-heavy content in the toolbar — use a panel or dialog",
     ],
-    codeExample: `import { WorkflowNode, WorkflowToolbar } from "@cogentic/ds"
+    codeExample: `import { WorkflowNode, WorkflowToolbar } from "@cogentic-co/ds/workflow"
 import { CopyIcon, Trash2Icon, SettingsIcon } from "lucide-react"
 
 function MyNode({ data }) {
@@ -1844,7 +1846,7 @@ function MyNode({ data }) {
     description:
       "Decision gate for conditional branching in workflows. Diamond shape for logic gates (IF/ELSE, Switch, Merge), circle for Delay and End. Supports branch labels that appear as pills beside the gate.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowGate } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowGate } from "@cogentic-co/ds/workflow"',
     dos: [
       "Use type='if-else' for conditional branching with left/right outputs",
       "Use the branches prop to show labelled pills (e.g. 'Is True' / 'If False')",
@@ -1857,7 +1859,7 @@ function MyNode({ data }) {
       "Don't put long text in branch labels — keep them to 2-3 words",
       "Don't render handles outside a Canvas context",
     ],
-    codeExample: `import { WorkflowGate } from "@cogentic/ds"
+    codeExample: `import { WorkflowGate } from "@cogentic-co/ds/workflow"
 import { GitBranch } from "lucide-react"
 
 <WorkflowGate
@@ -1872,7 +1874,7 @@ import { GitBranch } from "lucide-react"
     description:
       "Floating annotation pill for labelling edges, nodes, or workflow states. Colour-coded variants for different statuses.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowLabel } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowLabel } from "@cogentic-co/ds/workflow"',
     dos: [
       "Use on edges via data.label for inline annotations",
       "Use variant to communicate status (success, warning, error, muted)",
@@ -1882,7 +1884,7 @@ import { GitBranch } from "lucide-react"
       "Don't use as a general-purpose badge — use Badge component instead",
       "Don't put long descriptions in labels",
     ],
-    codeExample: `import { WorkflowLabel } from "@cogentic/ds"
+    codeExample: `import { WorkflowLabel } from "@cogentic-co/ds/workflow"
 
 <WorkflowLabel variant="success">Approved</WorkflowLabel>
 <WorkflowLabel variant="error">Failed</WorkflowLabel>
@@ -1893,7 +1895,7 @@ import { GitBranch } from "lucide-react"
     description:
       "A themed minimap overlay for the workflow canvas. Wraps React Flow's MiniMap with Cogentic design tokens.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowMinimap } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowMinimap } from "@cogentic-co/ds/workflow"',
     dos: [
       "Place inside a WorkflowCanvas for a birds-eye navigation overview",
       "Use for large workflows where users might lose orientation",
@@ -1902,7 +1904,7 @@ import { GitBranch } from "lucide-react"
       "Don't render outside a ReactFlow provider",
       "Don't use on small/simple workflows where it adds clutter",
     ],
-    codeExample: `import { WorkflowCanvas, WorkflowMinimap } from "@cogentic/ds"
+    codeExample: `import { WorkflowCanvas, WorkflowMinimap } from "@cogentic-co/ds/workflow"
 
 <WorkflowCanvas nodes={nodes} edges={edges}>
   <WorkflowMinimap />
@@ -1913,7 +1915,7 @@ import { GitBranch } from "lucide-react"
     description:
       "A dashed container for visually grouping related workflow nodes. Supports colour variants and a floating label badge.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowGroup } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowGroup } from "@cogentic-co/ds/workflow"',
     dos: [
       "Use to visually group related nodes (e.g. a retry loop, parallel branch)",
       "Provide a short label to describe the group's purpose",
@@ -1923,7 +1925,7 @@ import { GitBranch } from "lucide-react"
       "Don't nest groups deeply — keep hierarchy flat",
       "Don't use as a generic container outside workflow context",
     ],
-    codeExample: `import { WorkflowGroup } from "@cogentic/ds"
+    codeExample: `import { WorkflowGroup } from "@cogentic-co/ds/workflow"
 import { Layers } from "lucide-react"
 
 <WorkflowGroup
@@ -1939,7 +1941,7 @@ import { Layers } from "lucide-react"
     description:
       "A standalone styled connection handle for workflow nodes. Auto-detects position from layout context and includes an error boundary for safe rendering outside ReactFlow.",
     since: "0.2.4",
-    importStatement: 'import { WorkflowHandle } from "@cogentic/ds"',
+    importStatement: 'import { WorkflowHandle } from "@cogentic-co/ds/workflow"',
     dos: [
       "Use inside custom node components for connection points",
       "Let position auto-detect from WorkflowContext layout direction",
@@ -1949,7 +1951,7 @@ import { Layers } from "lucide-react"
       "Don't use HandleBoundary directly unless building a custom handle",
       "Don't set both auto-detect and explicit position — pick one",
     ],
-    codeExample: `import { WorkflowHandle } from "@cogentic/ds"
+    codeExample: `import { WorkflowHandle } from "@cogentic-co/ds/workflow"
 
 function CustomNode() {
   return (
@@ -1966,7 +1968,7 @@ function CustomNode() {
     status: "new",
     description:
       "Animated shimmer text effect for loading states. Renders a gradient animation across text content.",
-    importStatement: 'import { Shimmer } from "@cogentic/ds/chatbot"',
+    importStatement: 'import { Shimmer } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Use for AI-generated text that's still loading or streaming",
       "Keep shimmer text short — a few words that hint at what's coming",
@@ -1977,7 +1979,7 @@ function CustomNode() {
       "Don't show shimmer for more than a few seconds — switch to a skeleton or spinner",
       "Don't use alongside a separate loading spinner on the same content",
     ],
-    codeExample: `import { Shimmer } from "@cogentic/ds/chatbot"
+    codeExample: `import { Shimmer } from "@cogentic-co/ds/chatbot"
 
 <Shimmer duration={2}>Generating response...</Shimmer>
 <Shimmer as="span" duration={3}>Loading</Shimmer>`,
@@ -1985,7 +1987,7 @@ function CustomNode() {
   suggestion: {
     status: "new",
     description: "Clickable suggestion pills for prompting user actions in a chat interface.",
-    importStatement: 'import { Suggestions, Suggestion } from "@cogentic/ds/chatbot"',
+    importStatement: 'import { Suggestions, Suggestion } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Show 2–5 relevant suggestions based on conversation context",
       "Keep suggestion text concise — under 40 characters",
@@ -1997,7 +1999,7 @@ function CustomNode() {
       "Don't use generic suggestions that don't relate to the current context",
       "Don't show more than 6 suggestions — it overwhelms the user",
     ],
-    codeExample: `import { Suggestions, Suggestion } from "@cogentic/ds/chatbot"
+    codeExample: `import { Suggestions, Suggestion } from "@cogentic-co/ds/chatbot"
 
 <Suggestions>
   <Suggestion onClick={() => send("Summarize this")}>Summarize this</Suggestion>
@@ -2009,7 +2011,7 @@ function CustomNode() {
     description:
       "Collapsible reasoning/thinking panel. Shows AI chain-of-thought or reasoning steps.",
     importStatement:
-      'import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic/ds/chatbot"',
+      'import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Use to show AI thinking process for transparency",
       "Start collapsed by default — most users don't need to see reasoning",
@@ -2021,7 +2023,7 @@ function CustomNode() {
       "Don't put the final answer inside the reasoning panel",
       "Don't use for error messages — use Callout or Alert instead",
     ],
-    codeExample: `import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic/ds/chatbot"
+    codeExample: `import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chatbot"
 
 <Reasoning>
   <ReasoningTrigger />
@@ -2035,7 +2037,7 @@ function CustomNode() {
     description:
       "Collapsible citation sources panel. Display references and links used to generate a response.",
     importStatement:
-      'import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic/ds/chatbot"',
+      'import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Show source count in the trigger text (e.g. '3 sources')",
       "Include title and description for each source for scannability",
@@ -2047,7 +2049,7 @@ function CustomNode() {
       "Don't link to sources the user can't access (paywalled, internal)",
       "Don't duplicate sources — deduplicate before rendering",
     ],
-    codeExample: `import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic/ds/chatbot"
+    codeExample: `import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chatbot"
 
 <Sources>
   <SourcesTrigger>3 sources</SourcesTrigger>
@@ -2060,7 +2062,7 @@ function CustomNode() {
     status: "new",
     description:
       "File attachment display for chat messages. Supports image, video, audio, and generic file types.",
-    importStatement: 'import { Attachments, Attachment } from "@cogentic/ds/chatbot"',
+    importStatement: 'import { Attachments, Attachment } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Set the correct `type` prop for proper icon and preview rendering",
       "Provide `url` for image attachments to show thumbnails",
@@ -2072,7 +2074,7 @@ function CustomNode() {
       "Don't show remove buttons on attachments in sent messages",
       "Don't render image previews for files larger than 5MB without lazy loading",
     ],
-    codeExample: `import { Attachments, Attachment } from "@cogentic/ds/chatbot"
+    codeExample: `import { Attachments, Attachment } from "@cogentic-co/ds/chatbot"
 
 <Attachments>
   <Attachment name="report.pdf" type="file" />
@@ -2083,7 +2085,7 @@ function CustomNode() {
     status: "new",
     description:
       "Inline citation with hover card. Shows a numbered superscript that reveals source details on hover.",
-    importStatement: 'import { InlineCitation } from "@cogentic/ds/chatbot"',
+    importStatement: 'import { InlineCitation } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Number citations sequentially within a single response",
       "Wrap only the relevant phrase, not the entire sentence",
@@ -2095,7 +2097,7 @@ function CustomNode() {
       "Don't use sequential numbers that skip (e.g. 1, 3, 5)",
       "Don't nest citations inside other interactive elements",
     ],
-    codeExample: `import { InlineCitation } from "@cogentic/ds/chatbot"
+    codeExample: `import { InlineCitation } from "@cogentic-co/ds/chatbot"
 
 <p>
   This is a fact
@@ -2109,7 +2111,7 @@ function CustomNode() {
     description:
       "Chat message bubble with role-based styling. Compound component with avatar, content, actions, and branching.",
     importStatement:
-      'import { Message, MessageContent, MessageResponse, MessageActions } from "@cogentic/ds/chatbot"',
+      'import { Message, MessageContent, MessageResponse, MessageActions } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Always set the `from` prop to get correct alignment and bubble styling",
       "Use MessageAvatar for visual identity — initials, icon, or image",
@@ -2126,7 +2128,7 @@ function CustomNode() {
     codeExample: `import {
   Message, MessageAvatar, MessageContent,
   MessageResponse, MessageActions, MessageCopyAction
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <Message from="assistant">
   <MessageAvatar>AI</MessageAvatar>
@@ -2143,7 +2145,7 @@ function CustomNode() {
     description:
       "Auto-scrolling conversation container with empty state and scroll-to-bottom button.",
     importStatement:
-      'import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic/ds/chatbot"',
+      'import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Set an explicit height on the Conversation container (h-[500px], h-screen, etc.)",
       "Use ConversationEmptyState when there are no messages",
@@ -2155,7 +2157,7 @@ function CustomNode() {
       "Don't render the scroll-to-bottom button when already at bottom (handled automatically)",
       "Don't put the PromptInput inside Conversation — place it as a sibling below",
     ],
-    codeExample: `import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic/ds/chatbot"
+    codeExample: `import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chatbot"
 
 <Conversation className="h-[500px]">
   <ConversationContent>
@@ -2172,7 +2174,7 @@ function CustomNode() {
     description:
       "Composable chat input with auto-resizing textarea, file attachments, and submit button.",
     importStatement:
-      'import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputSubmit } from "@cogentic/ds/chatbot"',
+      'import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputSubmit } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Always include PromptInputSubmit for clear submit affordance",
       "Use Enter to submit, Shift+Enter for newline (built-in behaviour)",
@@ -2189,7 +2191,7 @@ function CustomNode() {
   PromptInput, PromptInputBody, PromptInputTextarea,
   PromptInputFooter, PromptInputTools, PromptInputAttachButton,
   PromptInputSubmit, PromptInputFiles
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <PromptInput onSubmit={(msg, files) => send(msg)}>
   <PromptInputFiles />
@@ -2209,7 +2211,7 @@ function CustomNode() {
     description:
       "Step-by-step reasoning visualization. Collapsible panel showing sequential thinking steps with search results.",
     importStatement:
-      'import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep } from "@cogentic/ds/chatbot"',
+      'import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Number steps sequentially and update status as each completes",
       "Use descriptive step labels that explain what's happening",
@@ -2224,7 +2226,7 @@ function CustomNode() {
     codeExample: `import {
   ChainOfThought, ChainOfThoughtHeader,
   ChainOfThoughtContent, ChainOfThoughtStep
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <ChainOfThought defaultOpen>
   <ChainOfThoughtHeader>Thinking...</ChainOfThoughtHeader>
@@ -2240,7 +2242,7 @@ function CustomNode() {
     description:
       "Tool approval request UI. Shows a confirmation card when AI wants to execute a tool or action.",
     importStatement:
-      'import { Confirmation, ConfirmationRequest, ConfirmationActions, ConfirmationAction } from "@cogentic/ds/chatbot"',
+      'import { Confirmation, ConfirmationRequest, ConfirmationActions, ConfirmationAction } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Clearly describe the action being requested in the title",
       "Show the exact input/parameters in the description for transparency",
@@ -2255,7 +2257,7 @@ function CustomNode() {
     codeExample: `import {
   Confirmation, ConfirmationRequest,
   ConfirmationActions, ConfirmationAction
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <Confirmation status="pending">
   <ConfirmationRequest
@@ -2273,7 +2275,7 @@ function CustomNode() {
     description:
       "Token and context window usage display. Shows progress bars for token consumption.",
     importStatement:
-      'import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic/ds/chatbot"',
+      'import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Show context usage proactively when approaching limits (>70%)",
       "Use human-readable numbers (e.g. 45K / 128K) for large token counts",
@@ -2284,7 +2286,7 @@ function CustomNode() {
       "Don't update the display more than once per message to avoid flicker",
       "Don't show raw byte counts — convert to tokens or messages",
     ],
-    codeExample: `import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic/ds/chatbot"
+    codeExample: `import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic-co/ds/chatbot"
 
 <Context>
   <ContextHeader>Context Usage</ContextHeader>
@@ -2299,7 +2301,7 @@ function CustomNode() {
     description:
       "Conversation bookmark marker. Visual indicator for saved points in a conversation.",
     importStatement:
-      'import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic/ds/chatbot"',
+      'import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Use meaningful labels that describe what was accomplished at this point",
       "Insert between messages at natural breakpoints in the conversation",
@@ -2310,7 +2312,7 @@ function CustomNode() {
       "Don't use vague labels like 'Checkpoint 1' — describe the milestone",
       "Don't checkpoint trivial exchanges",
     ],
-    codeExample: `import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic/ds/chatbot"
+    codeExample: `import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chatbot"
 
 <Checkpoint>
   <CheckpointIcon />
@@ -2322,7 +2324,7 @@ function CustomNode() {
     description:
       "Collapsible execution plan display. Shows AI-generated plans with steps and actions.",
     importStatement:
-      'import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic/ds/chatbot"',
+      'import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Show the plan before execution so users can review and approve",
       "Use PlanFooter with an action button for explicit user confirmation",
@@ -2334,7 +2336,7 @@ function CustomNode() {
       "Don't show more than 10 steps — break into phases if needed",
       "Don't mix plan display with task progress — use Task component for execution tracking",
     ],
-    codeExample: `import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic/ds/chatbot"
+    codeExample: `import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chatbot"
 
 <Plan>
   <PlanTrigger>Implementation Plan</PlanTrigger>
@@ -2353,7 +2355,7 @@ function CustomNode() {
     description:
       "Collapsible task progress display. Shows task items with status indicators (pending, running, complete, error).",
     importStatement:
-      'import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic/ds/chatbot"',
+      'import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Update task item statuses in real-time as work progresses",
       "Use the running status with spinner for the currently active item",
@@ -2365,7 +2367,7 @@ function CustomNode() {
       "Don't have more than one item with 'running' status simultaneously",
       "Don't remove failed items — show them with error status for debugging",
     ],
-    codeExample: `import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic/ds/chatbot"
+    codeExample: `import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chatbot"
 
 <Task>
   <TaskTrigger status="running">Installing dependencies</TaskTrigger>
@@ -2380,7 +2382,7 @@ function CustomNode() {
     status: "new",
     description: "Collapsible tool invocation display. Shows tool name, status, input, and output.",
     importStatement:
-      'import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic/ds/chatbot"',
+      'import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Show the tool name in monospace font for technical clarity",
       "Display the status badge (pending, running, success, error) in the header",
@@ -2392,7 +2394,7 @@ function CustomNode() {
       "Don't truncate output without a 'show more' option",
       "Don't show tool invocations for internal/hidden tools the user doesn't need to see",
     ],
-    codeExample: `import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic/ds/chatbot"
+    codeExample: `import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"
 
 <Tool>
   <ToolHeader name="search_documents" status="success" />
@@ -2406,7 +2408,7 @@ function CustomNode() {
     status: "new",
     description: "Structured task/message queue list. Collapsible sections with status indicators.",
     importStatement:
-      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemContent } from "@cogentic/ds/chatbot"',
+      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemContent } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Group related items into QueueSections with descriptive labels",
       "Show the item count in the section trigger",
@@ -2421,7 +2423,7 @@ function CustomNode() {
     codeExample: `import {
   QueueSection, QueueSectionTrigger, QueueList,
   QueueItem, QueueItemIndicator, QueueItemContent
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <QueueSection>
   <QueueSectionTrigger>Pending Tasks (3)</QueueSectionTrigger>
@@ -2438,7 +2440,7 @@ function CustomNode() {
     description:
       "Searchable model picker dropdown. Select AI models with logos, descriptions, and grouping.",
     importStatement:
-      'import { ModelSelector, ModelSelectorTrigger, ModelSelectorContent, ModelSelectorItem } from "@cogentic/ds/chatbot"',
+      'import { ModelSelector, ModelSelectorTrigger, ModelSelectorContent, ModelSelectorItem } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Group models by provider for easy scanning",
       "Include a short description of each model's strengths",
@@ -2454,7 +2456,7 @@ function CustomNode() {
   ModelSelector, ModelSelectorTrigger, ModelSelectorContent,
   ModelSelectorInput, ModelSelectorList, ModelSelectorGroup,
   ModelSelectorItem
-} from "@cogentic/ds/chatbot"
+} from "@cogentic-co/ds/chatbot"
 
 <ModelSelector value="claude-opus-4" onValueChange={setModel}>
   <ModelSelectorTrigger>Claude Opus 4</ModelSelectorTrigger>
@@ -2475,7 +2477,7 @@ function CustomNode() {
       "Vertical timeline for displaying chronological events like audit trails, case history, or activity logs.",
     since: "0.3.0",
     importStatement:
-      'import { Timeline, TimelineItem, TimelineDot, TimelineContent, TimelineTitle, TimelineTime } from "@cogentic/ds"',
+      'import { Timeline, TimelineItem, TimelineDot, TimelineContent, TimelineTitle, TimelineTime } from "@cogentic-co/ds/timeline"',
     dos: [
       "Use for chronological event sequences (audit trails, case history)",
       "Add icons to TimelineDot for visual categorisation",
@@ -2490,7 +2492,7 @@ function CustomNode() {
     codeExample: `import {
   Timeline, TimelineItem, TimelineDot,
   TimelineContent, TimelineTitle, TimelineTime,
-} from "@cogentic/ds"
+} from "@cogentic-co/ds/timeline"
 
 <Timeline>
   <TimelineItem>
@@ -2521,7 +2523,7 @@ function CustomNode() {
   AuditLog, AuditLogEntry, AuditLogIcon,
   AuditLogContent, AuditLogMessage, AuditLogMeta,
   AuditLogTime, AuditLogDetail,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/audit-log"`,
     dos: [
       "Use for compliance audit trails and activity logs",
       "Include timestamps and actor information on every entry",
@@ -2537,7 +2539,7 @@ function CustomNode() {
   AuditLog, AuditLogEntry, AuditLogIcon,
   AuditLogContent, AuditLogMessage, AuditLogMeta,
   AuditLogTime, AuditLogDetail,
-} from "@cogentic/ds"
+} from "@cogentic-co/ds/audit-log"
 import { PlusIcon } from "lucide-react"
 
 <AuditLog>
@@ -2567,7 +2569,7 @@ import { PlusIcon } from "lucide-react"
   CommentThread, Comment, CommentAvatar, CommentBody,
   CommentHeader, CommentAuthor, CommentTime,
   CommentContent, CommentActions,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/comment-thread"`,
     dos: [
       "Use for case discussions and review comments",
       "Show avatar initials or images for each commenter",
@@ -2583,7 +2585,7 @@ import { PlusIcon } from "lucide-react"
   CommentThread, Comment, CommentAvatar,
   CommentBody, CommentHeader, CommentAuthor,
   CommentTime, CommentContent,
-} from "@cogentic/ds"
+} from "@cogentic-co/ds/comment-thread"
 
 <CommentThread>
   <Comment>
@@ -2613,7 +2615,7 @@ import { PlusIcon } from "lucide-react"
     description:
       "Horizontal bar of removable filter chips with a clear-all action. For data table and list filtering.",
     since: "0.5.0",
-    importStatement: `import { FilterBar, FilterChip, FilterClear } from "@cogentic/ds"`,
+    importStatement: `import { FilterBar, FilterChip, FilterClear } from "@cogentic-co/ds/filter-bar"`,
     dos: [
       "Place above the data table or list it filters",
       "Show label:value pairs for clarity",
@@ -2625,7 +2627,7 @@ import { PlusIcon } from "lucide-react"
       "Don't show the filter bar when no filters are active",
       "Don't put form inputs inside FilterBar — use it for applied filter display only",
     ],
-    codeExample: `import { FilterBar, FilterChip, FilterClear } from "@cogentic/ds"
+    codeExample: `import { FilterBar, FilterChip, FilterClear } from "@cogentic-co/ds/filter-bar"
 
 <FilterBar>
   <FilterChip label="Status" value="Under Review" onRemove={() => {}} />
@@ -2638,7 +2640,7 @@ import { PlusIcon } from "lucide-react"
     description:
       "Resizable split-view layout built on react-resizable-panels. For master-detail and side-by-side views.",
     since: "0.5.0",
-    importStatement: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic/ds"`,
+    importStatement: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic-co/ds/split-pane"`,
     dos: [
       "Use for master-detail layouts (list + detail view)",
       "Set sensible minSize values to prevent panels from collapsing",
@@ -2650,7 +2652,7 @@ import { PlusIcon } from "lucide-react"
       "Don't use without a fixed-height parent container",
       "Don't use for simple two-column layouts — use Grid instead",
     ],
-    codeExample: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic/ds"
+    codeExample: `import { SplitPane, SplitPanePanel, SplitPaneDivider } from "@cogentic-co/ds/split-pane"
 
 <div className="h-[500px]">
   <SplitPane direction="horizontal">
@@ -2673,7 +2675,7 @@ import { PlusIcon } from "lucide-react"
   StepProgress, StepProgressItem, StepProgressIndicator,
   StepProgressConnector, StepProgressContent,
   StepProgressTitle, StepProgressDescription,
-} from "@cogentic/ds"`,
+} from "@cogentic-co/ds/step-progress"`,
     dos: [
       "Use for multi-step workflows like KYC, onboarding, or review processes",
       "Mark completed steps with status='complete' for the checkmark indicator",
@@ -2689,7 +2691,7 @@ import { PlusIcon } from "lucide-react"
   StepProgress, StepProgressItem, StepProgressIndicator,
   StepProgressConnector, StepProgressContent,
   StepProgressTitle, StepProgressDescription,
-} from "@cogentic/ds"
+} from "@cogentic-co/ds/step-progress"
 
 <StepProgress>
   <StepProgressItem status="complete">
