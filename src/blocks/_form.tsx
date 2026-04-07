@@ -49,6 +49,7 @@ type TextFieldProps = {
   form: AnyForm
   name: string
   label: string
+  description?: string
   type?: React.HTMLInputTypeAttribute
   placeholder?: string
   autoComplete?: string
@@ -60,6 +61,7 @@ export function TextField({
   form,
   name,
   label,
+  description,
   type = "text",
   placeholder,
   autoComplete,
@@ -84,6 +86,7 @@ export function TextField({
               <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
               {rightSlot}
             </div>
+            {description && <p className="text-muted-foreground text-sm">{description}</p>}
             <Input
               id={inputId}
               name={field.name}
