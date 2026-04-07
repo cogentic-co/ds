@@ -38,8 +38,8 @@ function CogenticLogo({ className }: { className?: string }) {
 
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
+import { componentMeta, statusConfig } from "./_component-meta"
 import { CommandSearch } from "./command-search"
-import { componentMeta, statusConfig } from "./component-meta"
 
 function toTitle(slug: string) {
   return slug

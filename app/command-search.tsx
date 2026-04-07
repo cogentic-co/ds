@@ -11,7 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
-import { componentMeta, statusConfig } from "./component-meta"
+import { componentMeta, statusConfig } from "./_component-meta"
 
 function toTitle(slug: string) {
   return slug
