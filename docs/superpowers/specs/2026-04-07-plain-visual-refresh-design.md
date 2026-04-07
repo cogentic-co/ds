@@ -13,7 +13,7 @@
 ## Non-goals
 
 - New components or blocks (`SettingRow`, `SequenceBuilder`, `SettingsCardGrid`, `Empty` compact variant — all deferred).
-- `Sidebar` restructuring. The active-state colour will shift via the cascading `--primary` / `--accent` tokens, but no source edits to `Sidebar` itself.
+- `Sidebar` restructuring. The active-state colour will shift via the cascading `--primary` / `--focus` tokens, but no source edits to `Sidebar` itself.
 - `AppShell` canvas tinting via a new structural layout. Tinting comes from changing `--background`, not from adding a new structural slot.
 - Migrating the auth blocks (`LoginForm` etc.) to use field descriptions. The `_form.tsx` helper will gain the capability; the blocks themselves stay as-is.
 - Any change to `Tabs`, `Dialog`, `Popover`, `Sheet`, `Tooltip`, `Toast` — they'll move along with the token cascade and that's it.
@@ -21,19 +21,21 @@
 
 ## Token changes
 
+> **Naming note:** The existing `--accent` token (a near-white pale fill used as the hover background on dropdown / combobox / menubar / select items) is **left unchanged**. To avoid colliding with that established convention, the new saturated cool blue is added under the name `--focus` (with `--focus-foreground` and `--focus-soft` siblings).
+
 ### New tokens
 
 ```css
 :root {
-  --accent: oklch(0.58 0.18 245);          /* confident cool blue */
-  --accent-foreground: oklch(0.99 0 0);    /* white text on saturated accent */
-  --accent-soft: oklch(0.96 0.025 245);    /* pale icy blue, for tinted fills */
+  --focus: oklch(0.58 0.18 245);          /* confident cool blue */
+  --focus-foreground: oklch(0.99 0 0);    /* white text on saturated accent */
+  --focus-soft: oklch(0.96 0.025 245);    /* pale icy blue, for tinted fills */
 }
 
 .dark {
-  --accent: oklch(0.65 0.18 245);          /* slightly lighter for dark bg */
-  --accent-foreground: oklch(0.10 0 0);    /* near-black text on saturated accent */
-  --accent-soft: oklch(0.22 0.04 245);     /* deep cool blue for dark mode tinted fills */
+  --focus: oklch(0.65 0.18 245);          /* slightly lighter for dark bg */
+  --focus-foreground: oklch(0.10 0 0);    /* near-black text on saturated accent */
+  --focus-soft: oklch(0.22 0.04 245);     /* deep cool blue for dark mode tinted fills */
 }
 ```
 
@@ -55,8 +57,8 @@ These join the existing `@theme inline` block in `src/styles/globals.css` so tha
 
 ### Token rationale
 
-- **`--accent` is a single hue (cool blue, ~245°)** with two lightness variants (`accent` saturated, `accent-soft` pale). This mirrors Plain's "one accent colour, used everywhere" pattern.
-- **The cool blue replaces nothing** — it sits alongside `--primary` (which stays as the dark neutral). `--primary` is for "this is the main action", `--accent` is for "this thing is active/focused/on".
+- **`--focus` is a single hue (cool blue, ~245°)** with two lightness variants (`accent` saturated, `accent-soft` pale). This mirrors Plain's "one accent colour, used everywhere" pattern.
+- **The cool blue replaces nothing** — it sits alongside `--primary` (which stays as the dark neutral). `--primary` is for "this is the main action", `--focus` is for "this thing is active/focused/on".
 - **`--background` becoming tinted is the single highest-leverage change** in this spec. It's what creates the "card lifts off the page" effect that makes Plain feel like Plain.
 - **`--card` stays untouched** as the explicit white surface, so any component that uses `bg-card` automatically does the right thing.
 - **`--border` softening** is the second-highest leverage change. Plain's borders read as hints, not boundaries; that single property change cascades across every bordered element.
@@ -165,7 +167,7 @@ The audit happens once before the token change so we don't ship a half-broken st
 
 | File | Change |
 |---|---|
-| `src/styles/globals.css` | Add `--accent`, `--accent-foreground`, `--accent-soft` (light + dark). Modify `--background`, `--border` (light + dark). Add to `@theme inline` block. |
+| `src/styles/globals.css` | Add `--focus`, `--focus-foreground`, `--focus-soft` (light + dark). Modify `--background`, `--border` (light + dark). Add to `@theme inline` block. |
 | `src/components/button.tsx` | Default size `h-10`, radius `rounded-lg`, base font `font-semibold`, outline variant uses `bg-card` |
 | `src/components/input.tsx` | Height `h-11`, radius `rounded-lg`, padding bump, focus = 2px accent border (no ring), `bg-card` |
 | `src/components/textarea.tsx` | Same focus + bg treatment as `Input` |
@@ -183,7 +185,7 @@ Bump `0.8.0` → `0.9.0`.
 This is a **visual breaking change**: no APIs change, no props change, no behaviour change, but every screenshot of every consuming app will look different. The accent colour, border softness, focus state, font weight, button size, card shadow, and page background all shift simultaneously. Consuming apps with custom theming may need to re-tune their overrides.
 
 Changelog entry should be explicit about:
-- New tokens (`--accent`, `--accent-soft`, `--accent-foreground`)
+- New tokens (`--focus`, `--focus-soft`, `--focus-foreground`)
 - Modified tokens (`--background` is no longer pure white; `--border` is softer)
 - Visual changes per component
 - Recommendation to test in light + dark mode after upgrading
