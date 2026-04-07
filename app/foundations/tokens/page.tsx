@@ -133,7 +133,7 @@ function parseTokens(css: string) {
   ]
   const surfaces = ["--card", "--card-foreground", "--popover", "--popover-foreground"]
   const borders = ["--border", "--border-light", "--input", "--ring"]
-  const brand = ["--cogentic-green", "--success", "--logo-gray", "--tagline", "--cyan"]
+  const brand = ["--success", "--logo-gray", "--tagline", "--cyan"]
   const charts = ["--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5"]
   const sidebar = pairedTokens.filter((t) => t.name.startsWith("--sidebar"))
 

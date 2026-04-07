@@ -1,8 +1,8 @@
 "use client"
 
 import { LineChart as LineChartComponent } from "@/src/charts/line-chart"
-import { type ControlDefs, Playground, useControls } from "./_shared"
 import { timeSeriesConfig, timeSeriesData } from "./_chart-data"
+import { type ControlDefs, Playground, useControls } from "./_shared"
 
 const lineChartControlDefs = {
   showGrid: { type: "boolean", defaultValue: true, label: "Grid" },

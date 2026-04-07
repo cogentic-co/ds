@@ -343,7 +343,8 @@ import { SearchIcon } from "lucide-react"
     status: "stable",
     description: "One-time password input with individual digit fields.",
     since: "0.1.0",
-    importStatement: 'import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic-co/ds/input-otp"',
+    importStatement:
+      'import { InputOTP, InputOTPGroup, InputOTPSlot } from "@cogentic-co/ds/input-otp"',
     dos: ["Set maxLength to match the expected code length", "Auto-focus the first slot on mount"],
     donts: [
       "Don't use for regular text input",
@@ -658,7 +659,8 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/tabs",
     description: "Tabbed content panels with multiple visual variants. Built on Base UI Tabs.",
     since: "0.1.0",
-    importStatement: 'import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic-co/ds/tabs"',
+    importStatement:
+      'import { Tabs, TabsList, TabsTrigger, TabsContent } from "@cogentic-co/ds/tabs"',
     dos: [
       "Use for switching between related views in the same context",
       "Keep tab labels short (1-2 words)",
@@ -764,7 +766,8 @@ import { Settings } from "lucide-react"
     status: "stable",
     description: "Swipe-to-dismiss bottom sheet for mobile. Built on vaul.",
     since: "0.1.0",
-    importStatement: 'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic-co/ds/drawer"',
+    importStatement:
+      'import { Drawer, DrawerTrigger, DrawerContent } from "@cogentic-co/ds/drawer"',
     dos: ["Use on mobile as an alternative to Dialog", "Include a drag handle for dismissal"],
     donts: [
       "Don't use on desktop — use Dialog or Sheet instead",
@@ -794,7 +797,8 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/popover",
     description: "Floating content panel anchored to a trigger. Built on Base UI Popover.",
     since: "0.1.0",
-    importStatement: 'import { Popover, PopoverTrigger, PopoverContent } from "@cogentic-co/ds/popover"',
+    importStatement:
+      'import { Popover, PopoverTrigger, PopoverContent } from "@cogentic-co/ds/popover"',
     dos: ["Use for contextual actions or settings", "Keep popover content focused and concise"],
     donts: [
       "Don't use for long forms — use Dialog or Sheet",
@@ -806,7 +810,8 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/tooltip",
     description: "Brief contextual information on hover/focus. Built on Base UI Tooltip.",
     since: "0.1.0",
-    importStatement: 'import { Tooltip, TooltipTrigger, TooltipContent } from "@cogentic-co/ds/tooltip"',
+    importStatement:
+      'import { Tooltip, TooltipTrigger, TooltipContent } from "@cogentic-co/ds/tooltip"',
     dos: [
       "Use for supplementary info that doesn't fit in the UI",
       "Keep tooltip content brief (1-2 lines)",
@@ -821,7 +826,8 @@ import { Settings } from "lucide-react"
     baseUiDoc: "https://base-ui.com/react/components/preview-card",
     description: "Rich preview card shown on hover.",
     since: "0.1.0",
-    importStatement: 'import { HoverCard, HoverCardTrigger, HoverCardContent } from "@cogentic-co/ds/hover-card"',
+    importStatement:
+      'import { HoverCard, HoverCardTrigger, HoverCardContent } from "@cogentic-co/ds/hover-card"',
     dos: [
       "Use for previewing linked content (user profiles, pages)",
       "Include relevant details without overwhelming",
@@ -1099,7 +1105,8 @@ toast.error("Something went wrong")`,
     description:
       "Full-featured data table with sorting, filtering, pagination, and virtualization. Built on TanStack Table.",
     since: "0.2.0",
-    importStatement: 'import { DataTable, useDataTable, type ColumnDef } from "@cogentic-co/ds/data-table"',
+    importStatement:
+      'import { DataTable, useDataTable, type ColumnDef } from "@cogentic-co/ds/data-table"',
     dos: [
       "Use useDataTable hook for state management",
       "Enable virtual mode for tables with 100+ rows",

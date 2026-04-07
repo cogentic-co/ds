@@ -49,7 +49,7 @@ The skill is bundled alongside the DS Expert skill.
 - Scaffolds a **Next.js 16** project with TypeScript
 - Uses **Tailwind CSS v4**, **React 19**, and the latest \`@cogentic-co/ds\`
 - Sets up AppShell with sidebar navigation for your specified routes
-- Optionally includes auth pages using the AuthForm block
+- Optionally includes auth pages using the LoginForm/RegisterForm blocks
 - Creates route stubs for each page you specify
 
 ## Example prompts

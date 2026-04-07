@@ -124,7 +124,6 @@ function Component({
 
 All tokens in `src/styles/globals.css`:
 - **Colors**: OKLch values from signal-landing, with light (`:root`) / dark (`.dark`) modes
-- **Brand**: `--cogentic-green: oklch(94.675% 0.16548 122.442)` → `bg-cogentic-green`
 - **Fonts**: Geist (sans), JetBrains Mono (mono)
 - **Radii**: Base `0.625rem` with sm/md/lg/xl variants
 - **Extras**: `--success`, `--logo-gray`, `--tagline`, `--border-light`, `--cyan`
@@ -259,7 +258,7 @@ Every new component **must** include all of the following before it's considered
 
 ## Design Philosophy
 
-1. **Brand first** — Geist font, OKLch neutral palette, cogentic-green accent
+1. **Brand first** — Geist font, OKLch neutral palette, neutral accent
 2. **Composable** — Small primitives over monolithic components
 3. **Accessible** — Base UI primitives; keyboard nav, ARIA, screen readers
 4. **Dark mode** — Every component works in both modes

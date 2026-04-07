@@ -147,7 +147,11 @@ export default defineConfig({
     "blocks/stat-card": "src/blocks/stat-card.tsx",
     "blocks/feature-section": "src/blocks/feature-section.tsx",
     "blocks/hero-section": "src/blocks/hero-section.tsx",
-    "blocks/auth-form": "src/blocks/auth-form.tsx",
+    "blocks/login-form": "src/blocks/login-form.tsx",
+    "blocks/register-form": "src/blocks/register-form.tsx",
+    "blocks/forgot-password-form": "src/blocks/forgot-password-form.tsx",
+    "blocks/select-org-form": "src/blocks/select-org-form.tsx",
+    "blocks/magic-link-message": "src/blocks/magic-link-message.tsx",
     // Chart entry point
     charts: "src/charts/index.ts",
     // Workflow entry point

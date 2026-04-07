@@ -133,7 +133,6 @@ pnpm dev          # Preview site at http://localhost:3000
 All tokens live in `src/styles/globals.css` using OKLch color space with light (`:root`) and dark (`.dark`) modes.
 
 Key tokens:
-- **Brand:** `--cogentic-green` -> `bg-cogentic-green`
 - **Fonts:** Geist (sans), JetBrains Mono (mono)
 - **Radii:** Base `0.625rem` with sm/md/lg/xl variants
 - Dark mode via `.dark` class (not `@media`)

@@ -20,7 +20,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 | `@cogentic-co/ds` | All UI components, hooks, utils, animation constants |
 | `@cogentic-co/ds/styles.css` | Design tokens CSS (must be imported) |
 | `@cogentic-co/ds/animations/*` | Individual product animations (code-split) |
-| `@cogentic-co/ds/blocks/*` | Blocks: pricing-table, stat-card, feature-section, hero-section, auth-form |
+| `@cogentic-co/ds/blocks/*` | Blocks: pricing-table, stat-card, feature-section, hero-section, login-form, register-form, forgot-password-form, select-org-form, magic-link-message |
 | `@cogentic-co/ds/charts` | Chart variants (AreaChart, BarChart, LineChart, PieChart, RadialChart) |
 | `@cogentic-co/ds/workflow` | React Flow workflow components (requires @xyflow/react) |
 
@@ -141,7 +141,11 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 - `StatCard` — Dashboard KPI card with trend indicator
 - `FeatureSection` — Marketing feature grid (2/3/4 columns) with icons
 - `HeroSection` — Hero with variants: default, centered, split. Sizes: sm, default, lg
-- `AuthForm` — Login/register/forgot-password with social buttons support
+- `LoginForm` — Email/password login with optional social buttons and forgot-password link. Validation via TanStack Form + zod (`loginSchema` exported)
+- `RegisterForm` — Name/email/password register with optional terms checkbox and social buttons (`registerSchema` exported)
+- `ForgotPasswordForm` — Email-only password reset request (`forgotPasswordSchema` exported)
+- `SelectOrgForm` — Organization picker with `list` (radio) or `search` (Command) variants (`selectOrgSchema` exported)
+- `MagicLinkMessage` — "Check your email" confirmation screen with resend cooldown
 
 ## Chart Variants (from `@cogentic-co/ds/charts`)
 
@@ -191,7 +195,6 @@ Semantic color tokens (use these, never hardcode):
 - `bg-accent`, `text-accent-foreground` — Highlights
 - `bg-destructive`, `text-destructive-foreground` — Errors/danger
 - `border-border` — Default borders
-- `bg-cogentic-green` — Brand green accent
 - `text-success` — Success states
 - Colors use OKLch color space
 - Dark mode via `.dark` class (not @media)

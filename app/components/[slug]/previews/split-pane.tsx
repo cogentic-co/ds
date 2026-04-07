@@ -1,7 +1,7 @@
 "use client"
 
-import { cn } from "@/src/lib/utils"
 import { SplitPane, SplitPaneDivider, SplitPanePanel } from "@/components/ui/split-pane"
+import { cn } from "@/src/lib/utils"
 import { Section } from "./_shared"
 
 export default function SplitPanePreview() {

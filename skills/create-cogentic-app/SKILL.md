@@ -15,7 +15,7 @@ When the user asks to create a new app, scaffold the complete project structure 
 Ask the user:
 1. **Project name** — e.g. `signal-dashboard`, `compliance-portal`
 2. **Routes** — e.g. `dashboard`, `settings`, `canvas`, `reports`, `users`
-3. **Auth needed?** — If yes, add login/register pages using `AuthForm` block
+3. **Auth needed?** — If yes, add login/register pages using `LoginForm` / `RegisterForm` blocks
 4. **Description** — One-line description for package.json
 
 ### 2. Create Project Directory
@@ -255,12 +255,12 @@ export default function <RouteName>Page() {
 #### Auth pages (if requested)
 Create `src/app/(auth)/login/page.tsx` and `src/app/(auth)/register/page.tsx`:
 ```tsx
-import { AuthForm } from "@cogentic/ds/blocks/auth-form"
+import { LoginForm } from "@cogentic/ds/blocks/login-form"
 
 export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <AuthForm variant="login" onSubmit={(data) => console.log(data)} />
+      <LoginForm onSubmit={(values) => console.log(values)} />
     </div>
   )
 }

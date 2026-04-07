@@ -1,8 +1,8 @@
 "use client"
 
 import { RadialChart as RadialChartComponent } from "@/src/charts/radial-chart"
-import { type ControlDefs, Playground, useControls } from "./_shared"
 import { radarConfig, radarData } from "./_chart-data"
+import { type ControlDefs, Playground, useControls } from "./_shared"
 
 const radialChartControlDefs = {
   showLegend: { type: "boolean", defaultValue: false, label: "Legend" },
