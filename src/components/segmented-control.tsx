@@ -32,7 +32,7 @@ function SegmentedControl({
       {...props}
     >
       <div
-        className="absolute inset-y-1 rounded-md bg-background shadow-sm transition-all duration-200"
+        className="absolute inset-y-1 rounded-md bg-card shadow-sm transition-all duration-200"
         style={{
           width: `calc((100% - 8px) / ${options.length})`,
           left: `calc(4px + ${selectedIndex} * (100% - 8px) / ${options.length})`,

@@ -30,7 +30,7 @@ function TimelineDot({ className, children, ...props }: TimelineDotProps) {
     <div
       data-slot="timeline-dot"
       className={cn(
-        "absolute top-0.5 left-[-35px] flex size-[22px] items-center justify-center rounded-full border-2 border-border bg-background",
+        "absolute top-0.5 left-[-35px] flex size-[22px] items-center justify-center rounded-full border-2 border-border bg-card",
         className,
       )}
       {...props}

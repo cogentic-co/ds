@@ -58,7 +58,7 @@ function StepProgressItem({ status = "upcoming", className, ...props }: StepProg
 const indicatorStyles: Record<StepProgressStatus, string> = {
   complete: "border-emerald-500 bg-emerald-500 text-white",
   current: "border-primary bg-primary text-primary-foreground",
-  upcoming: "border-border bg-background text-muted-foreground",
+  upcoming: "border-border bg-card text-muted-foreground",
 }
 
 type StepProgressIndicatorProps = React.ComponentProps<"div"> & {

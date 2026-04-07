@@ -10,7 +10,7 @@ const tagVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border bg-background text-foreground hover:bg-muted",
+        default: "border-border bg-card text-foreground hover:bg-muted",
         primary: "border-primary/30 bg-primary/10 text-primary",
         secondary: "border-secondary bg-secondary text-secondary-foreground",
         destructive: "border-destructive/30 bg-destructive/10 text-destructive",
