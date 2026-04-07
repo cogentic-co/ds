@@ -1,7 +1,7 @@
 "use client"
 
-import type React from "react"
 import { GitBranch, GitMerge, Route, StopCircle, Timer } from "lucide-react"
+import type React from "react"
 import { WorkflowGate } from "@/src/workflow"
 import { type ControlDefs, Playground, Section, useControls } from "./_shared"
 

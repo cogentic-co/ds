@@ -4,9 +4,13 @@ import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
 import { PricingTable } from "@/blocks/pricing-table"
 import { TeamCard } from "@/blocks/team-card"
-import { AuthForm } from "@/src/blocks/auth-form"
 import { FeatureSection } from "@/src/blocks/feature-section"
+import { ForgotPasswordForm } from "@/src/blocks/forgot-password-form"
 import { HeroSection } from "@/src/blocks/hero-section"
+import { LoginForm } from "@/src/blocks/login-form"
+import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
+import { RegisterForm } from "@/src/blocks/register-form"
+import { SelectOrgForm } from "@/src/blocks/select-org-form"
 import { StatCard } from "@/src/blocks/stat-card"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -94,28 +98,58 @@ function HeroSectionPreview() {
   )
 }
 
-// ── Auth Form ──────────────────────────────────────────────────────────
+// ── Auth Form Blocks ───────────────────────────────────────────────────
 
-const authFormControlDefs = {
-  variant: {
-    type: "select",
-    options: ["login", "register", "forgot-password"],
-    defaultValue: "login",
-    label: "Variant",
-  },
-} satisfies ControlDefs
-
-function AuthFormPreview() {
-  const controls = useControls(authFormControlDefs)
+function LoginFormPreview() {
   return (
-    <Playground controls={controls}>
-      <div className="mx-auto max-w-md">
-        <AuthForm
-          variant={controls.values.variant as "login"}
-          onSubmit={(data) => console.log(data)}
-        />
-      </div>
-    </Playground>
+    <div className="mx-auto max-w-md">
+      <LoginForm forgotPasswordHref="#forgot" onSubmit={(values) => console.log("login", values)} />
+    </div>
+  )
+}
+
+function RegisterFormPreview() {
+  return (
+    <div className="mx-auto max-w-md">
+      <RegisterForm termsHref="#terms" onSubmit={(values) => console.log("register", values)} />
+    </div>
+  )
+}
+
+function ForgotPasswordFormPreview() {
+  return (
+    <div className="mx-auto max-w-md">
+      <ForgotPasswordForm onSubmit={(values) => console.log("forgot", values)} />
+    </div>
+  )
+}
+
+const sampleOrgs = [
+  { id: "acme", name: "Acme Inc.", role: "Owner", memberCount: 12 },
+  { id: "globex", name: "Globex Corporation", role: "Admin", memberCount: 47 },
+  { id: "initech", name: "Initech", role: "Member", memberCount: 8 },
+]
+
+function SelectOrgFormPreview() {
+  return (
+    <div className="mx-auto max-w-md">
+      <SelectOrgForm
+        organizations={sampleOrgs}
+        onSubmit={(values) => console.log("select-org", values)}
+      />
+    </div>
+  )
+}
+
+function MagicLinkMessagePreview() {
+  return (
+    <div className="mx-auto max-w-md">
+      <MagicLinkMessage
+        email="you@example.com"
+        onResend={() => console.log("resend")}
+        onBack={() => console.log("back")}
+      />
+    </div>
   )
 }
 
@@ -155,7 +189,11 @@ export const blockPreviews: Record<string, React.ComponentType> = {
   "stat-card": StatCardPreview,
   "feature-section": FeatureSectionPreview,
   "hero-section": HeroSectionPreview,
-  "auth-form": AuthFormPreview,
+  "login-form": LoginFormPreview,
+  "register-form": RegisterFormPreview,
+  "forgot-password-form": ForgotPasswordFormPreview,
+  "select-org-form": SelectOrgFormPreview,
+  "magic-link-message": MagicLinkMessagePreview,
   "pricing-table": () => <PricingTable />,
   "page-cta": () => (
     <PageCta

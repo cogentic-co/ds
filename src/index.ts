@@ -3,17 +3,32 @@
 // Import from "@cogentic-co/ds/animations/*" instead.
 export type { ArticleCardProps } from "./blocks/article-card"
 export { ArticleCard } from "./blocks/article-card"
-export type { AuthFormProps, AuthFormVariant } from "./blocks/auth-form"
-export { AuthForm } from "./blocks/auth-form"
 export type { Feature, FeatureSectionProps } from "./blocks/feature-section"
 export { FeatureSection } from "./blocks/feature-section"
+export type {
+  ForgotPasswordFormProps,
+  ForgotPasswordFormValues,
+} from "./blocks/forgot-password-form"
+export { ForgotPasswordForm, forgotPasswordSchema } from "./blocks/forgot-password-form"
 export type { HeroSectionProps } from "./blocks/hero-section"
 export { HeroSection, heroVariants } from "./blocks/hero-section"
+export type { LoginFormProps, LoginFormValues } from "./blocks/login-form"
+export { LoginForm, loginSchema } from "./blocks/login-form"
+export type { MagicLinkMessageProps } from "./blocks/magic-link-message"
+export { MagicLinkMessage } from "./blocks/magic-link-message"
 export type { CtaLink, PageCtaProps } from "./blocks/page-cta"
 export { PageCta } from "./blocks/page-cta"
 export type { Plan, PricingTableProps } from "./blocks/pricing-table"
 // Blocks
 export { PricingTable } from "./blocks/pricing-table"
+export type { RegisterFormProps, RegisterFormValues } from "./blocks/register-form"
+export { RegisterForm, registerSchema } from "./blocks/register-form"
+export type {
+  Organization,
+  SelectOrgFormProps,
+  SelectOrgFormValues,
+} from "./blocks/select-org-form"
+export { SelectOrgForm, selectOrgSchema } from "./blocks/select-org-form"
 export type { StatCardProps } from "./blocks/stat-card"
 // New blocks
 export { StatCard } from "./blocks/stat-card"

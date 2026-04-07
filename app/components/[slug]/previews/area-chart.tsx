@@ -1,8 +1,8 @@
 "use client"
 
 import { AreaChart as AreaChartComponent } from "@/src/charts/area-chart"
-import { type ControlDefs, Playground, useControls } from "./_shared"
 import { timeSeriesConfig, timeSeriesData } from "./_chart-data"
+import { type ControlDefs, Playground, useControls } from "./_shared"
 
 const areaChartControlDefs = {
   showGrid: { type: "boolean", defaultValue: true, label: "Grid" },

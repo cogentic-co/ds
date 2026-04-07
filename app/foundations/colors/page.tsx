@@ -112,7 +112,6 @@ const borderColors: ColorSwatch[] = [
 ]
 
 const brandColors: ColorSwatch[] = [
-  { name: "Cogentic Green", variable: "--cogentic-green", className: "bg-cogentic-green" },
   { name: "Success", variable: "--success", className: "bg-success" },
   { name: "Cyan", variable: "--cyan", className: "bg-cyan" },
   { name: "Logo Gray", variable: "--logo-gray", className: "bg-logo-gray" },

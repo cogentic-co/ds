@@ -29,13 +29,13 @@ function PageCta({
   return (
     <section
       data-slot="page-cta"
-      className={cn("relative overflow-hidden bg-cogentic-green px-6", className)}
+      className={cn("relative overflow-hidden bg-primary px-6", className)}
     >
       {/* Dotted pattern */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(currentColor_1px,transparent_1px)] bg-[size:16px_16px] text-primary-foreground opacity-30" />
 
       {/* Centered gradient behind text */}
-      <div className="pointer-events-none absolute top-0 left-1/2 h-full w-[500px] -translate-x-1/2 bg-radial from-cogentic-green to-cogentic-green/10" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-full w-[500px] -translate-x-1/2 bg-radial from-primary to-primary/10" />
 
       <div className="container relative px-0 py-16 text-center sm:py-20 md:px-6 md:py-28">
         {headline && (

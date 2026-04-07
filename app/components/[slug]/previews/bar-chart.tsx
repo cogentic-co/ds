@@ -1,8 +1,8 @@
 "use client"
 
 import { BarChart as BarChartComponent } from "@/src/charts/bar-chart"
-import { type ControlDefs, Playground, useControls } from "./_shared"
 import { timeSeriesConfig, timeSeriesData } from "./_chart-data"
+import { type ControlDefs, Playground, useControls } from "./_shared"
 
 const barChartControlDefs = {
   showGrid: { type: "boolean", defaultValue: true, label: "Grid" },
