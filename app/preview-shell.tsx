@@ -7,7 +7,9 @@ import {
   Bot,
   Braces,
   Component,
+  Layers,
   Layout,
+  LayoutGrid,
   MessageSquare,
   Moon,
   Move,
@@ -15,9 +17,11 @@ import {
   Palette,
   Play,
   Search,
+  Sparkles,
   Sun,
   Type,
   Workflow,
+  Wrench,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -488,11 +492,59 @@ function filterNav(nav: NavGroup[], query: string): NavGroup[] {
     .filter((group) => group.items.length > 0)
 }
 
+const iconRailItems = [
+  {
+    id: "components",
+    icon: <Component className="size-5" />,
+    label: "Components",
+    href: "/components/button",
+  },
+  {
+    id: "blocks",
+    icon: <LayoutGrid className="size-5" />,
+    label: "Blocks",
+    href: "/blocks/setting-row",
+  },
+  {
+    id: "foundations",
+    icon: <Palette className="size-5" />,
+    label: "Foundations",
+    href: "/foundations/colors",
+  },
+  {
+    id: "shells",
+    icon: <Layers className="size-5" />,
+    label: "Shells",
+    href: "/shells/app-shell",
+  },
+  {
+    id: "charts",
+    icon: <Sparkles className="size-5" />,
+    label: "Charts",
+    href: "/components/chart",
+  },
+  {
+    id: "tools",
+    icon: <Wrench className="size-5" />,
+    label: "Tools",
+    href: "/skills",
+  },
+]
+
 export function PreviewShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [search, setSearch] = useState("")
 
   const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
+
+  const activeRailId = useMemo(() => {
+    if (pathname.startsWith("/components")) return "components"
+    if (pathname.startsWith("/blocks")) return "blocks"
+    if (pathname.startsWith("/foundations")) return "foundations"
+    if (pathname.startsWith("/shells")) return "shells"
+    if (pathname.startsWith("/skills")) return "tools"
+    return undefined
+  }, [pathname])
 
   return (
     <AppShell
@@ -521,6 +573,8 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
         </div>
       }
       linkComponent={Link}
+      iconRail={iconRailItems}
+      activeRailId={activeRailId}
     >
       {children}
     </AppShell>
