@@ -1,8 +1,32 @@
 import { cva, type VariantProps } from "class-variance-authority"
+import { Ghost } from "lucide-react"
 
 import { cn } from "../lib/utils"
 
-function Empty({ className, ...props }: React.ComponentProps<"div">) {
+type EmptyProps = React.ComponentProps<"div"> & {
+  variant?: "default" | "compact"
+  icon?: React.ReactNode
+  message?: string
+}
+
+function Empty({ className, variant = "default", icon, message, children, ...props }: EmptyProps) {
+  if (variant === "compact") {
+    return (
+      <div
+        data-slot="empty"
+        data-variant="compact"
+        className={cn(
+          "flex items-center justify-center gap-2 text-muted-foreground text-sm",
+          className,
+        )}
+        {...props}
+      >
+        {icon ?? <Ghost className="size-4" aria-hidden />}
+        <span>{message ?? "No data"}</span>
+      </div>
+    )
+  }
+
   return (
     <div
       data-slot="empty"
@@ -11,7 +35,9 @@ function Empty({ className, ...props }: React.ComponentProps<"div">) {
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 

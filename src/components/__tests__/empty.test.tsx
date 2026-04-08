@@ -73,6 +73,24 @@ describe("Empty", () => {
     expect(media).toHaveClass("bg-transparent")
   })
 
+  it("compact variant renders default 'No data' message", () => {
+    render(<Empty variant="compact" />)
+    expect(screen.getByText("No data")).toBeInTheDocument()
+  })
+
+  it("compact variant renders custom message", () => {
+    render(<Empty variant="compact" message="Nothing here" />)
+    expect(screen.getByText("Nothing here")).toBeInTheDocument()
+  })
+
+  it("compact variant has data-variant='compact' attribute", () => {
+    const { container } = render(<Empty variant="compact" />)
+    expect(container.querySelector("[data-slot='empty']")).toHaveAttribute(
+      "data-variant",
+      "compact",
+    )
+  })
+
   it("has no accessibility violations", async () => {
     const { container } = render(
       <Empty>
