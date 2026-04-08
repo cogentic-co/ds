@@ -154,6 +154,49 @@ import { PlusIcon } from "lucide-react"
   </SplitPane>
 </div>`,
   },
+  "settings-card-grid": {
+    status: "new",
+    description:
+      "2-column grid of clickable tile cards with icon, title, and description. Used for settings home pages, navigation hubs, and category landing pages — the Plain settings-home pattern.",
+    since: "0.9.0",
+    importStatement: `import { SettingsCardGrid } from "@cogentic-co/ds/blocks/settings-card-grid"`,
+    dos: [
+      "Use for settings home pages and navigation hubs with 4–8 destinations",
+      "Keep descriptions short — one sentence per card is enough",
+      "Use the columns prop to switch between 1, 2, or 3 columns based on available space",
+      "Use consistent icon styles (same size and stroke weight) across all items",
+    ],
+    donts: [
+      "Don't use for inline navigation within a page — use Tabs or a sidebar instead",
+      "Don't mix clickable cards with non-clickable ones in the same grid",
+      "Don't put long descriptions in cards — they break the visual rhythm",
+    ],
+    codeExample: `import { SettingsCardGrid } from "@cogentic-co/ds/blocks/settings-card-grid"
+import { Bell, Settings2, Users } from "lucide-react"
+
+<SettingsCardGrid
+  items={[
+    {
+      icon: <Settings2 className="size-5" />,
+      title: "General",
+      description: "Configure workspace name, logo, and domain settings",
+      href: "/settings/general",
+    },
+    {
+      icon: <Users className="size-5" />,
+      title: "Members",
+      description: "Add and manage team members and their permissions",
+      href: "/settings/members",
+    },
+    {
+      icon: <Bell className="size-5" />,
+      title: "Notifications",
+      description: "Control when and how you receive workspace notifications",
+      href: "/settings/notifications",
+    },
+  ]}
+/>`,
+  },
   "setting-row": {
     status: "new",
     description:

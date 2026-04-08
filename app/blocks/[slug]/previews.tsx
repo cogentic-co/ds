@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, Mail, Monitor } from "lucide-react"
+import { Bell, CreditCard, Mail, Monitor, Settings2, Users } from "lucide-react"
 import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
 import { PricingTable } from "@/blocks/pricing-table"
@@ -13,6 +13,7 @@ import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
 import { RegisterForm } from "@/src/blocks/register-form"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
 import { SettingRow } from "@/src/blocks/setting-row"
+import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
 import { StatCard } from "@/src/blocks/stat-card"
 import { Card } from "@/src/components/card"
 import { Separator } from "@/src/components/separator"
@@ -225,6 +226,43 @@ function SettingRowPreview() {
   )
 }
 
+// ── Settings Card Grid ────────────────────────────────────────────────
+
+const sampleSettings = [
+  {
+    icon: <Settings2 className="size-5" />,
+    title: "General",
+    description: "Configure workspace name, logo, and domain settings",
+    href: "#general",
+  },
+  {
+    icon: <Users className="size-5" />,
+    title: "Members",
+    description: "Add and manage team members and their permissions",
+    href: "#members",
+  },
+  {
+    icon: <Bell className="size-5" />,
+    title: "Notifications",
+    description: "Control when and how you receive workspace notifications",
+    href: "#notifications",
+  },
+  {
+    icon: <CreditCard className="size-5" />,
+    title: "Billing",
+    description: "Manage your subscription, usage, and billing information",
+    href: "#billing",
+  },
+]
+
+function SettingsCardGridPreview() {
+  return (
+    <div className="mx-auto max-w-3xl">
+      <SettingsCardGrid items={sampleSettings} />
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -263,6 +301,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
     </div>
   ),
   "setting-row": SettingRowPreview,
+  "settings-card-grid": SettingsCardGridPreview,
   "team-card": () => (
     <div className="grid max-w-3xl gap-6 sm:grid-cols-3">
       <TeamCard name="Alice Smith" role="Engineering Lead" />

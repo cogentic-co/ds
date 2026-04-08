@@ -198,6 +198,7 @@ const blockItems = [
   "forgot-password-form",
   "select-org-form",
   "setting-row",
+  "settings-card-grid",
   "magic-link-message",
   "page-cta",
   "article-card",

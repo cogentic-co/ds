@@ -153,6 +153,7 @@ export default defineConfig({
     "blocks/select-org-form": "src/blocks/select-org-form.tsx",
     "blocks/magic-link-message": "src/blocks/magic-link-message.tsx",
     "blocks/setting-row": "src/blocks/setting-row.tsx",
+    "blocks/settings-card-grid": "src/blocks/settings-card-grid.tsx",
     // Chart entry point
     charts: "src/charts/index.ts",
     // Workflow entry point

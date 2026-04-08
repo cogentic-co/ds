@@ -31,6 +31,11 @@ export type {
 export { SelectOrgForm, selectOrgSchema } from "./blocks/select-org-form"
 export type { SettingRowProps } from "./blocks/setting-row"
 export { SettingRow } from "./blocks/setting-row"
+export type {
+  SettingsCardGridItem,
+  SettingsCardGridProps,
+} from "./blocks/settings-card-grid"
+export { SettingsCardGrid } from "./blocks/settings-card-grid"
 export type { StatCardProps } from "./blocks/stat-card"
 // New blocks
 export { StatCard } from "./blocks/stat-card"
