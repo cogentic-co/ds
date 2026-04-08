@@ -134,6 +134,7 @@ function SelectOrgForm({
           <Field data-invalid={error ? true : undefined}>
             {resolvedVariant === "list" ? (
               <RadioGroup
+                className="gap-y-3"
                 value={selectedId}
                 onValueChange={(v) => {
                   setSelectedId(typeof v === "string" ? v : "")

@@ -44,7 +44,7 @@ function NumberInput({
       <Button
         variant="outline"
         size="icon"
-        className="size-8 shrink-0"
+        className="size-11 shrink-0"
         onClick={() => setValue(value - step)}
         disabled={disabled || value <= min}
         aria-label="Decrease"
@@ -65,7 +65,7 @@ function NumberInput({
       <Button
         variant="outline"
         size="icon"
-        className="size-8 shrink-0"
+        className="size-11 shrink-0"
         onClick={() => setValue(value + step)}
         disabled={disabled || value >= max}
         aria-label="Increase"

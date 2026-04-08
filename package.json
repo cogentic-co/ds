@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -33,10 +33,22 @@
         "default": "./dist/charts.js"
       }
     },
+    "./charts/*": {
+      "import": {
+        "types": "./dist/charts/*.d.ts",
+        "default": "./dist/charts/*.js"
+      }
+    },
     "./workflow": {
       "import": {
         "types": "./dist/workflow.d.ts",
         "default": "./dist/workflow.js"
+      }
+    },
+    "./workflow/*": {
+      "import": {
+        "types": "./dist/workflow/*.d.ts",
+        "default": "./dist/workflow/*.js"
       }
     },
     "./accordion": {
@@ -633,6 +645,12 @@
         "default": "./dist/components/typography.js"
       }
     },
+    "./virtualized-grid": {
+      "import": {
+        "types": "./dist/components/virtualized-grid.d.ts",
+        "default": "./dist/components/virtualized-grid.js"
+      }
+    },
     "./visually-hidden": {
       "import": {
         "types": "./dist/components/visually-hidden.d.ts",
@@ -790,6 +808,9 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@tanstack/react-form": "^1.28.4",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.21",
@@ -826,6 +847,7 @@
     "jscodeshift": "^17.3.0",
     "jsdom": "^28.1.0",
     "next": "16.1.6",
+    "pixelarticons": "^2.0.2",
     "react-docgen-typescript": "^2.4.0",
     "shiki": "^4.0.2",
     "size-limit": "^12.0.1",

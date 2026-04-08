@@ -141,7 +141,7 @@ function SearchInput<T>({
     <div ref={ref} data-slot="search-input" className={cn("relative w-full", className)} {...props}>
       <div
         className={cn(
-          "overflow-hidden rounded-xl border border-border bg-background transition-shadow duration-200",
+          "overflow-hidden rounded-xl border border-border bg-card transition-shadow duration-200",
           open ? "ring-2 ring-ring" : "focus-within:ring-2 focus-within:ring-ring",
         )}
       >

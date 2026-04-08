@@ -42,13 +42,13 @@ export function useZodForm<TSchema extends ZodAuthSchema>(
   })
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: TanStack Form's deeply-generic API is impractical to surface here; auth blocks treat form as opaque.
 type AnyForm = any
 
 type TextFieldProps = {
   form: AnyForm
   name: string
   label: string
+  description?: string
   type?: React.HTMLInputTypeAttribute
   placeholder?: string
   autoComplete?: string
@@ -60,6 +60,7 @@ export function TextField({
   form,
   name,
   label,
+  description,
   type = "text",
   placeholder,
   autoComplete,
@@ -67,7 +68,6 @@ export function TextField({
   rightSlot,
 }: TextFieldProps) {
   return (
-    // biome-ignore lint/suspicious/noExplicitAny: TanStack Form generics
     <form.Field name={name as any}>
       {(field: {
         name: string
@@ -84,6 +84,7 @@ export function TextField({
               <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
               {rightSlot}
             </div>
+            {description && <p className="text-muted-foreground text-sm">{description}</p>}
             <Input
               id={inputId}
               name={field.name}

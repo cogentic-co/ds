@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import { Home as HomeIcon } from "lucide-react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { axe } from "vitest-axe"
 import { AppShell } from "../app-shell"
@@ -211,6 +212,26 @@ describe("AppShell", () => {
   it("renders sidebarInset with page content wrapper", () => {
     const { container } = renderShell()
     expect(container.querySelector("[data-slot='sidebar-inset']")).toBeInTheDocument()
+  })
+
+  it("renders the icon rail when iconRail is enabled", () => {
+    render(
+      <AppShell
+        iconRail
+        logo={defaultLogo}
+        nav={[
+          {
+            id: "main",
+            icon: HomeIcon,
+            title: "Main",
+            items: [{ label: "Dashboard", href: "/dashboard" }],
+          },
+        ]}
+      >
+        test content
+      </AppShell>,
+    )
+    expect(screen.getByLabelText("Main")).toBeInTheDocument()
   })
 
   it("has no accessibility violations", async () => {

@@ -2,12 +2,12 @@
 
 import {
   BarChart3,
-  Blocks,
   BookOpen,
   Bot,
   Braces,
   Component,
-  Layout,
+  Layers,
+  LayoutGrid,
   MessageSquare,
   Moon,
   Move,
@@ -15,6 +15,8 @@ import {
   Palette,
   Play,
   Search,
+  Shapes,
+  Sparkles,
   Sun,
   Type,
   Workflow,
@@ -188,19 +190,36 @@ const complianceItems = ["case-card"]
 
 const shellItems = ["app-shell"]
 
-const blockItems = [
-  "pricing-table",
-  "stat-card",
-  "feature-section",
-  "hero-section",
-  "login-form",
-  "register-form",
-  "forgot-password-form",
-  "select-org-form",
-  "magic-link-message",
-  "page-cta",
-  "article-card",
-  "team-card",
+const blockGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Marketing",
+    items: [
+      "hero-section",
+      "feature-section",
+      "pricing-table",
+      "page-cta",
+      "article-card",
+      "team-card",
+    ],
+  },
+  {
+    label: "Dashboard",
+    items: ["stat-card"],
+  },
+  {
+    label: "Auth",
+    items: [
+      "login-form",
+      "register-form",
+      "forgot-password-form",
+      "magic-link-message",
+      "select-org-form",
+    ],
+  },
+  {
+    label: "Settings",
+    items: ["setting-row", "settings-card-grid", "rich-radio-list", "sequence-builder"],
+  },
 ]
 
 const chartItems = ["area-chart", "bar-chart", "line-chart", "pie-chart", "radial-chart"]
@@ -264,9 +283,49 @@ const animationItems = [
   "animation-webhooks",
 ]
 
+function buildBadge(slug: string) {
+  const meta = componentMeta[slug]
+  const status = meta?.status
+  if (!status || status === "stable") return undefined
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
+    >
+      {statusConfig[status].label}
+    </span>
+  )
+}
+
 function buildNav(pathname: string): NavGroup[] {
-  const nav: NavGroup[] = [
+  const buildComponentItems = (slugs: readonly string[]) =>
+    slugs.map((slug) => ({
+      label: toTitle(slug),
+      icon: Component,
+      href: `/components/${slug}`,
+      isActive: pathname === `/components/${slug}`,
+      badge: buildBadge(slug),
+    }))
+
+  // Top-level "Components" group has an empty top items list — its content is
+  // organised into sub-groups (Actions, Forms, Layout, etc.) so they render
+  // with proper section headers in the sidebar panel.
+  const componentSubGroups: NavGroup[] = [
+    ...componentGroups.map((group) => ({
+      title: group.label,
+      items: buildComponentItems(group.items),
+      defaultOpen: true,
+    })),
     {
+      title: "Compliance",
+      items: buildComponentItems(complianceItems),
+      defaultOpen: true,
+    },
+  ]
+
+  return [
+    {
+      id: "foundations",
+      icon: Palette,
       title: "Foundations",
       items: [
         {
@@ -300,148 +359,90 @@ function buildNav(pathname: string): NavGroup[] {
           isActive: pathname === "/foundations/motion",
         },
         {
+          label: "Icons",
+          icon: Shapes,
+          href: "/foundations/icons",
+          isActive: pathname === "/foundations/icons",
+        },
+        {
           label: "Theme Builder",
           icon: Paintbrush,
           href: "/foundations/theme-builder",
           isActive: pathname === "/foundations/theme-builder",
         },
-        {
-          label: "Claude Skills",
-          icon: Bot,
-          href: "/skills",
-          isActive: pathname === "/skills",
-        },
+        { label: "Claude Skills", icon: Bot, href: "/skills", isActive: pathname === "/skills" },
       ],
     },
-  ]
-
-  for (const group of componentGroups) {
-    nav.push({
-      title: group.label,
-      items: group.items.map((slug) => {
-        const href = `/components/${slug}`
-        const meta = componentMeta[slug]
-        const status = meta?.status
-        const showBadge = status && status !== "stable"
-        return {
+    {
+      id: "components",
+      icon: Component,
+      title: "Components",
+      items: [],
+      groups: componentSubGroups,
+    },
+    {
+      id: "blocks",
+      icon: LayoutGrid,
+      title: "Blocks",
+      items: [],
+      groups: blockGroups.map((group) => ({
+        title: group.label,
+        items: group.items.map((slug) => ({
           label: toTitle(slug),
           icon: Component,
-          href,
-          isActive: pathname === href,
-          badge: showBadge ? (
-            <span
-              className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
-            >
-              {statusConfig[status].label}
-            </span>
-          ) : undefined,
-        }
-      }),
-    })
-  }
-
-  nav.push({
-    title: "Compliance",
-    items: complianceItems.map((slug) => {
-      const href = `/components/${slug}`
-      const meta = componentMeta[slug]
-      const status = meta?.status
-      const showBadge = status && status !== "stable"
-      return {
+          href: `/blocks/${slug}`,
+          isActive: pathname === `/blocks/${slug}`,
+          badge: buildBadge(slug),
+        })),
+        defaultOpen: true,
+      })),
+    },
+    {
+      id: "shells",
+      icon: Layers,
+      title: "Shells",
+      items: shellItems.map((slug) => ({
         label: toTitle(slug),
         icon: Component,
-        href,
-        isActive: pathname === href,
-        badge: showBadge ? (
-          <span
-            className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
-          >
-            {statusConfig[status].label}
-          </span>
-        ) : undefined,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Shells",
-    items: shellItems.map((slug) => {
-      const href = `/shells/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Layout,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Blocks",
-    items: blockItems.map((slug) => {
-      const href = `/blocks/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Blocks,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Charts",
-    items: chartItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
+        href: `/shells/${slug}`,
+        isActive: pathname === `/shells/${slug}`,
+      })),
+    },
+    {
+      id: "charts",
+      icon: Sparkles,
+      title: "Charts",
+      items: chartItems.map((slug) => ({
         label: toTitle(slug),
         icon: BarChart3,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Workflow",
-    items: workflowItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Workflow,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "AI / Chatbot",
-    items: chatbotItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: MessageSquare,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Product Animations",
-    items: animationItems.map((slug) => {
-      const href = `/animations/${slug}`
-      return {
+        href: `/components/${slug}`,
+        isActive: pathname === `/components/${slug}`,
+      })),
+    },
+    {
+      id: "workflow",
+      icon: Workflow,
+      title: "Workflow",
+      items: buildComponentItems(workflowItems),
+    },
+    {
+      id: "chatbot",
+      icon: MessageSquare,
+      title: "AI / Chatbot",
+      items: buildComponentItems(chatbotItems),
+    },
+    {
+      id: "animations",
+      icon: Play,
+      title: "Animations",
+      items: animationItems.map((slug) => ({
         label: toTitle(slug),
         icon: Play,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  return nav
+        href: `/animations/${slug}`,
+        isActive: pathname === `/animations/${slug}`,
+      })),
+    },
+  ]
 }
 
 function getBreadcrumbs(pathname: string) {
@@ -476,12 +477,15 @@ function DarkModeToggle() {
 function filterNav(nav: NavGroup[], query: string): NavGroup[] {
   if (!query) return nav
   const q = query.toLowerCase()
-  return nav
-    .map((group) => ({
-      ...group,
-      items: group.items.filter((item) => item.label.toLowerCase().includes(q)),
-    }))
-    .filter((group) => group.items.length > 0)
+  const filter = (groups: NavGroup[]): NavGroup[] =>
+    groups
+      .map((group) => {
+        const filteredItems = group.items.filter((item) => item.label.toLowerCase().includes(q))
+        const filteredGroups = group.groups ? filter(group.groups) : undefined
+        return { ...group, items: filteredItems, groups: filteredGroups }
+      })
+      .filter((group) => group.items.length > 0 || (group.groups && group.groups.length > 0))
+  return filter(nav)
 }
 
 export function PreviewShell({ children }: { children: React.ReactNode }) {
@@ -517,6 +521,7 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
         </div>
       }
       linkComponent={Link}
+      iconRail
     >
       {children}
     </AppShell>

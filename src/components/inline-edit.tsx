@@ -57,7 +57,7 @@ function InlineEdit({
             if (e.key === "Enter") confirm()
             if (e.key === "Escape") cancel()
           }}
-          className="flex-1 rounded-md border bg-background px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-ring"
+          className="flex-1 rounded-md border bg-card px-2 py-1 text-sm outline-none focus:ring-2 focus:ring-ring"
         />
         <button
           type="button"

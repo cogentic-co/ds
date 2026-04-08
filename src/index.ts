@@ -23,17 +23,33 @@ export type { Plan, PricingTableProps } from "./blocks/pricing-table"
 export { PricingTable } from "./blocks/pricing-table"
 export type { RegisterFormProps, RegisterFormValues } from "./blocks/register-form"
 export { RegisterForm, registerSchema } from "./blocks/register-form"
+export type { RichRadioListProps, RichRadioOption } from "./blocks/rich-radio-list"
+export { RichRadioList } from "./blocks/rich-radio-list"
 export type {
   Organization,
   SelectOrgFormProps,
   SelectOrgFormValues,
 } from "./blocks/select-org-form"
 export { SelectOrgForm, selectOrgSchema } from "./blocks/select-org-form"
+export type { SequenceBuilderProps, SequenceStep } from "./blocks/sequence-builder"
+export { SequenceBuilder } from "./blocks/sequence-builder"
+export type { SettingRowProps } from "./blocks/setting-row"
+export { SettingRow } from "./blocks/setting-row"
+export type {
+  SettingsCardGridItem,
+  SettingsCardGridProps,
+} from "./blocks/settings-card-grid"
+export { SettingsCardGrid } from "./blocks/settings-card-grid"
 export type { StatCardProps } from "./blocks/stat-card"
 // New blocks
 export { StatCard } from "./blocks/stat-card"
 export type { TeamCardProps } from "./blocks/team-card"
 export { TeamCard } from "./blocks/team-card"
+export type {
+  Workspace,
+  WorkspaceSwitcherProps,
+} from "./blocks/workspace-switcher"
+export { WorkspaceSwitcher } from "./blocks/workspace-switcher"
 // Charts are NOT re-exported from main barrel to avoid bundling recharts.
 // Import from "@cogentic-co/ds/charts" instead.
 export * from "./components/accordion"
@@ -136,6 +152,7 @@ export * from "./components/toggle-group"
 export * from "./components/tooltip"
 export * from "./components/typewriter"
 export * from "./components/typography"
+export * from "./components/virtualized-grid"
 // New components
 export * from "./components/visually-hidden"
 export * from "./components/waffle-chart"

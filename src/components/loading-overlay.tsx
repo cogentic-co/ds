@@ -14,7 +14,7 @@ function LoadingOverlay({ loading, label, className, children, ...props }: Loadi
     <div data-slot="loading-overlay" className={cn("relative", className)} {...props}>
       {children}
       {loading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-2 rounded-[inherit] bg-background/80 backdrop-blur-[2px]">
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-2 rounded-[inherit] bg-card/80 backdrop-blur-[2px]">
           <Spinner className="size-6" />
           {label && <p className="text-muted-foreground text-sm">{label}</p>}
         </div>

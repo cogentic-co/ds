@@ -1,5 +1,7 @@
 "use client"
 
+import { Bell, CreditCard, Mail, Monitor, Settings2, Users } from "lucide-react"
+import { useState } from "react"
 import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
 import { PricingTable } from "@/blocks/pricing-table"
@@ -10,8 +12,15 @@ import { HeroSection } from "@/src/blocks/hero-section"
 import { LoginForm } from "@/src/blocks/login-form"
 import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
 import { RegisterForm } from "@/src/blocks/register-form"
+import { RichRadioList } from "@/src/blocks/rich-radio-list"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
+import { SequenceBuilder, type SequenceStep } from "@/src/blocks/sequence-builder"
+import { SettingRow } from "@/src/blocks/setting-row"
+import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
 import { StatCard } from "@/src/blocks/stat-card"
+import { Card } from "@/src/components/card"
+import { Separator } from "@/src/components/separator"
+import { Switch } from "@/src/components/switch"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
 // ── Stat Card ──────────────────────────────────────────────────────────
@@ -183,6 +192,178 @@ function FeatureSectionPreview() {
   )
 }
 
+// ── Setting Row ────────────────────────────────────────────────────────
+
+function SettingRowPreview() {
+  return (
+    <div className="mx-auto max-w-2xl">
+      <Card padding="none">
+        <SettingRow
+          icon={<Bell className="size-4" />}
+          title="Email notifications"
+          description="Get notified when threads you follow get updates"
+          action={<Switch defaultChecked />}
+        />
+        <Separator />
+        <SettingRow
+          icon={<Monitor className="size-4" />}
+          title="Desktop notifications"
+          description="Show notifications on your desktop when new threads arrive"
+          action={<Switch />}
+        />
+        <Separator />
+        <SettingRow
+          icon={<Mail className="size-4" />}
+          title="Weekly digest"
+          description="Receive a summary email every Monday"
+          action={<Switch defaultChecked />}
+        />
+        <Separator />
+        <SettingRow
+          title="Marketing emails"
+          description="Occasional product updates and tips"
+          action={<Switch />}
+        />
+      </Card>
+    </div>
+  )
+}
+
+// ── Settings Card Grid ────────────────────────────────────────────────
+
+const sampleSettings = [
+  {
+    icon: <Settings2 className="size-5" />,
+    title: "General",
+    description: "Configure workspace name, logo, and domain settings",
+    href: "#general",
+  },
+  {
+    icon: <Users className="size-5" />,
+    title: "Members",
+    description: "Add and manage team members and their permissions",
+    href: "#members",
+  },
+  {
+    icon: <Bell className="size-5" />,
+    title: "Notifications",
+    description: "Control when and how you receive workspace notifications",
+    href: "#notifications",
+  },
+  {
+    icon: <CreditCard className="size-5" />,
+    title: "Billing",
+    description: "Manage your subscription, usage, and billing information",
+    href: "#billing",
+  },
+]
+
+function SettingsCardGridPreview() {
+  return (
+    <div className="mx-auto max-w-3xl">
+      <SettingsCardGrid items={sampleSettings} />
+    </div>
+  )
+}
+
+// ── Rich Radio List ────────────────────────────────────────────────────
+
+const roleOptions = [
+  {
+    value: "owner",
+    title: "Owner",
+    description:
+      "Has full access to everything. Can manage billing, workspace settings, API keys and workspace deletion.",
+  },
+  {
+    value: "admin",
+    title: "Admin",
+    description: "Has access to everything, except billing or workspace deletion.",
+  },
+  {
+    value: "support",
+    title: "Support",
+    description: "Can message customers and use all app features.",
+  },
+  {
+    value: "viewer",
+    title: "Viewer",
+    description:
+      "Can view threads and participate in internal discussions. Cannot message customers.",
+  },
+]
+
+function RichRadioListPreview() {
+  return (
+    <div className="mx-auto max-w-lg">
+      <div className="mb-2 font-semibold text-sm">Role</div>
+      <RichRadioList options={roleOptions} defaultValue="admin" aria-label="Role" />
+    </div>
+  )
+}
+
+// ── Sequence Builder ───────────────────────────────────────────────────
+
+function SequenceBuilderPreview() {
+  const [steps, setSteps] = useState<SequenceStep[]>([
+    {
+      id: "step-1",
+      title: "Assign to support team",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          Route new threads to the on-call support engineer
+        </div>
+      ),
+    },
+    {
+      id: "step-2",
+      title: "Wait 15 minutes",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          Give the assigned engineer time to respond before escalating
+        </div>
+      ),
+    },
+    {
+      id: "step-3",
+      title: "Escalate to team lead",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          If no response, notify the team lead via Slack
+        </div>
+      ),
+    },
+  ])
+
+  function handleAddStep(index: number) {
+    const newId = `step-${Date.now()}`
+    setSteps((current) => {
+      const next = [...current]
+      next.splice(index, 0, {
+        id: newId,
+        title: "New step",
+        content: <div className="text-muted-foreground text-sm">Configure this step</div>,
+      })
+      return next
+    })
+  }
+
+  function handleRemoveStep(id: string) {
+    setSteps((current) => current.filter((step) => step.id !== id))
+  }
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <SequenceBuilder
+        steps={steps}
+        onStepsChange={setSteps}
+        onAddStep={handleAddStep}
+        onRemoveStep={handleRemoveStep}
+      />
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -220,6 +401,10 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       />
     </div>
   ),
+  "rich-radio-list": RichRadioListPreview,
+  "sequence-builder": SequenceBuilderPreview,
+  "setting-row": SettingRowPreview,
+  "settings-card-grid": SettingsCardGridPreview,
   "team-card": () => (
     <div className="grid max-w-3xl gap-6 sm:grid-cols-3">
       <TeamCard name="Alice Smith" role="Engineering Lead" />
