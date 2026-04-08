@@ -41,10 +41,17 @@ function CogenticLogo({ className }: { className?: string }) {
   )
 }
 
+import { PixelIcon } from "@/src/icons/pixel"
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
 import { componentMeta, statusConfig } from "./_component-meta"
 import { CommandSearch } from "./command-search"
+
+function pixel(name: string): React.ComponentType<React.SVGProps<SVGSVGElement>> {
+  return function PixelIconWrapper(props) {
+    return <PixelIcon name={name} {...(props as object)} />
+  }
+}
 
 function toTitle(slug: string) {
   return slug
@@ -273,9 +280,57 @@ const animationItems = [
   "animation-webhooks",
 ]
 
+function buildBadge(slug: string) {
+  const meta = componentMeta[slug]
+  const status = meta?.status
+  if (!status || status === "stable") return undefined
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
+    >
+      {statusConfig[status].label}
+    </span>
+  )
+}
+
 function buildNav(pathname: string): NavGroup[] {
-  const nav: NavGroup[] = [
+  const componentItems = [
+    ...componentGroups.flatMap((group) =>
+      group.items.map((slug) => ({
+        label: toTitle(slug),
+        icon: pixel("layout"),
+        href: `/components/${slug}`,
+        isActive: pathname === `/components/${slug}`,
+        badge: buildBadge(slug),
+      })),
+    ),
+    ...complianceItems.map((slug) => ({
+      label: toTitle(slug),
+      icon: pixel("layout"),
+      href: `/components/${slug}`,
+      isActive: pathname === `/components/${slug}`,
+      badge: buildBadge(slug),
+    })),
+    ...workflowItems.map((slug) => ({
+      label: toTitle(slug),
+      icon: pixel("layout"),
+      href: `/components/${slug}`,
+      isActive: pathname === `/components/${slug}`,
+      badge: buildBadge(slug),
+    })),
+    ...chatbotItems.map((slug) => ({
+      label: toTitle(slug),
+      icon: pixel("layout"),
+      href: `/components/${slug}`,
+      isActive: pathname === `/components/${slug}`,
+      badge: buildBadge(slug),
+    })),
+  ]
+
+  return [
     {
+      id: "foundations",
+      icon: Palette,
       title: "Foundations",
       items: [
         {
@@ -320,143 +375,61 @@ function buildNav(pathname: string): NavGroup[] {
           href: "/foundations/theme-builder",
           isActive: pathname === "/foundations/theme-builder",
         },
-        {
-          label: "Claude Skills",
-          icon: Bot,
-          href: "/skills",
-          isActive: pathname === "/skills",
-        },
+        { label: "Claude Skills", icon: Bot, href: "/skills", isActive: pathname === "/skills" },
       ],
     },
+    {
+      id: "components",
+      icon: Component,
+      title: "Components",
+      items: componentItems,
+    },
+    {
+      id: "blocks",
+      icon: LayoutGrid,
+      title: "Blocks",
+      items: blockItems.map((slug) => ({
+        label: toTitle(slug),
+        icon: pixel("layout"),
+        href: `/blocks/${slug}`,
+        isActive: pathname === `/blocks/${slug}`,
+        badge: buildBadge(slug),
+      })),
+    },
+    {
+      id: "shells",
+      icon: Layers,
+      title: "Shells",
+      items: shellItems.map((slug) => ({
+        label: toTitle(slug),
+        icon: pixel("layout"),
+        href: `/shells/${slug}`,
+        isActive: pathname === `/shells/${slug}`,
+      })),
+    },
+    {
+      id: "charts",
+      icon: Sparkles,
+      title: "Charts",
+      items: chartItems.map((slug) => ({
+        label: toTitle(slug),
+        icon: pixel("chart-bar"),
+        href: `/components/${slug}`,
+        isActive: pathname === `/components/${slug}`,
+      })),
+    },
+    {
+      id: "tools",
+      icon: Wrench,
+      title: "Tools",
+      items: animationItems.map((slug) => ({
+        label: toTitle(slug),
+        icon: pixel("zap"),
+        href: `/animations/${slug}`,
+        isActive: pathname === `/animations/${slug}`,
+      })),
+    },
   ]
-
-  for (const group of componentGroups) {
-    nav.push({
-      title: group.label,
-      items: group.items.map((slug) => {
-        const href = `/components/${slug}`
-        const meta = componentMeta[slug]
-        const status = meta?.status
-        const showBadge = status && status !== "stable"
-        return {
-          label: toTitle(slug),
-          icon: Component,
-          href,
-          isActive: pathname === href,
-          badge: showBadge ? (
-            <span
-              className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
-            >
-              {statusConfig[status].label}
-            </span>
-          ) : undefined,
-        }
-      }),
-    })
-  }
-
-  nav.push({
-    title: "Compliance",
-    items: complianceItems.map((slug) => {
-      const href = `/components/${slug}`
-      const meta = componentMeta[slug]
-      const status = meta?.status
-      const showBadge = status && status !== "stable"
-      return {
-        label: toTitle(slug),
-        icon: Component,
-        href,
-        isActive: pathname === href,
-        badge: showBadge ? (
-          <span
-            className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
-          >
-            {statusConfig[status].label}
-          </span>
-        ) : undefined,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Shells",
-    items: shellItems.map((slug) => {
-      const href = `/shells/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Layout,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Blocks",
-    items: blockItems.map((slug) => {
-      const href = `/blocks/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Blocks,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Charts",
-    items: chartItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: BarChart3,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Workflow",
-    items: workflowItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Workflow,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "AI / Chatbot",
-    items: chatbotItems.map((slug) => {
-      const href = `/components/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: MessageSquare,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  nav.push({
-    title: "Product Animations",
-    items: animationItems.map((slug) => {
-      const href = `/animations/${slug}`
-      return {
-        label: toTitle(slug),
-        icon: Play,
-        href,
-        isActive: pathname === href,
-      }
-    }),
-  })
-
-  return nav
 }
 
 function getBreadcrumbs(pathname: string) {
@@ -499,81 +472,11 @@ function filterNav(nav: NavGroup[], query: string): NavGroup[] {
     .filter((group) => group.items.length > 0)
 }
 
-const railGroupMap: Record<string, string> = {
-  Foundations: "foundations",
-  Compliance: "components",
-  Shells: "shells",
-  Blocks: "blocks",
-  Charts: "charts",
-  Workflow: "components",
-  "AI / Chatbot": "components",
-  "Product Animations": "components",
-}
-
-function groupBelongsToRail(groupTitle: string, railId: string | undefined): boolean {
-  if (!railId) return true
-  const mapped = railGroupMap[groupTitle]
-  if (mapped) return mapped === railId
-  // componentGroups (Actions, Forms, Layout, etc.) all belong to "components"
-  return railId === "components"
-}
-
-const iconRailItems = [
-  {
-    id: "foundations",
-    icon: <Palette className="size-5" />,
-    label: "Foundations",
-    href: "/getting-started",
-  },
-  {
-    id: "components",
-    icon: <Component className="size-5" />,
-    label: "Components",
-    href: "/components/button",
-  },
-  {
-    id: "blocks",
-    icon: <LayoutGrid className="size-5" />,
-    label: "Blocks",
-    href: "/blocks/setting-row",
-  },
-  {
-    id: "shells",
-    icon: <Layers className="size-5" />,
-    label: "Shells",
-    href: "/shells/app-shell",
-  },
-  {
-    id: "charts",
-    icon: <Sparkles className="size-5" />,
-    label: "Charts",
-    href: "/components/chart",
-  },
-  {
-    id: "tools",
-    icon: <Wrench className="size-5" />,
-    label: "Tools",
-    href: "/skills",
-  },
-]
-
 export function PreviewShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [search, setSearch] = useState("")
 
-  const activeRailId = useMemo(() => {
-    if (pathname.startsWith("/components")) return "components"
-    if (pathname.startsWith("/blocks")) return "blocks"
-    if (pathname.startsWith("/foundations")) return "foundations"
-    if (pathname.startsWith("/shells")) return "shells"
-    if (pathname.startsWith("/skills")) return "tools"
-    return "foundations"
-  }, [pathname])
-
-  const nav = useMemo(() => {
-    const all = filterNav(buildNav(pathname), search)
-    return all.filter((group) => groupBelongsToRail(group.title, activeRailId))
-  }, [pathname, search, activeRailId])
+  const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
 
   return (
     <AppShell
@@ -602,8 +505,7 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
         </div>
       }
       linkComponent={Link}
-      iconRail={iconRailItems}
-      activeRailId={activeRailId}
+      iconRail
     >
       {children}
     </AppShell>

@@ -214,17 +214,24 @@ describe("AppShell", () => {
     expect(container.querySelector("[data-slot='sidebar-inset']")).toBeInTheDocument()
   })
 
-  it("renders the icon rail when iconRail prop is provided", () => {
+  it("renders the icon rail when iconRail is enabled", () => {
     render(
       <AppShell
-        iconRail={[{ id: "home", icon: <HomeIcon />, label: "Home" }]}
+        iconRail
         logo={defaultLogo}
-        nav={defaultNav}
+        nav={[
+          {
+            id: "main",
+            icon: HomeIcon,
+            title: "Main",
+            items: [{ label: "Dashboard", href: "/dashboard" }],
+          },
+        ]}
       >
         test content
       </AppShell>,
     )
-    expect(screen.getByLabelText("Home")).toBeInTheDocument()
+    expect(screen.getByLabelText("Main")).toBeInTheDocument()
   })
 
   it("has no accessibility violations", async () => {

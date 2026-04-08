@@ -352,9 +352,10 @@ function AppShell({
   })()
 
   // Filter nav groups to only the active rail's group when rail is enabled.
-  const visibleNav = iconRail && resolvedActiveRailId
-    ? nav.filter((g) => groupSlug(g) === resolvedActiveRailId)
-    : nav
+  const visibleNav =
+    iconRail && resolvedActiveRailId
+      ? nav.filter((g) => groupSlug(g) === resolvedActiveRailId)
+      : nav
 
   return (
     <div className="flex h-svh w-full overflow-hidden bg-background">
