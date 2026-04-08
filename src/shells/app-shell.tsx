@@ -435,20 +435,20 @@ function AppShell({
 
   return (
     <div className="group/shell flex h-svh w-full overflow-hidden bg-background">
-      {iconRail && railItems && (
-        <IconRail
-          items={railItems}
-          activeId={resolvedActiveRailId}
-          onSelect={onRailSelect}
-          header={iconRailHeader ?? <RailLogo logo={logo} linkComponent={Link} />}
-          footer={iconRailFooter}
-          linkComponent={Link}
-        />
-      )}
       <SidebarProvider
         className={cn("flex-1", className)}
         style={iconRail ? ({ "--sidebar-left-offset": "56px" } as React.CSSProperties) : undefined}
       >
+        {iconRail && railItems && (
+          <IconRail
+            items={railItems}
+            activeId={resolvedActiveRailId}
+            onSelect={onRailSelect}
+            header={iconRailHeader ?? <RailLogo logo={logo} linkComponent={Link} />}
+            footer={iconRailFooter}
+            linkComponent={Link}
+          />
+        )}
         <Sidebar variant="inset">
           <SidebarHeader>
             {!iconRail && <ShellLogo logo={logo} linkComponent={Link} />}

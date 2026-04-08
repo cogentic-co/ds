@@ -51,7 +51,7 @@ export default function IconsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 py-8">
+    <div className="space-y-6">
       <header>
         <h1 className="font-semibold text-3xl">Icons</h1>
         <p className="mt-1 text-muted-foreground">
