@@ -1,5 +1,6 @@
 "use client"
 
+import { Bell, Mail, Monitor } from "lucide-react"
 import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
 import { PricingTable } from "@/blocks/pricing-table"
@@ -11,7 +12,11 @@ import { LoginForm } from "@/src/blocks/login-form"
 import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
 import { RegisterForm } from "@/src/blocks/register-form"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
+import { SettingRow } from "@/src/blocks/setting-row"
 import { StatCard } from "@/src/blocks/stat-card"
+import { Card } from "@/src/components/card"
+import { Separator } from "@/src/components/separator"
+import { Switch } from "@/src/components/switch"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
 // ── Stat Card ──────────────────────────────────────────────────────────
@@ -183,6 +188,43 @@ function FeatureSectionPreview() {
   )
 }
 
+// ── Setting Row ────────────────────────────────────────────────────────
+
+function SettingRowPreview() {
+  return (
+    <div className="mx-auto max-w-2xl">
+      <Card className="p-0">
+        <SettingRow
+          icon={<Bell className="size-4" />}
+          title="Email notifications"
+          description="Get notified when threads you follow get updates"
+          action={<Switch defaultChecked />}
+        />
+        <Separator />
+        <SettingRow
+          icon={<Monitor className="size-4" />}
+          title="Desktop notifications"
+          description="Show notifications on your desktop when new threads arrive"
+          action={<Switch />}
+        />
+        <Separator />
+        <SettingRow
+          icon={<Mail className="size-4" />}
+          title="Weekly digest"
+          description="Receive a summary email every Monday"
+          action={<Switch defaultChecked />}
+        />
+        <Separator />
+        <SettingRow
+          title="Marketing emails"
+          description="Occasional product updates and tips"
+          action={<Switch />}
+        />
+      </Card>
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -220,6 +262,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       />
     </div>
   ),
+  "setting-row": SettingRowPreview,
   "team-card": () => (
     <div className="grid max-w-3xl gap-6 sm:grid-cols-3">
       <TeamCard name="Alice Smith" role="Engineering Lead" />

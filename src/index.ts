@@ -29,6 +29,8 @@ export type {
   SelectOrgFormValues,
 } from "./blocks/select-org-form"
 export { SelectOrgForm, selectOrgSchema } from "./blocks/select-org-form"
+export type { SettingRowProps } from "./blocks/setting-row"
+export { SettingRow } from "./blocks/setting-row"
 export type { StatCardProps } from "./blocks/stat-card"
 // New blocks
 export { StatCard } from "./blocks/stat-card"

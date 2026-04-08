@@ -197,6 +197,7 @@ const blockItems = [
   "register-form",
   "forgot-password-form",
   "select-org-form",
+  "setting-row",
   "magic-link-message",
   "page-cta",
   "article-card",

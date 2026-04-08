@@ -154,6 +154,45 @@ import { PlusIcon } from "lucide-react"
   </SplitPane>
 </div>`,
   },
+  "setting-row": {
+    status: "new",
+    description:
+      "Stacked settings row with icon, title, description, and trailing action slot. Designed to sit inside a Card with Separator dividers between rows — the Plain settings pattern.",
+    since: "0.9.0",
+    importStatement: `import { SettingRow } from "@cogentic-co/ds/blocks/setting-row"`,
+    dos: [
+      "Stack multiple SettingRow components inside a Card with Separator dividers between each row",
+      "Keep action slots tight — use Switch, Button, or a compact Select",
+      "Use the icon prop to reinforce the row's topic at a glance",
+      "Keep descriptions short — one sentence or phrase is enough",
+    ],
+    donts: [
+      "Don't place multiple interactive actions per row — one action per row only",
+      "Don't write very long descriptions — they break the compact rhythm of a settings list",
+      "Don't nest SettingRow components inside each other",
+    ],
+    codeExample: `import { SettingRow } from "@cogentic-co/ds/blocks/setting-row"
+import { Card } from "@cogentic-co/ds/components/card"
+import { Separator } from "@cogentic-co/ds/components/separator"
+import { Switch } from "@cogentic-co/ds/components/switch"
+import { Bell, Mail } from "lucide-react"
+
+<Card className="p-0">
+  <SettingRow
+    icon={<Bell className="size-4" />}
+    title="Email notifications"
+    description="Get notified when threads you follow get updates"
+    action={<Switch defaultChecked />}
+  />
+  <Separator />
+  <SettingRow
+    icon={<Mail className="size-4" />}
+    title="Weekly digest"
+    description="Receive a summary email every Monday"
+    action={<Switch />}
+  />
+</Card>`,
+  },
   "step-progress": {
     status: "new",
     description:
