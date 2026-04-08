@@ -147,6 +147,7 @@ export * from "./components/toggle-group"
 export * from "./components/tooltip"
 export * from "./components/typewriter"
 export * from "./components/typography"
+export * from "./components/virtualized-grid"
 // New components
 export * from "./components/visually-hidden"
 export * from "./components/waffle-chart"

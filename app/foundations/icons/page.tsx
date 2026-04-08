@@ -6,6 +6,7 @@ import { useMemo, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { VirtualizedGrid } from "@/src/components/virtualized-grid"
 
 type IconEntry = {
   name: string
@@ -88,41 +89,51 @@ import { Home } from "pixelarticons/react/Home"
         </TabsList>
 
         <TabsContent value="lucide">
-          <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8">
-            {filteredLucide.map(({ name, Component }) => (
+          <VirtualizedGrid
+            items={filteredLucide}
+            columns={8}
+            rowHeight={84}
+            gap={12}
+            className="h-[600px]"
+            getItemKey={(item) => item.name}
+            renderItem={({ name, Component }) => (
               <button
-                key={name}
                 type="button"
                 onClick={() => copyImport(`import { ${name} } from "lucide-react"`)}
-                className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 transition-colors hover:border-focal hover:bg-muted/30"
+                className="group flex size-full flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 transition-colors hover:border-focal hover:bg-muted/30"
                 aria-label={`Copy import for ${name}`}
               >
                 <Component className="size-5" />
-                <span className="truncate text-[10px] text-muted-foreground group-hover:text-foreground">
+                <span className="w-full truncate text-[10px] text-muted-foreground group-hover:text-foreground">
                   {name}
                 </span>
               </button>
-            ))}
-          </div>
+            )}
+          />
         </TabsContent>
 
         <TabsContent value="pixel">
-          <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8">
-            {filteredPixel.map(({ name, Component }) => (
+          <VirtualizedGrid
+            items={filteredPixel}
+            columns={8}
+            rowHeight={84}
+            gap={12}
+            className="h-[600px]"
+            getItemKey={(item) => item.name}
+            renderItem={({ name, Component }) => (
               <button
-                key={name}
                 type="button"
                 onClick={() => copyImport(`import { ${name} } from "pixelarticons/react/${name}"`)}
-                className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 transition-colors hover:border-focal hover:bg-muted/30"
+                className="group flex size-full flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 transition-colors hover:border-focal hover:bg-muted/30"
                 aria-label={`Copy import for ${name}`}
               >
                 <Component width={20} height={20} />
-                <span className="truncate text-[10px] text-muted-foreground group-hover:text-foreground">
+                <span className="w-full truncate text-[10px] text-muted-foreground group-hover:text-foreground">
                   {name}
                 </span>
               </button>
-            ))}
-          </div>
+            )}
+          />
         </TabsContent>
       </Tabs>
     </div>

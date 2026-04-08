@@ -33,10 +33,22 @@
         "default": "./dist/charts.js"
       }
     },
+    "./charts/*": {
+      "import": {
+        "types": "./dist/charts/*.d.ts",
+        "default": "./dist/charts/*.js"
+      }
+    },
     "./workflow": {
       "import": {
         "types": "./dist/workflow.d.ts",
         "default": "./dist/workflow.js"
+      }
+    },
+    "./workflow/*": {
+      "import": {
+        "types": "./dist/workflow/*.d.ts",
+        "default": "./dist/workflow/*.js"
       }
     },
     "./accordion": {
@@ -631,6 +643,12 @@
       "import": {
         "types": "./dist/components/typography.d.ts",
         "default": "./dist/components/typography.js"
+      }
+    },
+    "./virtualized-grid": {
+      "import": {
+        "types": "./dist/components/virtualized-grid.d.ts",
+        "default": "./dist/components/virtualized-grid.js"
       }
     },
     "./visually-hidden": {

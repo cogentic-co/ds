@@ -103,6 +103,7 @@ export default defineConfig({
     "components/tooltip": "src/components/tooltip.tsx",
     "components/typewriter": "src/components/typewriter.tsx",
     "components/typography": "src/components/typography.tsx",
+    "components/virtualized-grid": "src/components/virtualized-grid.tsx",
     "components/visually-hidden": "src/components/visually-hidden.tsx",
     "components/waffle-chart": "src/components/waffle-chart.tsx",
     // Per-hook entry points
@@ -156,10 +157,28 @@ export default defineConfig({
     "blocks/magic-link-message": "src/blocks/magic-link-message.tsx",
     "blocks/setting-row": "src/blocks/setting-row.tsx",
     "blocks/settings-card-grid": "src/blocks/settings-card-grid.tsx",
-    // Chart entry point
+    // Chart entry points — per-chart subpaths for tree-shaking
     charts: "src/charts/index.ts",
-    // Workflow entry point
+    "charts/area-chart": "src/charts/area-chart.tsx",
+    "charts/bar-chart": "src/charts/bar-chart.tsx",
+    "charts/line-chart": "src/charts/line-chart.tsx",
+    "charts/pie-chart": "src/charts/pie-chart.tsx",
+    "charts/radial-chart": "src/charts/radial-chart.tsx",
+    // Workflow entry points — per-module subpaths for tree-shaking
     workflow: "src/workflow/index.ts",
+    "workflow/canvas": "src/workflow/canvas.tsx",
+    "workflow/workflow-connection": "src/workflow/workflow-connection.tsx",
+    "workflow/workflow-context": "src/workflow/workflow-context.tsx",
+    "workflow/workflow-controls": "src/workflow/workflow-controls.tsx",
+    "workflow/workflow-edge": "src/workflow/workflow-edge.tsx",
+    "workflow/workflow-gate": "src/workflow/workflow-gate.tsx",
+    "workflow/workflow-group": "src/workflow/workflow-group.tsx",
+    "workflow/workflow-handle": "src/workflow/workflow-handle.tsx",
+    "workflow/workflow-label": "src/workflow/workflow-label.tsx",
+    "workflow/workflow-minimap": "src/workflow/workflow-minimap.tsx",
+    "workflow/workflow-node": "src/workflow/workflow-node.tsx",
+    "workflow/workflow-panel": "src/workflow/workflow-panel.tsx",
+    "workflow/workflow-toolbar": "src/workflow/workflow-toolbar.tsx",
     // Chatbot entry point
     chatbot: "src/chatbot/index.ts",
   },

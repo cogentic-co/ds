@@ -90,6 +90,38 @@ import "@cogentic/ds/styles.css"  // in layout.tsx or globals.css`}
 
       <Separator />
 
+      {/* Import Patterns */}
+      <section className="space-y-6">
+        <h2 className="font-semibold text-xl">Import Patterns &amp; Tree-Shaking</h2>
+        <p className="text-muted-foreground text-sm">
+          The package supports both <strong>barrel imports</strong> and{" "}
+          <strong>per-component subpath imports</strong>. For optimal bundle sizes, prefer subpath
+          imports when you only need a handful of components — they guarantee only the component and
+          its direct dependencies end up in your bundle.
+        </p>
+        <Card className="space-y-4 p-6">
+          <CodeBlock title="Subpath imports (recommended)">
+            {`import { Button } from "@cogentic/ds/button"
+import { Card } from "@cogentic/ds/card"
+import { Dialog } from "@cogentic/ds/dialog"
+import { LoginForm } from "@cogentic/ds/blocks/login-form"
+import { BarChart } from "@cogentic/ds/charts/bar-chart"`}
+          </CodeBlock>
+          <CodeBlock title="Barrel import (convenient)">
+            {`import { Button, Card, Dialog } from "@cogentic/ds"`}
+          </CodeBlock>
+        </Card>
+        <p className="text-muted-foreground text-sm">
+          The barrel export is tree-shakable too (the package ships with{" "}
+          <InlineCode>{'"sideEffects": ["*.css"]'}</InlineCode>), but per-component subpaths
+          guarantee the best result across every bundler. Animations, blocks, charts, workflow,
+          hooks, and the <InlineCode>cn()</InlineCode> utility all have dedicated subpaths — check
+          the sidebar for the full list.
+        </p>
+      </section>
+
+      <Separator />
+
       {/* Code Splitting */}
       <section className="space-y-6">
         <h2 className="font-semibold text-xl">Code Splitting</h2>
