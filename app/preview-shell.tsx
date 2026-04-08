@@ -17,6 +17,7 @@ import {
   Palette,
   Play,
   Search,
+  Shapes,
   Sparkles,
   Sun,
   Type,
@@ -306,6 +307,12 @@ function buildNav(pathname: string): NavGroup[] {
           icon: Move,
           href: "/foundations/motion",
           isActive: pathname === "/foundations/motion",
+        },
+        {
+          label: "Icons",
+          icon: Shapes,
+          href: "/foundations/icons",
+          isActive: pathname === "/foundations/icons",
         },
         {
           label: "Theme Builder",
