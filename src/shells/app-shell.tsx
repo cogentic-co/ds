@@ -63,6 +63,12 @@ type NavGroup = {
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   title: string
   items: NavItem[]
+  /**
+   * Optional sub-groups rendered as labelled sections within this group's panel.
+   * Each sub-group renders its own header + items underneath this group's items.
+   * Sub-groups do NOT contribute to the icon rail — only top-level groups do.
+   */
+  groups?: NavGroup[]
   defaultOpen?: boolean
 }
 
@@ -71,9 +77,10 @@ function groupSlug(group: NavGroup): string {
 }
 
 function groupContainsActive(group: NavGroup): boolean {
-  const walk = (items: NavItem[]): boolean =>
-    items.some((item) => item.isActive || (item.children && walk(item.children)))
-  return walk(group.items)
+  const walkItems = (items: NavItem[]): boolean =>
+    items.some((item) => item.isActive || (item.children && walkItems(item.children)))
+  if (walkItems(group.items)) return true
+  return Boolean(group.groups?.some((sub) => groupContainsActive(sub)))
 }
 
 type AppShellUser = {
@@ -232,6 +239,40 @@ function ShellNavItem({
   )
 }
 
+function ShellNavGroup({
+  group,
+  linkComponent,
+  hideLabel = false,
+}: {
+  group: NavGroup
+  linkComponent?: React.ElementType
+  hideLabel?: boolean
+}) {
+  return (
+    <>
+      <SidebarGroup>
+        {!hideLabel && <SidebarGroupLabel>{group.title}</SidebarGroupLabel>}
+        <SidebarGroupContent>
+          <SidebarMenu>
+            {group.items.map((item) => (
+              <ShellNavItem key={item.label} item={item} linkComponent={linkComponent} />
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+      {group.groups?.map((sub) => (
+        <ShellNavGroup
+          key={sub.title}
+          group={sub}
+          linkComponent={linkComponent}
+          // Sub-groups always show their label.
+          hideLabel={false}
+        />
+      ))}
+    </>
+  )
+}
+
 function ShellUserMenu({
   user,
   userMenuItems,
@@ -382,16 +423,14 @@ function AppShell({
           <SidebarContent className="overflow-hidden">
             <ScrollArea className="min-h-0 flex-1">
               {visibleNav.map((group) => (
-                <SidebarGroup key={group.title}>
-                  <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
-                  <SidebarGroupContent>
-                    <SidebarMenu>
-                      {group.items.map((item) => (
-                        <ShellNavItem key={item.label} item={item} linkComponent={Link} />
-                      ))}
-                    </SidebarMenu>
-                  </SidebarGroupContent>
-                </SidebarGroup>
+                <ShellNavGroup
+                  key={group.title}
+                  group={group}
+                  linkComponent={Link}
+                  // Skip the top-level group's own label when iconRail is enabled —
+                  // the rail icon is the visual identifier for the active group.
+                  hideLabel={Boolean(iconRail)}
+                />
               ))}
             </ScrollArea>
           </SidebarContent>

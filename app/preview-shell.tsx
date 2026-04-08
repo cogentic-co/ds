@@ -294,37 +294,35 @@ function buildBadge(slug: string) {
 }
 
 function buildNav(pathname: string): NavGroup[] {
-  const componentItems = [
-    ...componentGroups.flatMap((group) =>
-      group.items.map((slug) => ({
-        label: toTitle(slug),
-        icon: pixel("layout"),
-        href: `/components/${slug}`,
-        isActive: pathname === `/components/${slug}`,
-        badge: buildBadge(slug),
-      })),
-    ),
-    ...complianceItems.map((slug) => ({
+  const buildComponentItems = (slugs: readonly string[]) =>
+    slugs.map((slug) => ({
       label: toTitle(slug),
       icon: pixel("layout"),
       href: `/components/${slug}`,
       isActive: pathname === `/components/${slug}`,
       badge: buildBadge(slug),
+    }))
+
+  // Top-level "Components" group has an empty top items list — its content is
+  // organised into sub-groups (Actions, Forms, Layout, etc.) so they render
+  // with proper section headers in the sidebar panel.
+  const componentSubGroups: NavGroup[] = [
+    ...componentGroups.map((group) => ({
+      title: group.label,
+      items: buildComponentItems(group.items),
     })),
-    ...workflowItems.map((slug) => ({
-      label: toTitle(slug),
-      icon: pixel("layout"),
-      href: `/components/${slug}`,
-      isActive: pathname === `/components/${slug}`,
-      badge: buildBadge(slug),
-    })),
-    ...chatbotItems.map((slug) => ({
-      label: toTitle(slug),
-      icon: pixel("layout"),
-      href: `/components/${slug}`,
-      isActive: pathname === `/components/${slug}`,
-      badge: buildBadge(slug),
-    })),
+    {
+      title: "Compliance",
+      items: buildComponentItems(complianceItems),
+    },
+    {
+      title: "Workflow",
+      items: buildComponentItems(workflowItems),
+    },
+    {
+      title: "AI / Chatbot",
+      items: buildComponentItems(chatbotItems),
+    },
   ]
 
   return [
@@ -382,7 +380,8 @@ function buildNav(pathname: string): NavGroup[] {
       id: "components",
       icon: Component,
       title: "Components",
-      items: componentItems,
+      items: [],
+      groups: componentSubGroups,
     },
     {
       id: "blocks",
