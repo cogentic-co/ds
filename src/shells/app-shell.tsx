@@ -491,12 +491,9 @@ function AppShell({
         </Sidebar>
 
         <SidebarInset>
-          <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
+          <header className="sticky top-0 z-10 flex h-12 shrink-0 items-center gap-2 border-b bg-background px-4">
             <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 hidden data-[orientation=vertical]:h-4 md:block"
-            />
+            <Separator orientation="vertical" className="mr-2 hidden md:block" />
             {/* Mobile logo */}
             <Link href={logo.href ?? "/"} className="flex items-center gap-2 md:hidden">
               {logo.icon && (
@@ -541,6 +538,6 @@ function AppShell({
   )
 }
 
-export { AppShell }
-export type { AppShellProps, AppShellLogo, AppShellUser, NavItem, NavGroup, BreadcrumbSegment }
 export type { IconRailItem } from "./icon-rail"
+export { AppShell }
+export type { AppShellLogo, AppShellProps, AppShellUser, BreadcrumbSegment, NavGroup, NavItem }
