@@ -31,6 +31,8 @@ export type {
   SelectOrgFormValues,
 } from "./blocks/select-org-form"
 export { SelectOrgForm, selectOrgSchema } from "./blocks/select-org-form"
+export type { SequenceBuilderProps, SequenceStep } from "./blocks/sequence-builder"
+export { SequenceBuilder } from "./blocks/sequence-builder"
 export type { SettingRowProps } from "./blocks/setting-row"
 export { SettingRow } from "./blocks/setting-row"
 export type {
