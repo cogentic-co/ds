@@ -307,7 +307,10 @@ function AppShell({
           linkComponent={Link}
         />
       )}
-      <SidebarProvider className={cn("flex-1", className)}>
+      <SidebarProvider
+        className={cn("flex-1", className)}
+        style={iconRail ? ({ "--sidebar-left-offset": "56px" } as React.CSSProperties) : undefined}
+      >
         <Sidebar variant="inset">
           <SidebarHeader>
             <ShellLogo logo={logo} linkComponent={Link} />

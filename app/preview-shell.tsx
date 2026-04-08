@@ -499,6 +499,25 @@ function filterNav(nav: NavGroup[], query: string): NavGroup[] {
     .filter((group) => group.items.length > 0)
 }
 
+const railGroupMap: Record<string, string> = {
+  Foundations: "foundations",
+  Compliance: "components",
+  Shells: "shells",
+  Blocks: "blocks",
+  Charts: "charts",
+  Workflow: "components",
+  "AI / Chatbot": "components",
+  "Product Animations": "components",
+}
+
+function groupBelongsToRail(groupTitle: string, railId: string | undefined): boolean {
+  if (!railId) return true
+  const mapped = railGroupMap[groupTitle]
+  if (mapped) return mapped === railId
+  // componentGroups (Actions, Forms, Layout, etc.) all belong to "components"
+  return railId === "components"
+}
+
 const iconRailItems = [
   {
     id: "components",
@@ -542,16 +561,19 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [search, setSearch] = useState("")
 
-  const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
-
   const activeRailId = useMemo(() => {
     if (pathname.startsWith("/components")) return "components"
     if (pathname.startsWith("/blocks")) return "blocks"
     if (pathname.startsWith("/foundations")) return "foundations"
     if (pathname.startsWith("/shells")) return "shells"
     if (pathname.startsWith("/skills")) return "tools"
-    return undefined
+    return "foundations"
   }, [pathname])
+
+  const nav = useMemo(() => {
+    const all = filterNav(buildNav(pathname), search)
+    return all.filter((group) => groupBelongsToRail(group.title, activeRailId))
+  }, [pathname, search, activeRailId])
 
   return (
     <AppShell
