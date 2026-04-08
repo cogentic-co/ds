@@ -216,7 +216,7 @@ function Sidebar({
         data-slot="sidebar-container"
         data-side={side}
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) overflow-hidden transition-[left,right,width] duration-200 ease-linear data-[side=right]:right-0 data-[side=left]:left-[var(--sidebar-left-offset,0px)] group-data-[collapsible=offcanvas]:w-0 md:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) overflow-hidden transition-[left,right,width] duration-200 ease-linear data-[side=right]:right-0 data-[side=left]:left-[var(--sidebar-left-offset,0px)] group-data-[collapsible=offcanvas]:w-0 group-data-[state=expanded]:delay-200 md:flex",
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
@@ -228,7 +228,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col border-border bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border group-data-[variant=inset]:rounded-r-xl group-data-[variant=inset]:border-y group-data-[variant=inset]:border-r group-data-[variant=inset]:shadow-sm group-data-[collapsible=offcanvas]:border-y-0! group-data-[collapsible=offcanvas]:border-r-0! group-data-[collapsible=offcanvas]:shadow-none!"
+          className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
         >
           {children}
         </div>
