@@ -34,8 +34,8 @@ function IconRail({
     <aside
       data-slot="icon-rail"
       className={cn(
-        "z-20 my-2 ml-2 flex h-[calc(100svh-1rem)] w-14 shrink-0 flex-col items-center rounded-l-xl border-border border-y border-l bg-card py-3 shadow-sm transition-[border-radius,border] duration-200",
-        "group-has-[[data-state=collapsed]]/shell:rounded-xl group-has-[[data-state=collapsed]]/shell:border-r",
+        "z-20 my-2 ml-2 flex h-[calc(100svh-1rem)] w-14 shrink-0 flex-col items-center rounded-l-xl border-border border-y border-l bg-card py-3 shadow-sm transition-[border-radius,border,margin] duration-200",
+        "group-has-[[data-state=collapsed]]/shell:mr-2 group-has-[[data-state=collapsed]]/shell:rounded-xl group-has-[[data-state=collapsed]]/shell:border-r",
         className,
       )}
     >
