@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ComplianceScore } from "@/components/ui/compliance-score"
 import { type ControlDefs, Playground, Section, useControls } from "./_shared"

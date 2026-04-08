@@ -2,13 +2,11 @@
 
 import {
   BarChart3,
-  Blocks,
   BookOpen,
   Bot,
   Braces,
   Component,
   Layers,
-  Layout,
   LayoutGrid,
   MessageSquare,
   Moon,
@@ -22,7 +20,6 @@ import {
   Sun,
   Type,
   Workflow,
-  Wrench,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

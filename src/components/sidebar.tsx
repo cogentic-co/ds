@@ -228,7 +228,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col border-border bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border group-data-[variant=inset]:border-y group-data-[variant=inset]:border-r group-data-[variant=inset]:rounded-r-xl group-data-[variant=inset]:shadow-sm group-data-[collapsible=offcanvas]:border-y-0! group-data-[collapsible=offcanvas]:border-r-0! group-data-[collapsible=offcanvas]:shadow-none!"
+          className="flex size-full flex-col border-border bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=inset]:rounded-r-xl group-data-[variant=inset]:border-y group-data-[collapsible=offcanvas]:border-y-0! group-data-[variant=inset]:border-r group-data-[collapsible=offcanvas]:border-r-0! group-data-[collapsible=offcanvas]:shadow-none! group-data-[variant=floating]:shadow-sm group-data-[variant=inset]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
         >
           {children}
         </div>
@@ -289,7 +289,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:bg-card md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:overflow-hidden md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:border-border md:peer-data-[variant=inset]:shadow-sm",
+        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:overflow-hidden md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:border-border md:peer-data-[variant=inset]:bg-card md:peer-data-[variant=inset]:shadow-sm",
         className,
       )}
       {...props}
@@ -496,13 +496,15 @@ function SidebarMenuButton({
     active: isActive,
   }
 
+  const rendered = useRender({
+    defaultTagName: "button",
+    props: buttonProps,
+    render,
+    state: buttonState,
+  })
+
   if (!tooltip) {
-    return useRender({
-      defaultTagName: "button",
-      props: buttonProps,
-      render,
-      state: buttonState,
-    })
+    return rendered
   }
 
   if (typeof tooltip === "string") {

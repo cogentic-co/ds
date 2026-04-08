@@ -1,6 +1,5 @@
 "use client"
 
-import type * as React from "react"
 import { Card } from "../components/card"
 import { RadioGroup, RadioGroupItem } from "../components/radio-group"
 import { cn } from "../lib/utils"
@@ -47,7 +46,6 @@ function RichRadioList({
         {options.map((option) => {
           const id = `rich-radio-${name ?? "list"}-${option.value}`
           return (
-            // biome-ignore lint/a11y/noLabelWithoutControl: the radio is rendered inside via htmlFor
             <label
               key={option.value}
               htmlFor={id}

@@ -105,7 +105,6 @@ function RegisterForm({
             required
           />
           {termsHref && (
-            // biome-ignore lint/suspicious/noExplicitAny: TanStack Form generics
             <form.Field name={"acceptTerms" as any}>
               {(field: {
                 state: { value: unknown; meta: { errors: Array<string | undefined> } }

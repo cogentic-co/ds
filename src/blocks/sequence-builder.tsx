@@ -142,7 +142,7 @@ function SortableStep({ step, index, onRemove }: SortableStepProps) {
               type="button"
               variant="ghost"
               size="icon-sm"
-              className="text-muted-foreground/50 opacity-0 transition-opacity hover:text-foreground group-hover/sequence-step:opacity-100 focus-visible:opacity-100"
+              className="text-muted-foreground/50 opacity-0 transition-opacity hover:text-foreground focus-visible:opacity-100 group-hover/sequence-step:opacity-100"
               onClick={onRemove}
               aria-label={`Remove step ${index + 1}`}
             >

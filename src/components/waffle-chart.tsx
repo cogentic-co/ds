@@ -268,7 +268,7 @@ function WaffleChart({
         }
       }
     },
-    [barBlockData, gap, radius],
+    [barBlockData, gap, radius, barDividerCount],
   )
 
   const draw = React.useCallback(() => {

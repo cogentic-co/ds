@@ -167,13 +167,7 @@ function RailLogo({
   )
 }
 
-function ShellLogo({
-  logo,
-  linkComponent: Link = "a",
-}: {
-  logo: AppShellLogo
-  linkComponent?: React.ElementType
-}) {
+function ShellLogo({ logo }: { logo: AppShellLogo }) {
   return (
     <WorkspaceSwitcher
       active={{
@@ -490,7 +484,7 @@ function AppShell({
         )}
         <Sidebar variant="inset">
           <SidebarHeader>
-            {!iconRail && <ShellLogo logo={logo} linkComponent={Link} />}
+            {!iconRail && <ShellLogo logo={logo} />}
             {sidebarHeaderExtra}
           </SidebarHeader>
 
