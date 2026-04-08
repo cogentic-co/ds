@@ -194,7 +194,7 @@ function FeatureSectionPreview() {
 function SettingRowPreview() {
   return (
     <div className="mx-auto max-w-2xl">
-      <Card className="p-0">
+      <Card padding="none">
         <SettingRow
           icon={<Bell className="size-4" />}
           title="Email notifications"

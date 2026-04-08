@@ -43,7 +43,7 @@ function SettingsCardGrid({ items, columns = 2, className, ...props }: SettingsC
             data-slot="settings-card-grid-icon"
             className={cn(
               "flex size-10 shrink-0 items-center justify-center rounded-md",
-              "bg-focus-soft text-focus",
+              "bg-focal-soft text-focal",
             )}
           >
             {item.icon}
