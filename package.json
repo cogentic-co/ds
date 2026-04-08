@@ -761,7 +761,7 @@
     "cogentic"
   ],
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build --turbopack",
     "generate:props": "node --import tsx scripts/generate-props.ts",
     "build:pkg": "tsup",
