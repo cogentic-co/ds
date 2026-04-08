@@ -21,12 +21,6 @@
         "default": "./dist/animations/*.js"
       }
     },
-    "./icons/*": {
-      "import": {
-        "types": "./dist/icons/*.d.ts",
-        "default": "./dist/icons/*.js"
-      }
-    },
     "./blocks/*": {
       "import": {
         "types": "./dist/blocks/*.d.ts",
@@ -761,7 +755,7 @@
     "cogentic"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "generate:props": "node --import tsx scripts/generate-props.ts",
     "build:pkg": "tsup",
@@ -781,7 +775,6 @@
   },
   "peerDependencies": {
     "next": "^15.0.0 || ^16.0.0",
-    "pixelarticons": "^2.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "recharts": "^3.0.0",
@@ -789,9 +782,6 @@
   },
   "peerDependenciesMeta": {
     "@xyflow/react": {
-      "optional": true
-    },
-    "pixelarticons": {
       "optional": true
     },
     "recharts": {

@@ -116,8 +116,6 @@ export default defineConfig({
     "hooks/use-local-storage": "src/hooks/use-local-storage.ts",
     "hooks/use-media-query": "src/hooks/use-media-query.ts",
     "hooks/use-mobile": "src/hooks/use-mobile.ts",
-    // Icon entry points
-    "icons/pixel": "src/icons/pixel.tsx",
     // Lib entry points
     "lib/utils": "src/lib/utils.ts",
     "lib/animation": "src/lib/animation.ts",

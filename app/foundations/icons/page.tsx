@@ -6,7 +6,6 @@ import { useMemo, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PixelIcon } from "@/src/icons/pixel"
 
 type IconEntry = {
   name: string
@@ -61,15 +60,16 @@ export default function IconsPage() {
         </p>
         <Card className="mt-4 p-4">
           <p className="text-muted-foreground text-sm">
-            <strong className="text-foreground">Using pixelarticons:</strong> install the peer
-            dependency, then import from the subpath:
+            <strong className="text-foreground">Using pixelarticons:</strong> install the package
+            and import each icon directly. Per-icon imports are tree-shakable — only the icons you
+            use end up in your bundle.
           </p>
           <pre className="mt-2 overflow-x-auto rounded-md bg-muted/40 p-3 text-xs">
             <code>{`pnpm add pixelarticons
 
-import { PixelIcon } from "@cogentic-co/ds/icons/pixel"
+import { Home } from "pixelarticons/react/Home"
 
-<PixelIcon name="Home" className="size-4" />`}</code>
+<Home className="size-4" />`}</code>
           </pre>
         </Card>
       </header>
@@ -108,19 +108,15 @@ import { PixelIcon } from "@cogentic-co/ds/icons/pixel"
 
         <TabsContent value="pixel">
           <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8">
-            {filteredPixel.map(({ name }) => (
+            {filteredPixel.map(({ name, Component }) => (
               <button
                 key={name}
                 type="button"
-                onClick={() =>
-                  copyImport(
-                    `import { PixelIcon } from "@cogentic-co/ds/icons/pixel"\n\n<PixelIcon name="${name}" className="size-4" />`,
-                  )
-                }
+                onClick={() => copyImport(`import { ${name} } from "pixelarticons/react/${name}"`)}
                 className="group flex aspect-square flex-col items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 transition-colors hover:border-focal hover:bg-muted/30"
                 aria-label={`Copy import for ${name}`}
               >
-                <PixelIcon name={name} size={20} />
+                <Component width={20} height={20} />
                 <span className="truncate text-[10px] text-muted-foreground group-hover:text-foreground">
                   {name}
                 </span>
