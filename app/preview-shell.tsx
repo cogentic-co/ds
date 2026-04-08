@@ -323,16 +323,6 @@ function buildNav(pathname: string): NavGroup[] {
       items: buildComponentItems(complianceItems),
       defaultOpen: true,
     },
-    {
-      title: "Workflow",
-      items: buildComponentItems(workflowItems),
-      defaultOpen: true,
-    },
-    {
-      title: "AI / Chatbot",
-      items: buildComponentItems(chatbotItems),
-      defaultOpen: true,
-    },
   ]
 
   return [
@@ -431,6 +421,18 @@ function buildNav(pathname: string): NavGroup[] {
         href: `/components/${slug}`,
         isActive: pathname === `/components/${slug}`,
       })),
+    },
+    {
+      id: "workflow",
+      icon: Workflow,
+      title: "Workflow",
+      items: buildComponentItems(workflowItems),
+    },
+    {
+      id: "chatbot",
+      icon: MessageSquare,
+      title: "AI / Chatbot",
+      items: buildComponentItems(chatbotItems),
     },
     {
       id: "animations",
