@@ -57,9 +57,23 @@ type NavItem = {
 }
 
 type NavGroup = {
+  /** Stable id for icon-rail mapping. Defaults to a slug of the title. */
+  id?: string
+  /** Icon rendered in the icon rail when iconRail is enabled. */
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   title: string
   items: NavItem[]
   defaultOpen?: boolean
+}
+
+function groupSlug(group: NavGroup): string {
+  return group.id ?? group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+}
+
+function groupContainsActive(group: NavGroup): boolean {
+  const walk = (items: NavItem[]): boolean =>
+    items.some((item) => item.isActive || (item.children && walk(item.children)))
+  return walk(group.items)
 }
 
 type AppShellUser = {
@@ -105,9 +119,14 @@ interface AppShellProps {
   children: React.ReactNode
   className?: string
 
-  /** Icon rail on the far left. When provided, renders as a third column. */
-  iconRail?: IconRailItem[]
-  /** Id of the active rail item (for highlighting). */
+  /**
+   * Enable the icon rail. When `true`, renders one rail icon per nav group
+   * (using each group's `icon` and `title`) and filters the sidebar panel
+   * to only show the active group's items. Each `nav` group should have an
+   * `icon` field set when this is enabled.
+   */
+  iconRail?: boolean
+  /** Id of the active rail item. Defaults to the group containing an active item. */
   activeRailId?: string
   /** Called when a rail icon is clicked. */
   onRailSelect?: (id: string) => void
@@ -313,12 +332,36 @@ function AppShell({
   iconRailHeader,
   iconRailFooter,
 }: AppShellProps) {
+  // Derive icon rail items from nav groups when iconRail is enabled.
+  const railItems: IconRailItem[] | undefined = iconRail
+    ? nav.map((group) => ({
+        id: groupSlug(group),
+        icon: group.icon ? <group.icon className="size-5" /> : null,
+        label: group.title,
+        href: group.items[0]?.href,
+      }))
+    : undefined
+
+  // Auto-derive active rail id from the group containing the active item,
+  // unless an explicit activeRailId is provided.
+  const resolvedActiveRailId = (() => {
+    if (activeRailId) return activeRailId
+    if (!iconRail) return undefined
+    const active = nav.find(groupContainsActive)
+    return active ? groupSlug(active) : groupSlug(nav[0])
+  })()
+
+  // Filter nav groups to only the active rail's group when rail is enabled.
+  const visibleNav = iconRail && resolvedActiveRailId
+    ? nav.filter((g) => groupSlug(g) === resolvedActiveRailId)
+    : nav
+
   return (
     <div className="flex h-svh w-full overflow-hidden bg-background">
-      {iconRail && (
+      {iconRail && railItems && (
         <IconRail
-          items={iconRail}
-          activeId={activeRailId}
+          items={railItems}
+          activeId={resolvedActiveRailId}
           onSelect={onRailSelect}
           header={iconRailHeader ?? <RailLogo logo={logo} linkComponent={Link} />}
           footer={iconRailFooter}
@@ -327,7 +370,7 @@ function AppShell({
       )}
       <SidebarProvider
         className={cn("flex-1", className)}
-        style={iconRail ? ({ "--sidebar-left-offset": "64px" } as React.CSSProperties) : undefined}
+        style={iconRail ? ({ "--sidebar-left-offset": "56px" } as React.CSSProperties) : undefined}
       >
         <Sidebar variant="inset">
           <SidebarHeader>
@@ -337,7 +380,7 @@ function AppShell({
 
           <SidebarContent className="overflow-hidden">
             <ScrollArea className="min-h-0 flex-1">
-              {nav.map((group) => (
+              {visibleNav.map((group) => (
                 <SidebarGroup key={group.title}>
                   <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
                   <SidebarGroupContent>
