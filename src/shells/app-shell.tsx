@@ -38,6 +38,7 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
+  useSidebar,
 } from "../components/sidebar"
 import { cn } from "../lib/utils"
 import { IconRail, type IconRailItem } from "./icon-rail"
@@ -381,6 +382,52 @@ function ShellUserMenu({
 }
 
 // ---------------------------------------------------------------------------
+// IconRailWithExpand — wraps IconRail with useSidebar so clicking the active
+// item while the sidebar is collapsed expands it (without navigating away).
+// ---------------------------------------------------------------------------
+
+function IconRailWithExpand({
+  items,
+  activeId,
+  onSelect,
+  header,
+  footer,
+  linkComponent,
+}: {
+  items: IconRailItem[]
+  activeId?: string
+  onSelect?: (id: string) => void
+  header?: React.ReactNode
+  footer?: React.ReactNode
+  linkComponent?: React.ElementType
+}) {
+  const { state, setOpen } = useSidebar()
+
+  const handleSelect = React.useCallback(
+    (id: string) => {
+      // If the user clicks the already-active rail item while the sidebar is
+      // collapsed, expand it instead of just calling the external onSelect.
+      if (id === activeId && state === "collapsed") {
+        setOpen(true)
+      }
+      onSelect?.(id)
+    },
+    [activeId, state, setOpen, onSelect],
+  )
+
+  return (
+    <IconRail
+      items={items}
+      activeId={activeId}
+      onSelect={handleSelect}
+      header={header}
+      footer={footer}
+      linkComponent={linkComponent}
+    />
+  )
+}
+
+// ---------------------------------------------------------------------------
 // AppShell
 // ---------------------------------------------------------------------------
 
@@ -440,7 +487,7 @@ function AppShell({
         style={iconRail ? ({ "--sidebar-left-offset": "56px" } as React.CSSProperties) : undefined}
       >
         {iconRail && railItems && (
-          <IconRail
+          <IconRailWithExpand
             items={railItems}
             activeId={resolvedActiveRailId}
             onSelect={onRailSelect}
