@@ -62,7 +62,15 @@ function SequenceBuilder({
   }
 
   return (
-    <div data-slot="sequence-builder" className={cn("flex flex-col", className)}>
+    <div data-slot="sequence-builder" className={cn("relative flex flex-col", className)}>
+      {/* Continuous vertical guide line behind the cards. Aligned to the centre
+          of the step number badge: drag handle (24px) + gap (8px) + half of
+          card padding-left (16px) + half of badge (14px) ≈ 44px from the
+          left edge of the builder. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 bottom-0 left-[44px] z-0 w-px bg-border"
+      />
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={steps.map((s) => s.id)} strategy={verticalListSortingStrategy}>
           {onAddStep && <InsertButton onClick={() => onAddStep(0)} />}
@@ -104,7 +112,7 @@ function SortableStep({ step, index, onRemove }: SortableStepProps) {
       ref={setNodeRef}
       style={style}
       data-slot="sequence-builder-step"
-      className="group/sequence-step flex items-start gap-2"
+      className="group/sequence-step relative z-10 flex items-start gap-2"
     >
       <button
         type="button"
@@ -154,17 +162,12 @@ type InsertButtonProps = {
 
 function InsertButton({ onClick }: InsertButtonProps) {
   return (
-    <div
-      data-slot="sequence-builder-insert"
-      className="flex items-center justify-center py-2"
-      style={{ marginLeft: 44 /* align under the step card, past the drag handle */ }}
-    >
-      <div className="-translate-x-1/2 absolute h-full w-px bg-border" />
+    <div data-slot="sequence-builder-insert" className="relative z-10 flex justify-start py-2">
       <button
         type="button"
         onClick={onClick}
         className={cn(
-          "relative z-10 flex size-7 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-xs transition-colors",
+          "ml-[30px] flex size-7 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-xs transition-colors",
           "hover:border-focal hover:text-focal",
           "focus-visible:border-focal focus-visible:text-focal focus-visible:outline-none",
         )}
