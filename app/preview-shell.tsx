@@ -520,6 +520,12 @@ function groupBelongsToRail(groupTitle: string, railId: string | undefined): boo
 
 const iconRailItems = [
   {
+    id: "foundations",
+    icon: <Palette className="size-5" />,
+    label: "Foundations",
+    href: "/getting-started",
+  },
+  {
     id: "components",
     icon: <Component className="size-5" />,
     label: "Components",
@@ -530,12 +536,6 @@ const iconRailItems = [
     icon: <LayoutGrid className="size-5" />,
     label: "Blocks",
     href: "/blocks/setting-row",
-  },
-  {
-    id: "foundations",
-    icon: <Palette className="size-5" />,
-    label: "Foundations",
-    href: "/foundations/colors",
   },
   {
     id: "shells",

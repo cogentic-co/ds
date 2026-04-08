@@ -34,7 +34,7 @@ function IconRail({
     <aside
       data-slot="icon-rail"
       className={cn(
-        "flex h-svh w-14 shrink-0 flex-col items-center border-r border-border bg-sidebar py-3",
+        "z-20 my-2 ml-2 flex h-[calc(100svh-1rem)] w-14 shrink-0 flex-col items-center rounded-l-xl border-border border-y border-l bg-card py-3 shadow-sm",
         className,
       )}
     >

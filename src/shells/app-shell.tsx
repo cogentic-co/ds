@@ -121,6 +121,24 @@ interface AppShellProps {
 // Internal components
 // ---------------------------------------------------------------------------
 
+function RailLogo({
+  logo,
+  linkComponent: Link = "a",
+}: {
+  logo: AppShellLogo
+  linkComponent?: React.ElementType
+}) {
+  return (
+    <Link
+      href={logo.href ?? "/"}
+      aria-label={logo.title}
+      className="flex aspect-square size-9 items-center justify-center rounded-md bg-primary text-primary-foreground"
+    >
+      {logo.icon}
+    </Link>
+  )
+}
+
 function ShellLogo({
   logo,
   linkComponent: Link = "a",
@@ -302,18 +320,18 @@ function AppShell({
           items={iconRail}
           activeId={activeRailId}
           onSelect={onRailSelect}
-          header={iconRailHeader}
+          header={iconRailHeader ?? <RailLogo logo={logo} linkComponent={Link} />}
           footer={iconRailFooter}
           linkComponent={Link}
         />
       )}
       <SidebarProvider
         className={cn("flex-1", className)}
-        style={iconRail ? ({ "--sidebar-left-offset": "56px" } as React.CSSProperties) : undefined}
+        style={iconRail ? ({ "--sidebar-left-offset": "64px" } as React.CSSProperties) : undefined}
       >
         <Sidebar variant="inset">
           <SidebarHeader>
-            <ShellLogo logo={logo} linkComponent={Link} />
+            {!iconRail && <ShellLogo logo={logo} linkComponent={Link} />}
             {sidebarHeaderExtra}
           </SidebarHeader>
 
