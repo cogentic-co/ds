@@ -38,6 +38,14 @@
   }
 }
 
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-sans);
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
