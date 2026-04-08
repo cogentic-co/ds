@@ -41,26 +41,10 @@ function CogenticLogo({ className }: { className?: string }) {
   )
 }
 
-import { PixelIcon } from "@/src/icons/pixel"
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
 import { componentMeta, statusConfig } from "./_component-meta"
 import { CommandSearch } from "./command-search"
-
-// Cache PixelIcon wrapper components so we don't create a new component type
-// per render. Each unique name → one stable component reference.
-const pixelCache = new Map<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>()
-
-function pixel(name: string): React.ComponentType<React.SVGProps<SVGSVGElement>> {
-  const cached = pixelCache.get(name)
-  if (cached) return cached
-  const Component = function PixelIconWrapper(props: React.SVGProps<SVGSVGElement>) {
-    return <PixelIcon name={name} {...(props as object)} />
-  }
-  Component.displayName = `PixelIcon(${name})`
-  pixelCache.set(name, Component)
-  return Component
-}
 
 function toTitle(slug: string) {
   return slug
@@ -306,7 +290,7 @@ function buildNav(pathname: string): NavGroup[] {
   const buildComponentItems = (slugs: readonly string[]) =>
     slugs.map((slug) => ({
       label: toTitle(slug),
-      icon: pixel("layout"),
+      icon: Component,
       href: `/components/${slug}`,
       isActive: pathname === `/components/${slug}`,
       badge: buildBadge(slug),
@@ -402,7 +386,7 @@ function buildNav(pathname: string): NavGroup[] {
       title: "Blocks",
       items: blockItems.map((slug) => ({
         label: toTitle(slug),
-        icon: pixel("layout"),
+        icon: Component,
         href: `/blocks/${slug}`,
         isActive: pathname === `/blocks/${slug}`,
         badge: buildBadge(slug),
@@ -414,7 +398,7 @@ function buildNav(pathname: string): NavGroup[] {
       title: "Shells",
       items: shellItems.map((slug) => ({
         label: toTitle(slug),
-        icon: pixel("layout"),
+        icon: Component,
         href: `/shells/${slug}`,
         isActive: pathname === `/shells/${slug}`,
       })),
@@ -425,7 +409,7 @@ function buildNav(pathname: string): NavGroup[] {
       title: "Charts",
       items: chartItems.map((slug) => ({
         label: toTitle(slug),
-        icon: pixel("chart-bar"),
+        icon: BarChart3,
         href: `/components/${slug}`,
         isActive: pathname === `/components/${slug}`,
       })),
@@ -436,7 +420,7 @@ function buildNav(pathname: string): NavGroup[] {
       title: "Tools",
       items: animationItems.map((slug) => ({
         label: toTitle(slug),
-        icon: pixel("zap"),
+        icon: Play,
         href: `/animations/${slug}`,
         isActive: pathname === `/animations/${slug}`,
       })),

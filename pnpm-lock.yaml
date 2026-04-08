@@ -24,12 +24,6 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.1.0)
-      '@iconify-icons/pixelarticons':
-        specifier: ^1.2.5
-        version: 1.2.5
-      '@iconify/react':
-        specifier: ^6.0.2
-        version: 6.0.2(react@19.1.0)
       '@tanstack/react-form':
         specifier: ^1.28.4
         version: 1.28.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -63,6 +57,9 @@ importers:
       motion:
         specifier: ^12.34.3
         version: 12.34.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      pixelarticons:
+        specifier: ^2.0.2
+        version: 2.0.2(react@19.1.0)
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.1.0
@@ -759,17 +756,6 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
-
-  '@iconify-icons/pixelarticons@1.2.5':
-    resolution: {integrity: sha512-cpj2tKX/5lW+rtKW0Vi7uAAo1Ld2NA+IMtD1cDxi7RCbZbpXGK4QbTQwNF8SUD8Trp4BX/EXQ1EHGUSi+7JahQ==}
-
-  '@iconify/react@6.0.2':
-    resolution: {integrity: sha512-SMmC2sactfpJD427WJEDN6PMyznTFMhByK9yLW0gOTtnjzzbsi/Ke/XqsumsavFPwNiXs8jSiYeZTmLCLwO+Fg==}
-    peerDependencies:
-      react: '>=16'
-
-  '@iconify/types@2.0.0':
-    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -2714,6 +2700,12 @@ packages:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
 
+  pixelarticons@2.0.2:
+    resolution: {integrity: sha512-/BlUJp9oRv2hx0ELy2+X8R2khnAvzztUmYuu7KfHZSQNDc09PTK0BxDl9+AYE7qVNupE/12Z/89iz7joYDHYDw==}
+    hasBin: true
+    peerDependencies:
+      react: '>=16'
+
   pkg-dir@3.0.0:
     resolution: {integrity: sha512-/E57AYkoeQ25qkxMj5PBOVgF8Kiu/h7cYS30Z5+R7WaiCCBfLq58ZI/dSeaEKb9WVJV5n/03QwrN3IeWIFllvw==}
     engines: {node: '>=6'}
@@ -4079,17 +4071,6 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@floating-ui/utils@0.2.10': {}
-
-  '@iconify-icons/pixelarticons@1.2.5':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify/react@6.0.2(react@19.1.0)':
-    dependencies:
-      '@iconify/types': 2.0.0
-      react: 19.1.0
-
-  '@iconify/types@2.0.0': {}
 
   '@img/colour@1.0.0':
     optional: true
@@ -5875,6 +5856,10 @@ snapshots:
   pify@4.0.1: {}
 
   pirates@4.0.7: {}
+
+  pixelarticons@2.0.2(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   pkg-dir@3.0.0:
     dependencies:

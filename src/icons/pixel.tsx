@@ -1,27 +1,46 @@
 "use client"
 
-// Re-exports pixelarticons as an alternate icon set alongside lucide-react.
-// Consumers import from "@cogentic-co/ds/icons/pixel" and get a PixelIcon
-// component keyed by icon name. Uses @iconify/react + @iconify-icons/pixelarticons
-// (480+ pixel-art icons, 5×7 pixel grid style). Tree-shakable via subpath import.
+/**
+ * PixelIcon — alternate pixel-art icon set powered by the `pixelarticons`
+ * package (https://github.com/halfmage/pixelarticons).
+ *
+ * Consumers opt in by:
+ *   pnpm add pixelarticons
+ *   import { PixelIcon } from "@cogentic-co/ds/icons/pixel"
+ *   <PixelIcon name="Home" className="size-4" />
+ *
+ * `pixelarticons` is declared as a *peer* dependency on this package so
+ * consumers explicitly choose whether to install it. Without the package,
+ * importing this module will fail at runtime — the component is gated
+ * behind the subpath import so it has zero bundle cost for consumers who
+ * don't use it.
+ *
+ * The `name` prop is the **PascalCase** name of the pixelarticon component
+ * (e.g. "Home", "ChevronRight", "Mail"). The full list of ~800 icons lives
+ * at https://pixelarticons.com.
+ */
 
-import { Icon } from "@iconify/react"
+// biome-ignore lint/suspicious/noExplicitAny: dynamic import from peer dep
+import * as Pixelarticons from "pixelarticons/react"
+import type * as React from "react"
 
 type PixelIconProps = React.SVGProps<SVGSVGElement> & {
+  /** PascalCase icon name (e.g. "Home", "ChevronRight"). */
   name: string
+  /** Convenience size prop — sets width AND height. Default: 16. */
   size?: number | string
 }
 
-function PixelIcon({ name, size = 16, className, ...props }: PixelIconProps) {
-  return (
-    <Icon
-      icon={`pixelarticons:${name}`}
-      width={size}
-      height={size}
-      className={className}
-      {...(props as object)}
-    />
-  )
+function PixelIcon({ name, size = 16, ...props }: PixelIconProps) {
+  // biome-ignore lint/suspicious/noExplicitAny: dynamic component lookup
+  const Component = (Pixelarticons as Record<string, React.ComponentType<any>>)[name]
+  if (!Component) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(`[PixelIcon] Unknown icon name: "${name}"`)
+    }
+    return null
+  }
+  return <Component width={size} height={size} {...props} />
 }
 
 export { PixelIcon }
