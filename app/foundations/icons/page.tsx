@@ -1,230 +1,37 @@
 "use client"
 
-import {
-  AlertCircle,
-  Archive,
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUp,
-  Bell,
-  Bookmark,
-  Calendar,
-  Camera,
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Clipboard,
-  Clock,
-  Cloud,
-  Code,
-  Copy,
-  CreditCard,
-  Download,
-  Edit,
-  Eye,
-  EyeOff,
-  File,
-  Filter,
-  Folder,
-  Heart,
-  HelpCircle,
-  Home,
-  Image,
-  Info,
-  Layers,
-  Layout,
-  Link as LinkIcon,
-  Lock,
-  LogOut,
-  Mail,
-  MapPin,
-  Menu,
-  MessageCircle,
-  Mic,
-  Monitor,
-  Moon,
-  MoreHorizontal,
-  Music,
-  Phone,
-  Play,
-  Plus,
-  Save,
-  Search,
-  Send,
-  Settings,
-  Share,
-  Shield,
-  ShoppingBag,
-  Star,
-  Sun,
-  Tag,
-  Trash,
-  Trash2,
-  Upload,
-  User,
-  Users,
-  Video,
-  Wifi,
-  X,
-  Zap,
-} from "lucide-react"
+import * as LucideAll from "lucide-react"
+import * as PixelAll from "pixelarticons/react"
 import { useMemo, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { PixelIcon } from "@/src/icons/pixel"
 
-const LUCIDE_ICONS: {
+type IconEntry = {
   name: string
   Component: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}[] = [
-  { name: "AlertCircle", Component: AlertCircle },
-  { name: "Archive", Component: Archive },
-  { name: "ArrowDown", Component: ArrowDown },
-  { name: "ArrowLeft", Component: ArrowLeft },
-  { name: "ArrowRight", Component: ArrowRight },
-  { name: "ArrowUp", Component: ArrowUp },
-  { name: "Bell", Component: Bell },
-  { name: "Bookmark", Component: Bookmark },
-  { name: "Calendar", Component: Calendar },
-  { name: "Camera", Component: Camera },
-  { name: "Check", Component: Check },
-  { name: "ChevronDown", Component: ChevronDown },
-  { name: "ChevronLeft", Component: ChevronLeft },
-  { name: "ChevronRight", Component: ChevronRight },
-  { name: "ChevronUp", Component: ChevronUp },
-  { name: "Clipboard", Component: Clipboard },
-  { name: "Clock", Component: Clock },
-  { name: "Cloud", Component: Cloud },
-  { name: "Code", Component: Code },
-  { name: "Copy", Component: Copy },
-  { name: "CreditCard", Component: CreditCard },
-  { name: "Download", Component: Download },
-  { name: "Edit", Component: Edit },
-  { name: "Eye", Component: Eye },
-  { name: "EyeOff", Component: EyeOff },
-  { name: "File", Component: File },
-  { name: "Filter", Component: Filter },
-  { name: "Folder", Component: Folder },
-  { name: "Heart", Component: Heart },
-  { name: "HelpCircle", Component: HelpCircle },
-  { name: "Home", Component: Home },
-  { name: "Image", Component: Image },
-  { name: "Info", Component: Info },
-  { name: "Layers", Component: Layers },
-  { name: "Layout", Component: Layout },
-  { name: "Link", Component: LinkIcon },
-  { name: "Lock", Component: Lock },
-  { name: "LogOut", Component: LogOut },
-  { name: "Mail", Component: Mail },
-  { name: "MapPin", Component: MapPin },
-  { name: "Menu", Component: Menu },
-  { name: "MessageCircle", Component: MessageCircle },
-  { name: "Mic", Component: Mic },
-  { name: "Monitor", Component: Monitor },
-  { name: "Moon", Component: Moon },
-  { name: "MoreHorizontal", Component: MoreHorizontal },
-  { name: "Music", Component: Music },
-  { name: "Phone", Component: Phone },
-  { name: "Play", Component: Play },
-  { name: "Plus", Component: Plus },
-  { name: "Save", Component: Save },
-  { name: "Search", Component: Search },
-  { name: "Send", Component: Send },
-  { name: "Settings", Component: Settings },
-  { name: "Share", Component: Share },
-  { name: "Shield", Component: Shield },
-  { name: "ShoppingBag", Component: ShoppingBag },
-  { name: "Star", Component: Star },
-  { name: "Sun", Component: Sun },
-  { name: "Tag", Component: Tag },
-  { name: "Trash", Component: Trash },
-  { name: "Trash2", Component: Trash2 },
-  { name: "Upload", Component: Upload },
-  { name: "User", Component: User },
-  { name: "Users", Component: Users },
-  { name: "Video", Component: Video },
-  { name: "Wifi", Component: Wifi },
-  { name: "X", Component: X },
-  { name: "Zap", Component: Zap },
-]
+}
 
-// Curated list of pixelarticons. PascalCase names — see node_modules/pixelarticons/react
-// for the full ~800 icon list, or visit https://pixelarticons.com.
-const PIXEL_ICONS = [
-  "AlertCircle",
-  "Archive",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowUp",
-  "Bell",
-  "Bookmark",
-  "Calendar",
-  "Camera",
-  "Check",
-  "ChevronDown",
-  "ChevronLeft",
-  "ChevronRight",
-  "ChevronUp",
-  "Clipboard",
-  "Clock",
-  "Cloud",
-  "Code",
-  "Copy",
-  "CreditCard",
-  "Download",
-  "Edit",
-  "Eye",
-  "EyeClosed",
-  "File",
-  "Filter",
-  "Folder",
-  "Heart",
-  "HelpCircle",
-  "Home",
-  "Image",
-  "Info",
-  "Layers",
-  "Layout",
-  "Link",
-  "Lock",
-  "Logout",
-  "Mail",
-  "MapPin",
-  "Menu",
-  "Message",
-  "Mic",
-  "Monitor",
-  "Moon",
-  "MoreHorizontal",
-  "Music",
-  "Phone",
-  "Play",
-  "Plus",
-  "Save",
-  "Search",
-  "Send",
-  "Cog",
-  "Share",
-  "Shield",
-  "Shopping",
-  "Star",
-  "Sun",
-  "Tag",
-  "Trash",
-  "TrashAlt",
-  "Upload",
-  "User",
-  "Users",
-  "Video",
-  "Wifi",
-  "Close",
-  "Zap",
-]
+// Filter the namespace import to only real React components (PascalCase name +
+// function/forwardRef value). Skips lucide's helper exports (createLucideIcon,
+// icons, etc.) and any stray non-component bindings.
+function collectIcons(ns: Record<string, unknown>): IconEntry[] {
+  const entries: IconEntry[] = []
+  for (const [name, value] of Object.entries(ns)) {
+    if (!/^[A-Z]/.test(name)) continue
+    if (typeof value !== "function" && typeof value !== "object") continue
+    if (name === "Icon" || name === "LucideIcon" || name === "createLucideIcon") continue
+    entries.push({
+      name,
+      Component: value as React.ComponentType<React.SVGProps<SVGSVGElement>>,
+    })
+  }
+  return entries.sort((a, b) => a.name.localeCompare(b.name))
+}
+
+const LUCIDE_ICONS = collectIcons(LucideAll as unknown as Record<string, unknown>)
+const PIXEL_ICONS = collectIcons(PixelAll as unknown as Record<string, unknown>)
 
 export default function IconsPage() {
   const [query, setQuery] = useState("")
@@ -235,7 +42,7 @@ export default function IconsPage() {
   )
 
   const filteredPixel = useMemo(
-    () => PIXEL_ICONS.filter((name) => name.toLowerCase().includes(query.toLowerCase())),
+    () => PIXEL_ICONS.filter((icon) => icon.name.toLowerCase().includes(query.toLowerCase())),
     [query],
   )
 
@@ -301,7 +108,7 @@ import { PixelIcon } from "@cogentic-co/ds/icons/pixel"
 
         <TabsContent value="pixel">
           <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8">
-            {filteredPixel.map((name) => (
+            {filteredPixel.map(({ name }) => (
               <button
                 key={name}
                 type="button"
