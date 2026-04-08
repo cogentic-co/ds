@@ -280,7 +280,7 @@ function AppShell({
 }: AppShellProps) {
   return (
     <SidebarProvider className={cn(className)}>
-      <Sidebar>
+      <Sidebar variant="inset">
         <SidebarHeader>
           <ShellLogo logo={logo} linkComponent={Link} />
           {sidebarHeaderExtra}
