@@ -1,5 +1,6 @@
 import { ChevronRight, ChevronsUpDown, LogOut, User } from "lucide-react"
 import * as React from "react"
+import { WorkspaceSwitcher } from "../blocks/workspace-switcher"
 import { Avatar, AvatarFallback, AvatarImage } from "../components/avatar"
 import {
   Breadcrumb,
@@ -40,7 +41,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "../components/sidebar"
-import { cn } from "../lib/utils"
+import { cn, initials } from "../lib/utils"
 import { IconRail, type IconRailItem } from "./icon-rail"
 
 // ---------------------------------------------------------------------------
@@ -174,23 +175,14 @@ function ShellLogo({
   linkComponent?: React.ElementType
 }) {
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <SidebarMenuButton size="lg" render={<Link href={logo.href ?? "/"} />}>
-          {logo.icon && (
-            <div className="flex aspect-square size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground">
-              {logo.icon}
-            </div>
-          )}
-          <div className="flex flex-col gap-0.5 leading-none">
-            <span className="font-medium">{logo.title}</span>
-            {logo.subtitle && (
-              <span className="text-muted-foreground text-xs">{logo.subtitle}</span>
-            )}
-          </div>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    </SidebarMenu>
+    <WorkspaceSwitcher
+      active={{
+        id: "current",
+        name: logo.title,
+        subtitle: logo.subtitle,
+        logo: logo.icon ?? null,
+      }}
+    />
   )
 }
 
@@ -313,10 +305,7 @@ function ShellUserMenu({
   userMenuItems?: React.ReactNode
   onLogout?: () => void
 }) {
-  const initials = user.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
+  const userInitials = initials(user.name)
 
   return (
     <SidebarMenu>
@@ -332,7 +321,7 @@ function ShellUserMenu({
           >
             <Avatar className="size-8 rounded-lg">
               {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-              <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+              <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
@@ -350,7 +339,7 @@ function ShellUserMenu({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="size-8 rounded-lg">
                   {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-                  <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
@@ -475,10 +464,13 @@ function AppShell({
   })()
 
   // Filter nav groups to only the active rail's group when rail is enabled.
-  const visibleNav =
-    iconRail && resolvedActiveRailId
-      ? nav.filter((g) => groupSlug(g) === resolvedActiveRailId)
-      : nav
+  // Falls back to the full nav if the filter matches nothing (stale
+  // activeRailId, no matching groups, etc.) so the sidebar is never empty.
+  const visibleNav = (() => {
+    if (!iconRail || !resolvedActiveRailId) return nav
+    const filtered = nav.filter((g) => groupSlug(g) === resolvedActiveRailId)
+    return filtered.length > 0 ? filtered : nav
+  })()
 
   return (
     <div className="group/shell flex h-svh w-full overflow-hidden bg-background">

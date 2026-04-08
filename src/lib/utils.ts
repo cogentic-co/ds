@@ -27,3 +27,22 @@ export function countryFlag(code: string): string {
     .map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
   return String.fromCodePoint(...codePoints)
 }
+
+/**
+ * Derive uppercase initials from a name. Splits on whitespace, takes the first
+ * letter of each word, and returns up to `maxLength` characters.
+ *
+ * @example
+ * initials("Jane Smith")       // "JS"
+ * initials("Alice Bob Carol")  // "AB"
+ * initials("Madonna")          // "M"
+ */
+export function initials(name: string, maxLength = 2): string {
+  return name
+    .split(/\s+/)
+    .map((word) => word[0])
+    .filter(Boolean)
+    .slice(0, maxLength)
+    .join("")
+    .toUpperCase()
+}

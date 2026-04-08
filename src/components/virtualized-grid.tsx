@@ -2,7 +2,7 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual"
 import type * as React from "react"
-import { useRef } from "react"
+import { useCallback, useRef } from "react"
 import { cn } from "../lib/utils"
 
 /**
@@ -58,12 +58,12 @@ function VirtualizedGrid<T>({
   const parentRef = useRef<HTMLDivElement>(null)
 
   const rowCount = Math.ceil(items.length / columns)
-  const estimatedRowSize = rowHeight + gap
+  const estimateSize = useCallback(() => rowHeight + gap, [rowHeight, gap])
 
   const rowVirtualizer = useVirtualizer({
     count: rowCount,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => estimatedRowSize,
+    estimateSize,
     overscan,
   })
 

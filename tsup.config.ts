@@ -157,6 +157,7 @@ export default defineConfig({
     "blocks/magic-link-message": "src/blocks/magic-link-message.tsx",
     "blocks/setting-row": "src/blocks/setting-row.tsx",
     "blocks/settings-card-grid": "src/blocks/settings-card-grid.tsx",
+    "blocks/workspace-switcher": "src/blocks/workspace-switcher.tsx",
     // Chart entry points — per-chart subpaths for tree-shaking
     charts: "src/charts/index.ts",
     "charts/area-chart": "src/charts/area-chart.tsx",

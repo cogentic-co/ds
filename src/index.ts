@@ -45,6 +45,11 @@ export type { StatCardProps } from "./blocks/stat-card"
 export { StatCard } from "./blocks/stat-card"
 export type { TeamCardProps } from "./blocks/team-card"
 export { TeamCard } from "./blocks/team-card"
+export type {
+  Workspace,
+  WorkspaceSwitcherProps,
+} from "./blocks/workspace-switcher"
+export { WorkspaceSwitcher } from "./blocks/workspace-switcher"
 // Charts are NOT re-exported from main barrel to avoid bundling recharts.
 // Import from "@cogentic-co/ds/charts" instead.
 export * from "./components/accordion"

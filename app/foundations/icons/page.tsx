@@ -36,15 +36,15 @@ const PIXEL_ICONS = collectIcons(PixelAll as unknown as Record<string, unknown>)
 export default function IconsPage() {
   const [query, setQuery] = useState("")
 
-  const filteredLucide = useMemo(
-    () => LUCIDE_ICONS.filter((icon) => icon.name.toLowerCase().includes(query.toLowerCase())),
-    [query],
-  )
+  const filteredLucide = useMemo(() => {
+    const q = query.toLowerCase()
+    return LUCIDE_ICONS.filter((icon) => icon.name.toLowerCase().includes(q))
+  }, [query])
 
-  const filteredPixel = useMemo(
-    () => PIXEL_ICONS.filter((icon) => icon.name.toLowerCase().includes(query.toLowerCase())),
-    [query],
-  )
+  const filteredPixel = useMemo(() => {
+    const q = query.toLowerCase()
+    return PIXEL_ICONS.filter((icon) => icon.name.toLowerCase().includes(q))
+  }, [query])
 
   function copyImport(text: string) {
     navigator.clipboard.writeText(text)

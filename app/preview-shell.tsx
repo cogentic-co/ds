@@ -478,12 +478,15 @@ function DarkModeToggle() {
 function filterNav(nav: NavGroup[], query: string): NavGroup[] {
   if (!query) return nav
   const q = query.toLowerCase()
-  return nav
-    .map((group) => ({
-      ...group,
-      items: group.items.filter((item) => item.label.toLowerCase().includes(q)),
-    }))
-    .filter((group) => group.items.length > 0)
+  const filter = (groups: NavGroup[]): NavGroup[] =>
+    groups
+      .map((group) => {
+        const filteredItems = group.items.filter((item) => item.label.toLowerCase().includes(q))
+        const filteredGroups = group.groups ? filter(group.groups) : undefined
+        return { ...group, items: filteredItems, groups: filteredGroups }
+      })
+      .filter((group) => group.items.length > 0 || (group.groups && group.groups.length > 0))
+  return filter(nav)
 }
 
 export function PreviewShell({ children }: { children: React.ReactNode }) {
