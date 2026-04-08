@@ -248,6 +248,42 @@ function ShellNavGroup({
   linkComponent?: React.ElementType
   hideLabel?: boolean
 }) {
+  // Collapsible group: when defaultOpen is explicitly set (true OR false),
+  // wrap the group in a Collapsible with a chevron-button label header.
+  // When defaultOpen is undefined, render as a static (non-collapsible) group.
+  const collapsible = group.defaultOpen !== undefined && !hideLabel
+
+  if (collapsible) {
+    return (
+      <>
+        <Collapsible defaultOpen={group.defaultOpen} className="group/collapsible-group">
+          <SidebarGroup>
+            <SidebarGroupLabel
+              render={
+                <CollapsibleTrigger className="flex w-full cursor-pointer items-center justify-between rounded-md px-2 text-left transition-colors hover:bg-muted/40" />
+              }
+            >
+              <span>{group.title}</span>
+              <ChevronRight className="size-3.5 transition-transform group-data-[state=open]/collapsible-group:rotate-90" />
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {group.items.map((item) => (
+                    <ShellNavItem key={item.label} item={item} linkComponent={linkComponent} />
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+        {group.groups?.map((sub) => (
+          <ShellNavGroup key={sub.title} group={sub} linkComponent={linkComponent} />
+        ))}
+      </>
+    )
+  }
+
   return (
     <>
       <SidebarGroup>
@@ -261,13 +297,7 @@ function ShellNavGroup({
         </SidebarGroupContent>
       </SidebarGroup>
       {group.groups?.map((sub) => (
-        <ShellNavGroup
-          key={sub.title}
-          group={sub}
-          linkComponent={linkComponent}
-          // Sub-groups always show their label.
-          hideLabel={false}
-        />
+        <ShellNavGroup key={sub.title} group={sub} linkComponent={linkComponent} />
       ))}
     </>
   )
@@ -374,12 +404,17 @@ function AppShell({
   iconRailFooter,
 }: AppShellProps) {
   // Derive icon rail items from nav groups when iconRail is enabled.
+  // Fall back to the first item in the first sub-group when the top-level
+  // group has no direct items (composition pattern: parent acts as a category).
+  const firstHref = (g: NavGroup): string | undefined =>
+    g.items[0]?.href ?? (g.groups?.[0] ? firstHref(g.groups[0]) : undefined)
+
   const railItems: IconRailItem[] | undefined = iconRail
     ? nav.map((group) => ({
         id: groupSlug(group),
         icon: group.icon ? <group.icon className="size-5" /> : null,
         label: group.title,
-        href: group.items[0]?.href,
+        href: firstHref(group),
       }))
     : undefined
 

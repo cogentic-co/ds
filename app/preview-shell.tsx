@@ -47,10 +47,19 @@ import { AppShell } from "@/src/shells/app-shell"
 import { componentMeta, statusConfig } from "./_component-meta"
 import { CommandSearch } from "./command-search"
 
+// Cache PixelIcon wrapper components so we don't create a new component type
+// per render. Each unique name → one stable component reference.
+const pixelCache = new Map<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>()
+
 function pixel(name: string): React.ComponentType<React.SVGProps<SVGSVGElement>> {
-  return function PixelIconWrapper(props) {
+  const cached = pixelCache.get(name)
+  if (cached) return cached
+  const Component = function PixelIconWrapper(props: React.SVGProps<SVGSVGElement>) {
     return <PixelIcon name={name} {...(props as object)} />
   }
+  Component.displayName = `PixelIcon(${name})`
+  pixelCache.set(name, Component)
+  return Component
 }
 
 function toTitle(slug: string) {
@@ -310,18 +319,22 @@ function buildNav(pathname: string): NavGroup[] {
     ...componentGroups.map((group) => ({
       title: group.label,
       items: buildComponentItems(group.items),
+      defaultOpen: true,
     })),
     {
       title: "Compliance",
       items: buildComponentItems(complianceItems),
+      defaultOpen: true,
     },
     {
       title: "Workflow",
       items: buildComponentItems(workflowItems),
+      defaultOpen: true,
     },
     {
       title: "AI / Chatbot",
       items: buildComponentItems(chatbotItems),
+      defaultOpen: true,
     },
   ]
 
