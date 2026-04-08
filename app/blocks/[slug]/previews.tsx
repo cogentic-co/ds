@@ -1,6 +1,7 @@
 "use client"
 
 import { Bell, CreditCard, Mail, Monitor, Settings2, Users } from "lucide-react"
+import { useState } from "react"
 import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
 import { PricingTable } from "@/blocks/pricing-table"
@@ -13,6 +14,7 @@ import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
 import { RegisterForm } from "@/src/blocks/register-form"
 import { RichRadioList } from "@/src/blocks/rich-radio-list"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
+import { SequenceBuilder, type SequenceStep } from "@/src/blocks/sequence-builder"
 import { SettingRow } from "@/src/blocks/setting-row"
 import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
 import { StatCard } from "@/src/blocks/stat-card"
@@ -300,6 +302,68 @@ function RichRadioListPreview() {
   )
 }
 
+// ── Sequence Builder ───────────────────────────────────────────────────
+
+function SequenceBuilderPreview() {
+  const [steps, setSteps] = useState<SequenceStep[]>([
+    {
+      id: "step-1",
+      title: "Assign to support team",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          Route new threads to the on-call support engineer
+        </div>
+      ),
+    },
+    {
+      id: "step-2",
+      title: "Wait 15 minutes",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          Give the assigned engineer time to respond before escalating
+        </div>
+      ),
+    },
+    {
+      id: "step-3",
+      title: "Escalate to team lead",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          If no response, notify the team lead via Slack
+        </div>
+      ),
+    },
+  ])
+
+  function handleAddStep(index: number) {
+    const newId = `step-${Date.now()}`
+    setSteps((current) => {
+      const next = [...current]
+      next.splice(index, 0, {
+        id: newId,
+        title: "New step",
+        content: <div className="text-muted-foreground text-sm">Configure this step</div>,
+      })
+      return next
+    })
+  }
+
+  function handleRemoveStep(id: string) {
+    setSteps((current) => current.filter((step) => step.id !== id))
+  }
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <SequenceBuilder
+        steps={steps}
+        onStepsChange={setSteps}
+        onAddStep={handleAddStep}
+        onRemoveStep={handleRemoveStep}
+      />
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -338,6 +402,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
     </div>
   ),
   "rich-radio-list": RichRadioListPreview,
+  "sequence-builder": SequenceBuilderPreview,
   "setting-row": SettingRowPreview,
   "settings-card-grid": SettingsCardGridPreview,
   "team-card": () => (

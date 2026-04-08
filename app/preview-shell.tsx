@@ -198,6 +198,7 @@ const blockItems = [
   "rich-radio-list",
   "forgot-password-form",
   "select-org-form",
+  "sequence-builder",
   "setting-row",
   "settings-card-grid",
   "magic-link-message",

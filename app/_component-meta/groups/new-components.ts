@@ -237,6 +237,74 @@ import { Bell, Settings2, Users } from "lucide-react"
   ]}
 />`,
   },
+  "sequence-builder": {
+    status: "new",
+    description:
+      "Reorderable step-list builder with drag-and-drop, numbered badges, insert-between buttons, and per-step delete. Designed for escalation paths, workflow builders, onboarding sequences, or any ordered-steps editor.",
+    since: "0.9.0",
+    importStatement: `import { SequenceBuilder } from "@cogentic-co/ds/blocks/sequence-builder"`,
+    dos: [
+      "Use for editable ordered sequences like escalation paths, onboarding flows, and approval chains",
+      "Provide a stable unique id per step — drag-and-drop relies on stable ids to track positions",
+      "Keep step content focused — a short description or a single control per step works best",
+      "Wire onStepsChange to your state so reorder results are persisted",
+    ],
+    donts: [
+      "Don't use for read-only sequence display — use a plain list or Timeline instead",
+      "Don't nest SequenceBuilders inside each other",
+      "Avoid more than ~10 steps; beyond that, pagination or collapsing helps usability",
+    ],
+    codeExample: `import { useState } from "react"
+import { SequenceBuilder, type SequenceStep } from "@cogentic-co/ds/blocks/sequence-builder"
+
+function EscalationPathEditor() {
+  const [steps, setSteps] = useState<SequenceStep[]>([
+    {
+      id: "step-1",
+      title: "Assign to support team",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          Route new threads to the on-call support engineer
+        </div>
+      ),
+    },
+    {
+      id: "step-2",
+      title: "Escalate to team lead",
+      content: (
+        <div className="text-muted-foreground text-sm">
+          If no response after 15 minutes, notify the team lead
+        </div>
+      ),
+    },
+  ])
+
+  function handleAddStep(index: number) {
+    setSteps((current) => {
+      const next = [...current]
+      next.splice(index, 0, {
+        id: \`step-\${Date.now()}\`,
+        title: "New step",
+        content: <div className="text-muted-foreground text-sm">Configure this step</div>,
+      })
+      return next
+    })
+  }
+
+  function handleRemoveStep(id: string) {
+    setSteps((current) => current.filter((step) => step.id !== id))
+  }
+
+  return (
+    <SequenceBuilder
+      steps={steps}
+      onStepsChange={setSteps}
+      onAddStep={handleAddStep}
+      onRemoveStep={handleRemoveStep}
+    />
+  )
+}`,
+  },
   "setting-row": {
     status: "new",
     description:
