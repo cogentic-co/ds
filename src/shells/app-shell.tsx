@@ -358,7 +358,7 @@ function AppShell({
       : nav
 
   return (
-    <div className="flex h-svh w-full overflow-hidden bg-background">
+    <div className="group/shell flex h-svh w-full overflow-hidden bg-background">
       {iconRail && railItems && (
         <IconRail
           items={railItems}
