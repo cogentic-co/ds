@@ -40,6 +40,7 @@ import {
   SidebarTrigger,
 } from "../components/sidebar"
 import { cn } from "../lib/utils"
+import { IconRail, type IconRailItem } from "./icon-rail"
 
 // ---------------------------------------------------------------------------
 // Types
@@ -103,6 +104,17 @@ interface AppShellProps {
   /** Page content */
   children: React.ReactNode
   className?: string
+
+  /** Icon rail on the far left. When provided, renders as a third column. */
+  iconRail?: IconRailItem[]
+  /** Id of the active rail item (for highlighting). */
+  activeRailId?: string
+  /** Called when a rail icon is clicked. */
+  onRailSelect?: (id: string) => void
+  /** Optional top slot for the rail (above the nav icons). */
+  iconRailHeader?: React.ReactNode
+  /** Optional bottom slot for the rail (below the nav icons). */
+  iconRailFooter?: React.ReactNode
 }
 
 // ---------------------------------------------------------------------------
@@ -277,95 +289,117 @@ function AppShell({
   linkComponent: Link = "a",
   children,
   className,
+  iconRail,
+  activeRailId,
+  onRailSelect,
+  iconRailHeader,
+  iconRailFooter,
 }: AppShellProps) {
   return (
-    <SidebarProvider className={cn(className)}>
-      <Sidebar variant="inset">
-        <SidebarHeader>
-          <ShellLogo logo={logo} linkComponent={Link} />
-          {sidebarHeaderExtra}
-        </SidebarHeader>
+    <div className="flex min-h-svh w-full bg-background">
+      {iconRail && (
+        <IconRail
+          items={iconRail}
+          activeId={activeRailId}
+          onSelect={onRailSelect}
+          header={iconRailHeader}
+          footer={iconRailFooter}
+          linkComponent={Link}
+        />
+      )}
+      <SidebarProvider className={cn("flex-1", className)}>
+        <Sidebar variant="inset">
+          <SidebarHeader>
+            <ShellLogo logo={logo} linkComponent={Link} />
+            {sidebarHeaderExtra}
+          </SidebarHeader>
 
-        <SidebarContent className="overflow-hidden">
-          <ScrollArea className="min-h-0 flex-1">
-            {nav.map((group) => (
-              <SidebarGroup key={group.title}>
-                <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+          <SidebarContent className="overflow-hidden">
+            <ScrollArea className="min-h-0 flex-1">
+              {nav.map((group) => (
+                <SidebarGroup key={group.title}>
+                  <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {group.items.map((item) => (
+                        <ShellNavItem key={item.label} item={item} linkComponent={Link} />
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              ))}
+            </ScrollArea>
+          </SidebarContent>
+
+          <SidebarFooter>
+            {footerNav && (
+              <SidebarGroup>
                 <SidebarGroupContent>
                   <SidebarMenu>
-                    {group.items.map((item) => (
+                    {footerNav.items.map((item) => (
                       <ShellNavItem key={item.label} item={item} linkComponent={Link} />
                     ))}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </SidebarGroup>
-            ))}
-          </ScrollArea>
-        </SidebarContent>
-
-        <SidebarFooter>
-          {footerNav && (
-            <SidebarGroup>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {footerNav.items.map((item) => (
-                    <ShellNavItem key={item.label} item={item} linkComponent={Link} />
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          )}
-          {user && <ShellUserMenu user={user} userMenuItems={userMenuItems} onLogout={onLogout} />}
-        </SidebarFooter>
-
-        <SidebarRail />
-      </Sidebar>
-
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 hidden data-[orientation=vertical]:h-4 md:block"
-          />
-          {/* Mobile logo */}
-          <Link href={logo.href ?? "/"} className="flex items-center gap-2 md:hidden">
-            {logo.icon && (
-              <div className="flex aspect-square size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground">
-                {logo.icon}
-              </div>
             )}
-            <span className="font-semibold">{logo.title}</span>
-          </Link>
+            {user && (
+              <ShellUserMenu user={user} userMenuItems={userMenuItems} onLogout={onLogout} />
+            )}
+          </SidebarFooter>
 
-          {/* Breadcrumbs */}
-          {breadcrumbs && breadcrumbs.length > 0 && (
-            <Breadcrumb className="hidden md:block">
-              <BreadcrumbList>
-                {breadcrumbs.map((segment, i) => (
-                  <React.Fragment key={segment.label}>
-                    {i > 0 && <BreadcrumbSeparator />}
-                    <BreadcrumbItem>
-                      {i === breadcrumbs.length - 1 || !segment.href ? (
-                        <BreadcrumbPage>{segment.label}</BreadcrumbPage>
-                      ) : (
-                        <BreadcrumbLink href={segment.href}>{segment.label}</BreadcrumbLink>
-                      )}
-                    </BreadcrumbItem>
-                  </React.Fragment>
-                ))}
-              </BreadcrumbList>
-            </Breadcrumb>
-          )}
+          <SidebarRail />
+        </Sidebar>
 
-          {headerActions && <div className="ml-auto flex items-center gap-2">{headerActions}</div>}
-        </header>
+        <SidebarInset>
+          <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 hidden data-[orientation=vertical]:h-4 md:block"
+            />
+            {/* Mobile logo */}
+            <Link href={logo.href ?? "/"} className="flex items-center gap-2 md:hidden">
+              {logo.icon && (
+                <div className="flex aspect-square size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground">
+                  {logo.icon}
+                </div>
+              )}
+              <span className="font-semibold">{logo.title}</span>
+            </Link>
 
-        <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
-      </SidebarInset>
-    </SidebarProvider>
+            {/* Breadcrumbs */}
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <Breadcrumb className="hidden md:block">
+                <BreadcrumbList>
+                  {breadcrumbs.map((segment, i) => (
+                    <React.Fragment key={segment.label}>
+                      {i > 0 && <BreadcrumbSeparator />}
+                      <BreadcrumbItem>
+                        {i === breadcrumbs.length - 1 || !segment.href ? (
+                          <BreadcrumbPage>{segment.label}</BreadcrumbPage>
+                        ) : (
+                          <BreadcrumbLink href={segment.href}>{segment.label}</BreadcrumbLink>
+                        )}
+                      </BreadcrumbItem>
+                    </React.Fragment>
+                  ))}
+                </BreadcrumbList>
+              </Breadcrumb>
+            )}
+
+            {headerActions && (
+              <div className="ml-auto flex items-center gap-2">{headerActions}</div>
+            )}
+          </header>
+
+          <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+        </SidebarInset>
+      </SidebarProvider>
+    </div>
   )
 }
 
 export { AppShell }
 export type { AppShellProps, AppShellLogo, AppShellUser, NavItem, NavGroup, BreadcrumbSegment }
+export type { IconRailItem } from "./icon-rail"
