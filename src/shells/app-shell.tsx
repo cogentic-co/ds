@@ -296,7 +296,7 @@ function AppShell({
   iconRailFooter,
 }: AppShellProps) {
   return (
-    <div className="flex min-h-svh w-full bg-background">
+    <div className="flex h-svh w-full overflow-hidden bg-background">
       {iconRail && (
         <IconRail
           items={iconRail}
@@ -393,7 +393,7 @@ function AppShell({
             )}
           </header>
 
-          <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+          <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-4">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </div>
