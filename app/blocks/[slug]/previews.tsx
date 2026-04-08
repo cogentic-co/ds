@@ -11,6 +11,7 @@ import { HeroSection } from "@/src/blocks/hero-section"
 import { LoginForm } from "@/src/blocks/login-form"
 import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
 import { RegisterForm } from "@/src/blocks/register-form"
+import { RichRadioList } from "@/src/blocks/rich-radio-list"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
 import { SettingRow } from "@/src/blocks/setting-row"
 import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
@@ -263,6 +264,42 @@ function SettingsCardGridPreview() {
   )
 }
 
+// ── Rich Radio List ────────────────────────────────────────────────────
+
+const roleOptions = [
+  {
+    value: "owner",
+    title: "Owner",
+    description:
+      "Has full access to everything. Can manage billing, workspace settings, API keys and workspace deletion.",
+  },
+  {
+    value: "admin",
+    title: "Admin",
+    description: "Has access to everything, except billing or workspace deletion.",
+  },
+  {
+    value: "support",
+    title: "Support",
+    description: "Can message customers and use all app features.",
+  },
+  {
+    value: "viewer",
+    title: "Viewer",
+    description:
+      "Can view threads and participate in internal discussions. Cannot message customers.",
+  },
+]
+
+function RichRadioListPreview() {
+  return (
+    <div className="mx-auto max-w-lg">
+      <div className="mb-2 font-semibold text-sm">Role</div>
+      <RichRadioList options={roleOptions} defaultValue="admin" aria-label="Role" />
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -300,6 +337,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       />
     </div>
   ),
+  "rich-radio-list": RichRadioListPreview,
   "setting-row": SettingRowPreview,
   "settings-card-grid": SettingsCardGridPreview,
   "team-card": () => (

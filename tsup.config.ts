@@ -149,6 +149,7 @@ export default defineConfig({
     "blocks/hero-section": "src/blocks/hero-section.tsx",
     "blocks/login-form": "src/blocks/login-form.tsx",
     "blocks/register-form": "src/blocks/register-form.tsx",
+    "blocks/rich-radio-list": "src/blocks/rich-radio-list.tsx",
     "blocks/forgot-password-form": "src/blocks/forgot-password-form.tsx",
     "blocks/select-org-form": "src/blocks/select-org-form.tsx",
     "blocks/magic-link-message": "src/blocks/magic-link-message.tsx",

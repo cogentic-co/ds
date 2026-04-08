@@ -195,6 +195,7 @@ const blockItems = [
   "hero-section",
   "login-form",
   "register-form",
+  "rich-radio-list",
   "forgot-password-form",
   "select-org-form",
   "setting-row",

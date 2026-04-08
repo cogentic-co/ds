@@ -23,6 +23,8 @@ export type { Plan, PricingTableProps } from "./blocks/pricing-table"
 export { PricingTable } from "./blocks/pricing-table"
 export type { RegisterFormProps, RegisterFormValues } from "./blocks/register-form"
 export { RegisterForm, registerSchema } from "./blocks/register-form"
+export type { RichRadioListProps, RichRadioOption } from "./blocks/rich-radio-list"
+export { RichRadioList } from "./blocks/rich-radio-list"
 export type {
   Organization,
   SelectOrgFormProps,

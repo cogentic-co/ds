@@ -197,6 +197,46 @@ import { Bell, Settings2, Users } from "lucide-react"
   ]}
 />`,
   },
+  "rich-radio-list": {
+    status: "new",
+    description:
+      "Card-contained list of radio options with hairline dividers between each row. Each option has a title and optional description, and the whole row is the click target. Implements the Plain role-picker pattern.",
+    since: "0.9.0",
+    importStatement: `import { RichRadioList } from "@cogentic-co/ds/blocks/rich-radio-list"`,
+    dos: [
+      "Use when each option has a description that helps the user choose",
+      "Prefer over plain RadioGroup for 3–6 options with contextual descriptions",
+      "Always provide aria-label or aria-labelledby for accessibility",
+    ],
+    donts: [
+      "Don't use with more than 6–8 options — it gets unwieldy; use a Select instead",
+      "Don't use when options have no descriptions — plain RadioGroup is lighter",
+      "Don't nest inside another card",
+    ],
+    codeExample: `import { RichRadioList } from "@cogentic-co/ds/blocks/rich-radio-list"
+
+<RichRadioList
+  defaultValue="admin"
+  aria-label="Role"
+  options={[
+    {
+      value: "admin",
+      title: "Admin",
+      description: "Has access to everything, except billing or workspace deletion.",
+    },
+    {
+      value: "support",
+      title: "Support",
+      description: "Can message customers and use all app features.",
+    },
+    {
+      value: "viewer",
+      title: "Viewer",
+      description: "Can view threads and participate in internal discussions.",
+    },
+  ]}
+/>`,
+  },
   "setting-row": {
     status: "new",
     description:
