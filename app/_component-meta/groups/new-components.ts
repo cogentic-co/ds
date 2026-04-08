@@ -2,6 +2,200 @@ import type { ComponentMeta } from "../index"
 
 // ── New components (v0.5.0) ──
 export const newComponentsMeta: Record<string, ComponentMeta> = {
+  // ── Marketing blocks ──
+  "pricing-table": {
+    status: "stable",
+    description:
+      "Responsive pricing comparison with plan cards, feature lists, and highlighted recommended tier.",
+    since: "0.1.0",
+    importStatement: 'import { PricingTable } from "@cogentic-co/ds/blocks/pricing-table"',
+    dos: [
+      "Use for SaaS pricing pages with 2-4 plan tiers",
+      "Highlight one recommended plan via the featured flag",
+      "Keep feature lists short and scannable (6-10 items per plan)",
+    ],
+    donts: [
+      "Don't use for more than 4 plans — gets unreadable on mobile",
+      "Don't mix feature list lengths wildly between plans — align by padding empty slots",
+    ],
+    codeExample: `import { PricingTable } from "@cogentic-co/ds/blocks/pricing-table"
+
+<PricingTable
+  headline="Simple, transparent pricing"
+  subheadline="Start free, upgrade when you're ready."
+  plans={[
+    {
+      name: "Starter",
+      price: "$0",
+      description: "For small teams getting started",
+      features: ["Up to 5 users", "10GB storage", "Community support"],
+      ctaLabel: "Get started",
+      ctaHref: "/signup",
+    },
+    {
+      name: "Pro",
+      price: "$29",
+      description: "For growing teams",
+      features: ["Unlimited users", "100GB storage", "Priority support", "Advanced analytics"],
+      ctaLabel: "Start free trial",
+      ctaHref: "/signup?plan=pro",
+      featured: true,
+    },
+  ]}
+/>`,
+  },
+  "stat-card": {
+    status: "stable",
+    description:
+      "Dashboard KPI card with a label, value, trend indicator, and optional description.",
+    since: "0.1.0",
+    importStatement: 'import { StatCard } from "@cogentic-co/ds/blocks/stat-card"',
+    dos: [
+      "Use in a grid of 2-4 for a metrics overview at the top of dashboards",
+      "Set trendDirection to auto-colour the trend value (up=green, down=red, neutral=grey)",
+      "Keep values concise ($12.4k, not $12,400.00)",
+    ],
+    donts: [
+      "Don't overload with more than one trend per card",
+      "Don't use for complex data — reach for a chart instead",
+    ],
+    codeExample: `import { StatCard } from "@cogentic-co/ds/blocks/stat-card"
+
+<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <StatCard label="Revenue" value="$12.4k" description="vs last month" trend="+12%" trendDirection="up" />
+  <StatCard label="Users" value="1,234" description="active this week" trend="-3%" trendDirection="down" />
+  <StatCard label="Orders" value="89" description="today" trend="+5%" trendDirection="up" />
+  <StatCard label="Conversion" value="3.2%" description="30-day avg" />
+</div>`,
+  },
+  "feature-section": {
+    status: "stable",
+    description:
+      "Marketing feature grid with title, subtitle, and 2-6 feature cards with icons and descriptions.",
+    since: "0.1.0",
+    importStatement: 'import { FeatureSection } from "@cogentic-co/ds/blocks/feature-section"',
+    dos: [
+      "Use for marketing landing pages to showcase 3-6 key features",
+      "Pair each feature with a distinctive icon",
+      "Keep feature titles short (2-4 words) and descriptions under 2 lines",
+    ],
+    donts: [
+      "Don't use for more than 6 features — use a different layout",
+      "Don't use without icons — they anchor the eye and improve scannability",
+    ],
+    codeExample: `import { FeatureSection } from "@cogentic-co/ds/blocks/feature-section"
+
+<FeatureSection
+  title="Everything you need"
+  subtitle="Built for modern compliance teams."
+  features={[
+    { title: "AI Analysis", description: "Automated risk scoring powered by machine learning." },
+    { title: "Real-time Alerts", description: "Instant notifications when issues are detected." },
+    { title: "Audit Trail", description: "Complete history of every action and decision." },
+  ]}
+/>`,
+  },
+  "hero-section": {
+    status: "stable",
+    description:
+      "Top-of-page hero with badge, headline, subtitle, and CTA buttons. Variants: default, centered, split. Sizes: sm, default, lg.",
+    since: "0.1.0",
+    importStatement: 'import { HeroSection } from "@cogentic-co/ds/blocks/hero-section"',
+    dos: [
+      "Use the centered variant for single-column marketing pages",
+      "Use the split variant when pairing with a hero image or illustration",
+      "Keep headlines under 10 words — they're the first thing users read",
+    ],
+    donts: [
+      "Don't stack multiple HeroSections on one page — it dilutes the call to action",
+      "Don't use the lg size inside application shells — it overwhelms the layout",
+    ],
+    codeExample: `import { HeroSection } from "@cogentic-co/ds/blocks/hero-section"
+
+<HeroSection
+  variant="centered"
+  badge="New Release"
+  title="Build faster with Cogentic"
+  subtitle="The compliance platform that keeps up with you."
+/>`,
+  },
+  "page-cta": {
+    status: "stable",
+    description:
+      "Full-width call-to-action section with headline, subheadline, and primary/secondary buttons. Typically used at the bottom of marketing pages.",
+    since: "0.1.0",
+    importStatement: 'import { PageCta } from "@cogentic-co/ds/blocks/page-cta"',
+    dos: [
+      "Use at the bottom of marketing pages as the final conversion prompt",
+      "Keep the headline action-oriented and benefit-focused",
+      "Use both primary and secondary CTAs when offering a trial + contact option",
+    ],
+    donts: ["Don't use mid-page — it competes with content", "Don't use with more than two CTAs"],
+    codeExample: `import { PageCta } from "@cogentic-co/ds/blocks/page-cta"
+
+<PageCta
+  headline="Ready to simplify your compliance?"
+  subheadline="Get started with Cogentic in minutes. No credit card required."
+  primaryCta={{ label: "Get started", href: "/signup" }}
+  secondaryCta={{ label: "Talk to sales", href: "/contact" }}
+/>`,
+  },
+  "article-card": {
+    status: "stable",
+    description:
+      "Blog/content card with title, excerpt, date, category, and optional author. Used on blog index pages.",
+    since: "0.1.0",
+    importStatement: 'import { ArticleCard } from "@cogentic-co/ds/blocks/article-card"',
+    dos: [
+      "Use in grids of 2-3 columns for blog index pages",
+      "Keep excerpts to 2-3 lines maximum",
+      "Use consistent date formatting across all cards",
+    ],
+    donts: [
+      "Don't use for content that isn't an article (use Card directly for custom layouts)",
+      "Don't truncate titles — rewrite them shorter instead",
+    ],
+    codeExample: `import { ArticleCard } from "@cogentic-co/ds/blocks/article-card"
+
+<div className="grid gap-6 sm:grid-cols-2">
+  <ArticleCard
+    title="Understanding Travel Rule compliance in APAC"
+    excerpt="A comprehensive guide to navigating the evolving regulatory landscape across Asia-Pacific jurisdictions."
+    date="15 February 2026"
+    category="Compliance"
+    author="James Cooke"
+  />
+  <ArticleCard
+    title="How AI is transforming VASP investigations"
+    excerpt="Exploring the latest advances in AI-powered compliance tooling."
+    date="10 February 2026"
+    category="Technology"
+  />
+</div>`,
+  },
+  "team-card": {
+    status: "stable",
+    description:
+      "Team member card with name, role, photo, and optional LinkedIn link. Used on About/Team pages.",
+    since: "0.1.0",
+    importStatement: 'import { TeamCard } from "@cogentic-co/ds/blocks/team-card"',
+    dos: [
+      "Use in grids of 3-4 columns for team pages",
+      "Use consistent photo styles (all headshots, same aspect ratio)",
+      "Include LinkedIn links for professional credibility",
+    ],
+    donts: [
+      "Don't mix photos and initials across the same grid — pick one",
+      "Don't put company bios in the card (keep it name + role)",
+    ],
+    codeExample: `import { TeamCard } from "@cogentic-co/ds/blocks/team-card"
+
+<div className="grid gap-6 sm:grid-cols-3">
+  <TeamCard name="Alice Smith" role="Engineering Lead" linkedinUrl="https://linkedin.com/in/..." />
+  <TeamCard name="Bob Chen" role="Product Designer" />
+  <TeamCard name="Carol Davis" role="Staff Engineer" />
+</div>`,
+  },
   "audit-log": {
     status: "new",
     description:

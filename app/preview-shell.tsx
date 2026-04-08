@@ -193,23 +193,36 @@ const complianceItems = ["case-card"]
 
 const shellItems = ["app-shell"]
 
-const blockItems = [
-  "pricing-table",
-  "stat-card",
-  "feature-section",
-  "hero-section",
-  "login-form",
-  "register-form",
-  "rich-radio-list",
-  "forgot-password-form",
-  "select-org-form",
-  "sequence-builder",
-  "setting-row",
-  "settings-card-grid",
-  "magic-link-message",
-  "page-cta",
-  "article-card",
-  "team-card",
+const blockGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Marketing",
+    items: [
+      "hero-section",
+      "feature-section",
+      "pricing-table",
+      "page-cta",
+      "article-card",
+      "team-card",
+    ],
+  },
+  {
+    label: "Dashboard",
+    items: ["stat-card"],
+  },
+  {
+    label: "Auth",
+    items: [
+      "login-form",
+      "register-form",
+      "forgot-password-form",
+      "magic-link-message",
+      "select-org-form",
+    ],
+  },
+  {
+    label: "Settings",
+    items: ["setting-row", "settings-card-grid", "rich-radio-list", "sequence-builder"],
+  },
 ]
 
 const chartItems = ["area-chart", "bar-chart", "line-chart", "pie-chart", "radial-chart"]
@@ -384,12 +397,17 @@ function buildNav(pathname: string): NavGroup[] {
       id: "blocks",
       icon: LayoutGrid,
       title: "Blocks",
-      items: blockItems.map((slug) => ({
-        label: toTitle(slug),
-        icon: Component,
-        href: `/blocks/${slug}`,
-        isActive: pathname === `/blocks/${slug}`,
-        badge: buildBadge(slug),
+      items: [],
+      groups: blockGroups.map((group) => ({
+        title: group.label,
+        items: group.items.map((slug) => ({
+          label: toTitle(slug),
+          icon: Component,
+          href: `/blocks/${slug}`,
+          isActive: pathname === `/blocks/${slug}`,
+          badge: buildBadge(slug),
+        })),
+        defaultOpen: true,
       })),
     },
     {
@@ -415,9 +433,9 @@ function buildNav(pathname: string): NavGroup[] {
       })),
     },
     {
-      id: "tools",
-      icon: Wrench,
-      title: "Tools",
+      id: "animations",
+      icon: Play,
+      title: "Animations",
       items: animationItems.map((slug) => ({
         label: toTitle(slug),
         icon: Play,
