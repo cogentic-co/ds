@@ -174,6 +174,7 @@ export default defineConfig({
     "workflow/canvas": "src/workflow/canvas.tsx",
     "workflow/workflow-block-palette": "src/workflow/workflow-block-palette.tsx",
     "workflow/workflow-inspector": "src/workflow/workflow-inspector.tsx",
+    "workflow/workflow-slack-message": "src/workflow/workflow-slack-message.tsx",
     "workflow/workflow-connection": "src/workflow/workflow-connection.tsx",
     "workflow/workflow-context": "src/workflow/workflow-context.tsx",
     "workflow/workflow-controls": "src/workflow/workflow-controls.tsx",

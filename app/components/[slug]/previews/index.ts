@@ -136,6 +136,7 @@ import WorkflowLabelPreview from "./workflow-label"
 import WorkflowMinimapPreview from "./workflow-minimap"
 import WorkflowNodePreview from "./workflow-node"
 import WorkflowPanelPreview from "./workflow-panel"
+import WorkflowSlackMessagePreview from "./workflow-slack-message"
 import WorkflowToolbarPreview from "./workflow-toolbar"
 
 export const previews: Record<string, React.ComponentType> = {
@@ -252,6 +253,7 @@ export const previews: Record<string, React.ComponentType> = {
   "workflow-panel": WorkflowPanelPreview,
   "workflow-block-palette": WorkflowBlockPalettePreview,
   "workflow-inspector": WorkflowInspectorPreview,
+  "workflow-slack-message": WorkflowSlackMessagePreview,
   "workflow-toolbar": WorkflowToolbarPreview,
   "workflow-minimap": WorkflowMinimapPreview,
   "workflow-group": WorkflowGroupPreview,

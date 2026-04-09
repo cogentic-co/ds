@@ -1,7 +1,8 @@
 "use client"
 
 import type { EdgeProps } from "@xyflow/react"
-import { BaseEdge, getBezierPath, getSimpleBezierPath } from "@xyflow/react"
+import { BaseEdge, EdgeLabelRenderer, getBezierPath, getSimpleBezierPath } from "@xyflow/react"
+import { cn } from "../lib/utils"
 
 // ---------------------------------------------------------------------------
 // Edge variant type
@@ -9,15 +10,21 @@ import { BaseEdge, getBezierPath, getSimpleBezierPath } from "@xyflow/react"
 
 type WorkflowEdgeVariant = "solid" | "dotted" | "animated" | "dashed"
 
-type WorkflowEdgeProps = EdgeProps & {
-  data?: {
-    variant?: WorkflowEdgeVariant
-    color?: string
-    label?: string
-    /** Show a directional arrow at the target end */
-    arrow?: boolean
-  }
+type WorkflowEdgeData = {
+  variant?: WorkflowEdgeVariant
+  color?: string
+  label?: string
+  /** Show a directional arrow at the target end */
+  arrow?: boolean
+  /**
+   * Active branch — rendered with a stronger colour and a filled-card label.
+   * Used for condition outputs like "Qualified" (active) vs "Not qualified"
+   * (inactive/dashed).
+   */
+  active?: boolean
 }
+
+type WorkflowEdgeProps = EdgeProps & { data?: WorkflowEdgeData }
 
 // ---------------------------------------------------------------------------
 // Stroke styles per variant
@@ -28,6 +35,45 @@ const variantStyles: Record<WorkflowEdgeVariant, React.CSSProperties> = {
   dotted: { strokeDasharray: "3, 6", strokeLinecap: "round" },
   dashed: { strokeDasharray: "8, 4" },
   animated: {},
+}
+
+// ---------------------------------------------------------------------------
+// Shared edge label pill rendered via xyflow's EdgeLabelRenderer
+// ---------------------------------------------------------------------------
+
+function EdgeLabelPill({
+  label,
+  labelX,
+  labelY,
+  active,
+}: {
+  label: string
+  labelX: number
+  labelY: number
+  active?: boolean
+}) {
+  return (
+    <EdgeLabelRenderer>
+      <div
+        data-slot="workflow-edge-label"
+        data-active={active || undefined}
+        style={{
+          position: "absolute",
+          transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
+          pointerEvents: "all",
+        }}
+        className={cn(
+          "inline-flex items-center rounded-md border px-2 py-0.5",
+          "font-medium text-[11px] leading-tight",
+          active
+            ? "border-focal/30 bg-card text-foreground"
+            : "border-border bg-muted/80 text-muted-foreground",
+        )}
+      >
+        {label}
+      </div>
+    </EdgeLabelRenderer>
+  )
 }
 
 // ---------------------------------------------------------------------------
@@ -91,17 +137,7 @@ function SolidEdge({
         }}
       />
       {data?.label && (
-        <foreignObject
-          x={labelX - 40}
-          y={labelY - 10}
-          width={80}
-          height={20}
-          className="pointer-events-none"
-        >
-          <span className="flex items-center justify-center rounded-full bg-card px-2 py-0.5 font-medium text-[10px] text-muted-foreground ring-1 ring-border">
-            {data.label}
-          </span>
-        </foreignObject>
+        <EdgeLabelPill label={data.label} labelX={labelX} labelY={labelY} active={data.active} />
       )}
     </>
   )
@@ -176,7 +212,7 @@ function AnimatedEdge({
   const markerId = `arrow-${id}`
   const resolvedMarkerEnd = data?.arrow ? `url(#${markerId})` : markerEnd
 
-  const [edgePath] = getBezierPath({
+  const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
     targetX,
@@ -212,6 +248,9 @@ function AnimatedEdge({
       <circle fill={strokeColor} r="4">
         <animateMotion dur="2s" path={edgePath} repeatCount="indefinite" />
       </circle>
+      {data?.label && (
+        <EdgeLabelPill label={data.label} labelX={labelX} labelY={labelY} active={data.active} />
+      )}
     </>
   )
 }
@@ -228,5 +267,12 @@ const WorkflowEdge = {
   Temporary: TemporaryEdge,
 }
 
-export { WorkflowEdge, SolidEdge, DottedEdge, DashedEdge, AnimatedEdge, TemporaryEdge }
-export type { WorkflowEdgeProps, WorkflowEdgeVariant }
+export {
+  AnimatedEdge,
+  DashedEdge,
+  DottedEdge,
+  SolidEdge,
+  TemporaryEdge,
+  WorkflowEdge,
+}
+export type { WorkflowEdgeData, WorkflowEdgeProps, WorkflowEdgeVariant }

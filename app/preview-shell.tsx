@@ -254,6 +254,10 @@ const workflowGroups: { label: string; items: string[] }[] = [
     label: "Editor",
     items: ["workflow-block-palette", "workflow-inspector"],
   },
+  {
+    label: "Previews",
+    items: ["workflow-slack-message"],
+  },
 ]
 
 const chatbotGroups: { label: string; items: string[] }[] = [
