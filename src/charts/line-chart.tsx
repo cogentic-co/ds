@@ -10,6 +10,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../components/chart"
+import { ChartShell, GHOST_COLOR, GHOST_KEY, makeGhostData } from "./_empty"
 
 type LineChartProps = React.ComponentProps<"div"> & {
   data: Record<string, unknown>[]
@@ -22,6 +23,8 @@ type LineChartProps = React.ComponentProps<"div"> & {
   showLegend?: boolean
   showDots?: boolean
   curveType?: "natural" | "linear" | "step" | "monotone"
+  /** Overlay rendered on top of the chart when `data` is empty. */
+  empty?: React.ReactNode
 }
 
 function LineChart({
@@ -35,32 +38,38 @@ function LineChart({
   showLegend = false,
   showDots = true,
   curveType = "natural",
+  empty,
   className,
   ...props
 }: LineChartProps) {
+  const isEmpty = !data || data.length === 0
+  const chartData = isEmpty ? makeGhostData(xKey, "sine") : data
+  const activeKeys = isEmpty ? [GHOST_KEY] : yKeys
+
   return (
-    <div data-slot="line-chart" className={className} {...props}>
+    <ChartShell slot="line-chart" isEmpty={isEmpty} empty={empty} className={className} {...props}>
       <ChartContainer config={config}>
-        <RechartsLineChart data={data} margin={{ left: 12, right: 12 }}>
+        <RechartsLineChart data={chartData} margin={{ left: 12, right: 12 }}>
           {showGrid && <CartesianGrid vertical={false} />}
           {showXAxis && <XAxis dataKey={xKey} tickLine={false} axisLine={false} tickMargin={8} />}
           {showYAxis && <YAxis tickLine={false} axisLine={false} tickMargin={8} />}
-          <ChartTooltip content={<ChartTooltipContent />} />
-          {showLegend && <ChartLegend content={<ChartLegendContent />} />}
-          {yKeys.map((key) => (
+          {!isEmpty && <ChartTooltip content={<ChartTooltipContent />} />}
+          {!isEmpty && showLegend && <ChartLegend content={<ChartLegendContent />} />}
+          {activeKeys.map((key) => (
             <Line
               key={key}
               dataKey={key}
               type={curveType}
-              stroke={`var(--color-${key})`}
+              stroke={isEmpty ? GHOST_COLOR : `var(--color-${key})`}
               strokeWidth={2}
-              dot={showDots ? { fill: `var(--color-${key})`, r: 3 } : false}
-              activeDot={{ r: 5 }}
+              dot={!isEmpty && showDots ? { fill: `var(--color-${key})`, r: 3 } : false}
+              activeDot={isEmpty ? false : { r: 5 }}
+              isAnimationActive={!isEmpty}
             />
           ))}
         </RechartsLineChart>
       </ChartContainer>
-    </div>
+    </ChartShell>
   )
 }
 

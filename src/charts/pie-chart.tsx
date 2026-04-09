@@ -10,6 +10,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../components/chart"
+import { ChartShell, GHOST_COLOR, GHOST_KEY } from "./_empty"
+
+const PIE_GHOST_DATA = [{ name: GHOST_KEY, value: 1, fill: GHOST_COLOR }]
 
 type PieChartProps = React.ComponentProps<"div"> & {
   data: { name: string; value: number; fill?: string }[]
@@ -20,6 +23,8 @@ type PieChartProps = React.ComponentProps<"div"> & {
   centerLabel?: string
   centerValue?: string | number
   showLegend?: boolean
+  /** Rendered instead of the chart when `data` is empty or undefined. */
+  empty?: React.ReactNode
 }
 
 function PieChart({
@@ -31,28 +36,35 @@ function PieChart({
   centerLabel,
   centerValue,
   showLegend = false,
+  empty,
   className,
   ...props
 }: PieChartProps) {
+  const isEmpty = !data || data.length === 0
+  const chartData = isEmpty ? PIE_GHOST_DATA : data
   return (
-    <div data-slot="pie-chart" className={className} {...props}>
+    <ChartShell slot="pie-chart" isEmpty={isEmpty} empty={empty} className={className} {...props}>
       <ChartContainer config={config}>
         <RechartsPieChart>
-          <ChartTooltip content={<ChartTooltipContent nameKey={nameKey} />} />
-          {showLegend && <ChartLegend content={<ChartLegendContent nameKey={nameKey} />} />}
+          {!isEmpty && <ChartTooltip content={<ChartTooltipContent nameKey={nameKey} />} />}
+          {!isEmpty && showLegend && (
+            <ChartLegend content={<ChartLegendContent nameKey={nameKey} />} />
+          )}
           <Pie
-            data={data}
+            data={chartData}
             dataKey={dataKey}
             nameKey={nameKey}
             innerRadius={donut ? "60%" : 0}
             outerRadius="80%"
             strokeWidth={2}
             stroke="var(--color-background)"
+            fillOpacity={isEmpty ? 0.5 : 1}
+            isAnimationActive={!isEmpty}
           >
-            {data.map((entry) => (
+            {chartData.map((entry) => (
               <Cell key={entry.name} fill={entry.fill ?? `var(--color-${entry.name})`} />
             ))}
-            {donut && (centerLabel || centerValue) && (
+            {!isEmpty && donut && (centerLabel || centerValue) && (
               <Label
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
@@ -90,7 +102,7 @@ function PieChart({
           </Pie>
         </RechartsPieChart>
       </ChartContainer>
-    </div>
+    </ChartShell>
   )
 }
 

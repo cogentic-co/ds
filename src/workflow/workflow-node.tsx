@@ -29,15 +29,15 @@ class HandleBoundary extends Component<{ children: ReactNode }, { hasError: bool
 const workflowNodeVariants = cva(
   [
     "group/node relative flex flex-col bg-card text-card-foreground",
-    "rounded-2xl shadow-sm overflow-visible w-80",
+    "w-80 overflow-visible rounded-2xl shadow-sm",
     "transition-shadow duration-150",
   ].join(" "),
   {
     variants: {
       state: {
         default: "ring-1 ring-border/70",
-        selected: "ring-[3px] ring-primary shadow-md",
-        dotted: "border-2 border-dashed border-muted-foreground/30 shadow-none",
+        selected: "shadow-md ring-[3px] ring-primary",
+        dotted: "border-2 border-muted-foreground/30 border-dashed shadow-none",
       },
     },
     defaultVariants: { state: "default" },

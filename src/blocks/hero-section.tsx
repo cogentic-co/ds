@@ -6,14 +6,14 @@ const heroVariants = cva("relative overflow-hidden", {
   variants: {
     variant: {
       default: "py-16 md:py-24 lg:py-32",
-      centered: "py-20 md:py-32 lg:py-40 text-center",
+      centered: "py-20 text-center md:py-32 lg:py-40",
       split: "py-16 md:py-24",
     },
     size: {
       sm: "",
       md: "",
       lg: "",
-      full: "min-h-screen flex items-center",
+      full: "flex min-h-screen items-center",
     },
   },
   defaultVariants: { variant: "centered", size: "md" },

@@ -830,7 +830,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
+    "@biomejs/biome": "^2.4.10",
     "@changesets/cli": "^2.30.0",
     "@playwright/test": "^1.58.2",
     "@size-limit/file": "^12.0.1",

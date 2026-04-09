@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, CreditCard, Mail, Monitor, Settings2, Users } from "lucide-react"
+import { Bell, Bot, CreditCard, Mail, Monitor, Settings2, Sparkles, Users, Zap } from "lucide-react"
 import { useState } from "react"
 import { ArticleCard } from "@/blocks/article-card"
 import { PageCta } from "@/blocks/page-cta"
@@ -11,6 +11,7 @@ import { ForgotPasswordForm } from "@/src/blocks/forgot-password-form"
 import { HeroSection } from "@/src/blocks/hero-section"
 import { LoginForm } from "@/src/blocks/login-form"
 import { MagicLinkMessage } from "@/src/blocks/magic-link-message"
+import { ProductTour, type ProductTourStep } from "@/src/blocks/product-tour"
 import { RegisterForm } from "@/src/blocks/register-form"
 import { RichRadioList } from "@/src/blocks/rich-radio-list"
 import { SelectOrgForm } from "@/src/blocks/select-org-form"
@@ -18,6 +19,7 @@ import { SequenceBuilder, type SequenceStep } from "@/src/blocks/sequence-builde
 import { SettingRow } from "@/src/blocks/setting-row"
 import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
 import { StatCard } from "@/src/blocks/stat-card"
+import { Button } from "@/src/components/button"
 import { Card } from "@/src/components/card"
 import { Separator } from "@/src/components/separator"
 import { Switch } from "@/src/components/switch"
@@ -304,7 +306,17 @@ function RichRadioListPreview() {
 
 // ── Sequence Builder ───────────────────────────────────────────────────
 
+const sequenceBuilderControlDefs = {
+  size: {
+    type: "select" as const,
+    options: ["sm", "md"],
+    defaultValue: "md",
+    label: "Size",
+  },
+} satisfies ControlDefs
+
 function SequenceBuilderPreview() {
+  const controls = useControls(sequenceBuilderControlDefs)
   const [steps, setSteps] = useState<SequenceStep[]>([
     {
       id: "step-1",
@@ -353,13 +365,91 @@ function SequenceBuilderPreview() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
-      <SequenceBuilder
-        steps={steps}
-        onStepsChange={setSteps}
-        onAddStep={handleAddStep}
-        onRemoveStep={handleRemoveStep}
-      />
+    <Playground controls={controls}>
+      <div className="mx-auto max-w-2xl">
+        <SequenceBuilder
+          steps={steps}
+          onStepsChange={setSteps}
+          onAddStep={handleAddStep}
+          onRemoveStep={handleRemoveStep}
+          size={controls.values.size as "sm" | "md"}
+        />
+      </div>
+    </Playground>
+  )
+}
+
+// ── Product Tour ───────────────────────────────────────────────────────
+
+const productTourSteps: ProductTourStep[] = [
+  {
+    id: "meet",
+    icon: <Bot className="size-8 text-foreground" />,
+    title: "Meet Ari",
+    description:
+      "Ari responds to routine requests automatically so your team can focus on complex, high-value conversations.",
+    visual: (
+      <div className="flex size-full items-center justify-center">
+        <div className="flex size-20 items-center justify-center rounded-2xl bg-foreground text-background">
+          <Bot className="size-10" />
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "flows",
+    icon: <Sparkles className="size-8 text-foreground" />,
+    title: "Build custom flows",
+    description:
+      "Drag blocks onto the canvas to automate any workflow — from simple notifications to multi-step escalation paths.",
+    visual: (
+      <div className="flex size-full items-center justify-center">
+        <div className="grid grid-cols-2 gap-3">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="h-12 w-24 rounded-lg border border-border bg-card shadow-sm" />
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "ready",
+    icon: <Zap className="size-8 text-foreground" />,
+    title: "You're all set",
+    description: "Jump in and start building. You can always replay this tour from the help menu.",
+    visual: (
+      <div className="flex size-full items-center justify-center">
+        <Zap className="size-20 text-foreground" />
+      </div>
+    ),
+  },
+]
+
+function ProductTourPreview() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="flex flex-col gap-10">
+      <section className="flex flex-col items-center gap-3">
+        <p className="text-muted-foreground text-xs uppercase tracking-wide">Modal</p>
+        <Button onClick={() => setOpen(true)}>Launch tour</Button>
+        <p className="text-muted-foreground text-xs">Use ← / → arrows to navigate between steps</p>
+        <ProductTour
+          open={open}
+          onOpenChange={setOpen}
+          steps={productTourSteps}
+          onComplete={() => console.log("tour complete")}
+        />
+      </section>
+
+      <section className="flex flex-col items-center gap-3">
+        <p className="text-muted-foreground text-xs uppercase tracking-wide">Inline</p>
+        <ProductTour
+          mode="inline"
+          steps={productTourSteps}
+          onComplete={() => console.log("inline complete")}
+          onSkip={() => console.log("inline skipped")}
+        />
+      </section>
     </div>
   )
 }
@@ -376,6 +466,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
   "select-org-form": SelectOrgFormPreview,
   "magic-link-message": MagicLinkMessagePreview,
   "pricing-table": () => <PricingTable />,
+  "product-tour": ProductTourPreview,
   "page-cta": () => (
     <PageCta
       headline="Ready to simplify your compliance?"

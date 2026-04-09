@@ -126,4 +126,97 @@ export const chartsMeta: Record<string, ComponentMeta> = {
   showLegend
 />`,
   },
+  "scatter-chart": {
+    status: "new",
+    description:
+      "XY scatter plot with optional bubble sizing for a third dimension. Ideal for risk matrices, correlation plots, and multi-variable distributions.",
+    since: "0.10.0",
+    importStatement: 'import { ScatterChart } from "@cogentic-co/ds/charts"',
+    dos: [
+      "Use for risk/impact matrices and correlation analysis",
+      "Add a sizeKey to encode a third dimension as bubble size",
+      "Split data into multiple series to colour-code categories",
+    ],
+    donts: [
+      "Don't use for time-series data — use LineChart or AreaChart",
+      "Don't overcrowd — aim for <100 points per series for legibility",
+    ],
+    codeExample: `import { ScatterChart } from "@cogentic-co/ds/charts"
+
+<ScatterChart
+  series={[
+    { key: "high", data: highRiskPoints },
+    { key: "low", data: lowRiskPoints },
+  ]}
+  config={{
+    high: { label: "High risk", color: "var(--chart-1)" },
+    low: { label: "Low risk", color: "var(--chart-2)" },
+  }}
+  xKey="probability"
+  yKey="impact"
+  sizeKey="volume"
+  showLegend
+/>`,
+  },
+  "composed-chart": {
+    status: "new",
+    description:
+      "Combine bars, lines, and areas on the same canvas. Perfect for volume + trend dashboards where one series is discrete and another is continuous.",
+    since: "0.10.0",
+    importStatement: 'import { ComposedChart } from "@cogentic-co/ds/charts"',
+    dos: [
+      "Use a bar series for primary volume and a line for a rolling average or target",
+      "Keep to 2-3 series max — composed charts get messy quickly",
+      "Show legend so users can distinguish series types",
+    ],
+    donts: [
+      "Don't mix more than one area — overlapping areas obscure data",
+      "Don't use when a single chart type would communicate the same thing",
+    ],
+    codeExample: `import { ComposedChart } from "@cogentic-co/ds/charts"
+
+<ComposedChart
+  data={data}
+  config={{
+    volume: { label: "Volume", color: "var(--chart-1)" },
+    avg: { label: "Average", color: "var(--chart-3)" },
+  }}
+  xKey="month"
+  series={[
+    { key: "volume", type: "bar" },
+    { key: "avg", type: "line" },
+  ]}
+  showLegend
+/>`,
+  },
+  "funnel-chart": {
+    status: "new",
+    description:
+      "Conversion funnel showing drop-off through a sequence of stages. Ideal for signup flows, KYC progression, and sales pipelines.",
+    since: "0.10.0",
+    importStatement: 'import { FunnelChart } from "@cogentic-co/ds/charts"',
+    dos: [
+      "Order stages top-to-bottom from broad to narrow",
+      "Label each stage clearly — users can't interpret funnels without stage names",
+      "Provide per-stage fill colors for visual distinction",
+    ],
+    donts: [
+      "Don't use for non-sequential data — categories aren't funnels",
+      "Don't show more than 6-7 stages — becomes hard to read",
+    ],
+    codeExample: `import { FunnelChart } from "@cogentic-co/ds/charts"
+
+<FunnelChart
+  data={[
+    { name: "signup", value: 1000, fill: "var(--color-signup)" },
+    { name: "verified", value: 720, fill: "var(--color-verified)" },
+    { name: "approved", value: 360, fill: "var(--color-approved)" },
+  ]}
+  config={{
+    signup: { label: "Signup", color: "oklch(0.72 0.15 250)" },
+    verified: { label: "Verified", color: "oklch(0.68 0.14 220)" },
+    approved: { label: "Approved", color: "oklch(0.6 0.12 180)" },
+  }}
+/>`,
+  },
 }

@@ -17,6 +17,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+import { cva, type VariantProps } from "class-variance-authority"
 import { GripVertical, Plus, Trash2 } from "lucide-react"
 import type * as React from "react"
 import { Button } from "../components/button"
@@ -28,11 +29,125 @@ type SequenceStep = {
   content: React.ReactNode
 }
 
+type SequenceBuilderSize = NonNullable<VariantProps<typeof stepRootVariants>["size"]>
+
+// Vertical guide line behind the cards, aligned to the centre of the step
+// number badge. Offsets tuned per size variant so the line threads through
+// both the badge and the insert button centres.
+const guideLineVariants = cva("pointer-events-none absolute z-0 w-px bg-border", {
+  variants: {
+    size: {
+      sm: "top-[18px] bottom-[18px] left-[38px]",
+      md: "top-[22px] bottom-[22px] left-[44px]",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const stepRootVariants = cva("group/sequence-step relative z-10 flex items-start", {
+  variants: {
+    size: {
+      sm: "gap-1",
+      md: "gap-2",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const dragHandleVariants = cva(
+  [
+    "flex size-6 shrink-0 cursor-grab items-center justify-center rounded text-muted-foreground/40 opacity-0 transition-opacity",
+    "hover:text-muted-foreground focus-visible:opacity-100 group-hover/sequence-step:opacity-100",
+    "active:cursor-grabbing",
+  ],
+  {
+    variants: {
+      size: {
+        sm: "mt-2.5",
+        md: "mt-4",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+)
+
+const stepCardVariants = cva("min-w-0 flex-1 rounded-lg border border-border bg-card", {
+  variants: {
+    size: {
+      sm: "p-3",
+      md: "p-4",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const stepHeaderVariants = cva("flex items-center", {
+  variants: {
+    size: {
+      sm: "mb-2 gap-2",
+      md: "mb-3 gap-3",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const stepNumberVariants = cva(
+  "flex shrink-0 items-center justify-center rounded-md bg-muted/60 font-mono text-muted-foreground",
+  {
+    variants: {
+      size: {
+        sm: "size-6 text-[10px]",
+        md: "size-7 text-xs",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+)
+
+const stepTitleVariants = cva("min-w-0 flex-1 font-semibold", {
+  variants: {
+    size: {
+      sm: "text-xs",
+      md: "text-sm",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const insertWrapperVariants = cva("relative z-10 flex justify-start", {
+  variants: {
+    size: {
+      sm: "py-1.5",
+      md: "py-2",
+    },
+  },
+  defaultVariants: { size: "md" },
+})
+
+const insertButtonVariants = cva(
+  [
+    "flex items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-xs transition-colors",
+    "hover:border-focal hover:text-focal",
+    "focus-visible:border-focal focus-visible:text-focal focus-visible:outline-none",
+  ],
+  {
+    variants: {
+      size: {
+        sm: "ml-[26px] size-6",
+        md: "ml-[30px] size-7",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+)
+
 type SequenceBuilderProps = {
   steps: SequenceStep[]
   onStepsChange: (steps: SequenceStep[]) => void
   onAddStep?: (index: number) => void
   onRemoveStep?: (id: string) => void
+  /** Visual size. "sm" uses tighter padding for dense panels like inspectors. Default: "md" */
+  size?: SequenceBuilderSize
   className?: string
 }
 
@@ -41,6 +156,7 @@ function SequenceBuilder({
   onStepsChange,
   onAddStep,
   onRemoveStep,
+  size = "md",
   className,
 }: SequenceBuilderProps) {
   const sensors = useSensors(
@@ -63,25 +179,19 @@ function SequenceBuilder({
 
   return (
     <div data-slot="sequence-builder" className={cn("relative flex flex-col", className)}>
-      {/* Continuous vertical guide line behind the cards. Aligned to the centre
-          of the step number badge: drag handle (24px) + gap (8px) + half of
-          card padding-left (16px) + half of badge (14px) ≈ 44px from the
-          left edge of the builder. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-0 bottom-0 left-[44px] z-0 w-px bg-border"
-      />
+      <div aria-hidden className={guideLineVariants({ size })} />
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={steps.map((s) => s.id)} strategy={verticalListSortingStrategy}>
-          {onAddStep && <InsertButton onClick={() => onAddStep(0)} />}
+          {onAddStep && <InsertButton onClick={() => onAddStep(0)} size={size} />}
           {steps.map((step, index) => (
             <div key={step.id} className="contents">
               <SortableStep
                 step={step}
                 index={index}
+                size={size}
                 onRemove={onRemoveStep ? () => onRemoveStep(step.id) : undefined}
               />
-              {onAddStep && <InsertButton onClick={() => onAddStep(index + 1)} />}
+              {onAddStep && <InsertButton onClick={() => onAddStep(index + 1)} size={size} />}
             </div>
           ))}
         </SortableContext>
@@ -93,10 +203,11 @@ function SequenceBuilder({
 type SortableStepProps = {
   step: SequenceStep
   index: number
+  size: SequenceBuilderSize
   onRemove?: () => void
 }
 
-function SortableStep({ step, index, onRemove }: SortableStepProps) {
+function SortableStep({ step, index, size, onRemove }: SortableStepProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: step.id,
   })
@@ -112,31 +223,27 @@ function SortableStep({ step, index, onRemove }: SortableStepProps) {
       ref={setNodeRef}
       style={style}
       data-slot="sequence-builder-step"
-      className="group/sequence-step relative z-10 flex items-start gap-2"
+      className={stepRootVariants({ size })}
     >
       <button
         type="button"
         data-slot="sequence-builder-drag-handle"
-        className={cn(
-          "mt-4 flex size-6 shrink-0 cursor-grab items-center justify-center rounded text-muted-foreground/40 opacity-0 transition-opacity",
-          "hover:text-muted-foreground focus-visible:opacity-100 group-hover/sequence-step:opacity-100",
-          "active:cursor-grabbing",
-        )}
+        className={dragHandleVariants({ size })}
         aria-label={`Drag step ${index + 1}`}
         {...attributes}
         {...listeners}
       >
         <GripVertical className="size-4" aria-hidden />
       </button>
-      <div className="min-w-0 flex-1 rounded-lg border border-border bg-card p-4">
-        <div className="mb-3 flex items-center gap-3">
+      <div className={stepCardVariants({ size })}>
+        <div className={stepHeaderVariants({ size })}>
           <div
             data-slot="sequence-builder-step-number"
-            className="flex size-7 shrink-0 items-center justify-center rounded-md bg-muted/60 font-mono text-muted-foreground text-xs"
+            className={stepNumberVariants({ size })}
           >
             {String(index + 1).padStart(2, "0")}
           </div>
-          {step.title && <div className="min-w-0 flex-1 font-semibold text-sm">{step.title}</div>}
+          {step.title && <div className={stepTitleVariants({ size })}>{step.title}</div>}
           {onRemove && (
             <Button
               type="button"
@@ -158,26 +265,23 @@ function SortableStep({ step, index, onRemove }: SortableStepProps) {
 
 type InsertButtonProps = {
   onClick: () => void
+  size: SequenceBuilderSize
 }
 
-function InsertButton({ onClick }: InsertButtonProps) {
+function InsertButton({ onClick, size }: InsertButtonProps) {
   return (
-    <div data-slot="sequence-builder-insert" className="relative z-10 flex justify-start py-2">
+    <div data-slot="sequence-builder-insert" className={insertWrapperVariants({ size })}>
       <button
         type="button"
         onClick={onClick}
-        className={cn(
-          "ml-[30px] flex size-7 items-center justify-center rounded-md border border-border bg-card text-muted-foreground shadow-xs transition-colors",
-          "hover:border-focal hover:text-focal",
-          "focus-visible:border-focal focus-visible:text-focal focus-visible:outline-none",
-        )}
+        className={insertButtonVariants({ size })}
         aria-label="Insert step here"
       >
-        <Plus className="size-4" />
+        <Plus className={size === "sm" ? "size-3.5" : "size-4"} />
       </button>
     </div>
   )
 }
 
 export { SequenceBuilder }
-export type { SequenceBuilderProps, SequenceStep }
+export type { SequenceBuilderProps, SequenceBuilderSize, SequenceStep }

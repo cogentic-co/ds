@@ -220,67 +220,99 @@ const blockGroups: { label: string; items: string[] }[] = [
     label: "Settings",
     items: ["setting-row", "settings-card-grid", "rich-radio-list", "sequence-builder"],
   },
+  {
+    label: "Onboarding",
+    items: ["product-tour"],
+  },
 ]
 
-const chartItems = ["area-chart", "bar-chart", "line-chart", "pie-chart", "radial-chart"]
-
-const workflowItems = [
-  "workflow-canvas",
-  "workflow-node",
-  "workflow-gate",
-  "workflow-edge",
-  "workflow-connection",
-  "workflow-controls",
-  "workflow-label",
-  "workflow-panel",
-  "workflow-toolbar",
-  "workflow-minimap",
-  "workflow-group",
-  "workflow-handle",
+const chartItems = [
+  "area-chart",
+  "bar-chart",
+  "line-chart",
+  "pie-chart",
+  "radial-chart",
+  "scatter-chart",
+  "composed-chart",
+  "funnel-chart",
 ]
 
-const chatbotItems = [
-  "shimmer",
-  "suggestion",
-  "reasoning",
-  "sources",
-  "attachments",
-  "inline-citation",
-  "message",
-  "conversation",
-  "prompt-input",
-  "chain-of-thought",
-  "confirmation",
-  "context",
-  "checkpoint",
-  "plan",
-  "task",
-  "tool",
-  "queue",
-  "model-selector",
+const workflowGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Canvas & core",
+    items: ["workflow-canvas", "workflow-node", "workflow-gate", "workflow-group", "workflow-handle"],
+  },
+  {
+    label: "Connections",
+    items: ["workflow-edge", "workflow-connection", "workflow-label"],
+  },
+  {
+    label: "Overlays",
+    items: ["workflow-controls", "workflow-minimap", "workflow-panel", "workflow-toolbar"],
+  },
+  {
+    label: "Editor",
+    items: ["workflow-block-palette", "workflow-inspector"],
+  },
 ]
 
-const animationItems = [
-  "animation-ai-analysis",
-  "animation-audit-trail",
-  "animation-compliance-reports",
-  "animation-custom-rules",
-  "animation-jira-ticket",
-  "animation-jurisdiction-detection",
-  "animation-multi-protocol",
-  "animation-pricing-preview",
-  "animation-realtime-updates",
-  "animation-rest-api",
-  "animation-risk-scoring",
-  "animation-sandbox",
-  "animation-scheduled-reports",
-  "animation-secure-messaging",
-  "animation-slack-notification",
-  "animation-sop-mapping",
-  "animation-team-routing",
-  "animation-teams-notification",
-  "animation-vasp-identification",
-  "animation-webhooks",
+const chatbotGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Conversation",
+    items: ["message", "conversation", "prompt-input", "suggestion"],
+  },
+  {
+    label: "Streaming",
+    items: ["shimmer", "reasoning", "chain-of-thought", "task", "plan"],
+  },
+  {
+    label: "Rich content",
+    items: ["sources", "attachments", "inline-citation", "tool", "context"],
+  },
+  {
+    label: "Controls",
+    items: ["confirmation", "checkpoint", "queue", "model-selector"],
+  },
+]
+
+const animationGroups: { label: string; items: string[] }[] = [
+  {
+    label: "AI & analysis",
+    items: [
+      "animation-ai-analysis",
+      "animation-risk-scoring",
+      "animation-jurisdiction-detection",
+      "animation-vasp-identification",
+      "animation-sop-mapping",
+    ],
+  },
+  {
+    label: "Workflow & compliance",
+    items: [
+      "animation-audit-trail",
+      "animation-custom-rules",
+      "animation-compliance-reports",
+      "animation-scheduled-reports",
+      "animation-team-routing",
+      "animation-sandbox",
+    ],
+  },
+  {
+    label: "Integrations & messaging",
+    items: [
+      "animation-jira-ticket",
+      "animation-slack-notification",
+      "animation-teams-notification",
+      "animation-secure-messaging",
+      "animation-multi-protocol",
+      "animation-webhooks",
+      "animation-rest-api",
+    ],
+  },
+  {
+    label: "Product surfaces",
+    items: ["animation-realtime-updates", "animation-pricing-preview"],
+  },
 ]
 
 function buildBadge(slug: string) {
@@ -410,7 +442,7 @@ function buildNav(pathname: string): NavGroup[] {
     },
     {
       id: "charts",
-      icon: Sparkles,
+      icon: BarChart3,
       title: "Charts",
       items: chartItems.map((slug) => ({
         label: toTitle(slug),
@@ -423,23 +455,38 @@ function buildNav(pathname: string): NavGroup[] {
       id: "workflow",
       icon: Workflow,
       title: "Workflow",
-      items: buildComponentItems(workflowItems),
+      items: [],
+      groups: workflowGroups.map((group) => ({
+        title: group.label,
+        items: buildComponentItems(group.items),
+        defaultOpen: true,
+      })),
     },
     {
       id: "chatbot",
       icon: MessageSquare,
       title: "AI / Chatbot",
-      items: buildComponentItems(chatbotItems),
+      items: [],
+      groups: chatbotGroups.map((group) => ({
+        title: group.label,
+        items: buildComponentItems(group.items),
+        defaultOpen: true,
+      })),
     },
     {
       id: "animations",
       icon: Play,
       title: "Animations",
-      items: animationItems.map((slug) => ({
-        label: toTitle(slug),
-        icon: Play,
-        href: `/animations/${slug}`,
-        isActive: pathname === `/animations/${slug}`,
+      items: [],
+      groups: animationGroups.map((group) => ({
+        title: group.label,
+        items: group.items.map((slug) => ({
+          label: toTitle(slug),
+          icon: Play,
+          href: `/animations/${slug}`,
+          isActive: pathname === `/animations/${slug}`,
+        })),
+        defaultOpen: true,
       })),
     },
   ]

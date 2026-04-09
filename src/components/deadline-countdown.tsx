@@ -6,7 +6,7 @@ import { cn } from "../lib/utils"
 
 type Urgency = "normal" | "warning" | "critical" | "overdue"
 
-const deadlineCountdownVariants = cva("inline-flex items-center gap-1.5 text-sm font-medium", {
+const deadlineCountdownVariants = cva("inline-flex items-center gap-1.5 font-medium text-sm", {
   variants: {
     urgency: {
       normal: "text-muted-foreground",

@@ -26,7 +26,7 @@ class HandleBoundary extends Component<{ children: ReactNode }, { hasError: bool
 const workflowGateVariants = cva(
   [
     "group/gate relative flex items-center justify-center",
-    "bg-card overflow-visible",
+    "overflow-visible bg-card",
     "transition-shadow duration-150",
   ].join(" "),
   {
@@ -39,7 +39,7 @@ const workflowGateVariants = cva(
         end: "size-10 rounded-full ring-2 ring-red-400 dark:ring-red-500",
       },
       selected: {
-        true: "ring-[3px] ring-primary shadow-md",
+        true: "shadow-md ring-[3px] ring-primary",
         false: "",
       },
     },

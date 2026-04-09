@@ -99,7 +99,7 @@ const responseBubbleVariants = cva("rounded-2xl px-4 py-3 text-sm leading-relaxe
     from: {
       user: "bg-primary text-primary-foreground",
       assistant: "bg-muted text-foreground",
-      system: "bg-muted/50 text-muted-foreground italic text-center",
+      system: "bg-muted/50 text-center text-muted-foreground italic",
     },
   },
   defaultVariants: { from: "assistant" },

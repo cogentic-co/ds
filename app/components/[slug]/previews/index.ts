@@ -5,6 +5,9 @@ import AlertDialogPreview from "./alert-dialog"
 import AnimatedCounterPreview from "./animated-counter"
 import ApprovalActionsPreview from "./approval-actions"
 import AreaChartPreview from "./area-chart"
+import ComposedChartPreview from "./composed-chart"
+import FunnelChartPreview from "./funnel-chart"
+import ScatterChartPreview from "./scatter-chart"
 import AsciiShaderPreview from "./ascii-shader"
 import AspectRatioPreview from "./aspect-ratio"
 import AttachmentsPreview from "./attachments"
@@ -120,6 +123,7 @@ import TypewriterPreview from "./typewriter"
 import TypographyPreview from "./typography"
 import VisuallyHiddenPreview from "./visually-hidden"
 import WaffleChartPreview from "./waffle-chart"
+import WorkflowBlockPalettePreview from "./workflow-block-palette"
 import WorkflowCanvasPreview from "./workflow-canvas"
 import WorkflowConnectionPreview from "./workflow-connection"
 import WorkflowControlsPreview from "./workflow-controls"
@@ -127,6 +131,7 @@ import WorkflowEdgePreview from "./workflow-edge"
 import WorkflowGatePreview from "./workflow-gate"
 import WorkflowGroupPreview from "./workflow-group"
 import WorkflowHandlePreview from "./workflow-handle"
+import WorkflowInspectorPreview from "./workflow-inspector"
 import WorkflowLabelPreview from "./workflow-label"
 import WorkflowMinimapPreview from "./workflow-minimap"
 import WorkflowNodePreview from "./workflow-node"
@@ -203,6 +208,9 @@ export const previews: Record<string, React.ComponentType> = {
   "line-chart": LineChartPreview,
   "pie-chart": PieChartPreview,
   "radial-chart": RadialChartPreview,
+  "scatter-chart": ScatterChartPreview,
+  "composed-chart": ComposedChartPreview,
+  "funnel-chart": FunnelChartPreview,
   "bg-shader": BgShaderPreview,
   "blocky-shader": BlockyShaderPreview,
   "ascii-shader": AsciiShaderPreview,
@@ -242,6 +250,8 @@ export const previews: Record<string, React.ComponentType> = {
   "workflow-controls": WorkflowControlsPreview,
   "workflow-label": WorkflowLabelPreview,
   "workflow-panel": WorkflowPanelPreview,
+  "workflow-block-palette": WorkflowBlockPalettePreview,
+  "workflow-inspector": WorkflowInspectorPreview,
   "workflow-toolbar": WorkflowToolbarPreview,
   "workflow-minimap": WorkflowMinimapPreview,
   "workflow-group": WorkflowGroupPreview,

@@ -6,7 +6,7 @@ import type * as React from "react"
 import { cn } from "../lib/utils"
 
 const tagVariants = cva(
-  "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium transition-colors",
+  "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 font-medium text-xs transition-colors",
   {
     variants: {
       variant: {

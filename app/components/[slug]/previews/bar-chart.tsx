@@ -12,6 +12,7 @@ const barChartControlDefs = {
   stacked: { type: "boolean", defaultValue: false, label: "Stacked" },
   horizontal: { type: "boolean", defaultValue: false, label: "Horizontal" },
   radius: { type: "number", defaultValue: 4, min: 0, max: 20, step: 1, label: "Radius" },
+  empty: { type: "boolean", defaultValue: false, label: "Empty state" },
 } satisfies ControlDefs
 
 export default function BarChartPreview() {
@@ -20,7 +21,7 @@ export default function BarChartPreview() {
     <Playground controls={controls}>
       <div className="max-w-lg">
         <BarChartComponent
-          data={timeSeriesData}
+          data={controls.values.empty ? [] : timeSeriesData}
           config={timeSeriesConfig}
           xKey="month"
           yKeys={["desktop", "mobile"]}

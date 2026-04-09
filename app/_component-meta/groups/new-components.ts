@@ -589,4 +589,86 @@ import { Bell, Mail } from "lucide-react"
   </StepProgressItem>
 </StepProgress>`,
   },
+  "product-tour": {
+    status: "new",
+    description:
+      "Multi-step onboarding modal with a split left/right layout, animated step transitions, dot pagination, and Back/Next/Get started controls.",
+    since: "0.10.0",
+    importStatement: `import { ProductTour } from "@cogentic-co/ds/blocks/product-tour"`,
+    dos: [
+      "Use for first-run onboarding or feature announcements (2-5 steps)",
+      "Keep copy short and visual-forward — the right column is the hero",
+      "Pass any React content in the step visual (image, animation, component)",
+    ],
+    donts: [
+      "Don't use for required forms or wizards — use a dedicated multi-step form instead",
+      "Don't exceed 5 steps — users fatigue quickly",
+      "Don't hide the skip button for non-blocking tours",
+    ],
+    codeExample: `import { useState } from "react"
+import { ProductTour } from "@cogentic-co/ds/blocks/product-tour"
+
+function Welcome() {
+  const [open, setOpen] = useState(true)
+  return (
+    <ProductTour
+      open={open}
+      onOpenChange={setOpen}
+      onComplete={() => console.log("done")}
+      steps={[
+        {
+          id: "meet",
+          title: "Meet Ari",
+          description: "Ari responds to routine requests automatically.",
+          visual: <img src="/tour/ari.png" alt="" />,
+        },
+      ]}
+    />
+  )
+}`,
+  },
+  "workflow-block-palette": {
+    status: "new",
+    description:
+      "Searchable, category-grouped palette of draggable workflow blocks. Uses native HTML5 drag-and-drop so blocks can be dropped directly onto a Canvas.",
+    since: "0.10.0",
+    importStatement: `import { WorkflowBlockPalette, WORKFLOW_BLOCK_MIME } from "@cogentic-co/ds/workflow/workflow-block-palette"`,
+    dos: [
+      "Group related blocks under meaningful category names",
+      "Handle both onBlockSelect (click-to-add) and canvas onDrop (drag-to-add)",
+      "Read the WORKFLOW_BLOCK_MIME payload on the canvas drop handler",
+    ],
+    donts: [
+      "Don't put more than ~30 blocks without search",
+      "Don't nest the palette inside scrollable containers",
+    ],
+    codeExample: `import { WorkflowBlockPalette, WORKFLOW_BLOCK_MIME } from "@cogentic-co/ds/workflow/workflow-block-palette"
+
+const blocks = [
+  { id: "if", label: "If/else", category: "Logic" },
+  { id: "assign", label: "Assign to user", category: "Action" },
+]
+
+<WorkflowBlockPalette blocks={blocks} onBlockSelect={(b) => addNode(b)} />`,
+  },
+  "workflow-inspector": {
+    status: "new",
+    description:
+      "Right-side inspector panel for configuring the currently-selected workflow node. Header with back/close + title, scrollable body, optional footer.",
+    since: "0.10.0",
+    importStatement: `import { WorkflowInspector } from "@cogentic-co/ds/workflow/workflow-inspector"`,
+    dos: [
+      "Use alongside WorkflowBlockPalette for a full workflow editor layout",
+      "Put primary save/discard actions in the footer slot",
+      "Show the selected node's label + icon in the header",
+    ],
+    donts: ["Don't stack multiple inspectors — keep it single-panel"],
+    codeExample: `<WorkflowInspector
+  title="If/else"
+  onClose={() => setSelected(null)}
+  footer={<Button size="sm">Save</Button>}
+>
+  {/* config fields */}
+</WorkflowInspector>`,
+  },
 }
