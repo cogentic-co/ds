@@ -11,6 +11,7 @@ const areaChartControlDefs = {
   showLegend: { type: "boolean", defaultValue: false, label: "Legend" },
   stacked: { type: "boolean", defaultValue: false, label: "Stacked" },
   gradient: { type: "boolean", defaultValue: true, label: "Gradient fill" },
+  empty: { type: "boolean", defaultValue: false, label: "Empty state" },
 } satisfies ControlDefs
 
 export default function AreaChartPreview() {
@@ -19,7 +20,7 @@ export default function AreaChartPreview() {
     <Playground controls={controls}>
       <div className="max-w-lg">
         <AreaChartComponent
-          data={timeSeriesData}
+          data={controls.values.empty ? [] : timeSeriesData}
           config={timeSeriesConfig}
           xKey="month"
           yKeys={["desktop", "mobile"]}

@@ -101,7 +101,7 @@ const queueItemIndicatorVariants = cva("size-2 shrink-0 rounded-full", {
   variants: {
     status: {
       pending: "bg-muted-foreground/30",
-      active: "bg-primary animate-pulse",
+      active: "animate-pulse bg-primary",
       complete: "bg-emerald-500",
       error: "bg-red-500",
     },

@@ -1,6 +1,6 @@
 "use client"
 
-import { MailIcon } from "lucide-react"
+import { ArrowRightIcon, DownloadIcon, MailIcon, PlusIcon, Trash2Icon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { type ControlDefs, Playground, Section, useControls } from "./_shared"
 
@@ -72,6 +72,42 @@ export default function ButtonPreview() {
         </Button>
         <Button size="icon-lg">
           <MailIcon />
+        </Button>
+      </Section>
+      <Section title="With icons">
+        <Button>
+          <PlusIcon />
+          Create new
+        </Button>
+        <Button variant="outline">
+          <DownloadIcon />
+          Download
+        </Button>
+        <Button variant="secondary">
+          Continue
+          <ArrowRightIcon />
+        </Button>
+        <Button variant="destructive">
+          <Trash2Icon />
+          Delete
+        </Button>
+        <Button variant="ghost">
+          <MailIcon />
+          Inbox
+        </Button>
+      </Section>
+      <Section title="Icon + label sizes">
+        <Button size="sm">
+          <PlusIcon />
+          Small
+        </Button>
+        <Button size="default">
+          <PlusIcon />
+          Default
+        </Button>
+        <Button size="lg">
+          <PlusIcon />
+          Large
         </Button>
       </Section>
       <Section title="States">

@@ -6,6 +6,7 @@ import { type ControlDefs, Playground, useControls } from "./_shared"
 
 const radialChartControlDefs = {
   showLegend: { type: "boolean", defaultValue: false, label: "Legend" },
+  empty: { type: "boolean", defaultValue: false, label: "Empty state" },
 } satisfies ControlDefs
 
 export default function RadialChartPreview() {
@@ -14,7 +15,7 @@ export default function RadialChartPreview() {
     <Playground controls={controls}>
       <div className="mx-auto max-w-sm">
         <RadialChartComponent
-          data={radarData}
+          data={controls.values.empty ? [] : radarData}
           config={radarConfig}
           angleKey="subject"
           dataKeys={["current", "previous"]}

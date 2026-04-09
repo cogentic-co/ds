@@ -14,6 +14,7 @@ const pieChartControlDefs = {
     placeholder: "e.g. Browsers",
   },
   centerValue: { type: "text", defaultValue: "", label: "Center value", placeholder: "e.g. 925" },
+  empty: { type: "boolean", defaultValue: false, label: "Empty state" },
 } satisfies ControlDefs
 
 export default function PieChartPreview() {
@@ -22,7 +23,7 @@ export default function PieChartPreview() {
     <Playground controls={controls}>
       <div className="mx-auto max-w-xs">
         <PieChartComponent
-          data={pieData}
+          data={controls.values.empty ? [] : pieData}
           config={pieConfig}
           donut={controls.values.donut}
           showLegend={controls.values.showLegend}

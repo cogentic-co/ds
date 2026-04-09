@@ -16,6 +16,7 @@ const lineChartControlDefs = {
     defaultValue: "natural",
     label: "Curve",
   },
+  empty: { type: "boolean", defaultValue: false, label: "Empty state" },
 } satisfies ControlDefs
 
 export default function LineChartPreview() {
@@ -24,7 +25,7 @@ export default function LineChartPreview() {
     <Playground controls={controls}>
       <div className="max-w-lg">
         <LineChartComponent
-          data={timeSeriesData}
+          data={controls.values.empty ? [] : timeSeriesData}
           config={timeSeriesConfig}
           xKey="month"
           yKeys={["desktop", "mobile"]}

@@ -26,7 +26,17 @@
         "noImgElement": "off"
       },
       "nursery": {
-        "useSortedClasses": "warn"
+        "useSortedClasses": {
+          "level": "warn",
+          "fix": "safe",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["cn", "cva", "clsx", "tw"],
+            "css": {
+              "cssFiles": ["src/styles/globals.css"]
+            }
+          }
+        }
       }
     }
   },

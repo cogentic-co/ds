@@ -43,3 +43,56 @@ export const radarConfig = {
   current: { label: "Current", color: "var(--primary)" },
   previous: { label: "Previous", color: "var(--muted-foreground)" },
 } satisfies ChartConfig
+
+// Scatter — risk exposure matrix (impact vs probability, bubble = volume)
+export const scatterHighRisk = [
+  { impact: 85, probability: 70, volume: 240 },
+  { impact: 92, probability: 55, volume: 180 },
+  { impact: 78, probability: 82, volume: 300 },
+  { impact: 88, probability: 68, volume: 150 },
+]
+
+export const scatterLowRisk = [
+  { impact: 25, probability: 30, volume: 60 },
+  { impact: 18, probability: 45, volume: 90 },
+  { impact: 35, probability: 22, volume: 120 },
+  { impact: 42, probability: 38, volume: 80 },
+  { impact: 20, probability: 20, volume: 40 },
+]
+
+export const scatterConfig = {
+  high: { label: "High risk", color: "var(--chart-1)" },
+  low: { label: "Low risk", color: "var(--chart-2)" },
+} satisfies ChartConfig
+
+// Composed — volume bars + trend line
+export const composedData = [
+  { month: "Jan", volume: 4200, avg: 3800 },
+  { month: "Feb", volume: 5100, avg: 4100 },
+  { month: "Mar", volume: 4800, avg: 4300 },
+  { month: "Apr", volume: 6200, avg: 4700 },
+  { month: "May", volume: 5700, avg: 4900 },
+  { month: "Jun", volume: 7100, avg: 5300 },
+]
+
+export const composedConfig = {
+  volume: { label: "Volume", color: "var(--chart-1)" },
+  avg: { label: "6-mo avg", color: "var(--chart-3)" },
+} satisfies ChartConfig
+
+// Funnel — onboarding conversion funnel
+export const funnelData = [
+  { name: "signup", value: 1000, fill: "var(--color-signup)" },
+  { name: "verified", value: 720, fill: "var(--color-verified)" },
+  { name: "kyc", value: 480, fill: "var(--color-kyc)" },
+  { name: "approved", value: 360, fill: "var(--color-approved)" },
+  { name: "funded", value: 210, fill: "var(--color-funded)" },
+]
+
+export const funnelConfig = {
+  signup: { label: "Signup", color: "oklch(0.72 0.15 250)" },
+  verified: { label: "Email verified", color: "oklch(0.68 0.14 220)" },
+  kyc: { label: "KYC complete", color: "oklch(0.64 0.13 200)" },
+  approved: { label: "Approved", color: "oklch(0.6 0.12 180)" },
+  funded: { label: "Funded", color: "oklch(0.55 0.11 160)" },
+} satisfies ChartConfig

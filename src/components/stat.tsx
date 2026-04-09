@@ -27,7 +27,7 @@ function StatValue({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
-const trendVariants = cva("inline-flex items-center gap-1 text-xs font-medium", {
+const trendVariants = cva("inline-flex items-center gap-1 font-medium text-xs", {
   variants: {
     direction: {
       up: "text-emerald-600 dark:text-emerald-400",

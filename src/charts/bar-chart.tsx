@@ -10,6 +10,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../components/chart"
+import { ChartShell, GHOST_COLOR, GHOST_KEY, makeGhostData } from "./_empty"
 
 type BarChartProps = React.ComponentProps<"div"> & {
   data: Record<string, unknown>[]
@@ -23,6 +24,8 @@ type BarChartProps = React.ComponentProps<"div"> & {
   stacked?: boolean
   horizontal?: boolean
   radius?: number
+  /** Overlay rendered on top of the chart when `data` is empty. */
+  empty?: React.ReactNode
 }
 
 function BarChart({
@@ -37,14 +40,19 @@ function BarChart({
   stacked = false,
   horizontal = false,
   radius = 4,
+  empty,
   className,
   ...props
 }: BarChartProps) {
+  const isEmpty = !data || data.length === 0
+  const chartData = isEmpty ? makeGhostData(xKey, "noise") : data
+  const activeKeys = isEmpty ? [GHOST_KEY] : yKeys
+
   return (
-    <div data-slot="bar-chart" className={className} {...props}>
+    <ChartShell slot="bar-chart" isEmpty={isEmpty} empty={empty} className={className} {...props}>
       <ChartContainer config={config}>
         <RechartsBarChart
-          data={data}
+          data={chartData}
           layout={horizontal ? "vertical" : "horizontal"}
           margin={{ left: 12, right: 12 }}
         >
@@ -68,20 +76,22 @@ function BarChart({
               {showYAxis && <YAxis tickLine={false} axisLine={false} tickMargin={8} />}
             </>
           )}
-          <ChartTooltip content={<ChartTooltipContent />} />
-          {showLegend && <ChartLegend content={<ChartLegendContent />} />}
-          {yKeys.map((key) => (
+          {!isEmpty && <ChartTooltip content={<ChartTooltipContent />} />}
+          {!isEmpty && showLegend && <ChartLegend content={<ChartLegendContent />} />}
+          {activeKeys.map((key) => (
             <Bar
               key={key}
               dataKey={key}
-              fill={`var(--color-${key})`}
+              fill={isEmpty ? GHOST_COLOR : `var(--color-${key})`}
+              fillOpacity={isEmpty ? 0.5 : 1}
               radius={radius}
-              stackId={stacked ? "stack" : undefined}
+              stackId={!isEmpty && stacked ? "stack" : undefined}
+              isAnimationActive={!isEmpty}
             />
           ))}
         </RechartsBarChart>
       </ChartContainer>
-    </div>
+    </ChartShell>
   )
 }
 

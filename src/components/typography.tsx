@@ -12,7 +12,7 @@ const proseVariants = cva(
     "[&>*+*]:mt-6",
     "[&>h1+*]:mt-4 [&>h2+*]:mt-4 [&>h3+*]:mt-3 [&>h4+*]:mt-3",
     "[&>hr]:my-8 [&>hr]:border-border",
-    "[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-primary/80",
+    "[&_a:hover]:text-primary/80 [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4",
     "[&_strong]:font-semibold",
     "[&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.875em]",
     "[&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-muted [&_pre]:p-4 [&_pre_code]:bg-transparent [&_pre_code]:p-0",
@@ -24,10 +24,10 @@ const proseVariants = cva(
   {
     variants: {
       size: {
-        sm: "text-sm [&>h1]:text-2xl [&>h2]:text-xl [&>h3]:text-lg [&>h4]:text-base [&_p]:leading-6 [&_li]:leading-6",
+        sm: "text-sm [&>h1]:text-2xl [&>h2]:text-xl [&>h3]:text-lg [&>h4]:text-base [&_li]:leading-6 [&_p]:leading-6",
         default:
-          "text-base [&>h1]:text-4xl [&>h2]:text-3xl [&>h3]:text-2xl [&>h4]:text-xl [&_p]:leading-7 [&_li]:leading-7",
-        lg: "text-lg [&>h1]:text-5xl [&>h2]:text-4xl [&>h3]:text-3xl [&>h4]:text-2xl [&_p]:leading-8 [&_li]:leading-8",
+          "text-base [&>h1]:text-4xl [&>h2]:text-3xl [&>h3]:text-2xl [&>h4]:text-xl [&_li]:leading-7 [&_p]:leading-7",
+        lg: "text-lg [&>h1]:text-5xl [&>h2]:text-4xl [&>h3]:text-3xl [&>h4]:text-2xl [&_li]:leading-8 [&_p]:leading-8",
       },
     },
     defaultVariants: {

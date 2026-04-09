@@ -21,6 +21,8 @@ export { PageCta } from "./blocks/page-cta"
 export type { Plan, PricingTableProps } from "./blocks/pricing-table"
 // Blocks
 export { PricingTable } from "./blocks/pricing-table"
+// ProductTour is NOT re-exported from main barrel to avoid bundling motion/react.
+// Import from "@cogentic-co/ds/blocks/product-tour" instead.
 export type { RegisterFormProps, RegisterFormValues } from "./blocks/register-form"
 export { RegisterForm, registerSchema } from "./blocks/register-form"
 export type { RichRadioListProps, RichRadioOption } from "./blocks/rich-radio-list"

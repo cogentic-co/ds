@@ -5,7 +5,7 @@ import { AlertTriangle, Check, X } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { cn } from "../lib/utils"
 
-const confirmationVariants = cva("rounded-xl border p-4 space-y-3", {
+const confirmationVariants = cva("space-y-3 rounded-xl border p-4", {
   variants: {
     status: {
       pending: "border-border bg-card",
