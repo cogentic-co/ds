@@ -202,7 +202,6 @@ export default defineConfig({
     "compliance/report-export": "src/compliance/report-export.tsx",
     "compliance/review-form": "src/compliance/review-form.tsx",
     "compliance/risk-score-inline": "src/compliance/risk-score-inline.tsx",
-    "compliance/rule-builder": "src/compliance/rule-builder.tsx",
     "compliance/sanctions-match": "src/compliance/sanctions-match.tsx",
     "compliance/transaction-card": "src/compliance/transaction-card.tsx",
     "compliance/transaction-detail": "src/compliance/transaction-detail.tsx",
