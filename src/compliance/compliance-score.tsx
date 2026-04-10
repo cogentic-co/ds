@@ -53,8 +53,10 @@ type ComplianceScoreProps = React.ComponentProps<"div"> &
   VariantProps<typeof complianceScoreVariants> & {
     /** Compliance score from 0–100 */
     score: number
-    /** Optional label rendered below the score */
+    /** Optional label rendered below the circle */
     label?: string
+    /** Optional icon rendered inside the circle above the score number */
+    icon?: React.ReactNode
     /** Show the numeric value in the center. Default: true */
     showValue?: boolean
     /** Override the automatic color (accepts a Tailwind text-color class) */
@@ -64,6 +66,7 @@ type ComplianceScoreProps = React.ComponentProps<"div"> &
 function ComplianceScore({
   score,
   label,
+  icon,
   size = "default",
   showValue = true,
   color,
@@ -163,23 +166,28 @@ function ComplianceScore({
       {/* Center content */}
       {showValue && (
         <div className="relative z-10 flex flex-col items-center">
+          {icon && (
+            <span className={cn("text-muted-foreground [&>svg]:size-4", scoreColor)}>
+              {icon}
+            </span>
+          )}
           <span
             className={cn("font-mono font-semibold tabular-nums", cfg.fontSize, scoreColor)}
             aria-label={`${animatedScore}%`}
           >
             {animatedScore}
           </span>
-          {label && (
-            <span
-              className={cn(
-                "mt-0.5 font-medium text-muted-foreground uppercase tracking-wide",
-                cfg.labelSize,
-              )}
-            >
-              {label}
-            </span>
-          )}
         </div>
+      )}
+      {label && (
+        <span
+          className={cn(
+            "mt-1.5 font-medium text-muted-foreground text-center",
+            cfg.labelSize,
+          )}
+        >
+          {label}
+        </span>
       )}
     </div>
   )
