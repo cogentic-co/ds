@@ -16,6 +16,7 @@ import {
   Play,
   Search,
   Shapes,
+  Shield,
   Sparkles,
   Sun,
   Type,
@@ -254,6 +255,10 @@ const workflowGroups: { label: string; items: string[] }[] = [
     label: "Editor",
     items: ["workflow-block-palette", "workflow-inspector"],
   },
+  {
+    label: "Previews",
+    items: ["workflow-slack-message"],
+  },
 ]
 
 const chatbotGroups: { label: string; items: string[] }[] = [
@@ -472,6 +477,65 @@ function buildNav(pathname: string): NavGroup[] {
         items: buildComponentItems(group.items),
         defaultOpen: true,
       })),
+    },
+    {
+      id: "compliance",
+      icon: Shield,
+      title: "Compliance",
+      items: [],
+      groups: [
+        {
+          title: "Transaction",
+          items: ["transaction-card", "transaction-row", "transaction-detail"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Foundations",
+          items: [
+            "compliance-status-badge",
+            "address-display",
+            "network-badge",
+            "risk-score-inline",
+            "travel-rule-status",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Case & scoring",
+          items: ["case-card", "compliance-score"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Supporting",
+          items: [
+            "sanctions-match",
+            "counterparty-card",
+            "compliance-timeline",
+            "alert-banner",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+      ],
     },
     {
       id: "animations",

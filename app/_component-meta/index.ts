@@ -27,6 +27,7 @@ import { animationMeta } from "./groups/animation"
 import { authBlocksMeta } from "./groups/auth-blocks"
 import { chartsMeta } from "./groups/charts"
 import { complianceMeta } from "./groups/compliance"
+import { complianceModuleMeta } from "./groups/compliance-module"
 import { dataDisplayMeta } from "./groups/data-display"
 import { feedbackMeta } from "./groups/feedback"
 import { formsMeta } from "./groups/forms"
@@ -51,6 +52,7 @@ export const componentMeta: Record<string, ComponentMeta> = {
   ...chartsMeta,
   ...workflowMeta,
   ...aiChatbotMeta,
+  ...complianceModuleMeta,
   ...newComponentsMeta,
   ...authBlocksMeta,
 }

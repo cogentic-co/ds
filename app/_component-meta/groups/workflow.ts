@@ -37,47 +37,75 @@ const edges = [{ id: "e1-2", source: "1", target: "2", type: "solid" }]
 />`,
   },
   "workflow-node": {
-    status: "new",
+    status: "stable",
     description:
-      "Card-style workflow node with header (icon, title, status pill), collapsible body, label-value rows, dotted separators, and configurable handles. Supports default, selected, and dotted states via CVA.",
+      "Card-style workflow node with header (icon, title, category chip), collapsible body, execution status (running/completed/failed/queued) with animated border, and a floating kind badge. Use WorkflowNodeIcon for themed icon squares.",
     since: "0.2.4",
     importStatement: `import {
   WorkflowNode,
-  WorkflowNodeContent,
+  WorkflowNodeIcon,
   WorkflowNodeRow,
-  WorkflowNodeSeparator,
+  WorkflowNodeDescription,
+  type WorkflowNodeStatus,
 } from "@cogentic-co/ds/workflow"`,
     dos: [
-      "Use the state prop ('default' | 'selected' | 'dotted') for visual states",
-      "Use handles={{ target: true, source: true }} to show connection handles",
-      "Use WorkflowNodeRow for structured label/value pairs inside the body",
-      "Use collapsible prop for nodes with lots of detail",
-      "Use the icon prop with a coloured square for the best visual effect",
+      "Use state for selection visual ('default' | 'selected' | 'dotted')",
+      "Use status for execution state ('running' | 'completed' | 'failed' | 'queued')",
+      "Use kind for a floating top-left badge (e.g. 'Trigger', 'Condition', 'Action')",
+      "Use category for the in-header chip (e.g. 'Deals', 'Slack', 'AI')",
+      "Use WorkflowNodeIcon with tone prop ('ai' | 'slack' | 'email' | etc.) for themed icon squares",
     ],
     donts: [
-      "Don't render handles outside a Canvas — use HandleBoundary or omit the handles prop",
-      "Don't put too many rows in a single node — consider splitting into multiple nodes",
+      "Don't render handles outside a Canvas — omit the handles prop",
+      "Don't put too many rows in a single node — split into multiple nodes",
       "Don't use the dotted state for active nodes — it's for placeholders",
     ],
-    codeExample: `import { WorkflowNode, WorkflowNodeRow } from "@cogentic-co/ds/workflow"
-import { Mail } from "lucide-react"
+    codeExample: `import { WorkflowNode, WorkflowNodeIcon, WorkflowNodeDescription } from "@cogentic-co/ds/workflow"
+import { Sparkles } from "lucide-react"
 
 <WorkflowNode
-  state="default"
-  icon={<Mail />}
-  title="Send Email"
-  status="TRIGGER"
+  status="running"
+  kind={<><Sparkles className="size-3" /> AI</>}
+  category="Slack"
+  title="Summarize to Slack"
+  icon={<WorkflowNodeIcon tone="ai"><Sparkles /></WorkflowNodeIcon>}
   handles={{ target: true, source: true }}
-  collapsible
 >
-  <WorkflowNodeRow label="To" value="user@example.com" />
-  <WorkflowNodeRow label="Subject" value="Welcome!" />
+  <WorkflowNodeDescription>Send key information to Slack.</WorkflowNodeDescription>
 </WorkflowNode>`,
   },
-  "workflow-edge": {
+  "workflow-slack-message": {
     status: "new",
     description:
-      "Themed edge components for connecting workflow nodes. Includes Solid, Dotted, Dashed, Animated (travelling dot), and Temporary (drag preview) variants.",
+      "Slack-style notification preview card for workflow canvases. Shows a rendered message with app avatar, name, timestamp, title, body, and action buttons. Use next to a workflow node to preview what a Slack notification will look like.",
+    since: "0.11.0",
+    importStatement: `import {
+  WorkflowSlackMessage,
+  WorkflowSlackMessageTitle,
+  WorkflowSlackMessageBody,
+  WorkflowSlackMessageActions,
+} from "@cogentic-co/ds/workflow/workflow-slack-message"`,
+    dos: [
+      "Place next to a workflow node that sends Slack messages",
+      "Use WorkflowSlackMessageActions for 'Move to Qualified' / 'Open case' style buttons",
+      "Pass an avatar element (img or styled div) for the bot icon",
+    ],
+    donts: [
+      "Don't use for non-Slack notifications — build a similar component for email/Teams",
+      "Don't nest inside a Card — it's already a card",
+    ],
+    codeExample: `<WorkflowSlackMessage appName="Compliance Bot" timestamp="10:18 AM" appAvatar={...}>
+  <WorkflowSlackMessageTitle>⚠️ High-risk VASP detected</WorkflowSlackMessageTitle>
+  <WorkflowSlackMessageBody>A counterparty transfer has triggered the Travel Rule threshold.</WorkflowSlackMessageBody>
+  <WorkflowSlackMessageActions>
+    <Button variant="secondary" size="sm">Open case</Button>
+  </WorkflowSlackMessageActions>
+</WorkflowSlackMessage>`,
+  },
+  "workflow-edge": {
+    status: "stable",
+    description:
+      "Themed edge components for connecting workflow nodes. Includes Solid, Dotted, Dashed, Animated (travelling dot), and Temporary variants. Edges support floating label pills via data.label with active/inactive styling for branching flows.",
     since: "0.2.4",
     importStatement: `import {
   SolidEdge,
@@ -92,6 +120,7 @@ import { Mail } from "lucide-react"
       "Use Animated for active/in-progress connections",
       "Use Temporary as the edge type during drag operations",
       "Pass data.label to show a label pill on the edge midpoint",
+      "Pass data.active to highlight the active branch label (solid border vs muted)",
       "Pass data.color to override the edge stroke colour",
     ],
     donts: [

@@ -31,10 +31,7 @@
           "fix": "safe",
           "options": {
             "attributes": ["className"],
-            "functions": ["cn", "cva", "clsx", "tw"],
-            "css": {
-              "cssFiles": ["src/styles/globals.css"]
-            }
+            "functions": ["cn", "cva", "clsx", "tw"]
           }
         }
       }
