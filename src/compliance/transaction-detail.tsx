@@ -76,10 +76,10 @@ function TransactionDetail({
             <div className="mt-2 flex flex-wrap items-center gap-1.5">
               <ComplianceStatusBadge status={tx.complianceStatus} />
               <NetworkBadge network={tx.network} />
-              {tx.riskScore != null && <RiskScoreInline score={tx.riskScore} showLabel />}
               {tx.travelRuleStatus && (
                 <TravelRuleStatusComponent status={tx.travelRuleStatus} />
               )}
+              {tx.riskScore != null && <RiskScoreInline score={tx.riskScore} showLabel />}
             </div>
           </div>
         </div>
