@@ -166,11 +166,6 @@ function ComplianceScore({
       {/* Center content */}
       {showValue && (
         <div className="relative z-10 flex flex-col items-center">
-          {icon && (
-            <span className={cn("text-muted-foreground [&>svg]:size-4", scoreColor)}>
-              {icon}
-            </span>
-          )}
           <span
             className={cn("font-mono font-semibold tabular-nums", cfg.fontSize, scoreColor)}
             aria-label={`${animatedScore}%`}
@@ -179,15 +174,24 @@ function ComplianceScore({
           </span>
         </div>
       )}
-      {label && (
-        <span
-          className={cn(
-            "mt-1.5 font-medium text-muted-foreground text-center",
-            cfg.labelSize,
+      {(icon || label) && (
+        <div className="mt-1.5 flex flex-col items-center gap-1">
+          {icon && (
+            <span className={cn("text-muted-foreground [&>svg]:size-4", scoreColor)}>
+              {icon}
+            </span>
           )}
-        >
-          {label}
-        </span>
+          {label && (
+            <span
+              className={cn(
+                "font-medium text-muted-foreground text-center",
+                cfg.labelSize,
+              )}
+            >
+              {label}
+            </span>
+          )}
+        </div>
       )}
     </div>
   )
