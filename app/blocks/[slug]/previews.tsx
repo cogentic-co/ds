@@ -153,13 +153,31 @@ function SelectOrgFormPreview() {
 }
 
 function MagicLinkMessagePreview() {
+  const [mlState, setMlState] = useState<"request" | "sent">("request")
+  const [mlEmail, setMlEmail] = useState("")
+
   return (
-    <div className="mx-auto max-w-md">
+    <div className="flex flex-col items-center gap-10">
       <MagicLinkMessage
-        email="you@example.com"
+        state={mlState}
+        email={mlEmail || undefined}
+        onSubmit={(email) => {
+          setMlEmail(email)
+          setMlState("sent")
+        }}
         onResend={() => console.log("resend")}
-        onBack={() => console.log("back")}
+        onBack={() => setMlState("request")}
       />
+
+      <div className="flex items-center gap-4">
+        <p className="text-muted-foreground text-xs">Jump to:</p>
+        <Button variant="outline" size="sm" onClick={() => setMlState("request")}>
+          Request state
+        </Button>
+        <Button variant="outline" size="sm" onClick={() => { setMlEmail("you@example.com"); setMlState("sent") }}>
+          Sent state
+        </Button>
+      </div>
     </div>
   )
 }

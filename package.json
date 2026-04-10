@@ -39,6 +39,18 @@
         "default": "./dist/charts/*.js"
       }
     },
+    "./compliance": {
+      "import": {
+        "types": "./dist/compliance.d.ts",
+        "default": "./dist/compliance.js"
+      }
+    },
+    "./compliance/*": {
+      "import": {
+        "types": "./dist/compliance/*.d.ts",
+        "default": "./dist/compliance/*.js"
+      }
+    },
     "./workflow": {
       "import": {
         "types": "./dist/workflow.d.ts",
