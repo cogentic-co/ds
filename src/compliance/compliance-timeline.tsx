@@ -53,8 +53,8 @@ function ComplianceTimeline({ steps, className, ...props }: ComplianceTimelinePr
         const isLast = i === steps.length - 1
 
         return (
-          <div key={step.id} className="relative flex gap-3 pb-6 last:pb-0">
-            <div className="flex flex-col items-center">
+          <div key={step.id} className="relative flex gap-3">
+            <div className="relative flex flex-col items-center">
               <span className={dotVariants({ status: step.status })}>
                 {step.icon ?? (
                   <span
@@ -70,10 +70,15 @@ function ComplianceTimeline({ steps, className, ...props }: ComplianceTimelinePr
                 )}
               </span>
               {!isLast && (
-                <div className={cn("mt-0 w-px flex-1", lineColor(step.status))} />
+                <div
+                  className={cn(
+                    "absolute top-6 bottom-0 left-1/2 w-px -translate-x-1/2",
+                    lineColor(step.status),
+                  )}
+                />
               )}
             </div>
-            <div className="flex min-w-0 flex-col pt-0.5">
+            <div className={cn("flex min-w-0 flex-col pt-0.5", !isLast && "pb-6")}>
               <span
                 className={cn(
                   "font-medium text-sm leading-tight",
