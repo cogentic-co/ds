@@ -59,8 +59,8 @@ function TransactionDetail({
       {...props}
     >
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-muted">
+        <div className="flex items-start gap-3">
+          <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted">
             {DIRECTION_ICONS[tx.direction]}
           </span>
           <div>
