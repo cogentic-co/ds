@@ -111,7 +111,7 @@ export default function CompliancePage({
           <Separator />
           <div id="code-example">
             <h2 className="mb-4 font-semibold text-lg">Code Example</h2>
-            <CodeHighlight code={meta.codeExample} language="tsx" />
+            <CodeHighlight code={meta.codeExample} lang="tsx" />
           </div>
         </>
       )}

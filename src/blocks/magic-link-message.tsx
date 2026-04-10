@@ -15,7 +15,7 @@ import {
 import { Input } from "../components/input"
 import { cn } from "../lib/utils"
 
-type MagicLinkMessageProps = Omit<React.ComponentProps<typeof Card>, "title"> & {
+type MagicLinkMessageProps = Omit<React.ComponentProps<typeof Card>, "title" | "onSubmit"> & {
   /**
    * Which state to render.
    * - "request": email input + submit button (pre-submission)
