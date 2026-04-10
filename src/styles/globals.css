@@ -38,53 +38,15 @@
   }
 }
 
-@property --workflow-node-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes workflow-node-running {
-  to {
-    --workflow-node-angle: 360deg;
-  }
-}
-
-@keyframes workflow-node-pulse {
+@keyframes workflow-running-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 3px transparent;
+    border-color: var(--color-focal);
+    box-shadow: 0 0 0 0 transparent;
   }
   50% {
+    border-color: color-mix(in oklab, var(--color-focal) 55%, black);
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-focal) 8%, transparent);
-  }
-}
-
-[data-slot="workflow-node"][data-status="running"] {
-  --workflow-node-angle: 0deg;
-  border: 2px solid transparent !important;
-  background:
-    linear-gradient(var(--color-card), var(--color-card)) padding-box,
-    conic-gradient(
-        from var(--workflow-node-angle),
-        var(--color-focal) 0deg,
-        color-mix(in oklab, var(--color-focal) 60%, black) 90deg,
-        var(--color-focal) 180deg,
-        color-mix(in oklab, var(--color-focal) 60%, black) 270deg,
-        var(--color-focal) 360deg
-      )
-      border-box !important;
-  animation:
-    workflow-node-running 2.5s linear infinite,
-    workflow-node-pulse 2.5s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-slot="workflow-node"][data-status="running"] {
-    animation: none;
-    background:
-      linear-gradient(var(--color-card), var(--color-card)) padding-box,
-      linear-gradient(var(--color-focal), var(--color-focal)) border-box !important;
   }
 }
 
@@ -168,6 +130,7 @@
   --animate-marquee-left: marquee-left linear infinite;
   --animate-marquee-right: marquee-right linear infinite;
   --animate-shimmer: shimmer ease-in-out infinite;
+  --animate-workflow-running: workflow-running-pulse 2s ease-in-out infinite;
 }
 
 :root {

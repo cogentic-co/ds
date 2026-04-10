@@ -50,7 +50,7 @@ const workflowNodeVariants = cva(
       },
       status: {
         idle: "",
-        running: "workflow-node-running-border",
+        running: "border-focal animate-workflow-running motion-reduce:animate-none",
         completed: "border-success",
         failed: "border-destructive",
         queued: "border-muted-foreground/50 border-dashed",
