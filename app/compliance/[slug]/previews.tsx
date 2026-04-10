@@ -22,7 +22,8 @@ import {
   type TravelRuleStatusValue,
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
-import { type ControlDefs, Playground, Section, useControls } from "../../controls"
+import { type ControlDefs, Playground, useControls } from "../../controls"
+import { Section } from "../../components/[slug]/previews/_shared"
 
 // ── Sample data ──
 
