@@ -6,7 +6,7 @@ import {
   AddressDisplay,
   AlertBanner,
   CaseCard,
-  type CaseCardProps,
+  type ComplianceStatus,
   ComplianceStatusBadge,
   ComplianceTimeline,
   type ComplianceTimelineStep,
@@ -19,14 +19,20 @@ import {
   TransactionDetail,
   TransactionRow,
   TravelRuleStatus,
+  type TravelRuleStatusValue,
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
+import { type ControlDefs, Playground, Section, useControls } from "../../controls"
 
 // ── Sample data ──
 
 const sampleTx: TransactionData = {
   hash: "0x8a3b1c4d5e6f7890abcdef1234567890abcdef1234567890abcdef1234567890",
-  from: { address: "0x1234567890abcdef1234567890abcdef12345678", label: "Binance", vasp: "Binance" },
+  from: {
+    address: "0x1234567890abcdef1234567890abcdef12345678",
+    label: "Binance",
+    vasp: "Binance",
+  },
   to: { address: "0xabcdef1234567890abcdef1234567890abcdef12", vasp: "Coinbase" },
   amount: "2.5",
   asset: "ETH",
@@ -43,53 +49,177 @@ const sampleTx: TransactionData = {
   flags: ["high_risk_jurisdiction", "sanctions_match"],
 }
 
-const allStatuses = ["pending", "accepted", "rejected", "flagged", "escalated"] as const
-
 const sampleTransactions: TransactionData[] = [
-  { ...sampleTx, hash: "0xaaa1", complianceStatus: "flagged", riskScore: 82, direction: "inbound", amount: "15000", asset: "USDT", fiatValue: "$15,000" },
-  { ...sampleTx, hash: "0xbbb2", complianceStatus: "accepted", riskScore: 12, direction: "outbound", amount: "0.5", asset: "BTC", fiatValue: "$32,100", network: "bitcoin" },
-  { ...sampleTx, hash: "0xccc3", complianceStatus: "pending", riskScore: 45, direction: "inbound", amount: "5000", asset: "USDC", network: "polygon" },
-  { ...sampleTx, hash: "0xddd4", complianceStatus: "rejected", riskScore: 95, direction: "outbound", amount: "100000", asset: "USDT", fiatValue: "$100,000", network: "tron" },
-  { ...sampleTx, hash: "0xeee5", complianceStatus: "escalated", riskScore: 88, direction: "internal", amount: "8.2", asset: "ETH", fiatValue: "$25,420" },
+  {
+    ...sampleTx,
+    hash: "0xaaa1",
+    complianceStatus: "flagged",
+    riskScore: 82,
+    direction: "inbound",
+    amount: "15000",
+    asset: "USDT",
+    fiatValue: "$15,000",
+  },
+  {
+    ...sampleTx,
+    hash: "0xbbb2",
+    complianceStatus: "accepted",
+    riskScore: 12,
+    direction: "outbound",
+    amount: "0.5",
+    asset: "BTC",
+    fiatValue: "$32,100",
+    network: "bitcoin",
+  },
+  {
+    ...sampleTx,
+    hash: "0xccc3",
+    complianceStatus: "pending",
+    riskScore: 45,
+    direction: "inbound",
+    amount: "5000",
+    asset: "USDC",
+    network: "polygon",
+  },
+  {
+    ...sampleTx,
+    hash: "0xddd4",
+    complianceStatus: "rejected",
+    riskScore: 95,
+    direction: "outbound",
+    amount: "100000",
+    asset: "USDT",
+    fiatValue: "$100,000",
+    network: "tron",
+  },
+  {
+    ...sampleTx,
+    hash: "0xeee5",
+    complianceStatus: "escalated",
+    riskScore: 88,
+    direction: "internal",
+    amount: "8.2",
+    asset: "ETH",
+    fiatValue: "$25,420",
+  },
 ]
 
 const timelineSteps: ComplianceTimelineStep[] = [
-  { id: "1", label: "Transaction received", description: "Inbound transfer detected", timestamp: "10:32 AM", status: "completed" },
-  { id: "2", label: "Automated screening", description: "Risk engine flagged — sanctions match", timestamp: "10:32 AM", status: "warning" },
-  { id: "3", label: "Assigned for review", description: "Escalated to compliance team", timestamp: "10:35 AM", status: "completed" },
-  { id: "4", label: "Manual review", description: "Under investigation", timestamp: "10:48 AM", status: "current" },
+  {
+    id: "1",
+    label: "Transaction received",
+    description: "Inbound transfer detected",
+    timestamp: "10:32 AM",
+    status: "completed",
+  },
+  {
+    id: "2",
+    label: "Automated screening",
+    description: "Risk engine flagged — sanctions match",
+    timestamp: "10:32 AM",
+    status: "warning",
+  },
+  {
+    id: "3",
+    label: "Assigned for review",
+    description: "Escalated to compliance team",
+    timestamp: "10:35 AM",
+    status: "completed",
+  },
+  {
+    id: "4",
+    label: "Manual review",
+    description: "Under investigation",
+    timestamp: "10:48 AM",
+    status: "current",
+  },
   { id: "5", label: "Decision", status: "upcoming" },
 ]
+
+// ── Controls ──
+
+const txCardControlDefs = {
+  complianceStatus: {
+    type: "select",
+    options: ["pending", "accepted", "rejected", "flagged", "escalated"],
+    defaultValue: "flagged",
+    label: "Status",
+  },
+  direction: {
+    type: "select",
+    options: ["inbound", "outbound", "internal"],
+    defaultValue: "outbound",
+    label: "Direction",
+  },
+  network: {
+    type: "select",
+    options: ["ethereum", "bitcoin", "tron", "polygon", "solana", "bnb"],
+    defaultValue: "ethereum",
+    label: "Network",
+  },
+  riskScore: { type: "number", defaultValue: 72, min: 0, max: 100, step: 1, label: "Risk score" },
+} satisfies ControlDefs
+
+const alertControlDefs = {
+  severity: {
+    type: "select",
+    options: ["info", "warning", "critical"],
+    defaultValue: "critical",
+    label: "Severity",
+  },
+} satisfies ControlDefs
+
+const counterpartyControlDefs = {
+  type: {
+    type: "select",
+    options: ["vasp", "unhosted", "unknown"],
+    defaultValue: "vasp",
+    label: "Type",
+  },
+  verified: { type: "boolean", defaultValue: true, label: "Verified" },
+  riskScore: { type: "number", defaultValue: 32, min: 0, max: 100, step: 1, label: "Risk" },
+} satisfies ControlDefs
 
 // ── Previews ──
 
 export const compliancePreviews: Record<string, React.ComponentType> = {
   "compliance-status-badge": function ComplianceStatusBadgePreview() {
     return (
-      <div className="flex flex-wrap gap-3">
-        {allStatuses.map((s) => (
-          <ComplianceStatusBadge key={s} status={s} />
-        ))}
+      <div className="space-y-6">
+        <Section title="All statuses">
+          {(["pending", "accepted", "rejected", "flagged", "escalated"] as const).map((s) => (
+            <ComplianceStatusBadge key={s} status={s} />
+          ))}
+        </Section>
       </div>
     )
   },
 
   "network-badge": function NetworkBadgePreview() {
     return (
-      <div className="flex flex-wrap gap-3">
-        {(["ethereum", "bitcoin", "tron", "polygon", "solana", "bnb"] as const).map((n) => (
-          <NetworkBadge key={n} network={n} />
-        ))}
+      <div className="space-y-6">
+        <Section title="All networks">
+          {(["ethereum", "bitcoin", "tron", "polygon", "solana", "bnb"] as const).map((n) => (
+            <NetworkBadge key={n} network={n} />
+          ))}
+        </Section>
       </div>
     )
   },
 
   "risk-score-inline": function RiskScoreInlinePreview() {
     return (
-      <div className="flex flex-wrap gap-6">
-        {[12, 45, 72, 95].map((s) => (
-          <RiskScoreInline key={s} score={s} showLabel />
-        ))}
+      <div className="space-y-6">
+        <Section title="Scores with labels">
+          {[8, 12, 39, 45, 70, 72, 88, 95].map((s) => (
+            <RiskScoreInline key={s} score={s} showLabel />
+          ))}
+        </Section>
+        <Section title="Score only">
+          {[12, 45, 72, 95].map((s) => (
+            <RiskScoreInline key={s} score={s} />
+          ))}
+        </Section>
       </div>
     )
   },
@@ -97,29 +227,59 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "address-display": function AddressDisplayPreview() {
     return (
       <div className="flex flex-col gap-4">
-        <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" />
-        <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" label="Binance" riskScore={72} />
-        <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" truncate={false} />
+        <Section title="With label + risk">
+          <AddressDisplay
+            address="0x1234567890abcdef1234567890abcdef12345678"
+            label="Binance"
+            riskScore={72}
+          />
+        </Section>
+        <Section title="Address only">
+          <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" />
+        </Section>
+        <Section title="Full (no truncation)">
+          <AddressDisplay
+            address="0x1234567890abcdef1234567890abcdef12345678"
+            truncate={false}
+          />
+        </Section>
       </div>
     )
   },
 
   "travel-rule-status": function TravelRuleStatusPreview() {
     return (
-      <div className="flex flex-wrap gap-3">
+      <Section title="All statuses">
         {(["not_required", "pending", "sent", "received", "expired"] as const).map((s) => (
           <TravelRuleStatus key={s} status={s} />
         ))}
-      </div>
+      </Section>
     )
   },
 
   "transaction-card": function TransactionCardPreview() {
+    const controls = useControls(txCardControlDefs)
+    const tx: TransactionData = {
+      ...sampleTx,
+      complianceStatus: controls.values.complianceStatus as ComplianceStatus,
+      direction: controls.values.direction as TransactionData["direction"],
+      network: controls.values.network,
+      riskScore: controls.values.riskScore,
+    }
     return (
-      <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
-        {sampleTransactions.slice(0, 4).map((tx) => (
-          <TransactionCard key={tx.hash} transaction={tx} onClick={() => console.log(tx.hash)} />
-        ))}
+      <div className="space-y-8">
+        <Playground controls={controls}>
+          <div className="max-w-sm">
+            <TransactionCard transaction={tx} onClick={() => console.log("click")} />
+          </div>
+        </Playground>
+        <Section title="All statuses">
+          <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
+            {sampleTransactions.slice(0, 4).map((t) => (
+              <TransactionCard key={t.hash} transaction={t} />
+            ))}
+          </div>
+        </Section>
       </div>
     )
   },
@@ -142,7 +302,9 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           explorerUrl="#"
           actions={
             <>
-              <Button variant="outline" size="sm">Reject</Button>
+              <Button variant="outline" size="sm">
+                Reject
+              </Button>
               <Button size="sm">Accept</Button>
             </>
           }
@@ -174,35 +336,35 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   },
 
   "counterparty-card": function CounterpartyCardPreview() {
+    const controls = useControls(counterpartyControlDefs)
     return (
-      <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
-        <CounterpartyCard
-          type="vasp"
-          name="Binance Singapore"
-          jurisdiction="sg"
-          registrationStatus="MAS Licensed"
-          verified
-          riskScore={32}
-        />
-        <CounterpartyCard
-          type="unhosted"
-          name="Unknown wallet"
-          riskScore={85}
-        />
-        <CounterpartyCard
-          type="vasp"
-          name="Coinbase"
-          jurisdiction="us"
-          registrationStatus="FinCEN MSB"
-          verified
-          riskScore={8}
-        />
-        <CounterpartyCard
-          type="unknown"
-          name="Unidentified entity"
-          jurisdiction="ru"
-          riskScore={92}
-        />
+      <div className="space-y-8">
+        <Playground controls={controls}>
+          <div className="max-w-sm">
+            <CounterpartyCard
+              type={controls.values.type as "vasp"}
+              name={controls.values.type === "vasp" ? "Binance Singapore" : "Unknown wallet"}
+              jurisdiction={controls.values.type === "vasp" ? "sg" : undefined}
+              registrationStatus={controls.values.type === "vasp" ? "MAS Licensed" : undefined}
+              verified={controls.values.verified}
+              riskScore={controls.values.riskScore}
+            />
+          </div>
+        </Playground>
+        <Section title="Types">
+          <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
+            <CounterpartyCard
+              type="vasp"
+              name="Coinbase"
+              jurisdiction="us"
+              registrationStatus="FinCEN MSB"
+              verified
+              riskScore={8}
+            />
+            <CounterpartyCard type="unhosted" name="Unknown wallet" riskScore={85} />
+            <CounterpartyCard type="unknown" name="Unidentified entity" jurisdiction="ru" riskScore={92} />
+          </div>
+        </Section>
       </div>
     )
   },
@@ -260,25 +422,37 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   },
 
   "alert-banner": function AlertBannerPreview() {
+    const controls = useControls(alertControlDefs)
     return (
-      <div className="flex max-w-xl flex-col gap-4">
-        <AlertBanner
-          severity="critical"
-          title="3 transactions flagged for immediate review"
-          description="High-risk transfers detected from sanctioned jurisdictions."
-          actions={<Button size="sm">Review now</Button>}
-          onDismiss={() => console.log("dismiss")}
-        />
-        <AlertBanner
-          severity="warning"
-          title="Travel Rule data pending"
-          description="2 outbound transfers are awaiting counterparty VASP response."
-        />
-        <AlertBanner
-          severity="info"
-          title="Screening rules updated"
-          description="OFAC SDN list was refreshed 5 minutes ago."
-        />
+      <div className="space-y-8">
+        <Playground controls={controls}>
+          <AlertBanner
+            severity={controls.values.severity as "critical"}
+            title="3 transactions flagged for immediate review"
+            description="High-risk transfers detected from sanctioned jurisdictions."
+            actions={<Button size="sm">Review now</Button>}
+            onDismiss={() => console.log("dismiss")}
+          />
+        </Playground>
+        <Section title="All severities">
+          <div className="flex max-w-xl flex-col gap-4">
+            <AlertBanner
+              severity="critical"
+              title="3 transactions flagged for immediate review"
+              description="High-risk transfers detected from sanctioned jurisdictions."
+            />
+            <AlertBanner
+              severity="warning"
+              title="Travel Rule data pending"
+              description="2 outbound transfers are awaiting counterparty VASP response."
+            />
+            <AlertBanner
+              severity="info"
+              title="Screening rules updated"
+              description="OFAC SDN list was refreshed 5 minutes ago."
+            />
+          </div>
+        </Section>
       </div>
     )
   },
