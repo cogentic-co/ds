@@ -55,8 +55,6 @@ type ComplianceScoreProps = React.ComponentProps<"div"> &
     score: number
     /** Optional label rendered below the circle */
     label?: string
-    /** Optional icon rendered inside the circle above the score number */
-    icon?: React.ReactNode
     /** Show the numeric value in the center. Default: true */
     showValue?: boolean
     /** Override the automatic color (accepts a Tailwind text-color class) */
@@ -66,7 +64,6 @@ type ComplianceScoreProps = React.ComponentProps<"div"> &
 function ComplianceScore({
   score,
   label,
-  icon,
   size = "default",
   showValue = true,
   color,
@@ -174,24 +171,15 @@ function ComplianceScore({
           </span>
         </div>
       )}
-      {(icon || label) && (
-        <div className="mt-1.5 flex flex-col items-center gap-1">
-          {icon && (
-            <span className={cn("text-muted-foreground [&>svg]:size-4", scoreColor)}>
-              {icon}
-            </span>
+      {label && (
+        <span
+          className={cn(
+            "relative z-10 mt-0.5 font-medium text-muted-foreground uppercase tracking-wide",
+            cfg.labelSize,
           )}
-          {label && (
-            <span
-              className={cn(
-                "font-medium text-muted-foreground text-center",
-                cfg.labelSize,
-              )}
-            >
-              {label}
-            </span>
-          )}
-        </div>
+        >
+          {label}
+        </span>
       )}
     </div>
   )

@@ -22,7 +22,6 @@ import {
   type TravelRuleStatusValue,
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
-import { ArrowLeftRight, Fingerprint, Globe, ShieldCheck } from "lucide-react"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 import { Section } from "../../components/[slug]/previews/_shared"
 
@@ -415,10 +414,10 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "compliance-score": function ComplianceScorePreview() {
     return (
       <div className="flex flex-wrap items-end gap-8">
-        <ComplianceScore score={92} label="Overall" icon={<ShieldCheck />} size="lg" />
-        <ComplianceScore score={78} label="KYC" icon={<Fingerprint />} />
-        <ComplianceScore score={45} label="Travel Rule" icon={<ArrowLeftRight />} />
-        <ComplianceScore score={15} label="Sanctions" icon={<Globe />} size="sm" />
+        <ComplianceScore score={92} label="Overall" size="lg" />
+        <ComplianceScore score={78} label="KYC" />
+        <ComplianceScore score={45} label="Travel Rule" />
+        <ComplianceScore score={15} label="Sanctions" size="sm" />
       </div>
     )
   },
