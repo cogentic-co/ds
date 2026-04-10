@@ -60,28 +60,35 @@ export default function CompliancePage({
       {meta && (meta.dos || meta.donts) && (
         <>
           <Separator />
+          <h2 className="font-semibold text-lg">Usage Guidelines</h2>
           <div id="guidelines" className="grid gap-6 sm:grid-cols-2">
             {meta.dos && (
-              <div>
-                <h3 className="mb-3 font-semibold text-sm">Do</h3>
-                <ul className="space-y-2">
+              <div className="rounded-lg border border-emerald-700/30 bg-emerald-700/5 p-5 dark:border-emerald-400/30 dark:bg-emerald-400/5">
+                <div className="mb-4 flex items-center gap-2 font-semibold text-emerald-700 text-sm dark:text-emerald-400">
+                  <CheckCircle2 className="size-4" />
+                  Do
+                </div>
+                <ul className="space-y-2.5">
                   {meta.dos.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-600" />
-                      <span className="text-muted-foreground">{item}</span>
+                      <span className="mt-1 text-emerald-700 dark:text-emerald-400">+</span>
+                      <span className="text-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
             {meta.donts && (
-              <div>
-                <h3 className="mb-3 font-semibold text-sm">Don&apos;t</h3>
-                <ul className="space-y-2">
+              <div className="rounded-lg border border-red-700/30 bg-red-700/5 p-5 dark:border-red-400/30 dark:bg-red-400/5">
+                <div className="mb-4 flex items-center gap-2 font-semibold text-red-700 text-sm dark:text-red-400">
+                  <XCircle className="size-4" />
+                  Don&apos;t
+                </div>
+                <ul className="space-y-2.5">
                   {meta.donts.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm">
-                      <XCircle className="mt-0.5 size-4 shrink-0 text-red-500" />
-                      <span className="text-muted-foreground">{item}</span>
+                      <span className="mt-1 text-red-700 dark:text-red-400">&ndash;</span>
+                      <span className="text-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
