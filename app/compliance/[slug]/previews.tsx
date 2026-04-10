@@ -1,25 +1,39 @@
 "use client"
 
+import { AlertTriangle, Clock, FileCheck, Shield } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/src/components/button"
 import {
   AddressDisplay,
   AlertBanner,
+  AuditNote,
   CaseCard,
+  CaseDetail,
+  type CaseDetailTab,
   type ComplianceStatus,
   ComplianceStatusBadge,
   ComplianceTimeline,
   type ComplianceTimelineStep,
   CounterpartyCard,
+  type HeatmapCell,
+  HeatmapChart,
+  MetricCard,
   NetworkBadge,
+  ReportExport,
+  ReviewForm,
   RiskScoreInline,
+  type RuleBuilderField,
+  type RuleGroup,
+  RuleBuilder,
   SanctionsMatch,
   TransactionCard,
   type TransactionData,
   TransactionDetail,
+  TransactionFilterBar,
+  type TransactionFilters,
   TransactionRow,
   TravelRuleStatus,
-  type TravelRuleStatusValue,
+  WalletProfile,
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { type ControlDefs, Playground, useControls } from "../../controls"
@@ -454,6 +468,194 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
             />
           </div>
         </Section>
+      </div>
+    )
+  },
+
+  "transaction-filters": function TransactionFiltersPreview() {
+    const [filters, setFilters] = useState<TransactionFilters>({})
+    return (
+      <div className="space-y-6">
+        <TransactionFilterBar filters={filters} onFiltersChange={setFilters} />
+        <pre className="rounded-lg bg-muted p-3 font-mono text-xs">{JSON.stringify(filters, null, 2)}</pre>
+      </div>
+    )
+  },
+
+  "case-detail": function CaseDetailPreview() {
+    const tabs: CaseDetailTab[] = [
+      { id: "transactions", label: "Transactions", count: 3, content: <p className="text-muted-foreground text-sm">Transaction list goes here</p> },
+      { id: "alerts", label: "Alerts", count: 1, content: <p className="text-muted-foreground text-sm">Alerts list goes here</p> },
+      { id: "timeline", label: "Timeline", content: <p className="text-muted-foreground text-sm">Timeline goes here</p> },
+      { id: "notes", label: "Notes", count: 2, content: <p className="text-muted-foreground text-sm">Audit notes go here</p> },
+    ]
+    return (
+      <div className="max-w-2xl">
+        <CaseDetail
+          caseId="CASE-1042"
+          title="High-risk VASP transfer flagged for review"
+          status="flagged"
+          priority="p1"
+          updatedAt={new Date(Date.now() - 3600000).toISOString()}
+          assignee={{ name: "Sarah Chen" }}
+          entities={["Binance Singapore", "0x1a2b...3c4d"]}
+          actions={
+            <>
+              <Button variant="outline" size="sm">Assign</Button>
+              <Button variant="outline" size="sm">Escalate</Button>
+              <Button size="sm">Close</Button>
+            </>
+          }
+          tabs={tabs}
+        />
+      </div>
+    )
+  },
+
+  "wallet-profile": function WalletProfilePreview() {
+    return (
+      <div className="max-w-2xl">
+        <WalletProfile
+          address="0x1234567890abcdef1234567890abcdef12345678"
+          label="Binance Hot Wallet"
+          network="ethereum"
+          riskScore={32}
+          type="Exchange"
+          explorerUrl="#"
+          tags={["CEX", "High volume", "KYC verified"]}
+          stats={[
+            { label: "Total volume", value: "$12.4M" },
+            { label: "Transactions", value: "1,847" },
+            { label: "First seen", value: "Jan 2024" },
+            { label: "Last active", value: "2h ago" },
+          ]}
+          actions={<Button variant="outline" size="sm">Flag</Button>}
+        >
+          <p className="text-muted-foreground text-sm">Linked transactions and risk history would go here.</p>
+        </WalletProfile>
+      </div>
+    )
+  },
+
+  "review-form": function ReviewFormPreview() {
+    return (
+      <div className="max-w-lg">
+        <ReviewForm
+          onSubmit={(decision, rationale) => console.log("submit", decision, rationale)}
+          header={
+            <div className="mb-2 text-muted-foreground text-sm">
+              Review flagged transaction <span className="font-mono">0x8a3b...7890</span>
+            </div>
+          }
+        />
+      </div>
+    )
+  },
+
+  "audit-note": function AuditNotePreview() {
+    return (
+      <div className="flex max-w-lg flex-col gap-4">
+        <AuditNote author={{ name: "Sarah Chen" }} timestamp="10:48 AM" decision="flagged">
+          Flagged for manual review — counterparty address matches a known high-risk cluster identified by Chainalysis.
+        </AuditNote>
+        <AuditNote author={{ name: "James Cooke" }} timestamp="11:15 AM" decision="accepted">
+          Verified with the counterparty VASP. Transaction is legitimate — clearing the flag.
+        </AuditNote>
+      </div>
+    )
+  },
+
+  "rule-builder": function RuleBuilderPreview() {
+    const fields: RuleBuilderField[] = [
+      { value: "amount", label: "Amount" },
+      { value: "risk_score", label: "Risk score" },
+      { value: "network", label: "Network" },
+      { value: "direction", label: "Direction" },
+      { value: "jurisdiction", label: "Jurisdiction" },
+    ]
+    const [groups, setGroups] = useState<RuleGroup[]>([
+      {
+        id: "g1",
+        logic: "and",
+        conditions: [
+          { id: "c1", field: "amount", operator: "greater_than", value: "10000" },
+          { id: "c2", field: "risk_score", operator: "greater_than", value: "70" },
+        ],
+      },
+    ])
+    return (
+      <div className="max-w-2xl">
+        <RuleBuilder groups={groups} onGroupsChange={setGroups} fields={fields} />
+      </div>
+    )
+  },
+
+  "report-export": function ReportExportPreview() {
+    return (
+      <div className="max-w-lg">
+        <ReportExport
+          sections={[
+            { id: "transactions", label: "Transactions" },
+            { id: "alerts", label: "Alerts" },
+            { id: "screening", label: "Screening results" },
+            { id: "timeline", label: "Compliance timeline" },
+            { id: "notes", label: "Audit notes" },
+          ]}
+          onExport={(config) => console.log("export", config)}
+        />
+      </div>
+    )
+  },
+
+  "metric-card": function MetricCardPreview() {
+    return (
+      <div className="grid max-w-3xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <MetricCard
+          label="Pending reviews"
+          value={12}
+          trend="+3 today"
+          trendDirection="up"
+          upIsGood={false}
+          icon={<Clock />}
+        />
+        <MetricCard
+          label="Flagged rate"
+          value="4.2%"
+          trend="-0.8%"
+          trendDirection="down"
+          icon={<AlertTriangle />}
+        />
+        <MetricCard
+          label="Avg review time"
+          value="14m"
+          trend="-2m vs last week"
+          trendDirection="down"
+          icon={<FileCheck />}
+        />
+        <MetricCard
+          label="SLA compliance"
+          value="98.1%"
+          trend="+1.2%"
+          trendDirection="up"
+          icon={<Shield />}
+        />
+      </div>
+    )
+  },
+
+  "heatmap-chart": function HeatmapChartPreview() {
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    const hours = Array.from({ length: 12 }, (_, i) => `${String(i * 2).padStart(2, "0")}:00`)
+    const data: HeatmapCell[] = days.flatMap((day) =>
+      hours.map((hour) => ({
+        x: hour,
+        y: day,
+        value: Math.floor(Math.random() * 50),
+      })),
+    )
+    return (
+      <div className="max-w-2xl">
+        <HeatmapChart data={data} xLabels={hours} yLabels={days} />
       </div>
     )
   },

@@ -511,8 +511,38 @@ function buildNav(pathname: string): NavGroup[] {
           defaultOpen: true,
         },
         {
+          title: "Filters & views",
+          items: ["transaction-filters", "wallet-profile", "case-detail"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
           title: "Case & scoring",
           items: ["case-card", "compliance-score"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Review & reporting",
+          items: ["review-form", "audit-note", "rule-builder", "report-export"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Dashboard",
+          items: ["metric-card", "heatmap-chart"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,
