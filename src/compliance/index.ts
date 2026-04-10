@@ -1,5 +1,6 @@
 export * from "./types"
 export * from "./address-display"
+export * from "./chain-icons"
 export * from "./alert-banner"
 export * from "./case-card"
 export * from "./compliance-score"

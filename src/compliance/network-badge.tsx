@@ -3,6 +3,7 @@
 import { cva, type VariantProps } from "class-variance-authority"
 import type { ComponentProps, ReactNode } from "react"
 import { cn } from "../lib/utils"
+import { CHAIN_ICONS } from "./chain-icons"
 import type { ChainNetwork } from "./types"
 
 const networkBadgeVariants = cva(
@@ -57,7 +58,7 @@ function NetworkBadge({
       className={cn(networkBadgeVariants({ network: resolvedNetwork }), className)}
       {...props}
     >
-      {icon}
+      {icon ?? (CHAIN_ICONS[network] ? CHAIN_ICONS[network]({ className: "size-3" }) : null)}
       {label ?? NETWORK_LABELS[network] ?? network}
     </span>
   )
