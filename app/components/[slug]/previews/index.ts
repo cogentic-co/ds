@@ -7,6 +7,7 @@ import ApprovalActionsPreview from "./approval-actions"
 import AreaChartPreview from "./area-chart"
 import ComposedChartPreview from "./composed-chart"
 import FunnelChartPreview from "./funnel-chart"
+import HeatmapChartPreview from "./heatmap-chart"
 import ScatterChartPreview from "./scatter-chart"
 import AsciiShaderPreview from "./ascii-shader"
 import AspectRatioPreview from "./aspect-ratio"
@@ -212,6 +213,7 @@ export const previews: Record<string, React.ComponentType> = {
   "scatter-chart": ScatterChartPreview,
   "composed-chart": ComposedChartPreview,
   "funnel-chart": FunnelChartPreview,
+  "heatmap-chart": HeatmapChartPreview,
   "bg-shader": BgShaderPreview,
   "blocky-shader": BlockyShaderPreview,
   "ascii-shader": AsciiShaderPreview,

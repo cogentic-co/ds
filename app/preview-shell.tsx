@@ -236,6 +236,7 @@ const chartItems = [
   "scatter-chart",
   "composed-chart",
   "funnel-chart",
+  "heatmap-chart",
 ]
 
 const workflowGroups: { label: string; items: string[] }[] = [
@@ -511,8 +512,8 @@ function buildNav(pathname: string): NavGroup[] {
           defaultOpen: true,
         },
         {
-          title: "Filters & views",
-          items: ["transaction-filters", "wallet-profile", "case-detail"].map((slug) => ({
+          title: "Filters",
+          items: ["transaction-filters"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,
@@ -532,17 +533,7 @@ function buildNav(pathname: string): NavGroup[] {
         },
         {
           title: "Review & reporting",
-          items: ["review-form", "audit-note", "rule-builder", "report-export"].map((slug) => ({
-            label: toTitle(slug),
-            icon: Component,
-            href: `/compliance/${slug}`,
-            isActive: pathname === `/compliance/${slug}`,
-          })),
-          defaultOpen: true,
-        },
-        {
-          title: "Dashboard",
-          items: ["metric-card", "heatmap-chart"].map((slug) => ({
+          items: ["review-form", "audit-note", "report-export"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,
