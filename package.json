@@ -762,7 +762,7 @@
     "*.css"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "homepage": "https://cogentic.co",
   "repository": {
