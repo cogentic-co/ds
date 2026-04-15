@@ -154,25 +154,64 @@ const blockPages: SearchItem[] = [
   { slug: "team-card", label: "Team Card", href: "/blocks/team-card", group: "Blocks" },
 ]
 
+/**
+ * Infer the route prefix for a slug by looking at the importStatement in
+ * its metadata (e.g. `@cogentic-co/ds/blocks/foo` → `/blocks/foo`).
+ * Falls back to `/components/{slug}` for legacy entries.
+ */
+function inferRoute(slug: string, importStatement?: string): { href: string; group: string } {
+  if (importStatement) {
+    const match = importStatement.match(/@cogentic-co\/ds\/(blocks|compliance|workflow|charts|shells)\//)
+    if (match) {
+      const segment = match[1]
+      const groupLabels: Record<string, string> = {
+        blocks: "Blocks",
+        compliance: "Compliance",
+        workflow: "Workflow",
+        charts: "Charts",
+        shells: "Shells",
+      }
+      return { href: `/${segment}/${slug}`, group: groupLabels[segment] }
+    }
+  }
+  return { href: `/components/${slug}`, group: "Components" }
+}
+
 function buildSearchItems(): SearchItem[] {
   const items: SearchItem[] = []
+  const seen = new Set<string>()
 
+  for (const slug of Object.keys(componentMeta)) {
+    if (seen.has(slug)) continue
+    seen.add(slug)
+    const meta = componentMeta[slug]
+    const { href, group } = inferRoute(slug, meta?.importStatement)
+    items.push({
+      slug,
+      label: toTitle(slug),
+      href,
+      group,
+      description: meta?.description,
+      status: meta?.status !== "stable" ? meta?.status : undefined,
+    })
+  }
+
+  // Components without meta (most legacy primitives) — add via the original groups
   for (const group of componentGroups) {
     for (const slug of group.items) {
-      const meta = componentMeta[slug]
+      if (seen.has(slug)) continue
+      seen.add(slug)
       items.push({
         slug,
         label: toTitle(slug),
         href: `/components/${slug}`,
         group: "Components",
-        description: meta?.description,
-        status: meta?.status !== "stable" ? meta?.status : undefined,
       })
     }
   }
 
   items.push(...foundationPages)
-  items.push(...blockPages)
+  items.push(...blockPages.filter((p) => !seen.has(p.slug)))
 
   return items
 }
