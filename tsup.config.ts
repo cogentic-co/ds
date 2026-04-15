@@ -193,6 +193,7 @@ export default defineConfig({
     "compliance/address-display": "src/compliance/address-display.tsx",
     "compliance/audit-note": "src/compliance/audit-note.tsx",
     "compliance/case-card": "src/compliance/case-card.tsx",
+    "compliance/chain-icons": "src/compliance/chain-icons.tsx",
     "compliance/compliance-score": "src/compliance/compliance-score.tsx",
     "compliance/alert-banner": "src/compliance/alert-banner.tsx",
     "compliance/compliance-status-badge": "src/compliance/compliance-status-badge.tsx",

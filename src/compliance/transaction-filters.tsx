@@ -1,6 +1,6 @@
 "use client"
 
-import { type ComponentProps, useCallback } from "react"
+import { type ComponentProps, useCallback, useMemo } from "react"
 import { FilterBar, FilterChip, FilterClear } from "../components/filter-bar"
 import {
   Select,
@@ -9,13 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/select"
-import { cn } from "../lib/utils"
 import type { ChainNetwork, ComplianceStatus, TransactionDirection } from "./types"
 
 type TransactionFilters = {
-  status?: ComplianceStatus | ""
-  direction?: TransactionDirection | ""
-  network?: ChainNetwork | ""
+  status?: ComplianceStatus
+  direction?: TransactionDirection
+  network?: ChainNetwork
   riskMin?: number
   riskMax?: number
   dateFrom?: string
@@ -76,26 +75,30 @@ function TransactionFilterBar({
   const clear = useCallback(
     () =>
       onFiltersChange({
-        status: "",
-        direction: "",
-        network: "",
-        dateFrom: "",
-        dateTo: "",
+        status: undefined,
+        direction: undefined,
+        network: undefined,
+        dateFrom: undefined,
+        dateTo: undefined,
       }),
     [onFiltersChange],
   )
 
-  const networkLabel = filters.network
-    ? (networks.find((n) => n.value === filters.network)?.label ?? filters.network)
-    : undefined
+  const networkLabel = useMemo(
+    () =>
+      filters.network
+        ? (networks.find((n) => n.value === filters.network)?.label ?? filters.network)
+        : undefined,
+    [filters.network, networks],
+  )
 
   return (
     <FilterBar className={className} {...props}>
       {filters.status ? (
         <FilterChip
           label="Status"
-          value={STATUS_LABELS[filters.status as ComplianceStatus]}
-          onRemove={() => update({ status: "" })}
+          value={STATUS_LABELS[filters.status]}
+          onRemove={() => update({ status: undefined })}
         />
       ) : (
         <Select value="" onValueChange={(v) => update({ status: v as ComplianceStatus })}>
@@ -113,8 +116,8 @@ function TransactionFilterBar({
       {filters.direction ? (
         <FilterChip
           label="Direction"
-          value={DIRECTION_LABELS[filters.direction as TransactionDirection]}
-          onRemove={() => update({ direction: "" })}
+          value={DIRECTION_LABELS[filters.direction]}
+          onRemove={() => update({ direction: undefined })}
         />
       ) : (
         <Select value="" onValueChange={(v) => update({ direction: v as TransactionDirection })}>
@@ -133,7 +136,7 @@ function TransactionFilterBar({
         <FilterChip
           label="Network"
           value={networkLabel}
-          onRemove={() => update({ network: "" })}
+          onRemove={() => update({ network: undefined })}
         />
       ) : (
         <Select value="" onValueChange={(v) => update({ network: v as ChainNetwork })}>
@@ -149,10 +152,10 @@ function TransactionFilterBar({
       )}
 
       {filters.dateFrom && (
-        <FilterChip label="From" value={filters.dateFrom} onRemove={() => update({ dateFrom: "" })} />
+        <FilterChip label="From" value={filters.dateFrom} onRemove={() => update({ dateFrom: undefined })} />
       )}
       {filters.dateTo && (
-        <FilterChip label="To" value={filters.dateTo} onRemove={() => update({ dateTo: "" })} />
+        <FilterChip label="To" value={filters.dateTo} onRemove={() => update({ dateTo: undefined })} />
       )}
 
       {hasFilters(filters) && <FilterClear onClick={clear} />}

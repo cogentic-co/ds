@@ -2,7 +2,7 @@
 
 import { Building2, Shield, ShieldAlert, ShieldCheck, Wallet } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
-import { cn } from "../lib/utils"
+import { cn, countryFlag } from "../lib/utils"
 import { RiskScoreInline } from "./risk-score-inline"
 
 type CounterpartyType = "vasp" | "unhosted" | "unknown"
@@ -36,15 +36,6 @@ const TYPE_LABELS: Record<CounterpartyType, string> = {
   vasp: "VASP",
   unhosted: "Unhosted wallet",
   unknown: "Unknown",
-}
-
-function countryFlag(code: string): string {
-  return String.fromCodePoint(
-    ...code
-      .toUpperCase()
-      .split("")
-      .map((c) => 0x1f1e6 + c.charCodeAt(0) - 65),
-  )
 }
 
 function CounterpartyCard({

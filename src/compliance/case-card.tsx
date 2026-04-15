@@ -3,45 +3,42 @@
 import { AlertTriangle, ArrowLeftRight, Calendar } from "lucide-react"
 import type * as React from "react"
 
-import { cn, timeAgo } from "../lib/utils"
+import { cn, initials, timeAgo } from "../lib/utils"
 import { Badge } from "../components/badge"
 import { Card } from "../components/card"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../components/hover-card"
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "../components/item"
 
-/* ------------------------------------------------------------------ */
-/*  Style maps                                                         */
-/* ------------------------------------------------------------------ */
+type CaseSla = "on_track" | "at_risk" | "overdue"
+type CasePriority = "p1" | "p2" | "p3"
+type CaseSeverity = "low" | "medium" | "high" | "critical"
+type CaseDirection = "inbound" | "outbound" | "internal"
 
-const SLA_BADGE: Record<string, string> = {
+const SLA_BADGE: Record<CaseSla, string> = {
   on_track:
-    "text-emerald-700 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-950 dark:border-emerald-800",
+    "text-emerald-700 bg-emerald-700/10 border-emerald-700/30 dark:text-emerald-400 dark:bg-emerald-400/10 dark:border-emerald-400/30",
   at_risk:
-    "text-amber-700 bg-amber-50 border-amber-200 dark:text-amber-400 dark:bg-amber-950 dark:border-amber-800",
+    "text-amber-700 bg-amber-700/10 border-amber-700/30 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/30",
   overdue:
-    "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800",
+    "text-red-700 bg-red-700/10 border-red-700/30 dark:text-red-400 dark:bg-red-400/10 dark:border-red-400/30",
 }
 
-const PRIORITY_BADGE: Record<string, string> = {
-  p1: "text-red-700 bg-red-50 border-red-200 dark:text-red-400 dark:bg-red-950 dark:border-red-800",
-  p2: "text-orange-700 bg-orange-50 border-orange-200 dark:text-orange-400 dark:bg-orange-950 dark:border-orange-800",
-  p3: "text-slate-700 bg-slate-100 border-slate-200 dark:text-slate-400 dark:bg-slate-900 dark:border-slate-700",
+const PRIORITY_BADGE: Record<CasePriority, string> = {
+  p1: "text-red-700 bg-red-700/10 border-red-700/30 dark:text-red-400 dark:bg-red-400/10 dark:border-red-400/30",
+  p2: "text-amber-700 bg-amber-700/10 border-amber-700/30 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/30",
+  p3: "text-muted-foreground bg-muted border-border",
 }
 
-const SEVERITY_DOT: Record<string, string> = {
-  low: "bg-slate-400",
+const SEVERITY_DOT: Record<CaseSeverity, string> = {
+  low: "bg-muted-foreground/60",
   medium: "bg-amber-500",
-  high: "bg-orange-500",
-  critical: "bg-red-500",
+  high: "bg-amber-700 dark:bg-amber-400",
+  critical: "bg-red-700 dark:bg-red-400",
 }
-
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
 
 export type CaseCardAlert = {
   id: string
-  severity: string
+  severity: CaseSeverity
   trigger: string
   type: string
   href?: string
@@ -51,7 +48,7 @@ export type CaseCardTransaction = {
   id: string
   amount: string
   asset: string
-  direction: string
+  direction: CaseDirection
   href?: string
 }
 
@@ -64,8 +61,8 @@ export type CaseCardProps = {
   id: string
   title: string
   entities: string[]
-  sla: string
-  priority: string
+  sla: CaseSla
+  priority: CasePriority
   updatedAt: string
   assignee?: CaseCardAssignee
   linkedAlerts?: CaseCardAlert[]
@@ -73,10 +70,6 @@ export type CaseCardProps = {
   onClick?: () => void
   className?: string
 }
-
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
 
 function CaseCard({
   id,
@@ -91,24 +84,17 @@ function CaseCard({
   onClick,
   className,
 }: CaseCardProps) {
-  const initials = assignee
-    ? assignee.name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .slice(0, 2)
-    : null
+  const assigneeInitials = assignee ? initials(assignee.name) : null
 
   return (
     <Card
       padding="none"
       className={cn(
-        "cursor-pointer p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-800 hover:bg-emerald-50/20 hover:shadow-md",
+        "cursor-pointer p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md",
         className,
       )}
       onClick={onClick}
     >
-      {/* Header: ID + SLA */}
       <div className="flex flex-col gap-y-2 pb-2">
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground">
@@ -132,13 +118,11 @@ function CaseCard({
           </Badge>
         </div>
 
-        {/* Body: title + entities */}
         <div className="flex flex-col gap-y-1">
           <p className="line-clamp-2 font-semibold text-sm leading-snug">{title}</p>
           <p className="truncate text-muted-foreground text-xs">{entities.join(", ")}</p>
         </div>
 
-        {/* Meta: priority + assignee */}
         <div className="flex items-center justify-between py-1">
           <div className="flex items-center gap-1.5">
             <Badge
@@ -149,17 +133,17 @@ function CaseCard({
               {priority.toUpperCase()}
             </Badge>
           </div>
-          {assignee && initials && (
+          {assignee && assigneeInitials && (
             <HoverCard>
               <HoverCardTrigger onClick={(e: React.MouseEvent) => e.stopPropagation()}>
                 <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-[10px] text-primary transition-all hover:ring-2 hover:ring-primary/20">
-                  {initials}
+                  {assigneeInitials}
                 </div>
               </HoverCardTrigger>
               <HoverCardContent side="top" className="w-48 text-xs">
                 <div className="flex items-center gap-2">
                   <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary text-xs">
-                    {initials}
+                    {assigneeInitials}
                   </div>
                   <div>
                     <p className="font-medium">{assignee.name}</p>
@@ -172,7 +156,6 @@ function CaseCard({
         </div>
       </div>
 
-      {/* Footer: linked items + timestamp */}
       <div className="-mx-4 -mb-3 flex items-center gap-4 border-t border-dashed px-4 py-3 font-mono text-muted-foreground text-xs">
         {linkedAlerts.length > 0 && (
           <HoverCard>

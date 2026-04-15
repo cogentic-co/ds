@@ -1,6 +1,6 @@
 "use client"
 
-import type { ComponentProps } from "react"
+import { type ComponentProps, useMemo } from "react"
 import { cn } from "../lib/utils"
 
 type HeatmapCell = {
@@ -46,13 +46,15 @@ function HeatmapChart({
   className,
   ...props
 }: HeatmapChartProps) {
-  const lookup = new Map<string, number>()
-  let max = 0
-  for (const cell of data) {
-    const key = `${cell.y}|${cell.x}`
-    lookup.set(key, cell.value)
-    if (cell.value > max) max = cell.value
-  }
+  const { lookup, max } = useMemo(() => {
+    const m = new Map<string, number>()
+    let maxVal = 0
+    for (const cell of data) {
+      m.set(`${cell.y}|${cell.x}`, cell.value)
+      if (cell.value > maxVal) maxVal = cell.value
+    }
+    return { lookup: m, max: maxVal }
+  }, [data])
 
   return (
     <div
