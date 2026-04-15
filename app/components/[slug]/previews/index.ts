@@ -124,6 +124,7 @@ import TypewriterPreview from "./typewriter"
 import TypographyPreview from "./typography"
 import VisuallyHiddenPreview from "./visually-hidden"
 import WaffleChartPreview from "./waffle-chart"
+import EntityGraphPreview from "./entity-graph"
 import WorkflowBlockPalettePreview from "./workflow-block-palette"
 import WorkflowCanvasPreview from "./workflow-canvas"
 import WorkflowConnectionPreview from "./workflow-connection"
@@ -136,6 +137,7 @@ import WorkflowInspectorPreview from "./workflow-inspector"
 import WorkflowLabelPreview from "./workflow-label"
 import WorkflowMinimapPreview from "./workflow-minimap"
 import WorkflowNodePreview from "./workflow-node"
+import WorkflowNodeCardPreview from "./workflow-node-card"
 import WorkflowPanelPreview from "./workflow-panel"
 import WorkflowSlackMessagePreview from "./workflow-slack-message"
 import WorkflowToolbarPreview from "./workflow-toolbar"
@@ -247,6 +249,7 @@ export const previews: Record<string, React.ComponentType> = {
   // Workflow
   "workflow-canvas": WorkflowCanvasPreview,
   "workflow-node": WorkflowNodePreview,
+  "workflow-node-card": WorkflowNodeCardPreview,
   "workflow-gate": WorkflowGatePreview,
   "workflow-edge": WorkflowEdgePreview,
   "workflow-connection": WorkflowConnectionPreview,
@@ -254,6 +257,7 @@ export const previews: Record<string, React.ComponentType> = {
   "workflow-label": WorkflowLabelPreview,
   "workflow-panel": WorkflowPanelPreview,
   "workflow-block-palette": WorkflowBlockPalettePreview,
+  "entity-graph": EntityGraphPreview,
   "workflow-inspector": WorkflowInspectorPreview,
   "workflow-slack-message": WorkflowSlackMessagePreview,
   "workflow-toolbar": WorkflowToolbarPreview,

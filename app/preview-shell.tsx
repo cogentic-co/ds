@@ -189,7 +189,7 @@ const componentGroups: SidebarGroupDef[] = [
 
 const complianceItems = ["case-card"]
 
-const shellItems = ["app-shell"]
+const shellItems = ["app-shell", "settings-layout"]
 
 const blockGroups: { label: string; items: string[] }[] = [
   {
@@ -205,7 +205,23 @@ const blockGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Dashboard",
-    items: ["stat-card"],
+    items: ["stat-card", "usage-meter", "notification-center"],
+  },
+  {
+    label: "Page chrome",
+    items: ["page-header", "command-palette"],
+  },
+  {
+    label: "Workflow",
+    items: ["kanban", "multi-step-form"],
+  },
+  {
+    label: "Admin",
+    items: ["team-table", "api-key-manager"],
+  },
+  {
+    label: "Marketing/Other",
+    items: ["changelog", "invoice"],
   },
   {
     label: "Auth",
@@ -242,7 +258,7 @@ const chartItems = [
 const workflowGroups: { label: string; items: string[] }[] = [
   {
     label: "Canvas & core",
-    items: ["workflow-canvas", "workflow-node", "workflow-gate", "workflow-group", "workflow-handle"],
+    items: ["workflow-canvas", "workflow-node", "workflow-node-card", "workflow-gate", "workflow-group", "workflow-handle"],
   },
   {
     label: "Connections",
@@ -255,6 +271,10 @@ const workflowGroups: { label: string; items: string[] }[] = [
   {
     label: "Editor",
     items: ["workflow-block-palette", "workflow-inspector"],
+  },
+  {
+    label: "Visualisation",
+    items: ["entity-graph"],
   },
   {
     label: "Previews",
@@ -546,6 +566,7 @@ function buildNav(pathname: string): NavGroup[] {
           items: [
             "sanctions-match",
             "counterparty-card",
+            "jurisdiction-card",
             "compliance-timeline",
             "alert-banner",
           ].map((slug) => ({

@@ -177,6 +177,33 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
   { id: "4", label: "Decision", status: "upcoming" },
 ]} />`,
   },
+  "jurisdiction-card": {
+    status: "new",
+    description:
+      "Country/jurisdiction summary card with FATF status (clear/grey/black list), Travel Rule enforcement state, VASP counts, and Basel AML / CPI scores. Country flag emoji + ISO code in the header. Click-through enabled when onClick is provided.",
+    since: "0.13.0",
+    importStatement: `import { JurisdictionCard } from "@cogentic-co/ds/compliance/jurisdiction-card"`,
+    dos: [
+      "Use in jurisdiction directory grids and dashboards",
+      "Pass labels to override defaults for i18n",
+      "Use travelRuleStatus=null when data is unknown (renders nothing)",
+    ],
+    donts: [
+      "Don't mix FATF status with execution status — they're orthogonal concepts",
+      "Don't use for non-jurisdiction data — it's domain-specific",
+    ],
+    codeExample: `<JurisdictionCard
+  code="SG"
+  name="Singapore"
+  total={42}
+  regulated={38}
+  fatfStatus="clear"
+  travelRuleStatus="enforced"
+  baselAmlScore={3.2}
+  cpiScore={83}
+  onClick={() => router.push("/jurisdictions/SG")}
+/>`,
+  },
   "alert-banner": {
     status: "new",
     description:

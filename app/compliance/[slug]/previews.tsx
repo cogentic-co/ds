@@ -12,6 +12,7 @@ import {
   ComplianceTimeline,
   type ComplianceTimelineStep,
   CounterpartyCard,
+  JurisdictionCard,
   NetworkBadge,
   ReportExport,
   ReviewForm,
@@ -422,6 +423,78 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
         <ComplianceScore score={78} label="KYC" />
         <ComplianceScore score={45} label="Travel Rule" />
         <ComplianceScore score={15} label="Sanctions" size="sm" />
+      </div>
+    )
+  },
+
+  "jurisdiction-card": function JurisdictionCardPreview() {
+    return (
+      <div className="grid max-w-3xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <JurisdictionCard
+          code="SG"
+          name="Singapore"
+          total={42}
+          regulated={38}
+          fatfStatus="clear"
+          travelRuleStatus="enforced"
+          baselAmlScore={3.2}
+          cpiScore={83}
+          onClick={() => console.log("SG")}
+        />
+        <JurisdictionCard
+          code="US"
+          name="United States"
+          total={120}
+          regulated={95}
+          fatfStatus="clear"
+          travelRuleStatus="enforced"
+          baselAmlScore={4.1}
+          cpiScore={67}
+          onClick={() => console.log("US")}
+        />
+        <JurisdictionCard
+          code="GB"
+          name="United Kingdom"
+          total={68}
+          regulated={61}
+          fatfStatus="clear"
+          travelRuleStatus="legislated"
+          baselAmlScore={3.5}
+          cpiScore={71}
+          onClick={() => console.log("GB")}
+        />
+        <JurisdictionCard
+          code="RU"
+          name="Russia"
+          total={12}
+          regulated={4}
+          fatfStatus="grey_list"
+          travelRuleStatus="none"
+          baselAmlScore={6.8}
+          cpiScore={28}
+          onClick={() => console.log("RU")}
+        />
+        <JurisdictionCard
+          code="KP"
+          name="North Korea"
+          total={0}
+          regulated={0}
+          fatfStatus="black_list"
+          travelRuleStatus={null}
+          baselAmlScore={null}
+          cpiScore={null}
+        />
+        <JurisdictionCard
+          code="CH"
+          name="Switzerland"
+          total={31}
+          regulated={29}
+          fatfStatus="clear"
+          travelRuleStatus="consulting"
+          baselAmlScore={3.1}
+          cpiScore={82}
+          onClick={() => console.log("CH")}
+        />
       </div>
     )
   },

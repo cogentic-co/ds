@@ -1,7 +1,7 @@
 "use client"
 
 import type { ComponentProps, ReactNode } from "react"
-import { cn } from "../lib/utils"
+import { cn, initials } from "../lib/utils"
 import { ComplianceStatusBadge } from "./compliance-status-badge"
 import type { ComplianceStatus } from "./types"
 
@@ -29,13 +29,7 @@ function AuditNote({
       {...props}
     >
       <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-muted-foreground text-[10px]">
-        {author.avatar ??
-          author.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")
-            .slice(0, 2)
-            .toUpperCase()}
+        {author.avatar ?? initials(author.name)}
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">

@@ -74,6 +74,32 @@ import { Sparkles } from "lucide-react"
   <WorkflowNodeDescription>Send key information to Slack.</WorkflowNodeDescription>
 </WorkflowNode>`,
   },
+  "workflow-node-card": {
+    status: "new",
+    description:
+      "Pure visual workflow node — same Plain-style card as WorkflowNode but with NO xyflow dependency. Use for marketing pages, dashboards, person/company/deal/AI step displays — anywhere you want the node visual outside a Canvas. Identical API minus the `handles` prop.",
+    since: "0.13.0",
+    importStatement: `import { WorkflowNodeCard } from "@cogentic-co/ds/workflow/workflow-node-card"`,
+    dos: [
+      "Use outside a Canvas/ReactFlow when you want the visual but not the canvas wiring",
+      "Compose with WorkflowNodeIcon, WorkflowNodeRow, WorkflowNodeDescription sub-components",
+      "Pass topSlot/bottomSlot for custom additions (e.g. consumer-provided handles)",
+    ],
+    donts: [
+      "Don't use inside a Canvas — use WorkflowNode (which adds xyflow handles) for that",
+    ],
+    codeExample: `import { WorkflowNodeCard, WorkflowNodeIcon, WorkflowNodeRow } from "@cogentic-co/ds/workflow/workflow-node-card"
+import { Building2 } from "lucide-react"
+
+<WorkflowNodeCard
+  title="Binance Singapore"
+  category="VASP"
+  icon={<WorkflowNodeIcon tone="primary"><Building2 /></WorkflowNodeIcon>}
+>
+  <WorkflowNodeRow label="Jurisdiction" value="🇸🇬 Singapore" />
+  <WorkflowNodeRow label="Risk score" value="32" />
+</WorkflowNodeCard>`,
+  },
   "workflow-slack-message": {
     status: "new",
     description:

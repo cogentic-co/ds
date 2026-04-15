@@ -17,7 +17,7 @@ type ReviewFormProps = Omit<ComponentProps<"div">, "onSubmit"> & {
   /** Pre-selected decision */
   defaultDecision?: ReviewDecision
   /** Placeholder text for the rationale field */
-  rationPlaceholder?: string
+  rationalePlaceholder?: string
   /** Optional header content (e.g. transaction summary) */
   header?: React.ReactNode
 }
@@ -47,7 +47,7 @@ function ReviewForm({
   onSubmit,
   submitting = false,
   defaultDecision,
-  rationPlaceholder = "Provide your rationale for this decision...",
+  rationalePlaceholder = "Provide your rationale for this decision...",
   header,
   className,
   ...props
@@ -94,7 +94,7 @@ function ReviewForm({
         <Textarea
           value={rationale}
           onChange={(e) => setRationale(e.target.value)}
-          placeholder={rationPlaceholder}
+          placeholder={rationalePlaceholder}
           rows={4}
           className="text-sm"
         />
