@@ -1,15 +1,8 @@
 "use client"
 
 import { cva, type VariantProps } from "class-variance-authority"
-import {
-  AlertCircle,
-  CheckCircle2,
-  ChevronDown,
-  ChevronUp,
-  Clock,
-  GripVertical,
-  Loader2,
-} from "lucide-react"
+import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
+import { Check, Clock, Loader, WarningDiamond } from "pixelarticons/react"
 import { type ComponentProps, type ReactNode, useState } from "react"
 import { cn } from "../lib/utils"
 
@@ -80,9 +73,9 @@ const STATUS_LABELS: Record<WorkflowNodeStatus, string> = {
 
 const STATUS_ICONS: Record<WorkflowNodeStatus, ReactNode> = {
   idle: null,
-  running: <Loader2 className="size-3 animate-spin" aria-hidden />,
-  completed: <CheckCircle2 className="size-3" aria-hidden />,
-  failed: <AlertCircle className="size-3" aria-hidden />,
+  running: <Loader className="size-3 animate-spin" aria-hidden />,
+  completed: <Check className="size-3" aria-hidden />,
+  failed: <WarningDiamond className="size-3" aria-hidden />,
   queued: <Clock className="size-3" aria-hidden />,
 }
 
@@ -90,6 +83,8 @@ type WorkflowNodeStatusBadgeProps = {
   status: WorkflowNodeStatus
   label?: string
   icon?: ReactNode
+  /** Hide the text label; show icon only. Useful for compact node rows. */
+  hideStatusLabel?: boolean
   className?: string
 }
 
@@ -97,6 +92,7 @@ function WorkflowNodeStatusBadge({
   status,
   label,
   icon,
+  hideStatusLabel,
   className,
 }: WorkflowNodeStatusBadgeProps) {
   if (status === "idle") return null
@@ -107,7 +103,7 @@ function WorkflowNodeStatusBadge({
       className={cn(statusBadgeVariants({ status }), className)}
     >
       {icon ?? STATUS_ICONS[status]}
-      {label ?? STATUS_LABELS[status]}
+      {!hideStatusLabel && (label ?? STATUS_LABELS[status])}
     </span>
   )
 }
@@ -131,6 +127,8 @@ type WorkflowNodeCardProps = ComponentProps<"div"> &
     statusLabel?: string
     /** Custom icon for the status badge */
     statusIcon?: ReactNode
+    /** Hide the text label on the status badge; show icon only */
+    hideStatusLabel?: boolean
     /** Notification badge count rendered on the icon */
     badge?: number | string
     /** Make the body collapsible with an expand/close footer toggle */
@@ -296,6 +294,7 @@ function WorkflowNodeCard({
   status,
   statusLabel,
   statusIcon,
+  hideStatusLabel,
   draggable: showDragHandle,
   icon,
   title,
@@ -339,6 +338,7 @@ function WorkflowNodeCard({
         status={resolvedStatus}
         label={statusLabel}
         icon={statusIcon}
+        hideStatusLabel={hideStatusLabel}
       />
 
       {topSlot}

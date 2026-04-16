@@ -63,6 +63,48 @@
         "default": "./dist/workflow/*.js"
       }
     },
+    "./workflow-diagram": {
+      "import": {
+        "types": "./dist/workflow-diagram.d.ts",
+        "default": "./dist/workflow-diagram.js"
+      }
+    },
+    "./workflow-diagram/*": {
+      "import": {
+        "types": "./dist/workflow-diagram/*.d.ts",
+        "default": "./dist/workflow-diagram/*.js"
+      }
+    },
+    "./card-stack": {
+      "import": {
+        "types": "./dist/card-stack.d.ts",
+        "default": "./dist/card-stack.js"
+      }
+    },
+    "./bento": {
+      "import": {
+        "types": "./dist/bento.d.ts",
+        "default": "./dist/bento.js"
+      }
+    },
+    "./bento/*": {
+      "import": {
+        "types": "./dist/bento/*.d.ts",
+        "default": "./dist/bento/*.js"
+      }
+    },
+    "./showcase": {
+      "import": {
+        "types": "./dist/showcase.d.ts",
+        "default": "./dist/showcase.js"
+      }
+    },
+    "./showcase/*": {
+      "import": {
+        "types": "./dist/showcase/*.d.ts",
+        "default": "./dist/showcase/*.js"
+      }
+    },
     "./accordion": {
       "import": {
         "types": "./dist/components/accordion.d.ts",
@@ -735,6 +777,12 @@
         "default": "./dist/hooks/use-mobile.js"
       }
     },
+    "./hooks/use-css-vars": {
+      "import": {
+        "types": "./dist/hooks/use-css-vars.d.ts",
+        "default": "./dist/hooks/use-css-vars.js"
+      }
+    },
     "./lib/utils": {
       "import": {
         "types": "./dist/lib/utils.d.ts",
@@ -745,6 +793,12 @@
       "import": {
         "types": "./dist/lib/animation.d.ts",
         "default": "./dist/lib/animation.js"
+      }
+    },
+    "./lib/icon-map": {
+      "import": {
+        "types": "./dist/lib/icon-map.d.ts",
+        "default": "./dist/lib/icon-map.js"
       }
     },
     "./shells/app-shell": {
@@ -834,6 +888,7 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
     "motion": "^12.34.3",
+    "pixelarticons": "^2.0.2",
     "react-day-picker": "^9.13.2",
     "react-resizable-panels": "^4.6.5",
     "sonner": "^2.0.7",
@@ -859,7 +914,6 @@
     "jscodeshift": "^17.3.0",
     "jsdom": "^28.1.0",
     "next": "16.1.6",
-    "pixelarticons": "^2.0.2",
     "react-docgen-typescript": "^2.4.0",
     "shiki": "^4.0.2",
     "size-limit": "^12.0.1",

@@ -50,6 +50,10 @@
   }
 }
 
+@utility text-xxs {
+  @apply text-[0.6875rem] leading-[1.45];
+}
+
 @utility scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
