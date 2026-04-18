@@ -79,8 +79,8 @@ export default function RingCardPreview() {
           <RingCard solid>
             <h3 className="font-semibold">Solid body</h3>
             <p className="mt-2 text-muted-foreground text-sm">
-              Use <code className="font-mono text-xs">solid</code> when the card's content
-              needs to read edge-to-edge without the bottom fade. Rings still lift on hover.
+              Use <code className="font-mono text-xs">solid</code> when the card's content needs to
+              read edge-to-edge without the bottom fade. Rings still lift on hover.
             </p>
           </RingCard>
         </div>

@@ -57,27 +57,11 @@ const sampleFooterNav: NavGroup = {
 
 function AppShellPreview() {
   return (
-    <div className="h-[600px] overflow-hidden rounded-lg border">
-      <AppShell
-        logo={{
-          icon: <span className="font-bold text-sm">C</span>,
-          title: "Cogentic",
-          subtitle: "Design System",
-        }}
-        nav={sampleNav}
-        footerNav={sampleFooterNav}
-        user={{
-          name: "James Cooke",
-          email: "user@example.com",
-        }}
-        breadcrumbs={[{ label: "Overview", href: "#" }, { label: "Dashboard" }]}
-        onLogout={() => alert("Logged out")}
-      >
-        <div className="flex-1 rounded-xl bg-muted/50 p-8">
-          <p className="text-muted-foreground">Page content goes here</p>
-        </div>
-      </AppShell>
-    </div>
+    <iframe
+      src="/preview-live/app-shell"
+      title="App Shell live preview"
+      className="h-[700px] w-full overflow-hidden rounded-lg border border-border"
+    />
   )
 }
 
@@ -129,54 +113,11 @@ function SettingsLayoutPreview() {
 
 function AppShell2Preview() {
   return (
-    <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
-      <AppShell2
-        brand={{
-          initial: "C",
-          title: "Cogentic",
-          subtitle: "Treasury ops",
-          env: "PROD",
-          envVariant: "mint",
-        }}
-        user={{
-          initials: "MK",
-          name: "Mia Kowalski",
-          role: "Compliance lead",
-          avatarTone: "lilac",
-        }}
-        active="tx"
-        section="Compliance"
-        title="Transactions"
-        searchPlaceholder="Search hash, address, counterparty"
-        kbdHint="⌘K"
-        hasNotifications
-        nav={[
-          {
-            label: "Compliance",
-            items: [
-              { key: "over", icon: BarChart3, label: "Overview" },
-              { key: "tx", icon: List, label: "Transactions", count: 12 },
-              { key: "cases", icon: Shield, label: "Cases", count: 4 },
-              { key: "tr", icon: Inbox, label: "Travel rule", count: 2, dot: true },
-            ],
-          },
-          {
-            label: "Operations",
-            items: [
-              { key: "cp", icon: Users, label: "Counterparties" },
-              { key: "rules", icon: Flag, label: "Rules" },
-            ],
-          },
-        ]}
-        onNavigate={(k) => console.log("nav", k)}
-        onSettings={() => console.log("settings")}
-        onBell={() => console.log("bell")}
-      >
-        <div className="p-10 text-muted-foreground text-sm">
-          Main content slot. The filter bar slot sits between header and content.
-        </div>
-      </AppShell2>
-    </div>
+    <iframe
+      src="/preview-live/app-shell-2"
+      title="App Shell 2 live preview"
+      className="h-[700px] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border"
+    />
   )
 }
 

@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  ArrowDownLeft,
-  ArrowRight,
-  ArrowUpRight,
-  RefreshCw,
-} from "lucide-react"
+import { ArrowDownLeft, ArrowRight, ArrowUpRight, RefreshCw } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
 import { StatusPill } from "../components/status-pill"
@@ -24,10 +19,7 @@ const DIR_TONE: Record<TxDirection, string> = {
   internal: "bg-lilac text-lilac-ink",
 }
 
-const STATUS_VARIANT: Record<
-  TxStatus,
-  ComponentProps<typeof StatusPill>["variant"]
-> = {
+const STATUS_VARIANT: Record<TxStatus, ComponentProps<typeof StatusPill>["variant"]> = {
   verified: "mint",
   review: "highlight",
   blocked: "blush",
@@ -65,9 +57,7 @@ function RecentTransactionsCard({
       <div className="flex items-center justify-between border-border-light border-b px-[18px] py-3.5">
         <div>
           <div className="font-semibold text-sm">{title}</div>
-          {subtitle && (
-            <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>
-          )}
+          {subtitle && <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>}
         </div>
         {onViewAll && (
           <button
@@ -104,7 +94,7 @@ function RecentTransactionsCard({
               {DIR_ICON[tx.dir]}
             </span>
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 text-[13px] font-medium">
+              <div className="flex items-center gap-1.5 font-medium text-[13px]">
                 <span className="max-w-[140px] truncate">{tx.from.lbl}</span>
                 <ArrowRight className="size-3 shrink-0 text-muted-foreground" />
                 <span
@@ -116,9 +106,7 @@ function RecentTransactionsCard({
                   {tx.to.lbl}
                 </span>
               </div>
-              <div className="mt-px font-mono text-[11px] text-muted-foreground">
-                {tx.time}
-              </div>
+              <div className="mt-px font-mono text-[11px] text-muted-foreground">{tx.time}</div>
             </div>
             <div className="font-mono font-semibold text-[13px] tabular-nums">
               {sign}
@@ -140,5 +128,5 @@ function RecentTransactionsCard({
   )
 }
 
-export { RecentTransactionsCard }
 export type { RecentTransactionsCardProps }
+export { RecentTransactionsCard }

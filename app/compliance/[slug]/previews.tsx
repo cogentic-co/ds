@@ -23,8 +23,8 @@ import {
   NetworkBadge,
   RecentTransactionsCard,
   ReportExport,
-  ReviewForm,
   ReviewerNotes,
+  ReviewForm,
   RiskExposureCard,
   RiskScoreHero,
   RiskScoreInline,
@@ -42,9 +42,9 @@ import {
   TravelRuleCard,
   TravelRuleStatus,
 } from "@/src/compliance"
-import { SidebarProvider } from "@/src/components/sidebar"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
+import { SidebarProvider } from "@/src/components/sidebar"
 import { Section } from "../../components/[slug]/previews/_shared"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -202,7 +202,13 @@ const sampleRichTx: Transaction = {
   ],
   timeline: [
     { time: "14:32:01", title: "Transaction broadcast", by: "on-chain", variant: "neutral" },
-    { time: "14:32:18", title: "Risk engine scored 78", by: "system", variant: "blush", active: true },
+    {
+      time: "14:32:18",
+      title: "Risk engine scored 78",
+      by: "system",
+      variant: "blush",
+      active: true,
+    },
     { time: "14:33:05", title: "Travel rule request sent", by: "Notabene", variant: "sky" },
     { time: "14:35:22", title: "Assigned for review", by: "auto-assign", variant: "highlight" },
   ],
@@ -746,10 +752,7 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "risk-score-hero": function RiskScoreHeroPreview() {
     return (
       <div className="space-y-6">
-        <RiskScoreHero
-          score={sampleRichTx.risk}
-          drivers={sampleRichTx.riskDrivers ?? []}
-        />
+        <RiskScoreHero score={sampleRichTx.risk} drivers={sampleRichTx.riskDrivers ?? []} />
         <RiskScoreHero
           score={25}
           drivers={[
@@ -794,8 +797,20 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
             hint: "All outbound, all <$50k",
           }}
           related={[
-            { id: "r1", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$45,000", time: "Apr 12" },
-            { id: "r2", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$12,800", time: "Mar 28" },
+            {
+              id: "r1",
+              lbl: "Unknown wallet",
+              addr: "0x9b2a…611d",
+              amt: "$45,000",
+              time: "Apr 12",
+            },
+            {
+              id: "r2",
+              lbl: "Unknown wallet",
+              addr: "0x9b2a…611d",
+              amt: "$12,800",
+              time: "Mar 28",
+            },
             { id: "r3", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$8,400", time: "Mar 14" },
           ]}
         />

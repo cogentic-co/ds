@@ -185,14 +185,7 @@ const componentGroups: SidebarGroupDef[] = [
   },
   {
     label: "DS refresh",
-    items: [
-      "ring-card",
-      "status-pill",
-      "breathing-bar",
-      "key-value-list",
-      "kpi-card",
-      "sparkline",
-    ],
+    items: ["ring-card", "status-pill", "breathing-bar", "key-value-list", "kpi-card", "sparkline"],
   },
 ]
 
@@ -474,31 +467,17 @@ function buildNav(pathname: string): NavGroup[] {
       icon: LayoutDashboard,
       title: "Layouts",
       items: [
-        {
-          label: "App Shell",
-          icon: LayoutDashboard,
-          href: "/shells/app-shell",
-          isActive: pathname === "/shells/app-shell",
-        },
-        {
-          label: "App Shell 2",
-          icon: LayoutDashboard,
-          href: "/shells/app-shell-2",
-          isActive: pathname === "/shells/app-shell-2",
-        },
-        {
-          label: "Settings Layout",
-          icon: LayoutDashboard,
-          href: "/shells/settings-layout",
-          isActive: pathname === "/shells/settings-layout",
-        },
-        ...["transaction-detail-page", "dashboard-page"].map((slug) => ({
-          label: toTitle(slug),
-          icon: LayoutDashboard,
-          href: `/compliance/${slug}`,
-          isActive: pathname === `/compliance/${slug}`,
-        })),
-      ],
+        "app-shell",
+        "app-shell-2",
+        "settings-layout",
+        "transaction-detail-page",
+        "dashboard-page",
+      ].map((slug) => ({
+        label: toTitle(slug),
+        icon: LayoutDashboard,
+        href: `/layouts/${slug}`,
+        isActive: pathname === `/layouts/${slug}`,
+      })),
     },
     {
       id: "charts",
@@ -729,6 +708,12 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
   const [search, setSearch] = useState("")
 
   const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
+
+  // Live-preview routes skip the dev PreviewShell so nested AppShells
+  // (which use fixed-positioned sidebars) don't cover the outer nav.
+  if (pathname?.startsWith("/preview-live/")) {
+    return <>{children}</>
+  }
 
   return (
     <AppShell

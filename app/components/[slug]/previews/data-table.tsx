@@ -258,10 +258,7 @@ const NETWORK_COLOR: Record<Tx["net"], string> = {
 function NetCell({ net }: { net: Tx["net"] }) {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-[4px] border border-border bg-card px-1.5 py-0.5 font-mono font-semibold text-[10px] text-muted-foreground tracking-[0.06em]">
-      <span
-        className="size-1.5 rounded-full"
-        style={{ background: NETWORK_COLOR[net] }}
-      />
+      <span className="size-1.5 rounded-full" style={{ background: NETWORK_COLOR[net] }} />
       {net}
     </span>
   )
@@ -269,23 +266,14 @@ function NetCell({ net }: { net: Tx["net"] }) {
 
 function RiskCell({ score }: { score: number }) {
   const color =
-    score >= 75
-      ? "var(--destructive)"
-      : score >= 40
-        ? "var(--highlight-ink)"
-        : "var(--success)"
+    score >= 75 ? "var(--destructive)" : score >= 40 ? "var(--highlight-ink)" : "var(--success)"
   return (
     <span
       className="inline-flex items-center gap-1.5 font-mono font-semibold text-xs"
       style={{ color }}
     >
-      <span
-        className="relative inline-block h-1 w-4 overflow-hidden rounded-[2px] bg-muted"
-      >
-        <span
-          className="absolute inset-0"
-          style={{ width: `${score}%`, background: color }}
-        />
+      <span className="relative inline-block h-1 w-4 overflow-hidden rounded-[2px] bg-muted">
+        <span className="absolute inset-0" style={{ width: `${score}%`, background: color }} />
       </span>
       {score}
     </span>
@@ -319,15 +307,10 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
       const tx = row.original
       return (
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5 text-[13px] font-medium">
+          <div className="flex items-center gap-1.5 font-medium text-[13px]">
             <span className="truncate">{tx.from.lbl}</span>
             <ArrowRight className="size-3 shrink-0 text-muted-foreground" />
-            <span
-              className={cn(
-                "truncate",
-                tx.risk >= 75 && "font-semibold text-destructive",
-              )}
-            >
+            <span className={cn("truncate", tx.risk >= 75 && "font-semibold text-destructive")}>
               {tx.to.lbl}
             </span>
           </div>
@@ -352,8 +335,7 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const tx = row.original
-      const sign =
-        tx.dir === "inbound" ? "+" : tx.dir === "outbound" ? "−" : ""
+      const sign = tx.dir === "inbound" ? "+" : tx.dir === "outbound" ? "−" : ""
       const color =
         tx.dir === "inbound"
           ? "text-[var(--success)]"
@@ -364,12 +346,9 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
         <div className="text-right">
           <div className={cn("font-mono font-semibold text-[13px]", color)}>
             {sign}
-            {tx.amt}{" "}
-            <span className="font-medium text-muted-foreground">{tx.asset}</span>
+            {tx.amt} <span className="font-medium text-muted-foreground">{tx.asset}</span>
           </div>
-          <div className="mt-px font-mono text-[11px] text-muted-foreground">
-            {tx.usd}
-          </div>
+          <div className="mt-px font-mono text-[11px] text-muted-foreground">{tx.usd}</div>
         </div>
       )
     },

@@ -47,10 +47,7 @@ function TravelRuleCard({
   const card = (
     <div
       data-slot="travel-rule-card"
-      className={cn(
-        "rounded-[var(--radius-md)] border border-border bg-card p-4",
-        className,
-      )}
+      className={cn("rounded-[var(--radius-md)] border border-border bg-card p-4", className)}
       {...props}
     >
       <div className="mb-2 flex items-start justify-between gap-3">
@@ -82,5 +79,5 @@ function TravelRuleCard({
   )
 }
 
-export { TravelRuleCard }
 export type { TravelRuleCardProps }
+export { TravelRuleCard }

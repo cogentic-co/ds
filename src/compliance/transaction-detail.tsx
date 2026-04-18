@@ -41,16 +41,14 @@ const DIRECTION_TONE: Record<TransactionDirection, string> = {
   internal: "bg-lilac text-lilac-ink",
 }
 
-const STATUS_PILL_VARIANT: Record<
-  ComplianceStatus,
-  ComponentProps<typeof StatusPill>["variant"]
-> = {
-  pending: "neutral",
-  accepted: "mint",
-  rejected: "blush",
-  flagged: "highlight",
-  escalated: "blush",
-}
+const STATUS_PILL_VARIANT: Record<ComplianceStatus, ComponentProps<typeof StatusPill>["variant"]> =
+  {
+    pending: "neutral",
+    accepted: "mint",
+    rejected: "blush",
+    flagged: "highlight",
+    escalated: "blush",
+  }
 
 const TRAVEL_RULE_PILL: Record<
   TravelRuleStatusValue,
@@ -73,10 +71,7 @@ const TRAVEL_RULE_LABEL: Record<TravelRuleStatusValue, string> = {
 
 type TransactionDetailVariant = "inline" | "card" | "panel"
 
-type TransactionDetailProps = Omit<
-  ComponentProps<"div">,
-  "children" | "onClick"
-> & {
+type TransactionDetailProps = Omit<ComponentProps<"div">, "children" | "onClick"> & {
   transaction: TransactionData
   explorerUrl?: string
   /** Optional custom action slot — overrides the default Approve/Escalate buttons. */
@@ -104,7 +99,8 @@ type TransactionDetailProps = Omit<
 const VARIANT_CLASSES: Record<TransactionDetailVariant, string> = {
   inline: "",
   card: "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
-  panel: "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-lifted)]",
+  panel:
+    "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-lifted)]",
 }
 
 function DetailRow({
@@ -146,8 +142,7 @@ function TransactionDetail({
   ...props
 }: TransactionDetailProps) {
   const [tab, setTab] = useState<TabKey>(defaultTab)
-  const ts =
-    typeof tx.timestamp === "string" ? tx.timestamp : tx.timestamp.toLocaleString()
+  const ts = typeof tx.timestamp === "string" ? tx.timestamp : tx.timestamp.toLocaleString()
 
   const statusLabel =
     tx.complianceStatus === "flagged"
@@ -180,13 +175,8 @@ function TransactionDetail({
                 className="font-mono font-semibold tabular-nums"
                 style={{ fontSize: 20, letterSpacing: "-0.01em" }}
               >
-                {tx.direction === "inbound"
-                  ? "+"
-                  : tx.direction === "outbound"
-                    ? "−"
-                    : ""}
-                {tx.amount}{" "}
-                <span className="text-muted-foreground">{tx.asset}</span>
+                {tx.direction === "inbound" ? "+" : tx.direction === "outbound" ? "−" : ""}
+                {tx.amount} <span className="text-muted-foreground">{tx.asset}</span>
               </div>
               {tx.fiatValue && (
                 <div className="mt-px font-mono text-[13px] text-muted-foreground tabular-nums">
@@ -223,12 +213,7 @@ function TransactionDetail({
               <Button variant="outline" onClick={onEscalate} className="flex-1">
                 <Flag /> Escalate
               </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={onMore}
-                aria-label="More actions"
-              >
+              <Button variant="outline" size="icon" onClick={onMore} aria-label="More actions">
                 <MoreHorizontal />
               </Button>
             </>
@@ -308,9 +293,7 @@ function TransactionDetail({
               )}
               {tx.confirmations != null && (
                 <DetailRow label="Confirmations">
-                  <span className="font-mono text-[13px] tabular-nums">
-                    {tx.confirmations}
-                  </span>
+                  <span className="font-mono text-[13px] tabular-nums">{tx.confirmations}</span>
                 </DetailRow>
               )}
               {tx.fee && (
@@ -320,10 +303,7 @@ function TransactionDetail({
               )}
               {tx.travelRuleStatus && (
                 <DetailRow label="Travel rule">
-                  <StatusPill
-                    variant={TRAVEL_RULE_PILL[tx.travelRuleStatus]}
-                    className="ml-auto"
-                  >
+                  <StatusPill variant={TRAVEL_RULE_PILL[tx.travelRuleStatus]} className="ml-auto">
                     <Clock /> {TRAVEL_RULE_LABEL[tx.travelRuleStatus]}
                   </StatusPill>
                 </DetailRow>

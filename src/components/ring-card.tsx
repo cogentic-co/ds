@@ -6,12 +6,7 @@ type RingCardProps = React.ComponentProps<"div"> & {
   solid?: boolean
 }
 
-function RingCard({
-  className,
-  solid = false,
-  children,
-  ...props
-}: RingCardProps) {
+function RingCard({ className, solid = false, children, ...props }: RingCardProps) {
   return (
     <div
       data-slot="ring-card"
@@ -25,5 +20,5 @@ function RingCard({
   )
 }
 
-export { RingCard }
 export type { RingCardProps }
+export { RingCard }

@@ -48,10 +48,7 @@ function AwaitingReviewCard({
 
       <div className="mt-3.5 grid gap-2">
         {rules.map((r) => (
-          <div
-            key={r.name}
-            className="grid grid-cols-[auto_1fr_auto] items-center gap-2.5"
-          >
+          <div key={r.name} className="grid grid-cols-[auto_1fr_auto] items-center gap-2.5">
             <span className={cn("size-2 rounded-[2px]", toneBg[r.tone])} />
             <span className="truncate font-medium text-[13px]">{r.name}</span>
             <span className="flex items-center gap-2">
@@ -61,9 +58,7 @@ function AwaitingReviewCard({
                   style={{ width: `${(r.value / max) * 100}%` }}
                 />
               </span>
-              <span className="w-5 text-right font-mono font-semibold text-xs">
-                {r.value}
-              </span>
+              <span className="w-5 text-right font-mono font-semibold text-xs">{r.value}</span>
             </span>
           </div>
         ))}
@@ -95,7 +90,7 @@ function AwaitingReviewCard({
                   i === oldestInQueue.length - 1 && "text-muted-foreground",
                 )}
               >
-                <span className="font-mono font-medium">{item.id}</span>
+                <span className="font-medium font-mono">{item.id}</span>
                 <span className="text-muted-foreground">{item.age}</span>
               </div>
             ))}
@@ -106,5 +101,5 @@ function AwaitingReviewCard({
   )
 }
 
+export type { AwaitingReviewCardProps, OldestItem, ReviewRule }
 export { AwaitingReviewCard }
-export type { AwaitingReviewCardProps, ReviewRule, OldestItem }

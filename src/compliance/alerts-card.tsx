@@ -84,9 +84,7 @@ function AlertsCard({
           </span>
           <div className="min-w-0">
             <div className="font-semibold text-[13px]">{a.title}</div>
-            <div className="mt-0.5 text-muted-foreground text-xs leading-[1.45]">
-              {a.body}
-            </div>
+            <div className="mt-0.5 text-muted-foreground text-xs leading-[1.45]">{a.body}</div>
           </div>
           <div className="whitespace-nowrap font-mono text-[11px] text-muted-foreground">
             {a.time}
@@ -97,5 +95,5 @@ function AlertsCard({
   )
 }
 
+export type { AlertEntry, AlertsCardProps, AlertTone }
 export { AlertsCard }
-export type { AlertsCardProps, AlertEntry, AlertTone }

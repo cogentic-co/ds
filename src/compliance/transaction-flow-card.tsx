@@ -96,12 +96,7 @@ function TransactionFlowCard({
 
       {/* Category legend */}
       {categories && categories.length > 0 && (
-        <div
-          className={cn(
-            "mt-2.5 grid gap-1",
-            topCounterparties.length > 0 && "pb-3",
-          )}
-        >
+        <div className={cn("mt-2.5 grid gap-1", topCounterparties.length > 0 && "pb-3")}>
           {categories.map((c) => (
             <div key={c.label} className="flex items-center gap-2">
               <span
@@ -110,18 +105,12 @@ function TransactionFlowCard({
                   c.pulse && "pulse-dot",
                 )}
                 style={{
-                  background:
-                    c.tone === "muted"
-                      ? "var(--muted-foreground)"
-                      : "var(--foreground)",
+                  background: c.tone === "muted" ? "var(--muted-foreground)" : "var(--foreground)",
                 }}
               />
-              <span className="text-[13px] font-medium">
-                {c.label}{" "}
-                <span className="text-muted-foreground">({c.percent}%)</span>
-                {c.hint && (
-                  <span className="text-muted-foreground"> {c.hint}</span>
-                )}
+              <span className="font-medium text-[13px]">
+                {c.label} <span className="text-muted-foreground">({c.percent}%)</span>
+                {c.hint && <span className="text-muted-foreground"> {c.hint}</span>}
               </span>
             </div>
           ))}
@@ -148,10 +137,7 @@ function TransactionFlowCard({
                 <span
                   className="font-mono font-semibold"
                   style={{
-                    color:
-                      c.direction === "in"
-                        ? "var(--success)"
-                        : "var(--foreground)",
+                    color: c.direction === "in" ? "var(--success)" : "var(--foreground)",
                   }}
                 >
                   {c.direction === "in" ? "+" : "−"}
@@ -166,5 +152,5 @@ function TransactionFlowCard({
   )
 }
 
+export type { FlowCategory, TransactionFlowCardProps }
 export { TransactionFlowCard }
-export type { TransactionFlowCardProps, FlowCategory }

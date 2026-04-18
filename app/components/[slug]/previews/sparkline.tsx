@@ -20,10 +20,7 @@ export default function SparklinePreview() {
 
       <Section title="Custom color (blush)">
         <div className="max-w-xs">
-          <Sparkline
-            points={[15, 12, 13, 11, 9, 7, 5]}
-            color="var(--blush-ink)"
-          />
+          <Sparkline points={[15, 12, 13, 11, 9, 7, 5]} color="var(--blush-ink)" />
         </div>
       </Section>
     </div>

@@ -70,14 +70,10 @@ function CounterpartyIntel({
               >
                 <div className="min-w-0">
                   <div className="truncate font-semibold text-[13px]">{r.lbl}</div>
-                  <div className="mt-px font-mono text-[11px] text-muted-foreground">
-                    {r.addr}
-                  </div>
+                  <div className="mt-px font-mono text-[11px] text-muted-foreground">{r.addr}</div>
                 </div>
                 <div className="font-mono font-semibold text-[13px]">{r.amt}</div>
-                <div className="w-14 text-right text-[12px] text-muted-foreground">
-                  {r.time}
-                </div>
+                <div className="w-14 text-right text-[12px] text-muted-foreground">{r.time}</div>
               </div>
             ))}
           </div>

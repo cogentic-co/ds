@@ -75,9 +75,7 @@ function AppShell2Sidebar({
           {brand.initial}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="truncate font-semibold text-[13px] tracking-tight">
-            {brand.title}
-          </div>
+          <div className="truncate font-semibold text-[13px] tracking-tight">{brand.title}</div>
           {brand.subtitle && (
             <div className="text-[11px] text-muted-foreground">{brand.subtitle}</div>
           )}
@@ -193,17 +191,12 @@ function AppShell2NavItem({
     >
       {isActive && (
         <span
-          className="-translate-y-1/2 absolute top-1/2 left-[-12px] h-4 w-[3px] rounded-[2px]"
+          className="absolute top-1/2 left-[-12px] h-4 w-[3px] -translate-y-1/2 rounded-[2px]"
           style={{ background: "var(--highlight-ink)" }}
           aria-hidden
         />
       )}
-      <Icon
-        className={cn(
-          "size-[15px] shrink-0",
-          isActive ? "text-[var(--highlight-ink)]" : "",
-        )}
-      />
+      <Icon className={cn("size-[15px] shrink-0", isActive ? "text-[var(--highlight-ink)]" : "")} />
       <span className="flex-1 truncate">{item.label}</span>
       {item.count != null && (
         <span
@@ -217,12 +210,7 @@ function AppShell2NavItem({
           {item.count}
         </span>
       )}
-      {item.dot && (
-        <span
-          className="size-1.5 shrink-0 rounded-full bg-destructive"
-          aria-hidden
-        />
-      )}
+      {item.dot && <span className="size-1.5 shrink-0 rounded-full bg-destructive" aria-hidden />}
     </button>
   )
 }
@@ -257,16 +245,13 @@ function AppShell2Header({
     >
       <div className="min-w-0">
         <div className="font-medium text-muted-foreground text-xs">{section}</div>
-        <div
-          className="font-semibold text-xl"
-          style={{ letterSpacing: "-0.02em" }}
-        >
+        <div className="font-semibold text-xl" style={{ letterSpacing: "-0.02em" }}>
           {title}
         </div>
       </div>
       <div className="flex-1" />
       <div className="relative">
-        <Search className="-translate-y-1/2 pointer-events-none absolute top-1/2 left-3 size-3.5 text-muted-foreground" />
+        <Search className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-muted-foreground" />
         <input
           type="search"
           value={searchValue}
@@ -341,10 +326,7 @@ function AppShell2({
   className,
 }: AppShell2Props) {
   return (
-    <div
-      data-slot="app-shell-2"
-      className={cn("flex min-h-screen bg-background", className)}
-    >
+    <div data-slot="app-shell-2" className={cn("flex min-h-screen bg-background", className)}>
       <AppShell2Sidebar
         brand={brand}
         nav={nav}
@@ -372,13 +354,13 @@ function AppShell2({
   )
 }
 
-export { AppShell2, AppShell2Sidebar, AppShell2Header }
 export type {
+  AppShell2Brand,
+  AppShell2HeaderProps,
   AppShell2Props,
   AppShell2SidebarProps,
-  AppShell2HeaderProps,
-  AppShell2Brand,
   AppShell2User,
   NavEntry as AppShell2NavEntry,
   NavSection as AppShell2NavSection,
 }
+export { AppShell2, AppShell2Header, AppShell2Sidebar }

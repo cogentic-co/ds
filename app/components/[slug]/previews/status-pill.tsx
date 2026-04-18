@@ -1,7 +1,7 @@
 "use client"
 
-import { StatusPill } from "@/components/ui/status-pill"
 import { AlertTriangle, Check, Clock, X } from "lucide-react"
+import { StatusPill } from "@/components/ui/status-pill"
 import { Section } from "./_shared"
 
 export default function StatusPillPreview() {

@@ -197,23 +197,14 @@ function DashboardPage({
   ...props
 }: DashboardPageProps) {
   return (
-    <div
-      data-slot="dashboard-page"
-      className={cn("px-6 pt-5 pb-8", className)}
-      {...props}
-    >
+    <div data-slot="dashboard-page" className={cn("px-6 pt-5 pb-8", className)} {...props}>
       {/* Welcome strip */}
       <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div
-            className="font-semibold"
-            style={{ fontSize: 22, letterSpacing: "-0.02em" }}
-          >
+          <div className="font-semibold" style={{ fontSize: 22, letterSpacing: "-0.02em" }}>
             {greeting}
           </div>
-          {tagline && (
-            <div className="mt-1 text-[13px] text-muted-foreground">{tagline}</div>
-          )}
+          {tagline && <div className="mt-1 text-[13px] text-muted-foreground">{tagline}</div>}
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={onExport}>
@@ -325,5 +316,5 @@ function DashboardPage({
   )
 }
 
-export { DashboardPage }
 export type { DashboardPageProps }
+export { DashboardPage }
