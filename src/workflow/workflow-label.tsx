@@ -36,5 +36,5 @@ function WorkflowLabel({ variant = "default", className, ...props }: WorkflowLab
   )
 }
 
-export { WorkflowLabel }
 export type { WorkflowLabelProps }
+export { WorkflowLabel }

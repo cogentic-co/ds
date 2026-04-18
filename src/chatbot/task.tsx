@@ -156,5 +156,5 @@ function TaskItemFile({
   )
 }
 
-export { Task, TaskTrigger, TaskContent, TaskItem, TaskItemFile }
 export type { TaskStatus }
+export { Task, TaskContent, TaskItem, TaskItemFile, TaskTrigger }

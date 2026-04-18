@@ -45,9 +45,7 @@ function AddressDisplay({
       title={address}
       {...props}
     >
-      {label && (
-        <span className="font-sans font-medium text-foreground">{label}</span>
-      )}
+      {label && <span className="font-medium font-sans text-foreground">{label}</span>}
       <span className="text-muted-foreground">{displayed}</span>
       {riskScore != null && <RiskDot score={riskScore} />}
       {copyable && (
@@ -76,12 +74,7 @@ function AddressDisplay({
 }
 
 function RiskDot({ score }: { score: number }) {
-  const color =
-    score >= 70
-      ? "bg-destructive"
-      : score >= 40
-        ? "bg-warning"
-        : "bg-success"
+  const color = score >= 70 ? "bg-destructive" : score >= 40 ? "bg-warning" : "bg-success"
   return (
     <span
       className={cn("inline-block size-1.5 rounded-full", color)}
@@ -91,5 +84,5 @@ function RiskDot({ score }: { score: number }) {
   )
 }
 
-export { AddressDisplay }
 export type { AddressDisplayProps }
+export { AddressDisplay }

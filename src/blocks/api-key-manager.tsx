@@ -12,14 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/dropdown-menu"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/table"
 import { cn, timeAgo } from "../lib/utils"
 
 type ApiKey = {
@@ -165,5 +158,5 @@ function ApiKeyManager({
   )
 }
 
-export { ApiKeyManager }
 export type { ApiKey, ApiKeyManagerProps }
+export { ApiKeyManager }

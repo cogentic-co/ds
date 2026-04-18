@@ -37,5 +37,5 @@ function CopyButton({ value, timeout = 2000, className, children, ...props }: Co
   )
 }
 
-export { CopyButton }
 export type { CopyButtonProps }
+export { CopyButton }

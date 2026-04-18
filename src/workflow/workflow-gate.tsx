@@ -226,5 +226,5 @@ function WorkflowGate({
   )
 }
 
-export { WorkflowGate, workflowGateVariants }
 export type { WorkflowGateProps }
+export { WorkflowGate, workflowGateVariants }

@@ -59,5 +59,5 @@ function WorkflowGroup({
   )
 }
 
-export { WorkflowGroup, workflowGroupVariants }
 export type { WorkflowGroupProps }
+export { WorkflowGroup, workflowGroupVariants }

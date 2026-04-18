@@ -237,10 +237,7 @@ function SortableStep({ step, index, size, onRemove }: SortableStepProps) {
       </button>
       <div className={stepCardVariants({ size })}>
         <div className={stepHeaderVariants({ size })}>
-          <div
-            data-slot="sequence-builder-step-number"
-            className={stepNumberVariants({ size })}
-          >
+          <div data-slot="sequence-builder-step-number" className={stepNumberVariants({ size })}>
             {String(index + 1).padStart(2, "0")}
           </div>
           {step.title && <div className={stepTitleVariants({ size })}>{step.title}</div>}
@@ -283,5 +280,5 @@ function InsertButton({ onClick, size }: InsertButtonProps) {
   )
 }
 
-export { SequenceBuilder }
 export type { SequenceBuilderProps, SequenceBuilderSize, SequenceStep }
+export { SequenceBuilder }

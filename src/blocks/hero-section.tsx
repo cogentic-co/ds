@@ -82,5 +82,5 @@ function HeroSection({
   )
 }
 
-export { HeroSection, heroVariants }
 export type { HeroSectionProps }
+export { HeroSection, heroVariants }

@@ -50,5 +50,5 @@ function StatTrend({ className, direction, children, ...props }: StatTrendProps)
   )
 }
 
-export { Stat, StatLabel, StatValue, StatTrend, trendVariants }
 export type { StatTrendProps }
+export { Stat, StatLabel, StatTrend, StatValue, trendVariants }

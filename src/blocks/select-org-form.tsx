@@ -199,5 +199,5 @@ function SelectOrgForm({
   )
 }
 
+export type { Organization, SelectOrgFormProps, SelectOrgFormValues }
 export { SelectOrgForm, selectOrgSchema }
-export type { SelectOrgFormProps, SelectOrgFormValues, Organization }

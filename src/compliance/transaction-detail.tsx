@@ -31,7 +31,7 @@ type TransactionDetailProps = ComponentProps<"div"> & {
 
 function DetailRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-t border-border py-3">
+    <div className="flex items-start justify-between gap-4 border-border border-t py-3">
       <span className="shrink-0 text-muted-foreground text-sm">{label}</span>
       <div className="min-w-0 text-right font-mono text-sm">{children}</div>
     </div>
@@ -46,10 +46,7 @@ function TransactionDetail({
   className,
   ...props
 }: TransactionDetailProps) {
-  const ts =
-    typeof tx.timestamp === "string"
-      ? tx.timestamp
-      : tx.timestamp.toLocaleString()
+  const ts = typeof tx.timestamp === "string" ? tx.timestamp : tx.timestamp.toLocaleString()
 
   return (
     <div
@@ -76,9 +73,7 @@ function TransactionDetail({
             <div className="mt-2 flex flex-wrap items-center gap-1.5">
               <ComplianceStatusBadge status={tx.complianceStatus} />
               <NetworkBadge network={tx.network} />
-              {tx.travelRuleStatus && (
-                <TravelRuleStatusComponent status={tx.travelRuleStatus} />
-              )}
+              {tx.travelRuleStatus && <TravelRuleStatusComponent status={tx.travelRuleStatus} />}
               {tx.riskScore != null && <RiskScoreInline score={tx.riskScore} showLabel />}
             </div>
           </div>
@@ -160,5 +155,5 @@ function TransactionDetail({
   )
 }
 
-export { TransactionDetail }
 export type { TransactionDetailProps }
+export { TransactionDetail }

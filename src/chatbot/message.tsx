@@ -314,20 +314,20 @@ function MessageAttachments({ className, ...props }: ComponentProps<"div">) {
   )
 }
 
+export type { MessageRole }
 export {
   Message,
-  MessageAvatar,
-  MessageContent,
-  MessageResponse,
-  MessageActions,
   MessageAction,
-  MessageCopyAction,
-  MessageRegenerateAction,
-  MessageFeedbackActions,
+  MessageActions,
+  MessageAttachments,
+  MessageAvatar,
   MessageBranch,
   MessageBranchSelector,
-  MessageAttachments,
+  MessageContent,
+  MessageCopyAction,
+  MessageFeedbackActions,
+  MessageRegenerateAction,
+  MessageResponse,
   messageVariants,
   responseBubbleVariants,
 }
-export type { MessageRole }

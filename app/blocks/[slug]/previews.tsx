@@ -174,7 +174,14 @@ function MagicLinkMessagePreview() {
         <Button variant="outline" size="sm" onClick={() => setMlState("request")}>
           Request state
         </Button>
-        <Button variant="outline" size="sm" onClick={() => { setMlEmail("you@example.com"); setMlState("sent") }}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            setMlEmail("you@example.com")
+            setMlState("sent")
+          }}
+        >
           Sent state
         </Button>
       </div>
@@ -474,17 +481,6 @@ function ProductTourPreview() {
 
 // ── New blocks (page-header, command-palette, notification-center, kanban, etc.) ──
 
-import { ApiKeyManager } from "@/src/blocks/api-key-manager"
-import { Changelog } from "@/src/blocks/changelog"
-import { CommandPalette } from "@/src/blocks/command-palette"
-import { Invoice } from "@/src/blocks/invoice"
-import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
-import { MultiStepForm } from "@/src/blocks/multi-step-form"
-import { NotificationCenter, type NotificationItem } from "@/src/blocks/notification-center"
-import { PageHeader } from "@/src/blocks/page-header"
-import { TeamTable, type TeamMember } from "@/src/blocks/team-table"
-import { UsageMeter } from "@/src/blocks/usage-meter"
-import { Input } from "@/src/components/input"
 import {
   CompassIcon,
   FilePlus,
@@ -494,6 +490,17 @@ import {
   SearchIcon,
   Settings,
 } from "lucide-react"
+import { ApiKeyManager } from "@/src/blocks/api-key-manager"
+import { Changelog } from "@/src/blocks/changelog"
+import { CommandPalette } from "@/src/blocks/command-palette"
+import { Invoice } from "@/src/blocks/invoice"
+import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
+import { MultiStepForm } from "@/src/blocks/multi-step-form"
+import { NotificationCenter, type NotificationItem } from "@/src/blocks/notification-center"
+import { PageHeader } from "@/src/blocks/page-header"
+import { type TeamMember, TeamTable } from "@/src/blocks/team-table"
+import { UsageMeter } from "@/src/blocks/usage-meter"
+import { Input } from "@/src/components/input"
 
 function PageHeaderPreview() {
   return (
@@ -508,7 +515,9 @@ function PageHeaderPreview() {
         description="Travel Rule threshold triggered on inbound transfer from Singapore."
         actions={
           <>
-            <Button variant="outline" size="sm">Assign</Button>
+            <Button variant="outline" size="sm">
+              Assign
+            </Button>
             <Button size="sm">Resolve</Button>
           </>
         }
@@ -537,16 +546,46 @@ function CommandPalettePreview() {
           {
             heading: "Navigation",
             actions: [
-              { id: "home", label: "Go to dashboard", icon: <HomeIcon />, shortcut: "G H", onSelect: () => console.log("home") },
-              { id: "cases", label: "Open cases", icon: <Inbox />, shortcut: "G C", onSelect: () => console.log("cases") },
-              { id: "settings", label: "Settings", icon: <Settings />, shortcut: "G S", onSelect: () => console.log("settings") },
+              {
+                id: "home",
+                label: "Go to dashboard",
+                icon: <HomeIcon />,
+                shortcut: "G H",
+                onSelect: () => console.log("home"),
+              },
+              {
+                id: "cases",
+                label: "Open cases",
+                icon: <Inbox />,
+                shortcut: "G C",
+                onSelect: () => console.log("cases"),
+              },
+              {
+                id: "settings",
+                label: "Settings",
+                icon: <Settings />,
+                shortcut: "G S",
+                onSelect: () => console.log("settings"),
+              },
             ],
           },
           {
             heading: "Actions",
             actions: [
-              { id: "new-case", label: "Create new case", icon: <FilePlus />, shortcut: "C", onSelect: () => console.log("new case") },
-              { id: "search", label: "Search transactions", icon: <SearchIcon />, shortcut: "/", onSelect: () => console.log("search") },
+              {
+                id: "new-case",
+                label: "Create new case",
+                icon: <FilePlus />,
+                shortcut: "C",
+                onSelect: () => console.log("new case"),
+              },
+              {
+                id: "search",
+                label: "Search transactions",
+                icon: <SearchIcon />,
+                shortcut: "/",
+                onSelect: () => console.log("search"),
+              },
             ],
           },
         ]}
@@ -557,10 +596,38 @@ function CommandPalettePreview() {
 
 function NotificationCenterPreview() {
   const [notifications, setNotifications] = useState<NotificationItem[]>([
-    { id: "1", title: "3 transactions flagged", description: "High-risk transfers detected from sanctioned jurisdictions", timestamp: new Date(Date.now() - 5 * 60_000).toISOString(), severity: "critical", read: false },
-    { id: "2", title: "Travel Rule data received", description: "Counterparty VASP responded to your IVMS101 request", timestamp: new Date(Date.now() - 30 * 60_000).toISOString(), severity: "info", read: false },
-    { id: "3", title: "Weekly report ready", description: "Your scheduled compliance report is available to download", timestamp: new Date(Date.now() - 2 * 3600_000).toISOString(), severity: "info", read: true },
-    { id: "4", title: "Sanctions list updated", description: "OFAC SDN list refreshed", timestamp: new Date(Date.now() - 8 * 3600_000).toISOString(), severity: "warning", read: true },
+    {
+      id: "1",
+      title: "3 transactions flagged",
+      description: "High-risk transfers detected from sanctioned jurisdictions",
+      timestamp: new Date(Date.now() - 5 * 60_000).toISOString(),
+      severity: "critical",
+      read: false,
+    },
+    {
+      id: "2",
+      title: "Travel Rule data received",
+      description: "Counterparty VASP responded to your IVMS101 request",
+      timestamp: new Date(Date.now() - 30 * 60_000).toISOString(),
+      severity: "info",
+      read: false,
+    },
+    {
+      id: "3",
+      title: "Weekly report ready",
+      description: "Your scheduled compliance report is available to download",
+      timestamp: new Date(Date.now() - 2 * 3600_000).toISOString(),
+      severity: "info",
+      read: true,
+    },
+    {
+      id: "4",
+      title: "Sanctions list updated",
+      description: "OFAC SDN list refreshed",
+      timestamp: new Date(Date.now() - 8 * 3600_000).toISOString(),
+      severity: "warning",
+      read: true,
+    },
   ])
   return (
     <div className="flex justify-center py-8">
@@ -580,8 +647,16 @@ function KanbanPreview() {
     { id: "1", columnId: "new", content: <KanbanItem title="VASP transfer flagged" tag="P1" /> },
     { id: "2", columnId: "new", content: <KanbanItem title="KYC verification pending" tag="P3" /> },
     { id: "3", columnId: "review", content: <KanbanItem title="Travel Rule expired" tag="P2" /> },
-    { id: "4", columnId: "review", content: <KanbanItem title="Sanctions match — Alpha LLC" tag="P1" /> },
-    { id: "5", columnId: "resolved", content: <KanbanItem title="Weekly screening complete" tag="—" /> },
+    {
+      id: "4",
+      columnId: "review",
+      content: <KanbanItem title="Sanctions match — Alpha LLC" tag="P1" />,
+    },
+    {
+      id: "5",
+      columnId: "resolved",
+      content: <KanbanItem title="Weekly screening complete" tag="—" />,
+    },
   ])
   return (
     <Kanban
@@ -589,7 +664,12 @@ function KanbanPreview() {
       onCardsChange={setCards}
       columns={[
         { id: "new", title: "New", accent: "text-focal" },
-        { id: "review", title: "In review", accent: "text-amber-700 dark:text-amber-400", limit: 5 },
+        {
+          id: "review",
+          title: "In review",
+          accent: "text-amber-700 dark:text-amber-400",
+          limit: 5,
+        },
         { id: "resolved", title: "Resolved", accent: "text-emerald-700 dark:text-emerald-400" },
       ]}
     />
@@ -611,10 +691,37 @@ function KanbanItem({ title, tag }: { title: string; tag: string }) {
 
 function TeamTablePreview() {
   const [members, setMembers] = useState<TeamMember[]>([
-    { id: "1", name: "Sarah Chen", email: "sarah@cogentic.co", role: "admin", status: "active", lastActive: new Date(Date.now() - 15 * 60_000).toISOString() },
-    { id: "2", name: "James Cooke", email: "james@cogentic.co", role: "analyst", status: "active", lastActive: new Date(Date.now() - 3 * 3600_000).toISOString() },
-    { id: "3", name: "Anna Peterson", email: "anna@cogentic.co", role: "viewer", status: "invited" },
-    { id: "4", name: "Bob Chen", email: "bob@cogentic.co", role: "analyst", status: "suspended", lastActive: new Date(Date.now() - 30 * 86400_000).toISOString() },
+    {
+      id: "1",
+      name: "Sarah Chen",
+      email: "sarah@cogentic.co",
+      role: "admin",
+      status: "active",
+      lastActive: new Date(Date.now() - 15 * 60_000).toISOString(),
+    },
+    {
+      id: "2",
+      name: "James Cooke",
+      email: "james@cogentic.co",
+      role: "analyst",
+      status: "active",
+      lastActive: new Date(Date.now() - 3 * 3600_000).toISOString(),
+    },
+    {
+      id: "3",
+      name: "Anna Peterson",
+      email: "anna@cogentic.co",
+      role: "viewer",
+      status: "invited",
+    },
+    {
+      id: "4",
+      name: "Bob Chen",
+      email: "bob@cogentic.co",
+      role: "analyst",
+      status: "suspended",
+      lastActive: new Date(Date.now() - 30 * 86400_000).toISOString(),
+    },
   ])
   return (
     <TeamTable
@@ -637,9 +744,32 @@ function ApiKeyManagerPreview() {
   return (
     <ApiKeyManager
       keys={[
-        { id: "1", name: "Production API", preview: "sk_live_...ab42", scope: "Full access", createdAt: new Date(Date.now() - 30 * 86400_000).toISOString(), lastUsed: new Date(Date.now() - 5 * 60_000).toISOString(), active: true },
-        { id: "2", name: "Read-only dashboards", preview: "sk_read_...9e1f", scope: "Read only", createdAt: new Date(Date.now() - 90 * 86400_000).toISOString(), lastUsed: new Date(Date.now() - 6 * 3600_000).toISOString(), active: true },
-        { id: "3", name: "Old integration", preview: "sk_live_...c0a1", scope: "Full access", createdAt: new Date(Date.now() - 365 * 86400_000).toISOString(), active: false },
+        {
+          id: "1",
+          name: "Production API",
+          preview: "sk_live_...ab42",
+          scope: "Full access",
+          createdAt: new Date(Date.now() - 30 * 86400_000).toISOString(),
+          lastUsed: new Date(Date.now() - 5 * 60_000).toISOString(),
+          active: true,
+        },
+        {
+          id: "2",
+          name: "Read-only dashboards",
+          preview: "sk_read_...9e1f",
+          scope: "Read only",
+          createdAt: new Date(Date.now() - 90 * 86400_000).toISOString(),
+          lastUsed: new Date(Date.now() - 6 * 3600_000).toISOString(),
+          active: true,
+        },
+        {
+          id: "3",
+          name: "Old integration",
+          preview: "sk_live_...c0a1",
+          scope: "Full access",
+          createdAt: new Date(Date.now() - 365 * 86400_000).toISOString(),
+          active: false,
+        },
       ]}
       onCreate={() => console.log("create")}
       onRotate={(id) => console.log("rotate", id)}
@@ -651,10 +781,41 @@ function ApiKeyManagerPreview() {
 function UsageMeterPreview() {
   return (
     <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
-      <UsageMeter label="API requests" used={2_400_000} limit={5_000_000} unit="" description="Resets in 12 days" />
-      <UsageMeter label="Storage" used={780} limit={1000} unit=" GB" cta={<Button size="xs" variant="outline">Upgrade</Button>} />
-      <UsageMeter label="Team seats" used={9} limit={10} cta={<Button size="xs">Add seats</Button>} />
-      <UsageMeter label="Active rules" used={48} limit={50} description="Approaching plan limit" cta={<Button size="xs" variant="outline">Upgrade</Button>} />
+      <UsageMeter
+        label="API requests"
+        used={2_400_000}
+        limit={5_000_000}
+        unit=""
+        description="Resets in 12 days"
+      />
+      <UsageMeter
+        label="Storage"
+        used={780}
+        limit={1000}
+        unit=" GB"
+        cta={
+          <Button size="xs" variant="outline">
+            Upgrade
+          </Button>
+        }
+      />
+      <UsageMeter
+        label="Team seats"
+        used={9}
+        limit={10}
+        cta={<Button size="xs">Add seats</Button>}
+      />
+      <UsageMeter
+        label="Active rules"
+        used={48}
+        limit={50}
+        description="Approaching plan limit"
+        cta={
+          <Button size="xs" variant="outline">
+            Upgrade
+          </Button>
+        }
+      />
     </div>
   )
 }
@@ -671,7 +832,10 @@ function ChangelogPreview() {
             tags: ["feature"],
             children: (
               <ul>
-                <li>New compliance module: TransactionCard, TransactionRow, TransactionDetail with status borders</li>
+                <li>
+                  New compliance module: TransactionCard, TransactionRow, TransactionDetail with
+                  status borders
+                </li>
                 <li>NetworkBadge with inline SVG chain icons (ETH, BTC, TRX, MATIC, SOL, BNB)</li>
                 <li>SanctionsMatch, CounterpartyCard, ComplianceTimeline, AlertBanner</li>
               </ul>
@@ -707,9 +871,28 @@ function MultiStepFormPreview() {
     <div className="max-w-2xl">
       <MultiStepForm
         steps={[
-          { id: "1", title: "Account", description: "Tell us about your organisation", content: <Input placeholder="Organisation name" /> },
-          { id: "2", title: "Verification", description: "Provide compliance details", content: <Input placeholder="VASP registration number" /> },
-          { id: "3", title: "Review", description: "Confirm and submit", content: <p className="text-muted-foreground text-sm">Final review of your details before submission.</p> },
+          {
+            id: "1",
+            title: "Account",
+            description: "Tell us about your organisation",
+            content: <Input placeholder="Organisation name" />,
+          },
+          {
+            id: "2",
+            title: "Verification",
+            description: "Provide compliance details",
+            content: <Input placeholder="VASP registration number" />,
+          },
+          {
+            id: "3",
+            title: "Review",
+            description: "Confirm and submit",
+            content: (
+              <p className="text-muted-foreground text-sm">
+                Final review of your details before submission.
+              </p>
+            ),
+          },
         ]}
         onSubmit={() => console.log("submitted")}
       />
@@ -729,12 +912,36 @@ function InvoicePreview() {
             Due
           </span>
         }
-        from={{ name: "Cogentic", lines: ["1 Compliance Way", "Singapore 049145", "VAT GB123456789"] }}
-        to={{ name: "Acme Corp", lines: ["Attn: Finance Team", "100 Main Street", "London W1A 1AA"] }}
+        from={{
+          name: "Cogentic",
+          lines: ["1 Compliance Way", "Singapore 049145", "VAT GB123456789"],
+        }}
+        to={{
+          name: "Acme Corp",
+          lines: ["Attn: Finance Team", "100 Main Street", "London W1A 1AA"],
+        }}
         items={[
-          { id: "1", description: "Compliance Platform — Pro plan", quantity: 1, unitPrice: "$2,400.00", total: "$2,400.00" },
-          { id: "2", description: "Additional analyst seats (3)", quantity: 3, unitPrice: "$120.00", total: "$360.00" },
-          { id: "3", description: "Travel Rule API — overage", quantity: 12_500, unitPrice: "$0.002", total: "$25.00" },
+          {
+            id: "1",
+            description: "Compliance Platform — Pro plan",
+            quantity: 1,
+            unitPrice: "$2,400.00",
+            total: "$2,400.00",
+          },
+          {
+            id: "2",
+            description: "Additional analyst seats (3)",
+            quantity: 3,
+            unitPrice: "$120.00",
+            total: "$360.00",
+          },
+          {
+            id: "3",
+            description: "Travel Rule API — overage",
+            quantity: 12_500,
+            unitPrice: "$0.002",
+            total: "$25.00",
+          },
         ]}
         subtotal="$2,785.00"
         tax={{ label: "VAT (20%)", amount: "$557.00" }}
@@ -762,13 +969,13 @@ export const blockPreviews: Record<string, React.ComponentType> = {
   "page-header": PageHeaderPreview,
   "command-palette": CommandPalettePreview,
   "notification-center": NotificationCenterPreview,
-  "kanban": KanbanPreview,
+  kanban: KanbanPreview,
   "team-table": TeamTablePreview,
   "api-key-manager": ApiKeyManagerPreview,
   "usage-meter": UsageMeterPreview,
-  "changelog": ChangelogPreview,
+  changelog: ChangelogPreview,
   "multi-step-form": MultiStepFormPreview,
-  "invoice": InvoicePreview,
+  invoice: InvoicePreview,
   "page-cta": () => (
     <PageCta
       headline="Ready to simplify your compliance?"

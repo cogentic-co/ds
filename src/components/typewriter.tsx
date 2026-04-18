@@ -89,5 +89,5 @@ function Typewriter({
   )
 }
 
+export type { TypewriterLine, TypewriterProps }
 export { Typewriter }
-export type { TypewriterProps, TypewriterLine }

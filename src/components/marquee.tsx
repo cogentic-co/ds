@@ -49,5 +49,5 @@ function Marquee({
   )
 }
 
-export { Marquee }
 export type { MarqueeProps }
+export { Marquee }

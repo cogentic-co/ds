@@ -63,7 +63,9 @@ export function Steps({ steps, className, ...props }: StepsProps) {
               >
                 <StepProgressIndicator status={mapped} step={i + 1} />
                 <StepProgressContent>
-                  <StepProgressTitle className="font-medium text-xs">{step.label}</StepProgressTitle>
+                  <StepProgressTitle className="font-medium text-xs">
+                    {step.label}
+                  </StepProgressTitle>
                 </StepProgressContent>
               </MotionStepItem>
             )

@@ -25,9 +25,7 @@ function StatusBadge({ status }: { status: keyof typeof statusConfig }) {
   )
 }
 
-export default function CompliancePage({
-  params,
-}: { params: Promise<{ slug: string }> }) {
+export default function CompliancePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
   const Preview = compliancePreviews[slug]
   const meta = componentMeta[slug]

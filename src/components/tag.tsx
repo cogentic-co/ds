@@ -45,5 +45,5 @@ function Tag({ className, variant, children, onRemove, ...props }: TagProps) {
   )
 }
 
-export { Tag, tagVariants }
 export type { TagProps }
+export { Tag, tagVariants }

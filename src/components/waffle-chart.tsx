@@ -366,5 +366,5 @@ function WaffleChart({
   )
 }
 
+export type { WaffleChartMode, WaffleChartProps, WaffleChartSegment, WaffleChartSize }
 export { WaffleChart, waffleChartVariants }
-export type { WaffleChartProps, WaffleChartSegment, WaffleChartMode, WaffleChartSize }

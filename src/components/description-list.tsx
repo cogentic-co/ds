@@ -35,4 +35,4 @@ function DescriptionListDetail({ className, ...props }: React.ComponentProps<"dd
   return <dd data-slot="description-list-detail" className={cn("text-sm", className)} {...props} />
 }
 
-export { DescriptionList, DescriptionListItem, DescriptionListTerm, DescriptionListDetail }
+export { DescriptionList, DescriptionListDetail, DescriptionListItem, DescriptionListTerm }

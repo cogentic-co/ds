@@ -32,5 +32,5 @@ function SettingRow({ icon, title, description, action, className, ...props }: S
   )
 }
 
-export { SettingRow }
 export type { SettingRowProps }
+export { SettingRow }

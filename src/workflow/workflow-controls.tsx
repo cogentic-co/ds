@@ -20,5 +20,5 @@ function WorkflowControls({ className, ...props }: WorkflowControlsProps) {
   )
 }
 
-export { WorkflowControls }
 export type { WorkflowControlsProps }
+export { WorkflowControls }

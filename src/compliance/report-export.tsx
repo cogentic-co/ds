@@ -6,13 +6,7 @@ import { Button } from "../components/button"
 import { Checkbox } from "../components/checkbox"
 import { Input } from "../components/input"
 import { Label } from "../components/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/select"
 import { cn } from "../lib/utils"
 
 type ExportFormat = "pdf" | "csv" | "xlsx"
@@ -141,5 +135,5 @@ function ReportExport({
   )
 }
 
-export { ReportExport }
 export type { ExportFormat, ReportExportConfig, ReportExportProps, ReportSection }
+export { ReportExport }

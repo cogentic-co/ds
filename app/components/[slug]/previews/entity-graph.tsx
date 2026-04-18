@@ -8,25 +8,48 @@ export default function EntityGraphPreview() {
       id: "binance",
       type: "entity",
       position: { x: 0, y: 0 },
-      data: { label: "Binance", type: "vasp", riskScore: 32, jurisdiction: "SG", description: "Exchange — MAS Licensed" } satisfies EntityNodeData,
+      data: {
+        label: "Binance",
+        type: "vasp",
+        riskScore: 32,
+        jurisdiction: "SG",
+        description: "Exchange — MAS Licensed",
+      } satisfies EntityNodeData,
     },
     {
       id: "wallet-1",
       type: "entity",
       position: { x: 380, y: -120 },
-      data: { label: "0x1a2b...3c4d", type: "unhosted", riskScore: 82, description: "Unhosted wallet" } satisfies EntityNodeData,
+      data: {
+        label: "0x1a2b...3c4d",
+        type: "unhosted",
+        riskScore: 82,
+        description: "Unhosted wallet",
+      } satisfies EntityNodeData,
     },
     {
       id: "coinbase",
       type: "entity",
       position: { x: 380, y: 120 },
-      data: { label: "Coinbase", type: "vasp", riskScore: 8, jurisdiction: "US", description: "Exchange — FinCEN MSB" } satisfies EntityNodeData,
+      data: {
+        label: "Coinbase",
+        type: "vasp",
+        riskScore: 8,
+        jurisdiction: "US",
+        description: "Exchange — FinCEN MSB",
+      } satisfies EntityNodeData,
     },
     {
       id: "wallet-2",
       type: "entity",
       position: { x: 760, y: 0 },
-      data: { label: "0xabcd...ef12", type: "unknown", riskScore: 92, jurisdiction: "RU", description: "Unidentified" } satisfies EntityNodeData,
+      data: {
+        label: "0xabcd...ef12",
+        type: "unknown",
+        riskScore: 92,
+        jurisdiction: "RU",
+        description: "Unidentified",
+      } satisfies EntityNodeData,
     },
   ]
 

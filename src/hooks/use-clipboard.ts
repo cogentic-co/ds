@@ -20,5 +20,5 @@ function useClipboard({ timeout = 2000 }: UseClipboardOptions = {}) {
   return { copied, copy }
 }
 
-export { useClipboard }
 export type { UseClipboardOptions }
+export { useClipboard }

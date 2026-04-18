@@ -39,17 +39,11 @@ type NetworkBadgeProps = ComponentProps<"span"> & {
   label?: string
 }
 
-function NetworkBadge({
-  network,
-  icon,
-  label,
-  className,
-  ...props
-}: NetworkBadgeProps) {
+function NetworkBadge({ network, icon, label, className, ...props }: NetworkBadgeProps) {
   const knownNetworks = new Set(["ethereum", "bitcoin", "tron", "polygon", "solana", "bnb"])
-  const resolvedNetwork = (
-    knownNetworks.has(network) ? network : "unknown"
-  ) as NonNullable<VariantProps<typeof networkBadgeVariants>["network"]>
+  const resolvedNetwork = (knownNetworks.has(network) ? network : "unknown") as NonNullable<
+    VariantProps<typeof networkBadgeVariants>["network"]
+  >
 
   return (
     <span
@@ -64,5 +58,5 @@ function NetworkBadge({
   )
 }
 
-export { NetworkBadge, networkBadgeVariants }
 export type { NetworkBadgeProps }
+export { NetworkBadge, networkBadgeVariants }

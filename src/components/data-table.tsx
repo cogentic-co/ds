@@ -758,15 +758,14 @@ function DataTableToolbar<TData>({
  * Exports
  * ──────────────────────────────────────────────────────────────────────────── */
 
-export {
-  DataTable,
-  DataTableColumnHeader,
-  DataTableFacetedFilter,
-  DataTablePagination,
-  DataTableToolbar,
-  DataTableViewOptions,
-  useDataTable,
-}
+// Re-export TanStack types consumers will need for column definitions
+export type {
+  ColumnDef,
+  ColumnFiltersState,
+  RowSelectionState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table"
 
 export type {
   DataTableColumnHeaderProps,
@@ -778,12 +777,12 @@ export type {
   DataTableViewOptionsProps,
   UseDataTableOptions,
 }
-
-// Re-export TanStack types consumers will need for column definitions
-export type {
-  ColumnDef,
-  ColumnFiltersState,
-  RowSelectionState,
-  SortingState,
-  VisibilityState,
-} from "@tanstack/react-table"
+export {
+  DataTable,
+  DataTableColumnHeader,
+  DataTableFacetedFilter,
+  DataTablePagination,
+  DataTableToolbar,
+  DataTableViewOptions,
+  useDataTable,
+}

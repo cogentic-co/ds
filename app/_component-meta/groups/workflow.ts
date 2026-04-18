@@ -85,9 +85,7 @@ import { Sparkles } from "lucide-react"
       "Compose with WorkflowNodeIcon, WorkflowNodeRow, WorkflowNodeDescription sub-components",
       "Pass topSlot/bottomSlot for custom additions (e.g. consumer-provided handles)",
     ],
-    donts: [
-      "Don't use inside a Canvas — use WorkflowNode (which adds xyflow handles) for that",
-    ],
+    donts: ["Don't use inside a Canvas — use WorkflowNode (which adds xyflow handles) for that"],
     codeExample: `import { WorkflowNodeCard, WorkflowNodeIcon, WorkflowNodeRow } from "@cogentic-co/ds/workflow/workflow-node-card"
 import { Building2 } from "lucide-react"
 

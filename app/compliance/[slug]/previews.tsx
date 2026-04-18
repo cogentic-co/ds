@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/src/components/button"
 import {
   AddressDisplay,
   AlertBanner,
@@ -27,8 +26,9 @@ import {
   TravelRuleStatus,
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
-import { type ControlDefs, Playground, useControls } from "../../controls"
+import { Button } from "@/src/components/button"
 import { Section } from "../../components/[slug]/previews/_shared"
+import { type ControlDefs, Playground, useControls } from "../../controls"
 
 // ── Sample data ──
 
@@ -244,10 +244,7 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" />
         </Section>
         <Section title="Full (no truncation)">
-          <AddressDisplay
-            address="0x1234567890abcdef1234567890abcdef12345678"
-            truncate={false}
-          />
+          <AddressDisplay address="0x1234567890abcdef1234567890abcdef12345678" truncate={false} />
         </Section>
       </div>
     )
@@ -368,7 +365,12 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
               riskScore={8}
             />
             <CounterpartyCard type="unhosted" name="Unknown wallet" riskScore={85} />
-            <CounterpartyCard type="unknown" name="Unidentified entity" jurisdiction="ru" riskScore={92} />
+            <CounterpartyCard
+              type="unknown"
+              name="Unidentified entity"
+              jurisdiction="ru"
+              riskScore={92}
+            />
           </div>
         </Section>
       </div>
@@ -540,7 +542,9 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     return (
       <div className="space-y-6">
         <TransactionFilterBar filters={filters} onFiltersChange={setFilters} />
-        <pre className="rounded-lg bg-muted p-3 font-mono text-xs">{JSON.stringify(filters, null, 2)}</pre>
+        <pre className="rounded-lg bg-muted p-3 font-mono text-xs">
+          {JSON.stringify(filters, null, 2)}
+        </pre>
       </div>
     )
   },
@@ -564,7 +568,8 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     return (
       <div className="flex max-w-lg flex-col gap-4">
         <AuditNote author={{ name: "Sarah Chen" }} timestamp="10:48 AM" decision="flagged">
-          Flagged for manual review — counterparty address matches a known high-risk cluster identified by Chainalysis.
+          Flagged for manual review — counterparty address matches a known high-risk cluster
+          identified by Chainalysis.
         </AuditNote>
         <AuditNote author={{ name: "James Cooke" }} timestamp="11:15 AM" decision="accepted">
           Verified with the counterparty VASP. Transaction is legitimate — clearing the flag.
@@ -589,5 +594,4 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
       </div>
     )
   },
-
 }

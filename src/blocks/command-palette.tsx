@@ -91,5 +91,5 @@ function CommandPalette({
   )
 }
 
-export { CommandPalette }
 export type { CommandPaletteAction, CommandPaletteGroup, CommandPaletteProps }
+export { CommandPalette }

@@ -52,5 +52,5 @@ function AnimatedCounter({
   )
 }
 
-export { AnimatedCounter }
 export type { AnimatedCounterProps }
+export { AnimatedCounter }

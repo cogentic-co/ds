@@ -127,10 +127,10 @@ function ConfirmationAction({
 
 export {
   Confirmation,
-  ConfirmationRequest,
   ConfirmationAccepted,
-  ConfirmationRejected,
-  ConfirmationActions,
   ConfirmationAction,
+  ConfirmationActions,
+  ConfirmationRejected,
+  ConfirmationRequest,
   confirmationVariants,
 }

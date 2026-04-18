@@ -57,7 +57,14 @@ export function Score({ title, score, max, dimensions, className, ...props }: Sc
         <div className="grid grid-cols-[1fr_1.1fr] items-center gap-3">
           <div className="flex items-center justify-center">
             {ready && (
-              <WaffleChart segments={segments} rows={10} cols={10} size="sm" animate duration={1000} />
+              <WaffleChart
+                segments={segments}
+                rows={10}
+                cols={10}
+                size="sm"
+                animate
+                duration={1000}
+              />
             )}
           </div>
 
@@ -75,7 +82,7 @@ export function Score({ title, score, max, dimensions, className, ...props }: Sc
                   style={{ backgroundColor: colors[COLOR_VAR[d.color]] || undefined }}
                 />
                 <span className="flex-1 truncate text-muted-foreground text-xxs">{d.label}</span>
-                <span className="font-mono font-semibold tabular-nums text-foreground text-xxs">
+                <span className="font-mono font-semibold text-foreground text-xxs tabular-nums">
                   {d.value}
                 </span>
               </motion.li>

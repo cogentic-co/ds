@@ -35,7 +35,9 @@ export function SkillMatch({
       <div className="flex h-full flex-col justify-center p-4">
         <div className="mb-3 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
           <div className="min-w-0">
-            <p className="font-semibold text-muted-foreground text-xxs uppercase tracking-wider">Case</p>
+            <p className="font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
+              Case
+            </p>
             <p className="truncate font-semibold text-foreground text-xs">{caseInfo.id}</p>
             {caseInfo.meta && (
               <p className="truncate text-muted-foreground text-xxs">{caseInfo.meta}</p>

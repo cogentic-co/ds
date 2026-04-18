@@ -30,7 +30,7 @@ const workflowNodeVariants = cva(
       },
       status: {
         idle: "",
-        running: "border-focal animate-workflow-running motion-reduce:animate-none",
+        running: "animate-workflow-running border-focal motion-reduce:animate-none",
         completed: "border-success",
         failed: "border-destructive",
         queued: "border-muted-foreground/50 border-dashed",
@@ -236,15 +236,9 @@ const workflowNodeIconVariants = cva(
   },
 )
 
-type WorkflowNodeIconProps = ComponentProps<"span"> &
-  VariantProps<typeof workflowNodeIconVariants>
+type WorkflowNodeIconProps = ComponentProps<"span"> & VariantProps<typeof workflowNodeIconVariants>
 
-function WorkflowNodeIcon({
-  tone,
-  className,
-  children,
-  ...props
-}: WorkflowNodeIconProps) {
+function WorkflowNodeIcon({ tone, className, children, ...props }: WorkflowNodeIconProps) {
   return (
     <span
       data-slot="workflow-node-icon"
@@ -413,6 +407,13 @@ function WorkflowNodeCard({
   )
 }
 
+export type {
+  WorkflowNodeCardProps,
+  WorkflowNodeIconProps,
+  WorkflowNodeState,
+  WorkflowNodeStatus,
+  WorkflowNodeStatusBadgeProps,
+}
 export {
   WorkflowNodeAction,
   WorkflowNodeCard,
@@ -421,17 +422,10 @@ export {
   WorkflowNodeFooter,
   WorkflowNodeHeader,
   WorkflowNodeIcon,
-  workflowNodeIconVariants,
   WorkflowNodeRow,
   WorkflowNodeSeparator,
   WorkflowNodeStatusBadge,
   WorkflowNodeTitle,
+  workflowNodeIconVariants,
   workflowNodeVariants,
-}
-export type {
-  WorkflowNodeCardProps,
-  WorkflowNodeIconProps,
-  WorkflowNodeState,
-  WorkflowNodeStatus,
-  WorkflowNodeStatusBadgeProps,
 }

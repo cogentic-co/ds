@@ -87,4 +87,4 @@ function ReasoningContent({ className, ...props }: ComponentProps<"div">) {
   )
 }
 
-export { Reasoning, ReasoningTrigger, ReasoningContent, useReasoning }
+export { Reasoning, ReasoningContent, ReasoningTrigger, useReasoning }

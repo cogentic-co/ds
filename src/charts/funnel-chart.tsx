@@ -85,5 +85,5 @@ function FunnelChart({
   )
 }
 
-export { FunnelChart }
 export type { FunnelChartProps, FunnelDatum }
+export { FunnelChart }

@@ -37,7 +37,7 @@ export function MappingMatrix({
 
         <div className="overflow-hidden rounded-md border border-border bg-card">
           <div
-            className="grid items-center gap-1 border-b border-border bg-muted/30 px-2 py-1.5 font-semibold text-muted-foreground text-xxs"
+            className="grid items-center gap-1 border-border border-b bg-muted/30 px-2 py-1.5 font-semibold text-muted-foreground text-xxs"
             style={{ gridTemplateColumns }}
           >
             <span>Field</span>
@@ -63,14 +63,22 @@ export function MappingMatrix({
                   const note = row.mappings[p]
                   if (!note) {
                     return (
-                      <span key={p} aria-label="not mapped" className="text-center text-muted-foreground/40">
+                      <span
+                        key={p}
+                        aria-label="not mapped"
+                        className="text-center text-muted-foreground/40"
+                      >
                         —
                       </span>
                     )
                   }
                   if (note === "✓" || note.toLowerCase() === "yes") {
                     return (
-                      <span key={p} className="flex items-center justify-center text-success" aria-label="mapped">
+                      <span
+                        key={p}
+                        className="flex items-center justify-center text-success"
+                        aria-label="mapped"
+                      >
                         <Check width={11} height={11} />
                       </span>
                     )

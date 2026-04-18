@@ -36,5 +36,5 @@ function Spinner({ variant = "circle", className, ...props }: SpinnerProps) {
   )
 }
 
-export { Spinner }
 export type { SpinnerProps }
+export { Spinner }

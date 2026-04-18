@@ -163,5 +163,5 @@ function RegisterForm({
   )
 }
 
-export { RegisterForm, registerSchema }
 export type { RegisterFormProps, RegisterFormValues }
+export { RegisterForm, registerSchema }

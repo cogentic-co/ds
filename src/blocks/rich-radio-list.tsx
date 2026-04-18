@@ -77,5 +77,5 @@ function RichRadioList({
   )
 }
 
-export { RichRadioList }
 export type { RichRadioListProps, RichRadioOption }
+export { RichRadioList }

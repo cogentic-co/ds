@@ -37,5 +37,5 @@ function StripedBar({
   )
 }
 
-export { StripedBar }
 export type { StripedBarProps, StripedBarSegment }
+export { StripedBar }

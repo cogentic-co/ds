@@ -78,5 +78,5 @@ function StreamingCards({
   )
 }
 
-export { StreamingCards }
 export type { StreamingCardsProps }
+export { StreamingCards }

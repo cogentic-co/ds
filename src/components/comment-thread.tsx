@@ -85,15 +85,15 @@ function CommentActions({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+export type { CommentProps }
 export {
-  CommentThread,
   Comment,
+  CommentActions,
+  CommentAuthor,
   CommentAvatar,
   CommentBody,
-  CommentHeader,
-  CommentAuthor,
-  CommentTime,
   CommentContent,
-  CommentActions,
+  CommentHeader,
+  CommentThread,
+  CommentTime,
 }
-export type { CommentProps }

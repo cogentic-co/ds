@@ -141,5 +141,5 @@ function BlockyShader({ paused = false, className, ...props }: BlockyShaderProps
   )
 }
 
-export { BlockyShader }
 export type { BlockyShaderProps }
+export { BlockyShader }

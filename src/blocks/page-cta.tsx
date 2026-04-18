@@ -79,5 +79,5 @@ function PageCta({
   )
 }
 
+export type { CtaLink, PageCtaProps }
 export { PageCta }
-export type { PageCtaProps, CtaLink }

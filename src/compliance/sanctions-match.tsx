@@ -61,7 +61,7 @@ function SanctionsMatch({
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
             <span className="font-semibold text-foreground">{entityName}</span>
-            <span className={cn("font-mono font-bold text-base tabular-nums", scoreColor)}>
+            <span className={cn("font-bold font-mono text-base tabular-nums", scoreColor)}>
               {matchScore}%
             </span>
           </div>
@@ -77,7 +77,7 @@ function SanctionsMatch({
       {children}
 
       {(onDismiss || onConfirm) && (
-        <div className="flex items-center justify-end gap-2 border-t border-amber-700/20 pt-3 dark:border-amber-400/20">
+        <div className="flex items-center justify-end gap-2 border-amber-700/20 border-t pt-3 dark:border-amber-400/20">
           {onDismiss && (
             <Button variant="ghost" size="sm" onClick={onDismiss}>
               <XCircle className="mr-1 size-3.5" />
@@ -96,5 +96,5 @@ function SanctionsMatch({
   )
 }
 
-export { SanctionsMatch }
 export type { SanctionsMatchProps }
+export { SanctionsMatch }

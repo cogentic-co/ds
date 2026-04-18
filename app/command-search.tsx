@@ -161,7 +161,9 @@ const blockPages: SearchItem[] = [
  */
 function inferRoute(slug: string, importStatement?: string): { href: string; group: string } {
   if (importStatement) {
-    const match = importStatement.match(/@cogentic-co\/ds\/(blocks|compliance|workflow|charts|shells)\//)
+    const match = importStatement.match(
+      /@cogentic-co\/ds\/(blocks|compliance|workflow|charts|shells)\//,
+    )
     if (match) {
       const segment = match[1]
       const groupLabels: Record<string, string> = {

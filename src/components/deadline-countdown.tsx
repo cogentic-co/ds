@@ -111,5 +111,5 @@ function DeadlineCountdown({
   )
 }
 
-export { DeadlineCountdown, deadlineCountdownVariants }
 export type { DeadlineCountdownProps, Urgency }
+export { DeadlineCountdown, deadlineCountdownVariants }

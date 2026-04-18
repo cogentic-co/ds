@@ -14,5 +14,5 @@ function WorkflowPanel({ className, ...props }: WorkflowPanelProps) {
   )
 }
 
-export { WorkflowPanel }
 export type { WorkflowPanelProps }
+export { WorkflowPanel }

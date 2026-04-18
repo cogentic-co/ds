@@ -72,5 +72,5 @@ function TableOfContents({ sections }: { sections: TocSection[] }) {
   )
 }
 
-export { TableOfContents }
 export type { TocSection }
+export { TableOfContents }

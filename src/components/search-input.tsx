@@ -218,5 +218,5 @@ function SearchInput<T>({
   )
 }
 
-export { SearchInput }
 export type { SearchInputProps }
+export { SearchInput }

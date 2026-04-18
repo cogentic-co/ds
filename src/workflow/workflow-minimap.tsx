@@ -20,5 +20,5 @@ function WorkflowMinimap({ className, ...props }: WorkflowMinimapProps) {
   )
 }
 
-export { WorkflowMinimap }
 export type { WorkflowMinimapProps }
+export { WorkflowMinimap }

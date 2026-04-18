@@ -17,5 +17,5 @@ function useDisclosure(defaultOpen = false): UseDisclosureReturn {
   return { isOpen, onOpen, onClose, onToggle }
 }
 
-export { useDisclosure }
 export type { UseDisclosureReturn }
+export { useDisclosure }

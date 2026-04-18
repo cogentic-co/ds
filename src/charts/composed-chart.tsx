@@ -147,5 +147,5 @@ function ComposedChart({
   )
 }
 
-export { ComposedChart }
 export type { ComposedChartProps, ComposedSeries }
+export { ComposedChart }

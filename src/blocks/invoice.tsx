@@ -65,10 +65,7 @@ function Invoice({
   return (
     <div
       data-slot="invoice"
-      className={cn(
-        "flex flex-col gap-8 rounded-xl border border-border bg-card p-8",
-        className,
-      )}
+      className={cn("flex flex-col gap-8 rounded-xl border border-border bg-card p-8", className)}
       {...props}
     >
       <header className="flex items-start justify-between gap-6">
@@ -172,5 +169,5 @@ function Invoice({
   )
 }
 
-export { Invoice }
 export type { InvoiceLineItem, InvoiceParty, InvoiceProps }
+export { Invoice }

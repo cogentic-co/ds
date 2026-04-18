@@ -185,5 +185,5 @@ function ComplianceScore({
   )
 }
 
-export { ComplianceScore, complianceScoreVariants }
 export type { ComplianceScoreProps }
+export { ComplianceScore, complianceScoreVariants }

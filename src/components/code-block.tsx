@@ -76,5 +76,5 @@ function CodeBlock({
   )
 }
 
-export { CodeBlock }
 export type { CodeBlockProps }
+export { CodeBlock }

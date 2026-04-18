@@ -212,5 +212,5 @@ function PricingTable({ headline, subheadline, plans, className }: PricingTableP
   )
 }
 
-export { PricingTable }
 export type { Plan, PricingTableProps }
+export { PricingTable }

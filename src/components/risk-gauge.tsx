@@ -148,5 +148,5 @@ function RiskGauge({
   )
 }
 
-export { RiskGauge, TIER_COLORS as riskGaugeTierColors }
 export type { RiskGaugeProps }
+export { RiskGauge, TIER_COLORS as riskGaugeTierColors }

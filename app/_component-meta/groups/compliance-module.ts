@@ -43,9 +43,7 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
       "Wrap in a bordered container for a table look",
       "Use alongside DataTable for sortable/filterable transaction lists",
     ],
-    donts: [
-      "Don't use for detail views — use TransactionDetail",
-    ],
+    donts: ["Don't use for detail views — use TransactionDetail"],
     codeExample: `<div className="rounded-xl border bg-card">
   {transactions.map(tx => (
     <TransactionRow key={tx.hash} transaction={tx} onClick={() => select(tx)} />
@@ -63,9 +61,7 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
       "Pass actions slot for approve/reject buttons",
       "Pass explorerUrl to link to the block explorer",
     ],
-    donts: [
-      "Don't nest inside a Card — it manages its own layout",
-    ],
+    donts: ["Don't nest inside a Card — it manages its own layout"],
     codeExample: `<TransactionDetail
   transaction={tx}
   explorerUrl="https://etherscan.io/tx/0x..."

@@ -42,14 +42,7 @@ type KanbanProps = ComponentProps<"div"> & {
   renderCard?: (card: KanbanCard) => ReactNode
 }
 
-function Kanban({
-  columns,
-  cards,
-  onCardsChange,
-  renderCard,
-  className,
-  ...props
-}: KanbanProps) {
+function Kanban({ columns, cards, onCardsChange, renderCard, className, ...props }: KanbanProps) {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 4 },
@@ -90,11 +83,7 @@ function Kanban({
   }
 
   return (
-    <div
-      data-slot="kanban"
-      className={cn("flex gap-4 overflow-x-auto pb-2", className)}
-      {...props}
-    >
+    <div data-slot="kanban" className={cn("flex gap-4 overflow-x-auto pb-2", className)} {...props}>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -147,10 +136,7 @@ function KanbanColumnView({
         </div>
       </div>
       <div ref={setNodeRef} className="flex min-h-20 flex-col gap-2">
-        <SortableContext
-          items={cards.map((c) => c.id)}
-          strategy={verticalListSortingStrategy}
-        >
+        <SortableContext items={cards.map((c) => c.id)} strategy={verticalListSortingStrategy}>
           {cards.map((card) => (
             <KanbanCardView key={card.id} card={card} renderCard={renderCard} />
           ))}
@@ -189,5 +175,5 @@ function KanbanCardView({
   )
 }
 
-export { Kanban }
 export type { KanbanCard, KanbanColumn, KanbanProps }
+export { Kanban }

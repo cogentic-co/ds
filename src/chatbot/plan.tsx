@@ -139,11 +139,11 @@ function PlanAction({ className, ...props }: ComponentProps<"button">) {
 
 export {
   Plan,
+  PlanAction,
+  PlanContent,
+  PlanDescription,
+  PlanFooter,
   PlanHeader,
   PlanTitle,
-  PlanDescription,
   PlanTrigger,
-  PlanContent,
-  PlanFooter,
-  PlanAction,
 }

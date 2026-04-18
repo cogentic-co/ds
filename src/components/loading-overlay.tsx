@@ -23,5 +23,5 @@ function LoadingOverlay({ loading, label, className, children, ...props }: Loadi
   )
 }
 
-export { LoadingOverlay }
 export type { LoadingOverlayProps }
+export { LoadingOverlay }

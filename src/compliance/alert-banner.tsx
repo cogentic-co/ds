@@ -5,19 +5,16 @@ import { AlertTriangle, Info, ShieldAlert, XIcon } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { cn } from "../lib/utils"
 
-const alertBannerVariants = cva(
-  "flex items-start gap-3 rounded-xl border p-4 text-sm",
-  {
-    variants: {
-      severity: {
-        info: "border-focal/30 bg-focal-soft/50 text-foreground",
-        warning: "border-warning/30 bg-warning/10 text-foreground",
-        critical: "border-destructive/30 bg-destructive/10 text-foreground",
-      },
+const alertBannerVariants = cva("flex items-start gap-3 rounded-xl border p-4 text-sm", {
+  variants: {
+    severity: {
+      info: "border-focal/30 bg-focal-soft/50 text-foreground",
+      warning: "border-warning/30 bg-warning/10 text-foreground",
+      critical: "border-destructive/30 bg-destructive/10 text-foreground",
     },
-    defaultVariants: { severity: "info" },
   },
-)
+  defaultVariants: { severity: "info" },
+})
 
 const SEVERITY_ICONS: Record<string, ReactNode> = {
   info: <Info className="size-4 text-focal" />,
@@ -57,9 +54,7 @@ function AlertBanner({
       <span className="mt-0.5 shrink-0">{icon ?? SEVERITY_ICONS[severity]}</span>
       <div className="min-w-0 flex-1">
         <div className="font-semibold">{title}</div>
-        {description && (
-          <div className="mt-0.5 text-muted-foreground text-sm">{description}</div>
-        )}
+        {description && <div className="mt-0.5 text-muted-foreground text-sm">{description}</div>}
         {actions && <div className="mt-2 flex items-center gap-2">{actions}</div>}
       </div>
       {onDismiss && (
@@ -76,5 +71,5 @@ function AlertBanner({
   )
 }
 
-export { AlertBanner, alertBannerVariants }
 export type { AlertBannerProps }
+export { AlertBanner, alertBannerVariants }

@@ -258,7 +258,14 @@ const chartItems = [
 const workflowGroups: { label: string; items: string[] }[] = [
   {
     label: "Canvas & core",
-    items: ["workflow-canvas", "workflow-node", "workflow-node-card", "workflow-gate", "workflow-group", "workflow-handle"],
+    items: [
+      "workflow-canvas",
+      "workflow-node",
+      "workflow-node-card",
+      "workflow-gate",
+      "workflow-group",
+      "workflow-handle",
+    ],
   },
   {
     label: "Connections",

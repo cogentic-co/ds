@@ -146,5 +146,10 @@ function JurisdictionCard({
   )
 }
 
+export type {
+  FatfStatus,
+  JurisdictionCardLabels,
+  JurisdictionCardProps,
+  JurisdictionTravelRuleStatus,
+}
 export { JurisdictionCard }
-export type { FatfStatus, JurisdictionCardLabels, JurisdictionCardProps, JurisdictionTravelRuleStatus }

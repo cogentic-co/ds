@@ -43,7 +43,9 @@ export function CardGrid({ items, className, ...props }: CardGridProps) {
               </span>
               <div className="min-w-0">
                 <p className="truncate font-semibold text-foreground text-xxs">{item.label}</p>
-                {item.value && <p className="truncate text-muted-foreground text-xxs">{item.value}</p>}
+                {item.value && (
+                  <p className="truncate text-muted-foreground text-xxs">{item.value}</p>
+                )}
               </div>
             </motion.div>
           ))}

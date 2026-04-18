@@ -76,5 +76,5 @@ function RadialChart({
   )
 }
 
-export { RadialChart }
 export type { RadialChartProps }
+export { RadialChart }

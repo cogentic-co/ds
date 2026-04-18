@@ -218,5 +218,5 @@ function ApprovalActions({
   )
 }
 
-export { ApprovalActions, ApprovalButton, ApprovalDialog }
 export type { ApprovalAction, ApprovalActionsProps }
+export { ApprovalActions, ApprovalButton, ApprovalDialog }

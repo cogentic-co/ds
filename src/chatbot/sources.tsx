@@ -119,4 +119,4 @@ function Source({
   )
 }
 
-export { Sources, SourcesTrigger, SourcesContent, Source }
+export { Source, Sources, SourcesContent, SourcesTrigger }

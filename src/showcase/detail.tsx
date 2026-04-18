@@ -60,7 +60,9 @@ export function Detail({ title, badge, lines, className, ...props }: DetailProps
           <div className="mb-4 flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
               <p className="truncate font-semibold text-foreground text-xs">{title}</p>
-              {isWeightConfig && <p className="text-muted-foreground text-xxs">Weights sum to 1.00</p>}
+              {isWeightConfig && (
+                <p className="text-muted-foreground text-xxs">Weights sum to 1.00</p>
+              )}
             </div>
             {badge && (
               <Badge variant="tagline" className="shrink-0 rounded-sm text-xxs">
@@ -83,7 +85,7 @@ export function Detail({ title, badge, lines, className, ...props }: DetailProps
                     <span className="truncate font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
                       {line.label}
                     </span>
-                    <span className="shrink-0 text-right font-mono tabular-nums text-xs">
+                    <span className="shrink-0 text-right font-mono text-xs tabular-nums">
                       {renderValue(parsed)}
                     </span>
                   </div>

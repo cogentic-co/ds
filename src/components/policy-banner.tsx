@@ -76,5 +76,5 @@ function PolicyBanner({
   )
 }
 
-export { PolicyBanner, policyBannerVariants }
 export type { PolicyBannerProps }
+export { PolicyBanner, policyBannerVariants }

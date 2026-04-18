@@ -81,11 +81,7 @@ function MultiStepForm({
   if (!step) return null
 
   return (
-    <div
-      data-slot="multi-step-form"
-      className={cn("flex flex-col gap-6", className)}
-      {...props}
-    >
+    <div data-slot="multi-step-form" className={cn("flex flex-col gap-6", className)} {...props}>
       <StepProgress>
         {steps.map((s, i) => {
           const status = i < index ? "complete" : i === index ? "current" : "upcoming"
@@ -105,9 +101,7 @@ function MultiStepForm({
       <div data-slot="multi-step-form-content" className="flex flex-col gap-3">
         <div>
           <h3 className="font-semibold text-lg">{step.title}</h3>
-          {step.description && (
-            <p className="text-muted-foreground text-sm">{step.description}</p>
-          )}
+          {step.description && <p className="text-muted-foreground text-sm">{step.description}</p>}
         </div>
         {step.content}
       </div>
@@ -131,5 +125,5 @@ function MultiStepForm({
   )
 }
 
-export { MultiStepForm }
 export type { MultiStepFormProps, MultiStepFormStep }
+export { MultiStepForm }

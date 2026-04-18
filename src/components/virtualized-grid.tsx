@@ -116,5 +116,5 @@ function VirtualizedGrid<T>({
   )
 }
 
-export { VirtualizedGrid }
 export type { VirtualizedGridProps }
+export { VirtualizedGrid }

@@ -73,5 +73,5 @@ function LineChart({
   )
 }
 
-export { LineChart }
 export type { LineChartProps }
+export { LineChart }

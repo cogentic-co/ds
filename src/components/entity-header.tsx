@@ -181,5 +181,5 @@ function EntityHeader({
   )
 }
 
+export type { EntityHeaderMeta, EntityHeaderProps }
 export { EntityHeader, headerVariants as entityHeaderVariants }
-export type { EntityHeaderProps, EntityHeaderMeta }

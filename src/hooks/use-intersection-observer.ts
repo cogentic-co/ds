@@ -36,5 +36,5 @@ function useIntersectionObserver<T extends Element = HTMLDivElement>(
   return { ref, isIntersecting }
 }
 
-export { useIntersectionObserver }
 export type { UseIntersectionObserverOptions }
+export { useIntersectionObserver }

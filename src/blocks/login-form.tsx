@@ -116,5 +116,5 @@ function LoginForm({
   )
 }
 
-export { LoginForm, loginSchema }
 export type { LoginFormProps, LoginFormValues }
+export { LoginForm, loginSchema }

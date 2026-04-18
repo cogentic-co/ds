@@ -53,5 +53,5 @@ function RiskScoreInline({
   )
 }
 
-export { RiskScoreInline }
 export type { RiskScoreInlineProps }
+export { RiskScoreInline }

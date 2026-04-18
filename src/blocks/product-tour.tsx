@@ -229,5 +229,5 @@ function TourDescription({ mode, children }: { mode: TourMode; children: React.R
   )
 }
 
-export { ProductTour }
 export type { ProductTourProps, ProductTourStep }
+export { ProductTour }

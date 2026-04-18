@@ -92,7 +92,7 @@ function CounterpartyCard({
               </span>
             )}
             {registrationStatus && (
-              <span className="text-muted-foreground text-[10px]">{registrationStatus}</span>
+              <span className="text-[10px] text-muted-foreground">{registrationStatus}</span>
             )}
           </div>
         </div>
@@ -103,5 +103,5 @@ function CounterpartyCard({
   )
 }
 
-export { CounterpartyCard }
 export type { CounterpartyCardProps }
+export { CounterpartyCard }

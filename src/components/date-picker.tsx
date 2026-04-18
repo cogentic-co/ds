@@ -182,5 +182,5 @@ function DateRangePicker({
   )
 }
 
-export { DatePicker, DateRangePicker }
 export type { DatePickerPreset, DatePickerProps, DateRangePickerProps }
+export { DatePicker, DateRangePicker }

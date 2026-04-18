@@ -97,14 +97,14 @@ function AuditLogDetail({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+export type { AuditLogAction, AuditLogEntryProps }
 export {
   AuditLog,
+  AuditLogContent,
+  AuditLogDetail,
   AuditLogEntry,
   AuditLogIcon,
-  AuditLogContent,
   AuditLogMessage,
   AuditLogMeta,
   AuditLogTime,
-  AuditLogDetail,
 }
-export type { AuditLogEntryProps, AuditLogAction }

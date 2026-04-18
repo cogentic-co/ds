@@ -36,12 +36,7 @@ function UsageMeter({
 }: UsageMeterProps) {
   const ratio = limit > 0 ? used / limit : 0
   const percent = Math.min(100, Math.max(0, Math.round(ratio * 100)))
-  const tone =
-    ratio >= criticalAt
-      ? "critical"
-      : ratio >= warningAt
-        ? "warning"
-        : "normal"
+  const tone = ratio >= criticalAt ? "critical" : ratio >= warningAt ? "warning" : "normal"
 
   const barClass =
     tone === "critical"
@@ -66,9 +61,7 @@ function UsageMeter({
               {unit && <span className="ml-0.5">{unit}</span>}
             </span>
           </div>
-          {description && (
-            <p className="mt-0.5 text-muted-foreground text-xs">{description}</p>
-          )}
+          {description && <p className="mt-0.5 text-muted-foreground text-xs">{description}</p>}
         </div>
         {tone !== "normal" && cta}
       </div>
@@ -77,5 +70,5 @@ function UsageMeter({
   )
 }
 
-export { UsageMeter }
 export type { UsageMeterProps }
+export { UsageMeter }

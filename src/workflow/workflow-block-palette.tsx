@@ -143,5 +143,5 @@ function WorkflowBlockPalette({
   )
 }
 
-export { WORKFLOW_BLOCK_MIME, WorkflowBlockPalette }
 export type { WorkflowBlockDefinition, WorkflowBlockPaletteProps }
+export { WORKFLOW_BLOCK_MIME, WorkflowBlockPalette }

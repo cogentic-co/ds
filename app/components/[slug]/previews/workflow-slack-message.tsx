@@ -41,8 +41,8 @@ export default function WorkflowSlackMessagePreview() {
         >
           <WorkflowSlackMessageTitle>⚠️ High-risk VASP detected</WorkflowSlackMessageTitle>
           <WorkflowSlackMessageBody>
-            A counterparty transfer to an unhosted wallet has triggered the Travel Rule
-            threshold. Jurisdiction: Singapore. Risk score: 82/100.
+            A counterparty transfer to an unhosted wallet has triggered the Travel Rule threshold.
+            Jurisdiction: Singapore. Risk score: 82/100.
           </WorkflowSlackMessageBody>
           <WorkflowSlackMessageActions>
             <Button variant="secondary" size="sm">
@@ -67,8 +67,8 @@ export default function WorkflowSlackMessagePreview() {
         >
           <WorkflowSlackMessageTitle>✅ KYC review complete</WorkflowSlackMessageTitle>
           <WorkflowSlackMessageBody>
-            All 12 flagged transactions for the past 24 hours have been reviewed and cleared
-            by the compliance team. No escalations required.
+            All 12 flagged transactions for the past 24 hours have been reviewed and cleared by the
+            compliance team. No escalations required.
           </WorkflowSlackMessageBody>
         </WorkflowSlackMessage>
       </section>
