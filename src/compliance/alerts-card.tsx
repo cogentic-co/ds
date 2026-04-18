@@ -22,7 +22,7 @@ const TONE_CLASSES: Record<AlertTone, string> = {
   mint: "bg-mint text-mint-ink",
 }
 
-type AlertsCardProps = Omit<ComponentProps<"div">, "children"> & {
+type AlertsCardProps = Omit<ComponentProps<"div">, "children" | "onSelect"> & {
   alerts: AlertEntry[]
   title?: string
   viewAllLabel?: string

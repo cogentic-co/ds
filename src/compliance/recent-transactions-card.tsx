@@ -34,7 +34,7 @@ const STATUS_VARIANT: Record<
   pending: "neutral",
 }
 
-type RecentTransactionsCardProps = Omit<ComponentProps<"div">, "children"> & {
+type RecentTransactionsCardProps = Omit<ComponentProps<"div">, "children" | "onSelect"> & {
   transactions: Transaction[]
   title?: string
   subtitle?: string

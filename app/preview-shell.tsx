@@ -586,6 +586,8 @@ function buildNav(pathname: string): NavGroup[] {
             "transaction-flow-card",
             "risk-exposure-card",
             "awaiting-review-card",
+            "recent-transactions-card",
+            "alerts-card",
           ].map((slug) => ({
             label: toTitle(slug),
             icon: Component,

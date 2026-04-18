@@ -4,6 +4,7 @@ import { useState } from "react"
 import {
   AddressDisplay,
   AlertBanner,
+  AlertsCard,
   AppSidebar,
   AuditNote,
   AwaitingReviewCard,
@@ -20,6 +21,7 @@ import {
   FlowDiagram,
   JurisdictionCard,
   NetworkBadge,
+  RecentTransactionsCard,
   ReportExport,
   ReviewForm,
   ReviewerNotes,
@@ -904,6 +906,108 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
             { label: "Sanctions exposure", value: "$812K", tone: "destructive" },
             { label: "Mixer-adjacent", value: "$420K", tone: "highlight" },
             { label: "Unverified VASP", value: "$868K", tone: "muted" },
+          ]}
+        />
+      </div>
+    )
+  },
+
+  "recent-transactions-card": function RecentTransactionsCardPreview() {
+    const txs: Transaction[] = [
+      {
+        ...sampleRichTx,
+        id: "r1",
+        ref: "TX-1",
+        dir: "inbound",
+        amt: "158,420",
+        usd: "$158,420",
+        status: "verified",
+        risk: 22,
+        time: "Apr 17 · 14:32",
+        flags: [],
+        from: { ...sampleRichTx.from, lbl: "Binance" },
+        to: { ...sampleRichTx.to, lbl: "Kraken" },
+      },
+      {
+        ...sampleRichTx,
+        id: "r2",
+        ref: "TX-2",
+        time: "Apr 17 · 14:18",
+      },
+      {
+        ...sampleRichTx,
+        id: "r3",
+        ref: "TX-3",
+        dir: "inbound",
+        amt: "172,308",
+        usd: "$172,308",
+        status: "verified",
+        risk: 8,
+        time: "Apr 17 · 13:56",
+        flags: [],
+        from: { ...sampleRichTx.from, lbl: "Coinbase Prime" },
+        to: { ...sampleRichTx.to, lbl: "Fireblocks Vault" },
+      },
+      {
+        ...sampleRichTx,
+        id: "r4",
+        ref: "TX-4",
+        dir: "inbound",
+        amt: "812,250",
+        usd: "$812,250",
+        status: "blocked",
+        risk: 95,
+        time: "Apr 17 · 12:44",
+        flags: ["sanctions_match"],
+        from: { ...sampleRichTx.from, lbl: "Sanctioned address", verified: false },
+        to: { ...sampleRichTx.to, lbl: "Cogentic Treasury", verified: true },
+      },
+    ]
+    return (
+      <div className="max-w-2xl">
+        <RecentTransactionsCard
+          transactions={txs}
+          onViewAll={() => console.log("view all")}
+          onSelect={(tx) => console.log("select", tx.id)}
+        />
+      </div>
+    )
+  },
+
+  "alerts-card": function AlertsCardPreview() {
+    return (
+      <div className="max-w-xl">
+        <AlertsCard
+          onViewAll={() => console.log("view all")}
+          alerts={[
+            {
+              id: "a1",
+              tone: "blush",
+              title: "Sanctions match — TX-6621",
+              body: "Inbound 12.75 BTC from OFAC-listed address. Blocked automatically.",
+              time: "2m ago",
+            },
+            {
+              id: "a2",
+              tone: "highlight",
+              title: "High-value review — TX-0182",
+              body: "125K USDC to unverified counterparty. Awaiting Mia's approval.",
+              time: "8m ago",
+            },
+            {
+              id: "a3",
+              tone: "sky",
+              title: "Travel rule SLA breached",
+              body: "Notabene counterparty VASP has not responded in 12m (SLA: 5m).",
+              time: "14m ago",
+            },
+            {
+              id: "a4",
+              tone: "lilac",
+              title: "Rule updated",
+              body: "“Mixer exposure threshold” lowered to $10K by Priya R.",
+              time: "1h ago",
+            },
           ]}
         />
       </div>
