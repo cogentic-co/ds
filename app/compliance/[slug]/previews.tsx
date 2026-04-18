@@ -791,7 +791,11 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
             value: "3 tx · $66,200",
             hint: "All outbound, all <$50k",
           }}
-          related={sampleRichTx.related}
+          related={[
+            { id: "r1", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$45,000", time: "Apr 12" },
+            { id: "r2", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$12,800", time: "Mar 28" },
+            { id: "r3", lbl: "Unknown wallet", addr: "0x9b2a…611d", amt: "$8,400", time: "Mar 14" },
+          ]}
         />
       </div>
     )
@@ -872,6 +876,10 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           inboundPct={42}
           outboundPct={28}
           unattributedPct={30}
+          categories={[
+            { label: "Exchange", percent: 42, hint: "avg 4.2 min", tone: "solid" },
+            { label: "OTC", percent: 28, tone: "muted", pulse: true },
+          ]}
           topCounterparties={[
             { name: "Binance", value: "$480K", direction: "in" },
             { name: "Kraken", value: "$312K", direction: "out" },
@@ -907,6 +915,11 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
             { name: "High value (>$100K)", value: 4, tone: "blush" },
             { name: "Counterparty KYC missing", value: 3, tone: "sky" },
             { name: "Mixer exposure", value: 2, tone: "lilac" },
+          ]}
+          oldestInQueue={[
+            { id: "TX-4821", age: "2h 14m" },
+            { id: "TX-4829", age: "1h 48m" },
+            { id: "TX-4833", age: "1h 02m" },
           ]}
         />
       </div>

@@ -9,9 +9,15 @@ type ReviewRule = {
   tone: "highlight" | "blush" | "sky" | "lilac" | "mint"
 }
 
+type OldestItem = {
+  id: string
+  age: string
+}
+
 type AwaitingReviewCardProps = Omit<ComponentProps<"div">, "children"> & {
   rules: ReviewRule[]
   avgResolution?: string
+  oldestInQueue?: OldestItem[]
   title?: string
   subtitle?: string
 }
@@ -27,6 +33,7 @@ const toneBg: Record<ReviewRule["tone"], string> = {
 function AwaitingReviewCard({
   rules,
   avgResolution,
+  oldestInQueue,
   title = "Awaiting review",
   subtitle = "Transactions held by compliance rules",
   className,
@@ -45,13 +52,8 @@ function AwaitingReviewCard({
             key={r.name}
             className="grid grid-cols-[auto_1fr_auto] items-center gap-2.5"
           >
-            <span
-              className={cn(
-                "size-2 rounded-[2px]",
-                toneBg[r.tone],
-              )}
-            />
-            <span className="font-medium text-[13px]">{r.name}</span>
+            <span className={cn("size-2 rounded-[2px]", toneBg[r.tone])} />
+            <span className="truncate font-medium text-[13px]">{r.name}</span>
             <span className="flex items-center gap-2">
               <span className="inline-block h-1.5 w-14 overflow-hidden rounded-full bg-muted">
                 <span
@@ -68,14 +70,41 @@ function AwaitingReviewCard({
       </div>
 
       {avgResolution && (
-        <div className="mt-3.5 flex items-baseline justify-between border-border border-t border-dashed pt-2.5 text-muted-foreground text-xs">
-          <span>Avg resolution</span>
-          <span className="font-mono font-semibold">{avgResolution}</span>
+        <div
+          className={cn(
+            "mt-3.5 flex items-baseline justify-between border-border border-t border-dashed pt-2.5 text-[13px]",
+            oldestInQueue && "border-b pb-2.5",
+          )}
+        >
+          <span className="text-muted-foreground">Avg resolution</span>
+          <span className="font-semibold">{avgResolution}</span>
         </div>
+      )}
+
+      {oldestInQueue && oldestInQueue.length > 0 && (
+        <>
+          <div className="mt-3 mb-2 font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+            Oldest in queue
+          </div>
+          <div className="grid gap-1">
+            {oldestInQueue.map((item, i) => (
+              <div
+                key={item.id}
+                className={cn(
+                  "flex items-center justify-between text-[13px]",
+                  i === oldestInQueue.length - 1 && "text-muted-foreground",
+                )}
+              >
+                <span className="font-mono font-medium">{item.id}</span>
+                <span className="text-muted-foreground">{item.age}</span>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </RingCard>
   )
 }
 
 export { AwaitingReviewCard }
-export type { AwaitingReviewCardProps, ReviewRule }
+export type { AwaitingReviewCardProps, ReviewRule, OldestItem }

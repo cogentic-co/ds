@@ -478,7 +478,7 @@ function buildNav(pathname: string): NavGroup[] {
       id: "shells",
       icon: Layers,
       title: "Shells",
-      items: shellItems.map((slug) => ({
+      items: ["settings-layout"].map((slug) => ({
         label: toTitle(slug),
         icon: Component,
         href: `/shells/${slug}`,
@@ -489,12 +489,26 @@ function buildNav(pathname: string): NavGroup[] {
       id: "layouts",
       icon: LayoutDashboard,
       title: "Layouts",
-      items: ["transaction-detail-page", "dashboard-page"].map((slug) => ({
-        label: toTitle(slug),
-        icon: LayoutDashboard,
-        href: `/compliance/${slug}`,
-        isActive: pathname === `/compliance/${slug}`,
-      })),
+      items: [
+        {
+          label: "App Shell",
+          icon: LayoutDashboard,
+          href: "/shells/app-shell",
+          isActive: pathname === "/shells/app-shell",
+        },
+        {
+          label: "App Shell 2",
+          icon: LayoutDashboard,
+          href: "/shells/app-shell-2",
+          isActive: pathname === "/shells/app-shell-2",
+        },
+        ...["transaction-detail-page", "dashboard-page"].map((slug) => ({
+          label: toTitle(slug),
+          icon: LayoutDashboard,
+          href: `/compliance/${slug}`,
+          isActive: pathname === `/compliance/${slug}`,
+        })),
+      ],
     },
     {
       id: "charts",
