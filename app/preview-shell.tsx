@@ -6,7 +6,6 @@ import {
   Bot,
   Braces,
   Component,
-  Layers,
   LayoutDashboard,
   LayoutGrid,
   MessageSquare,
@@ -198,8 +197,6 @@ const componentGroups: SidebarGroupDef[] = [
 ]
 
 const complianceItems = ["case-card"]
-
-const shellItems = ["app-shell", "app-shell-2", "settings-layout"]
 
 const blockGroups: { label: string; items: string[] }[] = [
   {
@@ -473,17 +470,6 @@ function buildNav(pathname: string): NavGroup[] {
       })),
     },
     {
-      id: "shells",
-      icon: Layers,
-      title: "Shells",
-      items: ["settings-layout"].map((slug) => ({
-        label: toTitle(slug),
-        icon: Component,
-        href: `/shells/${slug}`,
-        isActive: pathname === `/shells/${slug}`,
-      })),
-    },
-    {
       id: "layouts",
       icon: LayoutDashboard,
       title: "Layouts",
@@ -499,6 +485,12 @@ function buildNav(pathname: string): NavGroup[] {
           icon: LayoutDashboard,
           href: "/shells/app-shell-2",
           isActive: pathname === "/shells/app-shell-2",
+        },
+        {
+          label: "Settings Layout",
+          icon: LayoutDashboard,
+          href: "/shells/settings-layout",
+          isActive: pathname === "/shells/settings-layout",
         },
         ...["transaction-detail-page", "dashboard-page"].map((slug) => ({
           label: toTitle(slug),
