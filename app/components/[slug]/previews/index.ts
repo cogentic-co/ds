@@ -31,7 +31,6 @@ import CodeBlockPreview from "./code-block"
 import CollapsiblePreview from "./collapsible"
 import ComboboxPreview from "./combobox"
 import CommandPreview from "./command"
-import CommentThreadPreview from "./comment-thread"
 import ComplianceScorePreview from "./compliance-score"
 import ComposedChartPreview from "./composed-chart"
 import ConfirmationPreview from "./confirmation"
@@ -42,7 +41,6 @@ import CopyButtonPreview from "./copy-button"
 import DataTablePreview from "./data-table"
 import DatePickerPreview from "./date-picker"
 import DeadlineCountdownPreview from "./deadline-countdown"
-import DescriptionListPreview from "./description-list"
 import DialogPreview from "./dialog"
 import DirectionPreview from "./direction"
 import DrawerPreview from "./drawer"
@@ -239,7 +237,6 @@ export const previews: Record<string, React.ComponentType> = {
   // New components
   tag: TagPreview,
   stat: StatPreview,
-  "description-list": DescriptionListPreview,
   "number-input": NumberInputPreview,
   timeline: TimelinePreview,
   "segmented-control": SegmentedControlPreview,
@@ -298,7 +295,6 @@ export const previews: Record<string, React.ComponentType> = {
   "model-selector": ModelSelectorPreview,
   // New components (v0.5.0)
   "audit-log": AuditLogPreview,
-  "comment-thread": CommentThreadPreview,
   "filter-bar": FilterBarPreview,
   "split-pane": SplitPanePreview,
   "step-progress": StepProgressPreview,

@@ -261,12 +261,6 @@
         "default": "./dist/components/command.js"
       }
     },
-    "./comment-thread": {
-      "import": {
-        "types": "./dist/components/comment-thread.d.ts",
-        "default": "./dist/components/comment-thread.js"
-      }
-    },
     "./compliance-score": {
       "import": {
         "types": "./dist/components/compliance-score.d.ts",
@@ -301,12 +295,6 @@
       "import": {
         "types": "./dist/components/deadline-countdown.d.ts",
         "default": "./dist/components/deadline-countdown.js"
-      }
-    },
-    "./description-list": {
-      "import": {
-        "types": "./dist/components/description-list.d.ts",
-        "default": "./dist/components/description-list.js"
       }
     },
     "./dialog": {

@@ -900,6 +900,11 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           bars={[12, 18, 14, 22, 28, 24, 31, 26, 34, 40, 36, 48, 42]}
           rangeStart="Apr 5"
           rangeEnd="Apr 17"
+          breakdown={[
+            { label: "Sanctions exposure", value: "$812K", tone: "destructive" },
+            { label: "Mixer-adjacent", value: "$420K", tone: "highlight" },
+            { label: "Unverified VASP", value: "$868K", tone: "muted" },
+          ]}
         />
       </div>
     )

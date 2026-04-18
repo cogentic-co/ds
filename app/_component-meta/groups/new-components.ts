@@ -242,56 +242,6 @@ import { PlusIcon } from "lucide-react"
   </AuditLogEntry>
 </AuditLog>`,
   },
-  "comment-thread": {
-    status: "new",
-    description:
-      "Threaded conversation UI with avatars, timestamps, and reply indentation. For case discussions and review comments.",
-    since: "0.5.0",
-    importStatement: `import {
-  CommentThread, Comment, CommentAvatar, CommentBody,
-  CommentHeader, CommentAuthor, CommentTime,
-  CommentContent, CommentActions,
-} from "@cogentic-co/ds/comment-thread"`,
-    dos: [
-      "Use for case discussions and review comments",
-      "Show avatar initials or images for each commenter",
-      "Use the reply prop for indented replies",
-      "Include timestamps on every comment",
-    ],
-    donts: [
-      "Don't use for audit logs — use AuditLog instead",
-      "Don't nest CommentThread components",
-      "Don't omit CommentAuthor — comments need attribution",
-    ],
-    codeExample: `import {
-  CommentThread, Comment, CommentAvatar,
-  CommentBody, CommentHeader, CommentAuthor,
-  CommentTime, CommentContent,
-} from "@cogentic-co/ds/comment-thread"
-
-<CommentThread>
-  <Comment>
-    <CommentAvatar>SC</CommentAvatar>
-    <CommentBody>
-      <CommentHeader>
-        <CommentAuthor>Sarah Chen</CommentAuthor>
-        <CommentTime>Mar 15, 9:30 AM</CommentTime>
-      </CommentHeader>
-      <CommentContent>Recommending escalation.</CommentContent>
-    </CommentBody>
-  </Comment>
-  <Comment reply>
-    <CommentAvatar>JL</CommentAvatar>
-    <CommentBody>
-      <CommentHeader>
-        <CommentAuthor>James Lee</CommentAuthor>
-        <CommentTime>Mar 15, 10:15 AM</CommentTime>
-      </CommentHeader>
-      <CommentContent>Agreed, updating risk level.</CommentContent>
-    </CommentBody>
-  </Comment>
-</CommentThread>`,
-  },
   "filter-bar": {
     status: "new",
     description:
