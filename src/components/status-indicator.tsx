@@ -65,5 +65,5 @@ function StatusIndicator({
   )
 }
 
-export { StatusIndicator, statusIndicatorVariants }
 export type { StatusIndicatorProps }
+export { StatusIndicator, statusIndicatorVariants }

@@ -58,5 +58,5 @@ function TimelineTime({ className, ...props }: React.ComponentProps<"time">) {
   )
 }
 
-export { Timeline, TimelineItem, TimelineDot, TimelineContent, TimelineTitle, TimelineTime }
-export type { TimelineItemProps, TimelineDotProps }
+export type { TimelineDotProps, TimelineItemProps }
+export { Timeline, TimelineContent, TimelineDot, TimelineItem, TimelineTime, TimelineTitle }

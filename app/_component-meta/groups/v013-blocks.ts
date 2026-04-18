@@ -12,10 +12,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Pair with separate Tabs/TabsContent — PageHeader only renders the trigger row",
       "Put primary CTA buttons in the actions slot",
     ],
-    donts: [
-      "Don't nest inside a Card — it manages its own divider",
-      "Don't use without a title",
-    ],
+    donts: ["Don't nest inside a Card — it manages its own divider", "Don't use without a title"],
     codeExample: `<PageHeader
   breadcrumbs={[{ label: "Cases", href: "/cases" }, { label: "CASE-1042" }]}
   title="High-risk VASP transfer"
@@ -101,9 +98,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Provide roles array to enable inline role changes",
       "Wire onResendInvite for invited members",
     ],
-    donts: [
-      "Don't use for non-team data — use DataTable for generic rows",
-    ],
+    donts: ["Don't use for non-team data — use DataTable for generic rows"],
     codeExample: `<TeamTable
   members={members}
   roles={[{ value: "admin", label: "Admin" }, { value: "viewer", label: "Viewer" }]}
@@ -121,9 +116,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Only pass the masked preview (e.g. 'sk_live_...ab42'); never store the full key client-side after creation",
       "Show scope summary so users know what each key can do",
     ],
-    donts: [
-      "Don't expose full key value after the create-once modal",
-    ],
+    donts: ["Don't expose full key value after the create-once modal"],
     codeExample: `<ApiKeyManager
   keys={keys}
   onCreate={() => openCreateModal()}
@@ -141,9 +134,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Use for billing limits, rate quotas, seat counts",
       "Provide cta when near limit for clear upgrade path",
     ],
-    donts: [
-      "Don't use for KPIs — use StatCard instead",
-    ],
+    donts: ["Don't use for KPIs — use StatCard instead"],
     codeExample: `<UsageMeter
   label="API requests"
   used={2_400_000}
@@ -162,9 +153,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Use semver-formatted versions (v1.2.3) so they sort correctly",
       "Tag entries for at-a-glance scanning",
     ],
-    donts: [
-      "Don't put every commit in the changelog — group meaningful changes per release",
-    ],
+    donts: ["Don't put every commit in the changelog — group meaningful changes per release"],
     codeExample: `<Changelog entries={[
   { version: "v1.2.0", date: "2026-04-09", tags: ["feature"], children: <p>Added compliance module.</p> },
 ]} />`,
@@ -179,9 +168,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Use for onboarding flows, multi-page forms, wizards",
       "Pass step.validate to block advancement on invalid input",
     ],
-    donts: [
-      "Don't use for >5 steps — split into separate pages",
-    ],
+    donts: ["Don't use for >5 steps — split into separate pages"],
     codeExample: `<MultiStepForm
   steps={[
     { id: "1", title: "Account", content: <Input placeholder="Name" /> },
@@ -200,9 +187,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Use for billing receipts, tax invoices, payment summaries",
       "Pass currency for clear total denomination",
     ],
-    donts: [
-      "Don't use for arbitrary data tables — use Table",
-    ],
+    donts: ["Don't use for arbitrary data tables — use Table"],
     codeExample: `<Invoice
   number="INV-2026-0042"
   issuedAt="9 April 2026"
@@ -225,9 +210,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Group nav items by domain (Workspace, Compliance, Billing)",
       "Pass linkComponent={Link} for Next.js client-side navigation",
     ],
-    donts: [
-      "Don't nest inside AppShell's main content column",
-    ],
+    donts: ["Don't nest inside AppShell's main content column"],
     codeExample: `<SettingsLayout
   nav={[
     { title: "Workspace", items: [{ label: "General", href: "/settings", isActive: true }, { label: "Members", href: "/settings/members" }] },
@@ -248,9 +231,7 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
       "Mark high-priority paths with edge.data.active = true",
       "Pair with TransactionDetail in a sidebar for entity details on click",
     ],
-    donts: [
-      "Don't render >100 nodes — performance degrades; aggregate or paginate",
-    ],
+    donts: ["Don't render >100 nodes — performance degrades; aggregate or paginate"],
     codeExample: `<EntityGraph
   nodes={[
     { id: "binance", type: "entity", position: { x: 0, y: 0 }, data: { label: "Binance", type: "vasp", riskScore: 32 } },

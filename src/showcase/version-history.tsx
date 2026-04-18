@@ -3,7 +3,13 @@
 import { motion, useInView } from "motion/react"
 import { type ComponentProps, useRef } from "react"
 import { Badge } from "../components/badge"
-import { Timeline, TimelineContent, TimelineDot, TimelineItem, TimelineTitle } from "../components/timeline"
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineTitle,
+} from "../components/timeline"
 import { cn } from "../lib/utils"
 import type { VersionHistoryVersion, VersionStatus } from "./types"
 
@@ -60,7 +66,7 @@ export function VersionHistory({ title, versions, className, ...props }: Version
                   <TimelineDot className={cn("size-4", STATUS_DOT[status])} />
                   <TimelineContent>
                     <div className="flex items-center gap-2">
-                      <TimelineTitle className="font-mono font-semibold tabular-nums text-foreground text-xs">
+                      <TimelineTitle className="font-mono font-semibold text-foreground text-xs tabular-nums">
                         {v.version}
                       </TimelineTitle>
                       <Badge
@@ -75,7 +81,9 @@ export function VersionHistory({ title, versions, className, ...props }: Version
                       </Badge>
                     </div>
 
-                    {v.summary && <p className="mt-1 text-foreground text-xs leading-snug">{v.summary}</p>}
+                    {v.summary && (
+                      <p className="mt-1 text-foreground text-xs leading-snug">{v.summary}</p>
+                    )}
 
                     {(v.author || v.date || v.range) && (
                       <p className="mt-1 text-muted-foreground text-xxs">
@@ -94,7 +102,7 @@ export function VersionHistory({ title, versions, className, ...props }: Version
                       <ul className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5">
                         {v.stats.map((s) => (
                           <li key={s.label} className="text-muted-foreground text-xxs">
-                            <span className="font-mono font-semibold tabular-nums text-foreground/80">
+                            <span className="font-mono font-semibold text-foreground/80 tabular-nums">
                               {s.value}
                             </span>{" "}
                             {s.label}

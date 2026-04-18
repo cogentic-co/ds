@@ -1,6 +1,6 @@
 "use client"
 
-import { HeatmapChart, type HeatmapCell } from "@/src/charts/heatmap-chart"
+import { type HeatmapCell, HeatmapChart } from "@/src/charts/heatmap-chart"
 
 export default function HeatmapChartPreview() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

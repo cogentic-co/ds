@@ -58,5 +58,5 @@ function SettingsCardGrid({ items, columns = 2, className, ...props }: SettingsC
   )
 }
 
+export type { SettingsCardGridItem, SettingsCardGridProps }
 export { SettingsCardGrid }
-export type { SettingsCardGridProps, SettingsCardGridItem }

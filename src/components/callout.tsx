@@ -35,5 +35,5 @@ function Callout({ variant = "info", className, children, ...props }: CalloutPro
   )
 }
 
-export { Callout, calloutVariants }
 export type { CalloutProps }
+export { Callout, calloutVariants }

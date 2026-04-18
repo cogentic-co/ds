@@ -78,5 +78,5 @@ function ArticleCard({
   )
 }
 
-export { ArticleCard }
 export type { ArticleCardProps }
+export { ArticleCard }

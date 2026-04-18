@@ -44,5 +44,5 @@ function SplitPaneDivider({ withHandle = true, className, ...props }: SplitPaneD
   )
 }
 
+export type { SplitPaneDirection, SplitPaneDividerProps, SplitPanePanelProps, SplitPaneProps }
 export { SplitPane, SplitPaneDivider, SplitPanePanel }
-export type { SplitPaneDividerProps, SplitPaneDirection, SplitPaneProps, SplitPanePanelProps }

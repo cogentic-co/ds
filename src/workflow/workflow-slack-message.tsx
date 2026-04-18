@@ -58,14 +58,9 @@ function WorkflowSlackMessage({
         </div>
       )}
       <div className="min-w-0 flex-1 border-border border-l-2 pl-3">
-        <div
-          data-slot="workflow-slack-message-header"
-          className="flex items-baseline gap-2"
-        >
+        <div data-slot="workflow-slack-message-header" className="flex items-baseline gap-2">
           <span className="truncate font-semibold text-foreground text-sm">{appName}</span>
-          {timestamp && (
-            <span className="shrink-0 text-muted-foreground text-xs">{timestamp}</span>
-          )}
+          {timestamp && <span className="shrink-0 text-muted-foreground text-xs">{timestamp}</span>}
         </div>
         <div className="mt-1 space-y-2">{children}</div>
       </div>
@@ -77,7 +72,7 @@ function WorkflowSlackMessageTitle({ className, ...props }: ComponentProps<"div"
   return (
     <div
       data-slot="workflow-slack-message-title"
-      className={cn("font-bold text-foreground text-base leading-tight", className)}
+      className={cn("font-bold text-base text-foreground leading-tight", className)}
       {...props}
     />
   )
@@ -103,10 +98,10 @@ function WorkflowSlackMessageActions({ className, ...props }: ComponentProps<"di
   )
 }
 
+export type { WorkflowSlackMessageProps }
 export {
   WorkflowSlackMessage,
   WorkflowSlackMessageActions,
   WorkflowSlackMessageBody,
   WorkflowSlackMessageTitle,
 }
-export type { WorkflowSlackMessageProps }

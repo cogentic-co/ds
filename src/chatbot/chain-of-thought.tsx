@@ -149,9 +149,9 @@ function ChainOfThoughtSearchResult({
 
 export {
   ChainOfThought,
-  ChainOfThoughtHeader,
   ChainOfThoughtContent,
-  ChainOfThoughtStep,
-  ChainOfThoughtSearchResults,
+  ChainOfThoughtHeader,
   ChainOfThoughtSearchResult,
+  ChainOfThoughtSearchResults,
+  ChainOfThoughtStep,
 }

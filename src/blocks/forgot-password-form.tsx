@@ -79,5 +79,5 @@ function ForgotPasswordForm({
   )
 }
 
-export { ForgotPasswordForm, forgotPasswordSchema }
 export type { ForgotPasswordFormProps, ForgotPasswordFormValues }
+export { ForgotPasswordForm, forgotPasswordSchema }

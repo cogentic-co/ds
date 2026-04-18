@@ -47,10 +47,16 @@ export function Profile({
     const otherBadges = badges.filter((b) => b !== primaryBadge)
 
     return (
-      <div ref={ref} data-slot="bento-profile" data-variant="verified" className={className} {...props}>
+      <div
+        ref={ref}
+        data-slot="bento-profile"
+        data-variant="verified"
+        className={className}
+        {...props}
+      >
         <div className="flex h-full flex-col justify-center p-4">
           <div className="rounded-lg border border-border bg-card shadow-sm">
-            <div className="flex items-center justify-between gap-2 border-b border-border bg-muted/30 px-3 py-2">
+            <div className="flex items-center justify-between gap-2 border-border border-b bg-muted/30 px-3 py-2">
               <div className="flex min-w-0 items-center gap-2.5">
                 <span className="flex size-8 items-center justify-center rounded-md border border-border bg-card text-foreground/70">
                   <Building width={14} height={14} />
@@ -63,7 +69,7 @@ export function Profile({
               {primaryBadge && (
                 <Badge
                   variant="secondary"
-                  className="shrink-0 whitespace-nowrap rounded-sm bg-success/10 text-xxs text-success"
+                  className="shrink-0 whitespace-nowrap rounded-sm bg-success/10 text-success text-xxs"
                 >
                   <Check width={9} height={9} className="mr-0.5" />
                   {primaryBadge.label}
@@ -82,7 +88,7 @@ export function Profile({
                     className="flex items-center justify-between gap-3 px-3 py-1.5 text-xxs"
                   >
                     <span className="text-muted-foreground">{stat.label}</span>
-                    <span className="font-mono font-semibold tabular-nums text-foreground/90">
+                    <span className="font-mono font-semibold text-foreground/90 tabular-nums">
                       {stat.value}
                     </span>
                   </motion.li>
@@ -91,7 +97,7 @@ export function Profile({
             )}
 
             {otherBadges.length > 0 && (
-              <div className="border-t border-border bg-muted/20 px-3 py-2">
+              <div className="border-border border-t bg-muted/20 px-3 py-2">
                 <p className="mb-1 font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
                   Compliance flags
                 </p>
@@ -119,7 +125,7 @@ export function Profile({
               </div>
             )}
 
-            <div className="flex items-center justify-between border-t border-border px-3 py-1.5 text-muted-foreground text-xxs">
+            <div className="flex items-center justify-between border-border border-t px-3 py-1.5 text-muted-foreground text-xxs">
               <span className="inline-flex items-center gap-1">
                 <Shield width={10} height={10} className="text-success" />
                 <span>Verified entry</span>
@@ -162,7 +168,7 @@ export function Profile({
         </div>
 
         {stats && (
-          <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-3">
+          <div className="mt-4 grid grid-cols-3 gap-3 border-border border-t pt-3">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <p className="font-semibold text-foreground text-xs">{stat.value}</p>

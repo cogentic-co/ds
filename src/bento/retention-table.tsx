@@ -55,11 +55,14 @@ export function RetentionTable({
               <span className="min-w-0 flex-1 truncate text-foreground text-xs">
                 {row.jurisdiction}
               </span>
-              <span className="font-mono font-semibold tabular-nums text-foreground/80 text-xxs">
+              <span className="font-mono font-semibold text-foreground/80 text-xxs tabular-nums">
                 {typeof row.years === "number" ? `${row.years} yrs` : row.years}
               </span>
               {row.status && (
-                <Badge variant="secondary" className={cn("rounded-sm text-xxs", STATUS_TONE[row.status])}>
+                <Badge
+                  variant="secondary"
+                  className={cn("rounded-sm text-xxs", STATUS_TONE[row.status])}
+                >
                   {row.status}
                 </Badge>
               )}

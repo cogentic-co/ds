@@ -95,5 +95,5 @@ function BarChart({
   )
 }
 
-export { BarChart }
 export type { BarChartProps }
+export { BarChart }

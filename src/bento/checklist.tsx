@@ -50,7 +50,9 @@ export function Checklist({ heading, items, className, ...props }: ChecklistProp
               <Item size="sm" variant="muted">
                 <ItemMedia
                   variant="icon"
-                  className={cn(item.checked ? "bg-success/15 text-success" : "bg-warning/15 text-warning")}
+                  className={cn(
+                    item.checked ? "bg-success/15 text-success" : "bg-warning/15 text-warning",
+                  )}
                 >
                   {item.checked ? (
                     <Check width={12} height={12} />

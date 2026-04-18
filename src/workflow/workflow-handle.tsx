@@ -58,5 +58,5 @@ function WorkflowHandle({ type, position, className, ...props }: WorkflowHandleP
   )
 }
 
-export { WorkflowHandle, HandleBoundary, handleBase }
 export type { WorkflowHandleProps }
+export { HandleBoundary, handleBase, WorkflowHandle }

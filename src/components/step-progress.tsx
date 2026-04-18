@@ -140,19 +140,19 @@ function StepProgressDescription({ className, ...props }: React.ComponentProps<"
   )
 }
 
+export type {
+  StepProgressIndicatorProps,
+  StepProgressItemProps,
+  StepProgressProps,
+  StepProgressStatus,
+}
 export {
   StepProgress,
-  StepProgressItem,
-  StepProgressIndicator,
   StepProgressConnector,
   StepProgressContent,
-  StepProgressTitle,
   StepProgressDescription,
+  StepProgressIndicator,
+  StepProgressItem,
+  StepProgressTitle,
   stepProgressVariants,
-}
-export type {
-  StepProgressProps,
-  StepProgressItemProps,
-  StepProgressIndicatorProps,
-  StepProgressStatus,
 }

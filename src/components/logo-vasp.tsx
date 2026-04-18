@@ -34,5 +34,5 @@ function LogoVasp({ size, className, ...props }: LogoVaspProps) {
   )
 }
 
-export { LogoVasp, logoVaspVariants }
 export type { LogoVaspProps }
+export { LogoVasp, logoVaspVariants }

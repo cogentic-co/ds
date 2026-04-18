@@ -247,5 +247,5 @@ function BgShader({ className, colors = DEFAULT_COLORS }: BgShaderProps) {
   )
 }
 
+export type { BgShaderProps, RGB, ThemeColors }
 export { BgShader }
-export type { BgShaderProps, ThemeColors, RGB }

@@ -26,4 +26,4 @@ function Suggestion({ className, ...props }: ComponentProps<"button">) {
   )
 }
 
-export { Suggestions, Suggestion }
+export { Suggestion, Suggestions }

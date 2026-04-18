@@ -168,5 +168,5 @@ function InlineCode({ className, ...props }: React.ComponentProps<"code">) {
   )
 }
 
-export { Blockquote, H1, H2, H3, H4, InlineCode, Large, Lead, List, Muted, P, Prose, Small }
 export type { ProseProps }
+export { Blockquote, H1, H2, H3, H4, InlineCode, Large, Lead, List, Muted, P, Prose, Small }

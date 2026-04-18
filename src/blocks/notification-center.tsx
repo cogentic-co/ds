@@ -47,10 +47,7 @@ function NotificationCenter({
 }: NotificationCenterProps) {
   const [filter, setFilter] = useState<"all" | "unread">("all")
 
-  const unreadCount = useMemo(
-    () => notifications.filter((n) => !n.read).length,
-    [notifications],
-  )
+  const unreadCount = useMemo(() => notifications.filter((n) => !n.read).length, [notifications])
 
   const visible = useMemo(
     () => (filter === "unread" ? notifications.filter((n) => !n.read) : notifications),
@@ -65,7 +62,7 @@ function NotificationCenter({
             <Button variant="ghost" size="icon-sm" className="relative">
               <Bell className="size-4" />
               {unreadCount > 0 && (
-                <span className="-top-0.5 -right-0.5 absolute flex size-4 items-center justify-center rounded-full bg-destructive font-bold text-[10px] text-destructive-foreground leading-none">
+                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-destructive font-bold text-[10px] text-destructive-foreground leading-none">
                   {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               )}
@@ -140,7 +137,7 @@ function NotificationCenter({
                           {n.description}
                         </span>
                       )}
-                      <span className="mt-1 block font-mono text-muted-foreground/70 text-[10px]">
+                      <span className="mt-1 block font-mono text-[10px] text-muted-foreground/70">
                         {timeAgo(n.timestamp)}
                       </span>
                     </span>
@@ -155,5 +152,5 @@ function NotificationCenter({
   )
 }
 
-export { NotificationCenter }
 export type { NotificationCenterProps, NotificationItem, NotificationSeverity }
+export { NotificationCenter }

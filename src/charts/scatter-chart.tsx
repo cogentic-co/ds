@@ -40,11 +40,7 @@ type ScatterChartProps = React.ComponentProps<"div"> & {
   empty?: React.ReactNode
 }
 
-function makeScatterGhostSeries(
-  xKey: string,
-  yKey: string,
-  sizeKey?: string,
-): ScatterSeries[] {
+function makeScatterGhostSeries(xKey: string, yKey: string, sizeKey?: string): ScatterSeries[] {
   return [
     {
       key: GHOST_KEY,
@@ -87,22 +83,10 @@ function ScatterChart({
         <RechartsScatterChart margin={{ left: 12, right: 12, top: 12, bottom: 12 }}>
           {showGrid && <CartesianGrid />}
           {showXAxis && (
-            <XAxis
-              dataKey={xKey}
-              type="number"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <XAxis dataKey={xKey} type="number" tickLine={false} axisLine={false} tickMargin={8} />
           )}
           {showYAxis && (
-            <YAxis
-              dataKey={yKey}
-              type="number"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis dataKey={yKey} type="number" tickLine={false} axisLine={false} tickMargin={8} />
           )}
           {sizeKey && <ZAxis dataKey={sizeKey} range={sizeRange} />}
           {!isEmpty && (
@@ -125,5 +109,5 @@ function ScatterChart({
   )
 }
 
-export { ScatterChart }
 export type { ScatterChartProps, ScatterSeries }
+export { ScatterChart }

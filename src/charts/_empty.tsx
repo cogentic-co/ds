@@ -44,11 +44,7 @@ type ChartEmptyOverlayProps = {
  * Pairs with ghost placeholder content rendered by the chart component
  * so the chart shell (axes, grid, container) stays visible.
  */
-function ChartEmptyOverlay({
-  icon,
-  label = "No data",
-  className,
-}: ChartEmptyOverlayProps) {
+function ChartEmptyOverlay({ icon, label = "No data", className }: ChartEmptyOverlayProps) {
   return (
     <div
       data-slot="chart-empty-overlay"
@@ -79,14 +75,7 @@ type ChartShellProps = React.ComponentProps<"div"> & {
  * pattern: every chart renders ghost data underneath and this shell floats
  * a `ChartEmptyOverlay` on top when `isEmpty` is true.
  */
-function ChartShell({
-  slot,
-  isEmpty,
-  empty,
-  className,
-  children,
-  ...props
-}: ChartShellProps) {
+function ChartShell({ slot, isEmpty, empty, className, children, ...props }: ChartShellProps) {
   return (
     <div
       data-slot={slot}
@@ -100,5 +89,5 @@ function ChartShell({
   )
 }
 
-export { ChartEmptyOverlay, ChartShell, GHOST_COLOR, GHOST_KEY, makeGhostData }
 export type { ChartEmptyOverlayProps, ChartShellProps, GhostShape }
+export { ChartEmptyOverlay, ChartShell, GHOST_COLOR, GHOST_KEY, makeGhostData }

@@ -2,7 +2,14 @@
 
 import { motion, useInView } from "motion/react"
 import { type ComponentProps, useRef } from "react"
-import { Item, ItemContent, ItemGroup, ItemMedia, ItemSeparator, ItemTitle } from "../components/item"
+import {
+  Item,
+  ItemContent,
+  ItemGroup,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+} from "../components/item"
 import { Icon } from "../lib/icon-map"
 import { cn } from "../lib/utils"
 import type { SourcesSource } from "./types"
@@ -66,7 +73,9 @@ export function Sources({ sources, output, className, ...props }: SourcesProps) 
               </ItemMedia>
               <ItemContent>
                 <ItemTitle className="text-xs">{output.label}</ItemTitle>
-                <p className="mt-0.5 text-muted-foreground text-xxs leading-snug">{output.detail}</p>
+                <p className="mt-0.5 text-muted-foreground text-xxs leading-snug">
+                  {output.detail}
+                </p>
               </ItemContent>
             </Item>
           </motion.div>

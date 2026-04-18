@@ -2,12 +2,11 @@
 
 import { AlertTriangle, ArrowLeftRight, Calendar } from "lucide-react"
 import type * as React from "react"
-
-import { cn, initials, timeAgo } from "../lib/utils"
 import { Badge } from "../components/badge"
 import { Card } from "../components/card"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../components/hover-card"
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "../components/item"
+import { cn, initials, timeAgo } from "../lib/utils"
 
 type CaseSla = "on_track" | "at_risk" | "overdue"
 type CasePriority = "p1" | "p2" | "p3"

@@ -14,27 +14,16 @@ type AuditNoteProps = ComponentProps<"div"> & {
   children: ReactNode
 }
 
-function AuditNote({
-  author,
-  timestamp,
-  decision,
-  children,
-  className,
-  ...props
-}: AuditNoteProps) {
+function AuditNote({ author, timestamp, decision, children, className, ...props }: AuditNoteProps) {
   return (
-    <div
-      data-slot="audit-note"
-      className={cn("flex gap-3", className)}
-      {...props}
-    >
-      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-muted-foreground text-[10px]">
+    <div data-slot="audit-note" className={cn("flex gap-3", className)} {...props}>
+      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted font-semibold text-[10px] text-muted-foreground">
         {author.avatar ?? initials(author.name)}
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-sm">{author.name}</span>
-          <span className="font-mono text-muted-foreground text-[11px]">{timestamp}</span>
+          <span className="font-mono text-[11px] text-muted-foreground">{timestamp}</span>
           {decision && <ComplianceStatusBadge status={decision} />}
         </div>
         <div className="mt-1 text-muted-foreground text-sm leading-relaxed">{children}</div>
@@ -43,5 +32,5 @@ function AuditNote({
   )
 }
 
-export { AuditNote }
 export type { AuditNoteProps }
+export { AuditNote }

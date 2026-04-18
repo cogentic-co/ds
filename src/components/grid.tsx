@@ -332,5 +332,5 @@ function Col({ className, span, start, end, rowSpan, rowStart, rowEnd, ...props 
   )
 }
 
-export { Grid, Col }
-export type { GridProps, ColProps }
+export type { ColProps, GridProps }
+export { Col, Grid }

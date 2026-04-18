@@ -3,7 +3,13 @@
 import { motion, useInView } from "motion/react"
 import { type ComponentProps, useRef } from "react"
 import { Badge } from "../components/badge"
-import { Timeline, TimelineContent, TimelineDot, TimelineItem, TimelineTitle } from "../components/timeline"
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineTitle,
+} from "../components/timeline"
 import { cn } from "../lib/utils"
 import type { FeedItem } from "./types"
 

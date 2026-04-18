@@ -78,5 +78,5 @@ function WorkflowInspector({
   )
 }
 
-export { WorkflowInspector }
 export type { WorkflowInspectorProps }
+export { WorkflowInspector }

@@ -11,11 +11,15 @@ const dotVariants = cva(
   {
     variants: {
       status: {
-        completed: "border-emerald-700 bg-emerald-700 text-white dark:border-emerald-400 dark:bg-emerald-400 dark:text-black",
-        current: "border-[#3B50A8] bg-card text-[#3B50A8] dark:border-[#8DA0FF] dark:text-[#8DA0FF]",
+        completed:
+          "border-emerald-700 bg-emerald-700 text-white dark:border-emerald-400 dark:bg-emerald-400 dark:text-black",
+        current:
+          "border-[#3B50A8] bg-card text-[#3B50A8] dark:border-[#8DA0FF] dark:text-[#8DA0FF]",
         upcoming: "border-border bg-card text-muted-foreground",
-        warning: "border-amber-700 bg-amber-700/15 text-amber-700 dark:border-amber-400 dark:bg-amber-400/15 dark:text-amber-400",
-        rejected: "border-red-700 bg-red-700/15 text-red-700 dark:border-red-400 dark:bg-red-400/15 dark:text-red-400",
+        warning:
+          "border-amber-700 bg-amber-700/15 text-amber-700 dark:border-amber-400 dark:bg-amber-400/15 dark:text-amber-400",
+        rejected:
+          "border-red-700 bg-red-700/15 text-red-700 dark:border-red-400 dark:bg-red-400/15 dark:text-red-400",
       },
     },
     defaultVariants: { status: "upcoming" },
@@ -91,7 +95,7 @@ function ComplianceTimeline({ steps, className, ...props }: ComplianceTimelinePr
                 <span className="mt-0.5 text-muted-foreground text-xs">{step.description}</span>
               )}
               {step.timestamp && (
-                <span className="mt-0.5 font-mono text-muted-foreground/70 text-[11px]">
+                <span className="mt-0.5 font-mono text-[11px] text-muted-foreground/70">
                   {step.timestamp}
                 </span>
               )}
@@ -103,5 +107,5 @@ function ComplianceTimeline({ steps, className, ...props }: ComplianceTimelinePr
   )
 }
 
-export { ComplianceTimeline }
 export type { ComplianceTimelineProps, ComplianceTimelineStep }
+export { ComplianceTimeline }

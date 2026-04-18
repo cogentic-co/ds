@@ -162,9 +162,8 @@ function MagicLinkMessage({
         <CardDescription>
           {description ?? (
             <>
-              We sent a sign-in link to{" "}
-              <span className="font-medium text-foreground">{email}</span>. Click the link in the
-              email to continue.
+              We sent a sign-in link to <span className="font-medium text-foreground">{email}</span>
+              . Click the link in the email to continue.
             </>
           )}
         </CardDescription>
@@ -197,5 +196,5 @@ function MagicLinkMessage({
   )
 }
 
-export { MagicLinkMessage }
 export type { MagicLinkMessageProps }
+export { MagicLinkMessage }

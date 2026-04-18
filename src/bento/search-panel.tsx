@@ -16,7 +16,13 @@ export interface SearchPanelProps extends ComponentProps<"div"> {
  * Mock search input with active filter chips. Filters with `active`
  * unset default to active; pass `active: false` for dimmed chips.
  */
-export function SearchPanel({ query, filters, resultCount, className, ...props }: SearchPanelProps) {
+export function SearchPanel({
+  query,
+  filters,
+  resultCount,
+  className,
+  ...props
+}: SearchPanelProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
@@ -39,7 +45,7 @@ export function SearchPanel({ query, filters, resultCount, className, ...props }
             {query || "Search audit log…"}
           </span>
           {resultCount && (
-            <span className="font-mono tabular-nums text-muted-foreground text-xxs">
+            <span className="font-mono text-muted-foreground text-xxs tabular-nums">
               {resultCount}
             </span>
           )}

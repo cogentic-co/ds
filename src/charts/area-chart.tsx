@@ -70,13 +70,7 @@ function AreaChart({
               key={key}
               dataKey={key}
               type="natural"
-              fill={
-                isEmpty
-                  ? GHOST_COLOR
-                  : gradient
-                    ? `url(#fill-${key})`
-                    : `var(--color-${key})`
-              }
+              fill={isEmpty ? GHOST_COLOR : gradient ? `url(#fill-${key})` : `var(--color-${key})`}
               fillOpacity={isEmpty ? 0.35 : 1}
               stroke={isEmpty ? GHOST_COLOR : `var(--color-${key})`}
               stackId={!isEmpty && stacked ? "stack" : undefined}
@@ -89,5 +83,5 @@ function AreaChart({
   )
 }
 
-export { AreaChart }
 export type { AreaChartProps }
+export { AreaChart }

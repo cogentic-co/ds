@@ -99,5 +99,5 @@ function InlineEdit({
   )
 }
 
-export { InlineEdit }
 export type { InlineEditProps }
+export { InlineEdit }

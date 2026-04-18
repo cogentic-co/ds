@@ -572,5 +572,5 @@ function AppShell({
 }
 
 export type { IconRailItem } from "./icon-rail"
-export { AppShell }
 export type { AppShellLogo, AppShellProps, AppShellUser, BreadcrumbSegment, NavGroup, NavItem }
+export { AppShell }

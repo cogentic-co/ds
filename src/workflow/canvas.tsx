@@ -37,5 +37,5 @@ function Canvas({ children, className, layout = "vertical", ...props }: CanvasPr
   )
 }
 
-export { Canvas }
 export type { CanvasProps }
+export { Canvas }

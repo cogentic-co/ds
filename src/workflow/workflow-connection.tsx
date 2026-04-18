@@ -83,12 +83,12 @@ const WorkflowConnectionDotted = createConnectionLine("dotted")
 const WorkflowConnectionDashed = createConnectionLine("dashed")
 const WorkflowConnectionAnimated = createConnectionLine("animated")
 
-export {
-  WorkflowConnection,
-  WorkflowConnectionDotted,
-  WorkflowConnectionDashed,
-  WorkflowConnectionAnimated,
-  workflowConnectionVariants,
-  createConnectionLine,
-}
 export type { WorkflowConnectionVariant }
+export {
+  createConnectionLine,
+  WorkflowConnection,
+  WorkflowConnectionAnimated,
+  WorkflowConnectionDashed,
+  WorkflowConnectionDotted,
+  workflowConnectionVariants,
+}

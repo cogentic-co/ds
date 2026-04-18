@@ -62,5 +62,5 @@ function SegmentedControl({
   )
 }
 
-export { SegmentedControl }
 export type { SegmentedControlProps }
+export { SegmentedControl }

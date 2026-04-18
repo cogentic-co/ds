@@ -145,5 +145,5 @@ function AsciiShader({ paused = false, className, ...props }: AsciiShaderProps) 
   )
 }
 
-export { AsciiShader }
 export type { AsciiShaderProps }
+export { AsciiShader }

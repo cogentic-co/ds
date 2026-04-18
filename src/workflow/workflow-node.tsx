@@ -93,9 +93,13 @@ function WorkflowNode({ handles, topSlot, bottomSlot, ...props }: WorkflowNodePr
   return <WorkflowNodeCard {...props} topSlot={resolvedTop} bottomSlot={resolvedBottom} />
 }
 
-export { WorkflowNode }
-export type { WorkflowNodeProps }
-
+export type {
+  WorkflowNodeCardProps,
+  WorkflowNodeIconProps,
+  WorkflowNodeState,
+  WorkflowNodeStatus,
+  WorkflowNodeStatusBadgeProps,
+} from "./workflow-node-card"
 // Re-export everything from workflow-node-card for backward compat so
 // consumers importing from "@cogentic-co/ds/workflow/workflow-node" still
 // get all the sub-components.
@@ -107,17 +111,12 @@ export {
   WorkflowNodeFooter,
   WorkflowNodeHeader,
   WorkflowNodeIcon,
-  workflowNodeIconVariants,
   WorkflowNodeRow,
   WorkflowNodeSeparator,
   WorkflowNodeStatusBadge,
   WorkflowNodeTitle,
+  workflowNodeIconVariants,
   workflowNodeVariants,
 } from "./workflow-node-card"
-export type {
-  WorkflowNodeCardProps,
-  WorkflowNodeIconProps,
-  WorkflowNodeState,
-  WorkflowNodeStatus,
-  WorkflowNodeStatusBadgeProps,
-} from "./workflow-node-card"
+export type { WorkflowNodeProps }
+export { WorkflowNode }

@@ -53,5 +53,5 @@ function StatCard({
   )
 }
 
-export { StatCard }
 export type { StatCardProps }
+export { StatCard }

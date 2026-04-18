@@ -152,5 +152,5 @@ function WorkspaceSwitcher({
   )
 }
 
+export type { Workspace, WorkspaceSwitcherProps }
 export { WorkspaceSwitcher }
-export type { WorkspaceSwitcherProps, Workspace }

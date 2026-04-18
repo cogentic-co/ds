@@ -10,5 +10,5 @@ function useWorkflowLayout() {
   return useContext(WorkflowContext)
 }
 
-export { WorkflowContext, useWorkflowLayout }
 export type { WorkflowLayout }
+export { useWorkflowLayout, WorkflowContext }

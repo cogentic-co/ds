@@ -102,5 +102,5 @@ function FileUpload({
   )
 }
 
-export { FileUpload }
 export type { FileUploadProps }
+export { FileUpload }

@@ -64,5 +64,5 @@ function Attachment({
   )
 }
 
-export { Attachments, Attachment }
 export type { AttachmentType }
+export { Attachment, Attachments }

@@ -224,7 +224,13 @@ function DataTable<TData>({
   }
 
   return (
-    <div data-slot="data-table" className={cn("overflow-x-auto rounded-md border", className)}>
+    <div
+      data-slot="data-table"
+      className={cn(
+        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -300,7 +306,13 @@ function DataTableVirtual<TData>({
   })
 
   return (
-    <div data-slot="data-table" className={cn("overflow-x-auto rounded-md border", className)}>
+    <div
+      data-slot="data-table"
+      className={cn(
+        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -758,15 +770,14 @@ function DataTableToolbar<TData>({
  * Exports
  * ──────────────────────────────────────────────────────────────────────────── */
 
-export {
-  DataTable,
-  DataTableColumnHeader,
-  DataTableFacetedFilter,
-  DataTablePagination,
-  DataTableToolbar,
-  DataTableViewOptions,
-  useDataTable,
-}
+// Re-export TanStack types consumers will need for column definitions
+export type {
+  ColumnDef,
+  ColumnFiltersState,
+  RowSelectionState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table"
 
 export type {
   DataTableColumnHeaderProps,
@@ -778,12 +789,12 @@ export type {
   DataTableViewOptionsProps,
   UseDataTableOptions,
 }
-
-// Re-export TanStack types consumers will need for column definitions
-export type {
-  ColumnDef,
-  ColumnFiltersState,
-  RowSelectionState,
-  SortingState,
-  VisibilityState,
-} from "@tanstack/react-table"
+export {
+  DataTable,
+  DataTableColumnHeader,
+  DataTableFacetedFilter,
+  DataTablePagination,
+  DataTableToolbar,
+  DataTableViewOptions,
+  useDataTable,
+}

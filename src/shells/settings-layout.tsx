@@ -45,7 +45,7 @@ function SettingsLayout({
           {nav.map((group, gi) => (
             <div key={group.title ?? `group-${gi}`} className="flex flex-col gap-1">
               {group.title && (
-                <span className="px-2 font-medium text-muted-foreground text-[11px] uppercase tracking-wide">
+                <span className="px-2 font-medium text-[11px] text-muted-foreground uppercase tracking-wide">
                   {group.title}
                 </span>
               )}
@@ -72,12 +72,10 @@ function SettingsLayout({
           ))}
         </nav>
       </aside>
-      <main className={cn("flex min-w-0 flex-1 flex-col gap-8", contentMaxWidth)}>
-        {children}
-      </main>
+      <main className={cn("flex min-w-0 flex-1 flex-col gap-8", contentMaxWidth)}>{children}</main>
     </div>
   )
 }
 
-export { SettingsLayout }
 export type { SettingsLayoutGroup, SettingsLayoutItem, SettingsLayoutProps }
+export { SettingsLayout }

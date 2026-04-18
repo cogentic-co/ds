@@ -30,7 +30,9 @@ export interface RuleChecklistProps extends ComponentProps<"div"> {
 
 const OPERATOR_RE = /\s(>=|<=|>|<|=|is|in|matches|exceeds|equals)\s/i
 
-function parseCondition(label: string): { operand: string; operator: string; value: string } | null {
+function parseCondition(
+  label: string,
+): { operand: string; operator: string; value: string } | null {
   const match = label.match(OPERATOR_RE)
   if (!match || match.index == null) return null
   return {
@@ -84,7 +86,7 @@ export function RuleChecklist({ heading, items, className, ...props }: RuleCheck
                         <>
                           <ItemTitle className="flex flex-wrap items-baseline gap-1.5 text-xs">
                             <span className="text-foreground">{condition.operand}</span>
-                            <span className="rounded-sm bg-primary/10 px-1 font-mono font-semibold tabular-nums text-primary text-xxs">
+                            <span className="rounded-sm bg-primary/10 px-1 font-mono font-semibold text-primary text-xxs tabular-nums">
                               {condition.operator}
                             </span>
                             <span className="font-mono text-foreground/90">{condition.value}</span>
@@ -112,7 +114,9 @@ export function RuleChecklist({ heading, items, className, ...props }: RuleCheck
                     transition={{ delay: 0.25 + i * 0.1, duration: 0.2 }}
                     className="ml-4 flex items-center gap-2 py-0.5"
                   >
-                    <span className="font-mono font-semibold text-muted-foreground/70 text-xxs">AND</span>
+                    <span className="font-mono font-semibold text-muted-foreground/70 text-xxs">
+                      AND
+                    </span>
                     <span className="h-px flex-1 bg-border/60" aria-hidden />
                   </motion.div>
                 )}
@@ -132,7 +136,10 @@ export function RuleChecklist({ heading, items, className, ...props }: RuleCheck
               Rule matches
             </Badge>
           ) : (
-            <Badge variant="secondary" className="rounded-sm bg-muted text-muted-foreground text-xxs">
+            <Badge
+              variant="secondary"
+              className="rounded-sm bg-muted text-muted-foreground text-xxs"
+            >
               Conditions not met
             </Badge>
           )}

@@ -30,16 +30,8 @@ type TransactionCardProps = ComponentProps<typeof Card> & {
   onClick?: () => void
 }
 
-function TransactionCard({
-  transaction: tx,
-  onClick,
-  className,
-  ...props
-}: TransactionCardProps) {
-  const ts =
-    typeof tx.timestamp === "string"
-      ? tx.timestamp
-      : timeAgo(tx.timestamp.toISOString())
+function TransactionCard({ transaction: tx, onClick, className, ...props }: TransactionCardProps) {
+  const ts = typeof tx.timestamp === "string" ? tx.timestamp : timeAgo(tx.timestamp.toISOString())
 
   return (
     <Card
@@ -109,5 +101,5 @@ function TransactionCard({
   )
 }
 
-export { TransactionCard }
 export type { TransactionCardProps }
+export { TransactionCard }

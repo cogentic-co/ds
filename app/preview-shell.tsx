@@ -6,7 +6,7 @@ import {
   Bot,
   Braces,
   Component,
-  Layers,
+  LayoutDashboard,
   LayoutGrid,
   MessageSquare,
   Moon,
@@ -115,7 +115,6 @@ const componentGroups: SidebarGroupDef[] = [
       "alert",
       "alert-dialog",
       "callout",
-      "comment-thread",
       "dialog",
       "drawer",
       "sheet",
@@ -163,7 +162,6 @@ const componentGroups: SidebarGroupDef[] = [
       "waffle-chart",
       "entity-header",
       "logo-vasp",
-      "description-list",
       "code-block",
       "copy-button",
       "kbd",
@@ -185,11 +183,13 @@ const componentGroups: SidebarGroupDef[] = [
       "streaming-cards",
     ],
   },
+  {
+    label: "DS refresh",
+    items: ["ring-card", "status-pill", "breathing-bar", "key-value-list", "kpi-card", "sparkline"],
+  },
 ]
 
 const complianceItems = ["case-card"]
-
-const shellItems = ["app-shell", "settings-layout"]
 
 const blockGroups: { label: string; items: string[] }[] = [
   {
@@ -258,7 +258,14 @@ const chartItems = [
 const workflowGroups: { label: string; items: string[] }[] = [
   {
     label: "Canvas & core",
-    items: ["workflow-canvas", "workflow-node", "workflow-node-card", "workflow-gate", "workflow-group", "workflow-handle"],
+    items: [
+      "workflow-canvas",
+      "workflow-node",
+      "workflow-node-card",
+      "workflow-gate",
+      "workflow-group",
+      "workflow-handle",
+    ],
   },
   {
     label: "Connections",
@@ -456,14 +463,20 @@ function buildNav(pathname: string): NavGroup[] {
       })),
     },
     {
-      id: "shells",
-      icon: Layers,
-      title: "Shells",
-      items: shellItems.map((slug) => ({
+      id: "layouts",
+      icon: LayoutDashboard,
+      title: "Layouts",
+      items: [
+        "app-shell",
+        "app-shell-2",
+        "settings-layout",
+        "transaction-detail-page",
+        "dashboard-page",
+      ].map((slug) => ({
         label: toTitle(slug),
-        icon: Component,
-        href: `/shells/${slug}`,
-        isActive: pathname === `/shells/${slug}`,
+        icon: LayoutDashboard,
+        href: `/layouts/${slug}`,
+        isActive: pathname === `/layouts/${slug}`,
       })),
     },
     {
@@ -507,7 +520,56 @@ function buildNav(pathname: string): NavGroup[] {
       groups: [
         {
           title: "Transaction",
-          items: ["transaction-card", "transaction-row", "transaction-detail"].map((slug) => ({
+          items: [
+            "transaction-card",
+            "transaction-row",
+            "transaction-detail",
+            "transaction-header",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Detail blocks",
+          items: [
+            "flag-callout",
+            "risk-score-hero",
+            "flow-diagram",
+            "event-timeline",
+            "counterparty-intel",
+            "reviewer-notes",
+            "travel-rule-card",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Dashboard cards",
+          items: [
+            "transaction-flow-card",
+            "risk-exposure-card",
+            "awaiting-review-card",
+            "recent-transactions-card",
+            "alerts-card",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "App shell",
+          items: ["app-sidebar"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,
@@ -646,6 +708,12 @@ export function PreviewShell({ children }: { children: React.ReactNode }) {
   const [search, setSearch] = useState("")
 
   const nav = useMemo(() => filterNav(buildNav(pathname), search), [pathname, search])
+
+  // Live-preview routes skip the dev PreviewShell so nested AppShells
+  // (which use fixed-positioned sidebars) don't cover the outer nav.
+  if (pathname?.startsWith("/preview-live/")) {
+    return <>{children}</>
+  }
 
   return (
     <AppShell

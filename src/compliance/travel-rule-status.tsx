@@ -12,10 +12,13 @@ const travelRuleStatusVariants = cva(
     variants: {
       status: {
         not_required: "border-border bg-muted text-muted-foreground",
-        pending: "border-amber-700/30 bg-amber-700/10 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400",
+        pending:
+          "border-amber-700/30 bg-amber-700/10 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400",
         sent: "border-[#3B50A8]/30 bg-[#3B50A8]/10 text-[#3B50A8] dark:border-[#8DA0FF]/30 dark:bg-[#8DA0FF]/10 dark:text-[#8DA0FF]",
-        received: "border-emerald-700/30 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400",
-        expired: "border-red-700/30 bg-red-700/10 text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-400",
+        received:
+          "border-emerald-700/30 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400",
+        expired:
+          "border-red-700/30 bg-red-700/10 text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-400",
       },
     },
     defaultVariants: { status: "not_required" },
@@ -45,13 +48,7 @@ type TravelRuleStatusProps = ComponentProps<"span"> &
     icon?: ReactNode
   }
 
-function TravelRuleStatus({
-  status,
-  label,
-  icon,
-  className,
-  ...props
-}: TravelRuleStatusProps) {
+function TravelRuleStatus({ status, label, icon, className, ...props }: TravelRuleStatusProps) {
   return (
     <span
       data-slot="travel-rule-status"
@@ -65,5 +62,5 @@ function TravelRuleStatus({
   )
 }
 
-export { TravelRuleStatus, travelRuleStatusVariants }
 export type { TravelRuleStatusProps }
+export { TravelRuleStatus, travelRuleStatusVariants }

@@ -18,6 +18,11 @@ const badgeVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         tagline:
           "mx-auto mb-2 flex h-auto rounded-full border-border bg-card px-3 font-semibold text-base text-foreground [a]:hover:bg-accent [a]:hover:text-accent-foreground",
+        mint: "bg-mint text-mint-ink",
+        sky: "bg-sky text-sky-ink",
+        blush: "bg-blush text-blush-ink",
+        lilac: "bg-lilac text-lilac-ink",
+        highlight: "bg-highlight text-highlight-ink",
       },
     },
     defaultVariants: {

@@ -44,17 +44,20 @@ type EntityGraphProps = ComponentProps<"div"> & {
 }
 
 function EntityNodeView({ data }: NodeProps<Node<EntityNodeData>>) {
-  const icon =
-    data.type === "vasp" ? <Building2 /> : data.type === "unhosted" ? <Wallet /> : null
+  const icon = data.type === "vasp" ? <Building2 /> : data.type === "unhosted" ? <Wallet /> : null
   return (
     <WorkflowNodeCard
       title={data.label}
       category={data.type === "vasp" ? "VASP" : data.type === "unhosted" ? "Wallet" : "Unknown"}
-      icon={icon && <span className="inline-flex size-8 items-center justify-center rounded-lg bg-muted text-muted-foreground [&>svg]:size-4">{icon}</span>}
+      icon={
+        icon && (
+          <span className="inline-flex size-8 items-center justify-center rounded-lg bg-muted text-muted-foreground [&>svg]:size-4">
+            {icon}
+          </span>
+        )
+      }
     >
-      {data.description && (
-        <p className="text-muted-foreground text-xs">{data.description}</p>
-      )}
+      {data.description && <p className="text-muted-foreground text-xs">{data.description}</p>}
       {(data.riskScore != null || data.jurisdiction) && (
         <div className="flex items-center gap-2 text-xs">
           {data.jurisdiction && (
@@ -84,13 +87,7 @@ function EntityNodeView({ data }: NodeProps<Node<EntityNodeData>>) {
 
 const nodeTypes = { entity: EntityNodeView }
 
-function EntityGraph({
-  nodes,
-  edges,
-  onNodeClick,
-  className,
-  ...props
-}: EntityGraphProps) {
+function EntityGraph({ nodes, edges, onNodeClick, className, ...props }: EntityGraphProps) {
   const decoratedEdges = edges.map<Edge>((e) => ({
     ...e,
     label: e.data?.label,
@@ -117,5 +114,5 @@ function EntityGraph({
   )
 }
 
-export { EntityGraph }
 export type { EntityEdgeData, EntityGraphProps, EntityNodeData, EntityType }
+export { EntityGraph }

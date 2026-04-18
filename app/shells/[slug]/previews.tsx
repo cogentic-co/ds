@@ -4,13 +4,18 @@ import {
   BarChart3,
   Briefcase,
   ClipboardList,
+  Flag,
   HelpCircle,
+  Inbox,
   LayoutDashboard,
+  List,
   Settings,
+  Shield,
   Users,
 } from "lucide-react"
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
+import { AppShell2 } from "@/src/shells/app-shell-2"
 import { SettingsLayout } from "@/src/shells/settings-layout"
 
 const sampleNav: NavGroup[] = [
@@ -52,27 +57,11 @@ const sampleFooterNav: NavGroup = {
 
 function AppShellPreview() {
   return (
-    <div className="h-[600px] overflow-hidden rounded-lg border">
-      <AppShell
-        logo={{
-          icon: <span className="font-bold text-sm">C</span>,
-          title: "Cogentic",
-          subtitle: "Design System",
-        }}
-        nav={sampleNav}
-        footerNav={sampleFooterNav}
-        user={{
-          name: "James Cooke",
-          email: "user@example.com",
-        }}
-        breadcrumbs={[{ label: "Overview", href: "#" }, { label: "Dashboard" }]}
-        onLogout={() => alert("Logged out")}
-      >
-        <div className="flex-1 rounded-xl bg-muted/50 p-8">
-          <p className="text-muted-foreground">Page content goes here</p>
-        </div>
-      </AppShell>
-    </div>
+    <iframe
+      src="/preview-live/app-shell"
+      title="App Shell live preview"
+      className="h-[700px] w-full overflow-hidden rounded-lg border border-border"
+    />
   )
 }
 
@@ -122,7 +111,18 @@ function SettingsLayoutPreview() {
   )
 }
 
+function AppShell2Preview() {
+  return (
+    <iframe
+      src="/preview-live/app-shell-2"
+      title="App Shell 2 live preview"
+      className="h-[700px] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border"
+    />
+  )
+}
+
 export const shellPreviews: Record<string, React.ComponentType> = {
   "app-shell": AppShellPreview,
+  "app-shell-2": AppShell2Preview,
   "settings-layout": SettingsLayoutPreview,
 }

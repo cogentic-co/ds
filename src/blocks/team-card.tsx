@@ -67,5 +67,5 @@ function TeamCard({ name, role, imageUrl, linkedinUrl, className, children }: Te
   )
 }
 
-export { TeamCard }
 export type { TeamCardProps }
+export { TeamCard }

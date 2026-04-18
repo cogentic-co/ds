@@ -2,13 +2,7 @@
 
 import { type ComponentProps, useCallback, useMemo } from "react"
 import { FilterBar, FilterChip, FilterClear } from "../components/filter-bar"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/select"
 import type { ChainNetwork, ComplianceStatus, TransactionDirection } from "./types"
 
 type TransactionFilters = {
@@ -107,7 +101,9 @@ function TransactionFilterBar({
           </SelectTrigger>
           <SelectContent>
             {Object.entries(STATUS_LABELS).map(([k, v]) => (
-              <SelectItem key={k} value={k}>{v}</SelectItem>
+              <SelectItem key={k} value={k}>
+                {v}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -126,7 +122,9 @@ function TransactionFilterBar({
           </SelectTrigger>
           <SelectContent>
             {Object.entries(DIRECTION_LABELS).map(([k, v]) => (
-              <SelectItem key={k} value={k}>{v}</SelectItem>
+              <SelectItem key={k} value={k}>
+                {v}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -145,17 +143,27 @@ function TransactionFilterBar({
           </SelectTrigger>
           <SelectContent>
             {networks.map((n) => (
-              <SelectItem key={n.value} value={n.value}>{n.label}</SelectItem>
+              <SelectItem key={n.value} value={n.value}>
+                {n.label}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
       )}
 
       {filters.dateFrom && (
-        <FilterChip label="From" value={filters.dateFrom} onRemove={() => update({ dateFrom: undefined })} />
+        <FilterChip
+          label="From"
+          value={filters.dateFrom}
+          onRemove={() => update({ dateFrom: undefined })}
+        />
       )}
       {filters.dateTo && (
-        <FilterChip label="To" value={filters.dateTo} onRemove={() => update({ dateTo: undefined })} />
+        <FilterChip
+          label="To"
+          value={filters.dateTo}
+          onRemove={() => update({ dateTo: undefined })}
+        />
       )}
 
       {hasFilters(filters) && <FilterClear onClick={clear} />}
@@ -163,5 +171,5 @@ function TransactionFilterBar({
   )
 }
 
-export { TransactionFilterBar }
 export type { TransactionFilters, TransactionFiltersProps }
+export { TransactionFilterBar }

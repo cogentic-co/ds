@@ -42,5 +42,5 @@ function Shimmer<T extends ElementType = "p">({
   )
 }
 
-export { Shimmer }
 export type { ShimmerProps }
+export { Shimmer }

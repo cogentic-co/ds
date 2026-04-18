@@ -55,5 +55,5 @@ function FeatureSection({
   )
 }
 
+export type { Feature, FeatureSectionProps }
 export { FeatureSection }
-export type { FeatureSectionProps, Feature }

@@ -267,12 +267,5 @@ const WorkflowEdge = {
   Temporary: TemporaryEdge,
 }
 
-export {
-  AnimatedEdge,
-  DashedEdge,
-  DottedEdge,
-  SolidEdge,
-  TemporaryEdge,
-  WorkflowEdge,
-}
 export type { WorkflowEdgeData, WorkflowEdgeProps, WorkflowEdgeVariant }
+export { AnimatedEdge, DashedEdge, DottedEdge, SolidEdge, TemporaryEdge, WorkflowEdge }

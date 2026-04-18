@@ -15,5 +15,5 @@ function WorkflowToolbar({ className, ...props }: WorkflowToolbarProps) {
   )
 }
 
-export { WorkflowToolbar }
 export type { WorkflowToolbarProps }
+export { WorkflowToolbar }

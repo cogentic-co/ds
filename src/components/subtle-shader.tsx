@@ -136,5 +136,5 @@ function SubtleShader({
   )
 }
 
-export { SubtleShader }
 export type { Palette as SubtleShaderPalette, SubtleShaderProps }
+export { SubtleShader }

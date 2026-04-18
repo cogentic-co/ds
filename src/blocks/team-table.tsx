@@ -11,21 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../components/dropdown-menu"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/select"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/table"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/table"
 import { cn, initials, timeAgo } from "../lib/utils"
 
 type TeamMemberStatus = "active" | "invited" | "suspended"
@@ -53,9 +40,11 @@ type TeamTableProps = ComponentProps<"div"> & {
 }
 
 const STATUS_BADGE: Record<TeamMemberStatus, string> = {
-  active: "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:bg-emerald-400/10 dark:text-emerald-400",
+  active:
+    "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:bg-emerald-400/10 dark:text-emerald-400",
   invited: "border-border bg-muted text-muted-foreground",
-  suspended: "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400",
+  suspended:
+    "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400",
 }
 
 function TeamTable({
@@ -69,7 +58,11 @@ function TeamTable({
   ...props
 }: TeamTableProps) {
   return (
-    <div data-slot="team-table" className={cn("rounded-xl border border-border", className)} {...props}>
+    <div
+      data-slot="team-table"
+      className={cn("rounded-xl border border-border", className)}
+      {...props}
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -168,5 +161,5 @@ function TeamTable({
   )
 }
 
-export { TeamTable }
 export type { TeamMember, TeamMemberStatus, TeamTableProps }
+export { TeamTable }

@@ -292,13 +292,13 @@ function ModelSelectorSeparator({ className, ...props }: ComponentProps<"div">) 
 
 export {
   ModelSelector,
-  ModelSelectorTrigger,
   ModelSelectorContent,
-  ModelSelectorInput,
-  ModelSelectorList,
-  ModelSelectorGroup,
-  ModelSelectorItem,
   ModelSelectorEmpty,
+  ModelSelectorGroup,
+  ModelSelectorInput,
+  ModelSelectorItem,
+  ModelSelectorList,
   ModelSelectorSeparator,
+  ModelSelectorTrigger,
   useModelSelector,
 }

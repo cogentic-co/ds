@@ -166,16 +166,16 @@ function QueueItemActions({ className, ...props }: ComponentProps<"div">) {
   )
 }
 
+export type { QueueItemStatus }
 export {
-  QueueSection,
-  QueueSectionTrigger,
-  QueueSectionLabel,
-  QueueList,
   QueueItem,
-  QueueItemIndicator,
+  QueueItemActions,
   QueueItemContent,
   QueueItemDescription,
-  QueueItemActions,
+  QueueItemIndicator,
+  QueueList,
+  QueueSection,
+  QueueSectionLabel,
+  QueueSectionTrigger,
   queueItemIndicatorVariants,
 }
-export type { QueueItemStatus }

@@ -318,13 +318,13 @@ function PromptInputFiles({ className, ...props }: ComponentProps<"div">) {
 
 export {
   PromptInput,
-  PromptInputHeader,
+  PromptInputAttachButton,
   PromptInputBody,
+  PromptInputFiles,
   PromptInputFooter,
+  PromptInputHeader,
+  PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
-  PromptInputAttachButton,
-  PromptInputSubmit,
-  PromptInputFiles,
   usePromptInput,
 }

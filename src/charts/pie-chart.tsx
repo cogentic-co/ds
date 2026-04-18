@@ -106,5 +106,5 @@ function PieChart({
   )
 }
 
-export { PieChart }
 export type { PieChartProps }
+export { PieChart }

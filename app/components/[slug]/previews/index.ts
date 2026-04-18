@@ -5,10 +5,6 @@ import AlertDialogPreview from "./alert-dialog"
 import AnimatedCounterPreview from "./animated-counter"
 import ApprovalActionsPreview from "./approval-actions"
 import AreaChartPreview from "./area-chart"
-import ComposedChartPreview from "./composed-chart"
-import FunnelChartPreview from "./funnel-chart"
-import HeatmapChartPreview from "./heatmap-chart"
-import ScatterChartPreview from "./scatter-chart"
 import AsciiShaderPreview from "./ascii-shader"
 import AspectRatioPreview from "./aspect-ratio"
 import AttachmentsPreview from "./attachments"
@@ -19,6 +15,7 @@ import BarChartPreview from "./bar-chart"
 import BgShaderPreview from "./bg-shader"
 import BlockyShaderPreview from "./blocky-shader"
 import BreadcrumbPreview from "./breadcrumb"
+import BreathingBarPreview from "./breathing-bar"
 import ButtonPreview from "./button"
 import ButtonGroupPreview from "./button-group"
 import CalendarPreview from "./calendar"
@@ -34,8 +31,8 @@ import CodeBlockPreview from "./code-block"
 import CollapsiblePreview from "./collapsible"
 import ComboboxPreview from "./combobox"
 import CommandPreview from "./command"
-import CommentThreadPreview from "./comment-thread"
 import ComplianceScorePreview from "./compliance-score"
+import ComposedChartPreview from "./composed-chart"
 import ConfirmationPreview from "./confirmation"
 import ContextPreview from "./context"
 import ContextMenuPreview from "./context-menu"
@@ -44,19 +41,21 @@ import CopyButtonPreview from "./copy-button"
 import DataTablePreview from "./data-table"
 import DatePickerPreview from "./date-picker"
 import DeadlineCountdownPreview from "./deadline-countdown"
-import DescriptionListPreview from "./description-list"
 import DialogPreview from "./dialog"
 import DirectionPreview from "./direction"
 import DrawerPreview from "./drawer"
 import DropdownMenuPreview from "./dropdown-menu"
 import EmptyPreview from "./empty"
+import EntityGraphPreview from "./entity-graph"
 import EntityHeaderPreview from "./entity-header"
 import FadeInPreview from "./fade-in"
 import FieldPreview from "./field"
 import FileUploadPreview from "./file-upload"
 import FilterBarPreview from "./filter-bar"
 import FormPreview from "./form"
+import FunnelChartPreview from "./funnel-chart"
 import GridPreview from "./grid"
+import HeatmapChartPreview from "./heatmap-chart"
 import HoverCardPreview from "./hover-card"
 import InlineCitationPreview from "./inline-citation"
 import InlineEditPreview from "./inline-edit"
@@ -65,6 +64,8 @@ import InputGroupPreview from "./input-group"
 import InputOTPPreview from "./input-otp"
 import ItemPreview from "./item"
 import KbdPreview from "./kbd"
+import KeyValueListPreview from "./key-value-list"
+import KpiCardPreview from "./kpi-card"
 import LabelPreview from "./label"
 import LineChartPreview from "./line-chart"
 import LoadingOverlayPreview from "./loading-overlay"
@@ -88,7 +89,9 @@ import RadialChartPreview from "./radial-chart"
 import RadioGroupPreview from "./radio-group"
 import ReasoningPreview from "./reasoning"
 import ResizablePreview from "./resizable"
+import RingCardPreview from "./ring-card"
 import RiskGaugePreview from "./risk-gauge"
+import ScatterChartPreview from "./scatter-chart"
 import ScrollAreaPreview from "./scroll-area"
 import SearchInputPreview from "./search-input"
 import SegmentedControlPreview from "./segmented-control"
@@ -100,10 +103,12 @@ import SkeletonPreview from "./skeleton"
 import SliderPreview from "./slider"
 import SonnerPreview from "./sonner"
 import SourcesPreview from "./sources"
+import SparklinePreview from "./sparkline"
 import SpinnerPreview from "./spinner"
 import SplitPanePreview from "./split-pane"
 import StatPreview from "./stat"
 import StatusIndicatorPreview from "./status-indicator"
+import StatusPillPreview from "./status-pill"
 import StepProgressPreview from "./step-progress"
 import StreamingCardsPreview from "./streaming-cards"
 import StripedBarPreview from "./striped-bar"
@@ -124,7 +129,6 @@ import TypewriterPreview from "./typewriter"
 import TypographyPreview from "./typography"
 import VisuallyHiddenPreview from "./visually-hidden"
 import WaffleChartPreview from "./waffle-chart"
-import EntityGraphPreview from "./entity-graph"
 import WorkflowBlockPalettePreview from "./workflow-block-palette"
 import WorkflowCanvasPreview from "./workflow-canvas"
 import WorkflowConnectionPreview from "./workflow-connection"
@@ -233,7 +237,6 @@ export const previews: Record<string, React.ComponentType> = {
   // New components
   tag: TagPreview,
   stat: StatPreview,
-  "description-list": DescriptionListPreview,
   "number-input": NumberInputPreview,
   timeline: TimelinePreview,
   "segmented-control": SegmentedControlPreview,
@@ -246,6 +249,13 @@ export const previews: Record<string, React.ComponentType> = {
   "visually-hidden": VisuallyHiddenPreview,
   direction: DirectionPreview,
   "waffle-chart": WaffleChartPreview,
+  // DS refresh
+  "ring-card": RingCardPreview,
+  "status-pill": StatusPillPreview,
+  "breathing-bar": BreathingBarPreview,
+  "key-value-list": KeyValueListPreview,
+  "kpi-card": KpiCardPreview,
+  sparkline: SparklinePreview,
   // Workflow
   "workflow-canvas": WorkflowCanvasPreview,
   "workflow-node": WorkflowNodePreview,
@@ -285,7 +295,6 @@ export const previews: Record<string, React.ComponentType> = {
   "model-selector": ModelSelectorPreview,
   // New components (v0.5.0)
   "audit-log": AuditLogPreview,
-  "comment-thread": CommentThreadPreview,
   "filter-bar": FilterBarPreview,
   "split-pane": SplitPanePreview,
   "step-progress": StepProgressPreview,

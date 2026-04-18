@@ -96,5 +96,5 @@ function IconRail({
   )
 }
 
-export { IconRail }
 export type { IconRailItem, IconRailProps }
+export { IconRail }
