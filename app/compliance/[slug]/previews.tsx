@@ -6,6 +6,7 @@ import {
   AlertBanner,
   AppSidebar,
   AuditNote,
+  AwaitingReviewCard,
   CaseCard,
   type ComplianceStatus,
   ComplianceStatusBadge,
@@ -13,6 +14,7 @@ import {
   type ComplianceTimelineStep,
   CounterpartyCard,
   CounterpartyIntel,
+  DashboardPage,
   EventTimeline,
   FlagCallout,
   FlowDiagram,
@@ -21,6 +23,7 @@ import {
   ReportExport,
   ReviewForm,
   ReviewerNotes,
+  RiskExposureCard,
   RiskScoreHero,
   RiskScoreInline,
   SanctionsMatch,
@@ -31,6 +34,7 @@ import {
   TransactionDetailPage,
   TransactionFilterBar,
   type TransactionFilters,
+  TransactionFlowCard,
   TransactionHeader,
   TransactionRow,
   TravelRuleCard,
@@ -379,20 +383,66 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   },
 
   "transaction-detail": function TransactionDetailPreview() {
+    const richTx = {
+      ...sampleTx,
+      amount: "125,000",
+      asset: "USDC",
+      direction: "outbound" as const,
+      fiatValue: "$125,000",
+      complianceStatus: "flagged" as const,
+      travelRuleStatus: "pending" as const,
+      hash: "0x7f3a000000000000000000000000000000c291",
+      blockNumber: 19_284_571,
+      confirmations: 128,
+      fee: "0.00124 USDC",
+      timestamp: "Apr 17 · 14:18",
+      from: {
+        address: "0x742d000000000000000000000000000000f44e",
+        label: "Cogentic Treasury",
+      },
+      to: {
+        address: "0x9b2a000000000000000000000000000000c11d",
+        label: "Unknown wallet",
+      },
+      riskScore: 78,
+      flags: ["high_value", "unverified_counterparty"],
+    }
     return (
-      <div className="max-w-lg">
-        <TransactionDetail
-          transaction={sampleTx}
-          explorerUrl="#"
-          actions={
-            <>
-              <Button variant="outline" size="sm">
-                Reject
-              </Button>
-              <Button size="sm">Accept</Button>
-            </>
-          }
-        />
+      <div className="space-y-8">
+        <Section title="Panel (slide-in side panel, lifted shadow)">
+          <div className="max-w-md">
+            <TransactionDetail
+              variant="panel"
+              transaction={richTx}
+              explorerUrl="#"
+              onClose={() => console.log("close")}
+              onApprove={() => console.log("approve")}
+              onEscalate={() => console.log("escalate")}
+              onMore={() => console.log("more")}
+            />
+          </div>
+        </Section>
+        <Section title="Card (sitting on page)">
+          <div className="max-w-md">
+            <TransactionDetail
+              variant="card"
+              transaction={richTx}
+              explorerUrl="#"
+              onApprove={() => console.log("approve")}
+              onEscalate={() => console.log("escalate")}
+            />
+          </div>
+        </Section>
+        <Section title="Inline (no chrome — embed in your own container)">
+          <div className="max-w-md">
+            <TransactionDetail
+              transaction={richTx}
+              explorerUrl="#"
+              onApprove={() => console.log("approve")}
+              onEscalate={() => console.log("escalate")}
+            />
+          </div>
+        </Section>
       </div>
     )
   },
@@ -808,6 +858,76 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           onApprove={() => console.log("approve")}
           onEscalate={() => console.log("escalate")}
           onSubmitNote={(body) => console.log("note", body)}
+        />
+      </div>
+    )
+  },
+
+  "transaction-flow-card": function TransactionFlowCardPreview() {
+    return (
+      <div className="max-w-md">
+        <TransactionFlowCard
+          inboundUsd="$1.42M"
+          outboundUsd="$980K"
+          inboundPct={42}
+          outboundPct={28}
+          unattributedPct={30}
+          topCounterparties={[
+            { name: "Binance", value: "$480K", direction: "in" },
+            { name: "Kraken", value: "$312K", direction: "out" },
+            { name: "Coinbase Prime", value: "$280K", direction: "in" },
+          ]}
+        />
+      </div>
+    )
+  },
+
+  "risk-exposure-card": function RiskExposureCardPreview() {
+    return (
+      <div className="max-w-md">
+        <RiskExposureCard
+          value="$2.1M"
+          delta="−8.4%"
+          deltaTone="positive"
+          bars={[12, 18, 14, 22, 28, 24, 31, 26, 34, 40, 36, 48, 42]}
+          rangeStart="Apr 5"
+          rangeEnd="Apr 17"
+        />
+      </div>
+    )
+  },
+
+  "awaiting-review-card": function AwaitingReviewCardPreview() {
+    return (
+      <div className="max-w-md">
+        <AwaitingReviewCard
+          avgResolution="4h 12m"
+          rules={[
+            { name: "Travel rule incomplete", value: 7, tone: "highlight" },
+            { name: "High value (>$100K)", value: 4, tone: "blush" },
+            { name: "Counterparty KYC missing", value: 3, tone: "sky" },
+            { name: "Mixer exposure", value: 2, tone: "lilac" },
+          ]}
+        />
+      </div>
+    )
+  },
+
+  "dashboard-page": function DashboardPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background">
+        <DashboardPage
+          tagline={
+            <>
+              <span className="rounded-[3px] bg-highlight px-1 py-px font-semibold text-highlight-ink">
+                3 items
+              </span>{" "}
+              need your eyes before end of day · queue cleared{" "}
+              <span className="font-mono font-semibold">68%</span> faster than last week
+            </>
+          }
+          onExport={() => console.log("export")}
+          onNewCase={() => console.log("new case")}
         />
       </div>
     )

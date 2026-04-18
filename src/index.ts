@@ -189,5 +189,6 @@ export {
 export { cn, timeAgo } from "./lib/utils"
 // Shells
 export * from "./shells/app-shell"
+export * from "./shells/app-shell-2"
 // Workflow is NOT re-exported from main entry to avoid requiring @xyflow/react.
 // Import from "@cogentic-co/ds/workflow" instead.

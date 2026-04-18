@@ -7,6 +7,7 @@ import {
   Braces,
   Component,
   Layers,
+  LayoutDashboard,
   LayoutGrid,
   MessageSquare,
   Moon,
@@ -200,7 +201,7 @@ const componentGroups: SidebarGroupDef[] = [
 
 const complianceItems = ["case-card"]
 
-const shellItems = ["app-shell", "settings-layout"]
+const shellItems = ["app-shell", "app-shell-2", "settings-layout"]
 
 const blockGroups: { label: string; items: string[] }[] = [
   {
@@ -485,6 +486,17 @@ function buildNav(pathname: string): NavGroup[] {
       })),
     },
     {
+      id: "layouts",
+      icon: LayoutDashboard,
+      title: "Layouts",
+      items: ["transaction-detail-page", "dashboard-page"].map((slug) => ({
+        label: toTitle(slug),
+        icon: LayoutDashboard,
+        href: `/compliance/${slug}`,
+        isActive: pathname === `/compliance/${slug}`,
+      })),
+    },
+    {
       id: "charts",
       icon: BarChart3,
       title: "Charts",
@@ -530,7 +542,6 @@ function buildNav(pathname: string): NavGroup[] {
             "transaction-row",
             "transaction-detail",
             "transaction-header",
-            "transaction-detail-page",
           ].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
@@ -549,6 +560,20 @@ function buildNav(pathname: string): NavGroup[] {
             "counterparty-intel",
             "reviewer-notes",
             "travel-rule-card",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Dashboard cards",
+          items: [
+            "transaction-flow-card",
+            "risk-exposure-card",
+            "awaiting-review-card",
           ].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
