@@ -4,6 +4,7 @@ import { useState } from "react"
 import {
   AddressDisplay,
   AlertBanner,
+  AppSidebar,
   AuditNote,
   CaseCard,
   type ComplianceStatus,
@@ -11,20 +12,31 @@ import {
   ComplianceTimeline,
   type ComplianceTimelineStep,
   CounterpartyCard,
+  CounterpartyIntel,
+  EventTimeline,
+  FlagCallout,
+  FlowDiagram,
   JurisdictionCard,
   NetworkBadge,
   ReportExport,
   ReviewForm,
+  ReviewerNotes,
+  RiskScoreHero,
   RiskScoreInline,
   SanctionsMatch,
+  type Transaction,
   TransactionCard,
   type TransactionData,
   TransactionDetail,
+  TransactionDetailPage,
   TransactionFilterBar,
   type TransactionFilters,
+  TransactionHeader,
   TransactionRow,
+  TravelRuleCard,
   TravelRuleStatus,
 } from "@/src/compliance"
+import { SidebarProvider } from "@/src/components/sidebar"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
 import { Section } from "../../components/[slug]/previews/_shared"
@@ -141,6 +153,75 @@ const timelineSteps: ComplianceTimelineStep[] = [
   },
   { id: "5", label: "Decision", status: "upcoming" },
 ]
+
+// ── Sample Transaction (DS refresh fixtures) ──
+
+const sampleRichTx: Transaction = {
+  id: "tx-2026-04-17-0182",
+  ref: "TX-2026-04-17-0182",
+  dir: "outbound",
+  amt: "125,000",
+  asset: "USDC",
+  usd: "$125,000.00",
+  fee: "$1.82",
+  net: "ETH",
+  chainId: 1,
+  hash: "0x9f3b8c4e2d1a5678f0abcdef1234567890abcdef1234567890abcdef12345678",
+  block: 21394012,
+  confirmations: 18,
+  gasUsed: 42_800,
+  nonce: 217,
+  status: "review",
+  risk: 78,
+  time: "Apr 17, 2026 · 14:32 UTC",
+  flags: ["high_value", "sanctions_adjacent", "new_counterparty"],
+  from: {
+    lbl: "Treasury Ops",
+    addr: "0x1234567890abcdef1234567890abcdef12345678",
+    type: "Internal wallet",
+    verified: true,
+  },
+  to: {
+    lbl: "Helix Labs",
+    addr: "0xabcdef1234567890abcdef1234567890abcdef12",
+    type: "External · unverified",
+    verified: false,
+  },
+  travelRule: "sent",
+  riskDrivers: [
+    { label: "Counterparty new to us", weight: 22, variant: "blush" },
+    { label: "Value above threshold", weight: 18, variant: "highlight" },
+    { label: "Mixer proximity (2 hops)", weight: 26, variant: "blush" },
+    { label: "Jurisdiction risk (PA)", weight: 12, variant: "sky" },
+  ],
+  timeline: [
+    { time: "14:32:01", title: "Transaction broadcast", by: "on-chain", variant: "neutral" },
+    { time: "14:32:18", title: "Risk engine scored 78", by: "system", variant: "blush", active: true },
+    { time: "14:33:05", title: "Travel rule request sent", by: "Notabene", variant: "sky" },
+    { time: "14:35:22", title: "Assigned for review", by: "auto-assign", variant: "highlight" },
+  ],
+  notes: [
+    {
+      who: "Mia K",
+      role: "Compliance lead",
+      at: "15 min ago",
+      body: "Looping in legal. Counterparty claims regulated status in DE — verifying.",
+      avatarTone: "lilac",
+    },
+    {
+      who: "Sam T",
+      role: "Analyst",
+      at: "2 min ago",
+      body: "Mixer hop is weak signal (2 levels removed). Recommending approve pending travel-rule response.",
+      avatarTone: "mint",
+    },
+  ],
+  related: [
+    { id: "r1", lbl: "Payroll Q1", addr: "0x1234…5678", amt: "$45,000", time: "Mar 14" },
+    { id: "r2", lbl: "Vendor A", addr: "0xabcd…ef12", amt: "$12,200", time: "Feb 28" },
+    { id: "r3", lbl: "Ops wallet", addr: "0xdead…beef", amt: "$9,000", time: "Feb 05" },
+  ],
+}
 
 // ── Controls ──
 
@@ -591,6 +672,158 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           ]}
           onExport={(config) => console.log("export", config)}
         />
+      </div>
+    )
+  },
+
+  // ── DS refresh previews ──
+
+  "flag-callout": function FlagCalloutPreview() {
+    return (
+      <div className="space-y-4">
+        <Section title="Highlight tone (default)">
+          <FlagCallout flags={sampleRichTx.flags} />
+        </Section>
+        <Section title="Blush tone (blocked)">
+          <FlagCallout flags={["blocked_jurisdiction", "sanctions_match"]} tone="blush" />
+        </Section>
+      </div>
+    )
+  },
+
+  "risk-score-hero": function RiskScoreHeroPreview() {
+    return (
+      <div className="space-y-6">
+        <RiskScoreHero
+          score={sampleRichTx.risk}
+          drivers={sampleRichTx.riskDrivers ?? []}
+        />
+        <RiskScoreHero
+          score={25}
+          drivers={[
+            { label: "Known counterparty", weight: 8, variant: "sky" },
+            { label: "Below threshold", weight: 5, variant: "sky" },
+          ]}
+        />
+      </div>
+    )
+  },
+
+  "flow-diagram": function FlowDiagramPreview() {
+    return (
+      <div className="max-w-3xl">
+        <FlowDiagram
+          from={sampleRichTx.from}
+          to={sampleRichTx.to}
+          network={sampleRichTx.net}
+          fee={sampleRichTx.fee}
+        />
+      </div>
+    )
+  },
+
+  "event-timeline": function EventTimelinePreview() {
+    return (
+      <div className="max-w-md rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]">
+        <EventTimeline events={sampleRichTx.timeline ?? []} />
+      </div>
+    )
+  },
+
+  "counterparty-intel": function CounterpartyIntelPreview() {
+    return (
+      <div className="max-w-md">
+        <CounterpartyIntel
+          firstSeen="Mar 14, 2026"
+          firstSeenHint="34 days ago"
+          priorStats={{
+            label: "Prior w/ us",
+            value: "3 tx · $66,200",
+            hint: "All outbound, all <$50k",
+          }}
+          related={sampleRichTx.related}
+        />
+      </div>
+    )
+  },
+
+  "reviewer-notes": function ReviewerNotesPreview() {
+    return (
+      <div className="max-w-xl">
+        <ReviewerNotes
+          notes={sampleRichTx.notes ?? []}
+          onSubmit={(body) => console.log("submit", body)}
+        />
+      </div>
+    )
+  },
+
+  "travel-rule-card": function TravelRuleCardPreview() {
+    return (
+      <div className="grid gap-4 md:grid-cols-2">
+        <TravelRuleCard
+          provider="Notabene"
+          status="sent"
+          body="Originator data sent. Awaiting beneficiary VASP response."
+        />
+        <TravelRuleCard
+          provider="Sumsub"
+          status="received"
+          body="Payload verified. KYC-matched on both sides."
+          payloadHref="#"
+        />
+        <TravelRuleCard
+          provider="Chainalysis KYT"
+          status="expired"
+          body="Provider response window lapsed — manual review required."
+        />
+        <TravelRuleCard
+          provider="Notabene"
+          status="not_required"
+          body="Counterparty below travel-rule threshold."
+        />
+      </div>
+    )
+  },
+
+  "transaction-header": function TransactionHeaderPreview() {
+    return (
+      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
+        <TransactionHeader
+          tx={sampleRichTx}
+          explorerHref="#"
+          onApprove={() => console.log("approve")}
+          onEscalate={() => console.log("escalate")}
+        />
+      </div>
+    )
+  },
+
+  "transaction-detail-page": function TransactionDetailPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background">
+        <TransactionDetailPage
+          tx={sampleRichTx}
+          explorerHref="#"
+          onApprove={() => console.log("approve")}
+          onEscalate={() => console.log("escalate")}
+          onSubmitNote={(body) => console.log("note", body)}
+        />
+      </div>
+    )
+  },
+
+  "app-sidebar": function AppSidebarPreview() {
+    return (
+      <div className="h-[560px] overflow-hidden rounded-[var(--radius-lg)] border border-border">
+        <SidebarProvider>
+          <AppSidebar active="tx" />
+          <div className="flex-1 bg-background p-6">
+            <div className="text-muted-foreground text-sm">
+              Main content area. Click sidebar items to see hover/active states.
+            </div>
+          </div>
+        </SidebarProvider>
       </div>
     )
   },

@@ -53,10 +53,22 @@
 @keyframes bar-breathe {
   0%,
   100% {
-    transform: scaleY(1);
+    transform: scaleX(1);
   }
   50% {
-    transform: scaleY(1.18);
+    transform: scaleX(1.15);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
   }
 }
 
@@ -134,7 +146,7 @@
   --color-risk-high: var(--risk-high);
   --color-cyan: #00d4ff;
 
-  /* Humblytics pastels */
+  /* DS pastels */
   --color-highlight: var(--highlight);
   --color-highlight-ink: var(--highlight-ink);
   --color-mint: var(--mint);
@@ -167,7 +179,7 @@
 :root {
   --radius: 1rem;
 
-  /* Warm neutrals (humblytics refresh) */
+  /* Warm neutrals (DS refresh) */
   --background: oklch(0.982 0.004 80);
   --foreground: oklch(0.18 0.012 60);
   --card: oklch(1 0 0);
@@ -220,7 +232,7 @@
   --focal-foreground: oklch(0.99 0 0);
   --focal-soft: oklch(0.95 0.03 245);
 
-  /* Humblytics pastels */
+  /* DS pastels */
   --highlight: oklch(0.93 0.13 95);
   --highlight-ink: oklch(0.36 0.09 70);
   --mint: oklch(0.88 0.08 170);
@@ -311,4 +323,100 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* DS refresh — stacked glass-ring card (ported from design tokens) */
+.ringcard {
+  position: relative;
+  padding: 1.25rem 1rem 0;
+  margin: 0 -1rem;
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent);
+  mask-image: linear-gradient(to bottom, black 65%, transparent);
+}
+.ringcard.ringcard-solid {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.ringcard::before,
+.ringcard::after {
+  content: "";
+  position: absolute;
+  inset-inline: 1.5rem;
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+  box-shadow: inset 0 0 0 1px var(--border-illustration);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s,
+    background 0.35s;
+}
+.ringcard::before {
+  top: 1rem;
+  bottom: 0;
+  z-index: 1;
+}
+.ringcard::after {
+  inset-inline: 2.25rem;
+  top: 0.5rem;
+  bottom: 0;
+}
+.ringcard > .ringcard-inner {
+  position: relative;
+  z-index: 10;
+  background: var(--illustration);
+  box-shadow:
+    inset 0 0 0 1px var(--border-illustration),
+    0 20px 40px -24px rgba(20, 14, 10, 0.08);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s;
+}
+.ringcard:hover::before,
+.ringcard-hover:hover .ringcard::before {
+  transform: translateY(-6px);
+  background: color-mix(in oklab, var(--card) 85%, transparent);
+}
+.ringcard:hover::after,
+.ringcard-hover:hover .ringcard::after {
+  transform: translateY(-3px);
+}
+.ringcard:hover > .ringcard-inner,
+.ringcard-hover:hover .ringcard > .ringcard-inner {
+  transform: translateY(-10px);
+  box-shadow:
+    inset 0 0 0 1px var(--border-illustration),
+    0 28px 48px -20px rgba(20, 14, 10, 0.18);
+}
+
+/* Breathing bar animation */
+.bar-breathe {
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bar-breathe {
+    animation: bar-breathe 3s ease-in-out infinite;
+  }
+}
+
+/* Sparkline/timeline dot pulse */
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Diagonal pattern for unattributed bar segments */
+.bar-diag {
+  background-image: linear-gradient(
+    -45deg,
+    var(--border-illustration) 25%,
+    transparent 25%,
+    transparent 50%,
+    var(--border-illustration) 50%,
+    var(--border-illustration) 75%,
+    transparent 75%
+  );
+  background-size: 6px 6px;
 }

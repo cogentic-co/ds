@@ -15,6 +15,7 @@ import BarChartPreview from "./bar-chart"
 import BgShaderPreview from "./bg-shader"
 import BlockyShaderPreview from "./blocky-shader"
 import BreadcrumbPreview from "./breadcrumb"
+import BreathingBarPreview from "./breathing-bar"
 import ButtonPreview from "./button"
 import ButtonGroupPreview from "./button-group"
 import CalendarPreview from "./calendar"
@@ -65,6 +66,8 @@ import InputGroupPreview from "./input-group"
 import InputOTPPreview from "./input-otp"
 import ItemPreview from "./item"
 import KbdPreview from "./kbd"
+import KeyValueListPreview from "./key-value-list"
+import KpiCardPreview from "./kpi-card"
 import LabelPreview from "./label"
 import LineChartPreview from "./line-chart"
 import LoadingOverlayPreview from "./loading-overlay"
@@ -88,6 +91,7 @@ import RadialChartPreview from "./radial-chart"
 import RadioGroupPreview from "./radio-group"
 import ReasoningPreview from "./reasoning"
 import ResizablePreview from "./resizable"
+import RingCardPreview from "./ring-card"
 import RiskGaugePreview from "./risk-gauge"
 import ScatterChartPreview from "./scatter-chart"
 import ScrollAreaPreview from "./scroll-area"
@@ -101,10 +105,12 @@ import SkeletonPreview from "./skeleton"
 import SliderPreview from "./slider"
 import SonnerPreview from "./sonner"
 import SourcesPreview from "./sources"
+import SparklinePreview from "./sparkline"
 import SpinnerPreview from "./spinner"
 import SplitPanePreview from "./split-pane"
 import StatPreview from "./stat"
 import StatusIndicatorPreview from "./status-indicator"
+import StatusPillPreview from "./status-pill"
 import StepProgressPreview from "./step-progress"
 import StreamingCardsPreview from "./streaming-cards"
 import StripedBarPreview from "./striped-bar"
@@ -246,6 +252,13 @@ export const previews: Record<string, React.ComponentType> = {
   "visually-hidden": VisuallyHiddenPreview,
   direction: DirectionPreview,
   "waffle-chart": WaffleChartPreview,
+  // DS refresh
+  "ring-card": RingCardPreview,
+  "status-pill": StatusPillPreview,
+  "breathing-bar": BreathingBarPreview,
+  "key-value-list": KeyValueListPreview,
+  "kpi-card": KpiCardPreview,
+  sparkline: SparklinePreview,
   // Workflow
   "workflow-canvas": WorkflowCanvasPreview,
   "workflow-node": WorkflowNodePreview,

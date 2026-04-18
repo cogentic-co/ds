@@ -39,7 +39,7 @@ describe("BreathingBar", () => {
 
   it("applies animated class when animated=true", () => {
     const { container } = render(<BreathingBar segments={segments} animated />)
-    expect(container.querySelector('[role="img"]')?.className).toContain("animate-bar-breathe")
+    expect(container.querySelector('[role="img"]')?.className).toContain("bar-breathe")
   })
 
   it("merges className", () => {

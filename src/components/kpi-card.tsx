@@ -58,7 +58,14 @@ function KpiCard({
       </div>
       <div className="font-semibold text-[26px] leading-none tracking-tight">{value}</div>
       {hint && <div className="text-muted-foreground text-xs">{hint}</div>}
-      {sparkline && <Sparkline points={sparkline} color={sparklineColor} fill={sparklineFill} />}
+      {sparkline && (
+        <Sparkline
+          className="mt-auto"
+          points={sparkline}
+          color={sparklineColor}
+          fill={sparklineFill}
+        />
+      )}
     </div>
   )
 }

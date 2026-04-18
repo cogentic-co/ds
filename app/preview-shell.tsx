@@ -185,6 +185,17 @@ const componentGroups: SidebarGroupDef[] = [
       "streaming-cards",
     ],
   },
+  {
+    label: "DS refresh",
+    items: [
+      "ring-card",
+      "status-pill",
+      "breathing-bar",
+      "key-value-list",
+      "kpi-card",
+      "sparkline",
+    ],
+  },
 ]
 
 const complianceItems = ["case-card"]
@@ -514,7 +525,41 @@ function buildNav(pathname: string): NavGroup[] {
       groups: [
         {
           title: "Transaction",
-          items: ["transaction-card", "transaction-row", "transaction-detail"].map((slug) => ({
+          items: [
+            "transaction-card",
+            "transaction-row",
+            "transaction-detail",
+            "transaction-header",
+            "transaction-detail-page",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "Detail blocks",
+          items: [
+            "flag-callout",
+            "risk-score-hero",
+            "flow-diagram",
+            "event-timeline",
+            "counterparty-intel",
+            "reviewer-notes",
+            "travel-rule-card",
+          ].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
+          defaultOpen: true,
+        },
+        {
+          title: "App shell",
+          items: ["app-sidebar"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,

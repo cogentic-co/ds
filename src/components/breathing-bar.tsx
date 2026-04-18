@@ -30,8 +30,7 @@ const variantBg = {
   blush: "bg-blush",
   lilac: "bg-lilac",
   highlight: "bg-highlight",
-  unattributed:
-    "bg-[repeating-linear-gradient(-45deg,var(--border-illustration)_0_3px,transparent_3px_6px)]",
+  unattributed: "bar-diag",
 } as const
 
 const variantInk = {
@@ -62,7 +61,7 @@ function BreathingBar({
         className={cn(
           "flex w-full origin-left overflow-hidden rounded-full",
           heightMap[height],
-          animated && "motion-safe:animate-bar-breathe",
+          animated && "bar-breathe",
         )}
       >
         {segments.map((seg, i) => {
