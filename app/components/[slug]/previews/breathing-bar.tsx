@@ -14,19 +14,19 @@ export default function BreathingBarPreview() {
   return (
     <div className="space-y-8">
       <Section title="With legend">
-        <div className="max-w-xl">
+        <div className="w-full max-w-xl">
           <BreathingBar segments={trafficSegments} showLegend format={(n) => `${n}%`} />
         </div>
       </Section>
 
       <Section title="Animated">
-        <div className="max-w-xl">
+        <div className="w-full max-w-xl">
           <BreathingBar segments={trafficSegments} animated />
         </div>
       </Section>
 
       <Section title="Heights">
-        <div className="max-w-xl space-y-3">
+        <div className="w-full max-w-xl space-y-3">
           <BreathingBar height="sm" segments={trafficSegments} />
           <BreathingBar height="default" segments={trafficSegments} />
           <BreathingBar height="lg" segments={trafficSegments} />
