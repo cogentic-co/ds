@@ -4,6 +4,7 @@ import { ArrowDownLeft, ArrowRight, ArrowUpRight, RefreshCw } from "lucide-react
 import type { ComponentProps, ReactNode } from "react"
 
 import { StatusPill } from "../components/status-pill"
+import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import type { Transaction, TxDirection, TxStatus } from "./types"
 
@@ -11,12 +12,6 @@ const DIR_ICON: Record<TxDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-3.5" />,
   outbound: <ArrowUpRight className="size-3.5" />,
   internal: <RefreshCw className="size-3" />,
-}
-
-const DIR_TONE: Record<TxDirection, string> = {
-  inbound: "bg-mint text-mint-ink",
-  outbound: "bg-blush text-blush-ink",
-  internal: "bg-lilac text-lilac-ink",
 }
 
 const STATUS_VARIANT: Record<TxStatus, ComponentProps<typeof StatusPill>["variant"]> = {
@@ -88,7 +83,7 @@ function RecentTransactionsCard({
               aria-hidden
               className={cn(
                 "flex size-7 items-center justify-center rounded-full",
-                DIR_TONE[tx.dir],
+                DIRECTION_TONE_CLASSES[tx.dir],
               )}
             >
               {DIR_ICON[tx.dir]}

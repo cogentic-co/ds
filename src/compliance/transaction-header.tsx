@@ -11,6 +11,7 @@ import type { ComponentProps, ReactNode } from "react"
 
 import { Button } from "../components/button"
 import { StatusPill } from "../components/status-pill"
+import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import type { Transaction, TxDirection, TxStatus } from "./types"
 
@@ -18,12 +19,6 @@ const DIRECTION_ICON: Record<TxDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-5" />,
   outbound: <ArrowUpRight className="size-5" />,
   internal: <RefreshCw className="size-5" />,
-}
-
-const DIRECTION_TONE: Record<TxDirection, string> = {
-  inbound: "bg-mint text-mint-ink",
-  outbound: "bg-sky text-sky-ink",
-  internal: "bg-lilac text-lilac-ink",
 }
 
 const STATUS_VARIANT: Record<TxStatus, React.ComponentProps<typeof StatusPill>["variant"]> = {
@@ -72,7 +67,7 @@ function TransactionHeader({
           <span
             className={cn(
               "flex size-12 items-center justify-center rounded-[var(--radius-md)]",
-              DIRECTION_TONE[tx.dir],
+              DIRECTION_TONE_CLASSES[tx.dir],
             )}
           >
             {DIRECTION_ICON[tx.dir]}

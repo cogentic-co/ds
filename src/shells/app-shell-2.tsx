@@ -3,6 +3,7 @@
 import { Bell, Search, Settings } from "lucide-react"
 import type { ComponentType, ReactNode } from "react"
 
+import { type Tone, TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 
 type NavEntry = {
@@ -24,14 +25,14 @@ type AppShell2Brand = {
   title: string
   subtitle?: string
   env?: string
-  envVariant?: "mint" | "sky" | "blush" | "lilac" | "highlight"
+  envVariant?: Tone
 }
 
 type AppShell2User = {
   initials: string
   name: string
   role: string
-  avatarTone?: "mint" | "sky" | "blush" | "lilac"
+  avatarTone?: Tone
 }
 
 type AppShell2SidebarProps = {
@@ -84,11 +85,7 @@ function AppShell2Sidebar({
           <span
             className={cn(
               "rounded-[4px] px-1.5 py-0.5 font-mono font-semibold text-[10px]",
-              envTone === "mint" && "bg-mint text-mint-ink",
-              envTone === "sky" && "bg-sky text-sky-ink",
-              envTone === "blush" && "bg-blush text-blush-ink",
-              envTone === "lilac" && "bg-lilac text-lilac-ink",
-              envTone === "highlight" && "bg-highlight text-highlight-ink",
+              TONE_CLASSES[envTone],
             )}
           >
             {brand.env}
@@ -113,10 +110,7 @@ function AppShell2Sidebar({
         <div
           className={cn(
             "flex size-7 shrink-0 items-center justify-center rounded-full font-bold text-[11px]",
-            avatarTone === "lilac" && "bg-lilac text-lilac-ink",
-            avatarTone === "mint" && "bg-mint text-mint-ink",
-            avatarTone === "sky" && "bg-sky text-sky-ink",
-            avatarTone === "blush" && "bg-blush text-blush-ink",
+            TONE_CLASSES[avatarTone],
           )}
           aria-hidden
         >

@@ -3,6 +3,7 @@
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
 import type * as React from "react"
 
+import { type Tone, TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 
 function Avatar({
@@ -35,16 +36,7 @@ function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   )
 }
 
-type AvatarFallbackTone = "neutral" | "mint" | "sky" | "blush" | "lilac" | "highlight"
-
-const AVATAR_FALLBACK_TONE: Record<AvatarFallbackTone, string> = {
-  neutral: "bg-muted text-muted-foreground",
-  mint: "bg-mint text-mint-ink",
-  sky: "bg-sky text-sky-ink",
-  blush: "bg-blush text-blush-ink",
-  lilac: "bg-lilac text-lilac-ink",
-  highlight: "bg-highlight text-highlight-ink",
-}
+type AvatarFallbackTone = Tone
 
 function AvatarFallback({
   className,
@@ -57,7 +49,7 @@ function AvatarFallback({
       data-tone={tone}
       className={cn(
         "flex size-full items-center justify-center rounded-full font-semibold text-sm group-data-[size=sm]/avatar:text-xs",
-        AVATAR_FALLBACK_TONE[tone],
+        TONE_CLASSES[tone],
         className,
       )}
       {...props}
