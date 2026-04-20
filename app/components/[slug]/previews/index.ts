@@ -15,7 +15,6 @@ import BarChartPreview from "./bar-chart"
 import BgShaderPreview from "./bg-shader"
 import BlockyShaderPreview from "./blocky-shader"
 import BreadcrumbPreview from "./breadcrumb"
-import BreathingBarPreview from "./breathing-bar"
 import ButtonPreview from "./button"
 import ButtonGroupPreview from "./button-group"
 import CalendarPreview from "./calendar"
@@ -250,7 +249,6 @@ export const previews: Record<string, React.ComponentType> = {
   // DS refresh
   "ring-card": RingCardPreview,
   "status-pill": StatusPillPreview,
-  "breathing-bar": BreathingBarPreview,
   "key-value-list": KeyValueListPreview,
   "kpi-card": KpiCardPreview,
   sparkline: SparklinePreview,

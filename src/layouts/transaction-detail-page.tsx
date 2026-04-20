@@ -152,6 +152,7 @@ function TransactionDetailPage({
               renderIntel(tx)
             ) : (
               <CounterpartyIntel
+                title=""
                 firstSeen="Mar 14, 2026"
                 firstSeenHint="34 days ago"
                 priorStats={{
@@ -170,6 +171,7 @@ function TransactionDetailPage({
                 renderTravelRule(tx)
               ) : (
                 <TravelRuleCard
+                  framed={false}
                   provider="Notabene"
                   status={tx.travelRule}
                   body="Originator data sent. Awaiting beneficiary VASP response."

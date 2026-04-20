@@ -184,7 +184,7 @@ const componentGroups: SidebarGroupDef[] = [
   },
   {
     label: "DS refresh",
-    items: ["ring-card", "status-pill", "breathing-bar", "key-value-list", "kpi-card", "sparkline"],
+    items: ["ring-card", "status-pill", "key-value-list", "kpi-card", "sparkline"],
   },
 ]
 
