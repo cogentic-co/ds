@@ -12,6 +12,7 @@ type BreathingBarSegment = {
 
 type BreathingBarProps = React.ComponentProps<"div"> & {
   segments: BreathingBarSegment[]
+  /** Animate the whole bar with a left-anchored scaleX pulse. */
   animated?: boolean
   height?: "sm" | "default" | "lg"
   showLegend?: boolean
@@ -54,7 +55,7 @@ function BreathingBar({
   const total = segments.reduce((s, x) => s + x.value, 0) || 1
 
   return (
-    <div data-slot="breathing-bar" className={cn("flex flex-col gap-2", className)} {...props}>
+    <div data-slot="breathing-bar" className={cn("flex w-full flex-col gap-2", className)} {...props}>
       <div
         role="img"
         aria-label={`Bar chart: ${segments.map((s) => `${s.label ?? ""} ${format(s.value)}`).join(", ")}`}
