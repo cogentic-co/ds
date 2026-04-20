@@ -40,16 +40,19 @@ function UsageMeter({
 
   const barClass =
     tone === "critical"
-      ? "[&>div]:bg-red-600 dark:[&>div]:bg-red-400"
+      ? "[&>div]:bg-[var(--blush-ink)]"
       : tone === "warning"
-        ? "[&>div]:bg-amber-600 dark:[&>div]:bg-amber-400"
+        ? "[&>div]:bg-[var(--highlight-ink)]"
         : "[&>div]:bg-focal"
 
   return (
     <div
       data-slot="usage-meter"
       data-tone={tone}
-      className={cn("flex flex-col gap-2 rounded-xl border border-border bg-card p-4", className)}
+      className={cn(
+        "flex flex-col gap-2 rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]",
+        className,
+      )}
       {...props}
     >
       <div className="flex items-start justify-between gap-3">

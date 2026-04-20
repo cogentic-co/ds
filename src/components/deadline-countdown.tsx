@@ -10,8 +10,8 @@ const deadlineCountdownVariants = cva("inline-flex items-center gap-1.5 font-med
   variants: {
     urgency: {
       normal: "text-muted-foreground",
-      warning: "text-amber-600 dark:text-amber-400",
-      critical: "text-red-600 dark:text-red-400",
+      warning: "text-[var(--highlight-ink)]",
+      critical: "text-[var(--blush-ink)]",
       overdue: "text-destructive",
     },
   },
@@ -71,8 +71,8 @@ function formatTimeRemaining(deadline: Date): string {
 
 const dotColors: Record<Urgency, string> = {
   normal: "bg-muted-foreground/40",
-  warning: "bg-amber-500",
-  critical: "bg-red-500 animate-pulse",
+  warning: "bg-[var(--highlight-ink)]",
+  critical: "bg-[var(--blush-ink)] animate-pulse",
   overdue: "bg-destructive animate-pulse",
 }
 

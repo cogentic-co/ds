@@ -33,8 +33,8 @@ type NotificationCenterProps = ComponentProps<"div"> & {
 
 const SEVERITY_DOT: Record<NotificationSeverity, string> = {
   info: "bg-focal",
-  warning: "bg-amber-600 dark:bg-amber-400",
-  critical: "bg-red-600 dark:bg-red-400",
+  warning: "bg-[var(--highlight-ink)]",
+  critical: "bg-destructive",
 }
 
 function NotificationCenter({

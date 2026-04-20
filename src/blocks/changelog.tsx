@@ -20,13 +20,11 @@ type ChangelogProps = ComponentProps<"div"> & {
 }
 
 const TAG_CLASS: Record<ChangelogTag, string> = {
-  feature: "border-focal/40 bg-focal-soft text-focal",
-  fix: "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:bg-emerald-400/10 dark:text-emerald-400",
+  feature: "border-transparent bg-sky text-sky-ink",
+  fix: "border-transparent bg-mint text-mint-ink",
   improvement: "border-border bg-muted text-muted-foreground",
-  breaking:
-    "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400",
-  security:
-    "border-amber-700/40 bg-amber-700/10 text-amber-700 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-400",
+  breaking: "border-transparent bg-blush text-blush-ink",
+  security: "border-transparent bg-highlight text-highlight-ink",
 }
 
 const TAG_LABEL: Record<ChangelogTag, string> = {

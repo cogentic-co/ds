@@ -89,7 +89,7 @@ function ApiKeyManager({
                         <Badge
                           square
                           variant="outline"
-                          className="border-red-700/40 bg-red-700/10 px-1.5 py-0.5 text-[9px] text-red-700 uppercase dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400"
+                          className="border-transparent bg-blush px-1.5 py-0.5 text-[9px] text-blush-ink uppercase"
                         >
                           Revoked
                         </Badge>

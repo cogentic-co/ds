@@ -36,14 +36,16 @@ describe("DeadlineCountdown", () => {
 
   it("shows warning state within warning threshold", () => {
     const { container } = render(<DeadlineCountdown deadline={futureDate(5)} />)
-    expect(container.querySelector("[data-slot='deadline-countdown']")).toHaveClass(
-      "text-amber-600",
+    expect(container.querySelector("[data-slot='deadline-countdown']")?.className).toContain(
+      "text-[var(--highlight-ink)]",
     )
   })
 
   it("shows critical state within critical threshold", () => {
     const { container } = render(<DeadlineCountdown deadline={futureDate(1)} />)
-    expect(container.querySelector("[data-slot='deadline-countdown']")).toHaveClass("text-red-600")
+    expect(container.querySelector("[data-slot='deadline-countdown']")?.className).toContain(
+      "text-[var(--blush-ink)]",
+    )
   })
 
   it("shows overdue state for past deadlines", () => {
@@ -53,7 +55,9 @@ describe("DeadlineCountdown", () => {
 
   it("respects urgency override", () => {
     const { container } = render(<DeadlineCountdown deadline={futureDate(30)} urgency="critical" />)
-    expect(container.querySelector("[data-slot='deadline-countdown']")).toHaveClass("text-red-600")
+    expect(container.querySelector("[data-slot='deadline-countdown']")?.className).toContain(
+      "text-[var(--blush-ink)]",
+    )
   })
 
   it("renders label prefix", () => {

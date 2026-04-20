@@ -17,7 +17,7 @@ describe("StatusIndicator", () => {
 
   it("applies variant classes", () => {
     const { rerender } = render(<StatusIndicator variant="online" />)
-    expect(screen.getByRole("status")).toHaveClass("bg-emerald-500")
+    expect(screen.getByRole("status").className).toContain("bg-[var(--mint-ink)]")
 
     rerender(<StatusIndicator variant="offline" />)
     expect(screen.getByRole("status")).toHaveClass("bg-muted-foreground/40")
@@ -26,10 +26,10 @@ describe("StatusIndicator", () => {
     expect(screen.getByRole("status")).toHaveClass("bg-destructive")
 
     rerender(<StatusIndicator variant="away" />)
-    expect(screen.getByRole("status")).toHaveClass("bg-amber-500")
+    expect(screen.getByRole("status").className).toContain("bg-[var(--highlight-ink)]")
 
     rerender(<StatusIndicator variant="pending" />)
-    expect(screen.getByRole("status")).toHaveClass("bg-blue-500")
+    expect(screen.getByRole("status").className).toContain("bg-[var(--sky-ink)]")
   })
 
   it("applies size variants", () => {

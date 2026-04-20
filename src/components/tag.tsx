@@ -14,7 +14,7 @@ const tagVariants = cva(
         primary: "border-primary/30 bg-primary/10 text-primary",
         secondary: "border-secondary bg-secondary text-secondary-foreground",
         destructive: "border-destructive/30 bg-destructive/10 text-destructive",
-        success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+        success: "border-transparent bg-mint text-mint-ink",
       },
     },
     defaultVariants: { variant: "default" },
