@@ -31,7 +31,6 @@ import CodeBlockPreview from "./code-block"
 import CollapsiblePreview from "./collapsible"
 import ComboboxPreview from "./combobox"
 import CommandPreview from "./command"
-import ComplianceScorePreview from "./compliance-score"
 import ComposedChartPreview from "./composed-chart"
 import ConfirmationPreview from "./confirmation"
 import ContextPreview from "./context"
@@ -210,7 +209,6 @@ export const previews: Record<string, React.ComponentType> = {
   command: CommandPreview,
   carousel: CarouselPreview,
   chart: ChartPreview,
-  "compliance-score": ComplianceScorePreview,
   "area-chart": AreaChartPreview,
   "bar-chart": BarChartPreview,
   "line-chart": LineChartPreview,

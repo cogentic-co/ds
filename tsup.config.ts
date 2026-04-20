@@ -30,7 +30,6 @@ export default defineConfig({
     "components/collapsible": "src/components/collapsible.tsx",
     "components/combobox": "src/components/combobox.tsx",
     "components/command": "src/components/command.tsx",
-    "components/compliance-score": "src/components/compliance-score.tsx",
     "components/context-menu": "src/components/context-menu.tsx",
     "components/copy-button": "src/components/copy-button.tsx",
     "components/data-table": "src/components/data-table.tsx",
@@ -122,7 +121,11 @@ export default defineConfig({
     "lib/icon-map": "src/lib/icon-map.tsx",
     // Shell entry points
     "shells/app-shell": "src/shells/app-shell.tsx",
+    "shells/app-shell-2": "src/shells/app-shell-2.tsx",
     "shells/settings-layout": "src/shells/settings-layout.tsx",
+    // Layout entry points (page-level compositions)
+    "layouts/dashboard-page": "src/layouts/dashboard-page.tsx",
+    "layouts/transaction-detail-page": "src/layouts/transaction-detail-page.tsx",
     // Per-animation entry points for code-splitting (next/dynamic)
     "animations/animation-ai-analysis": "src/animations/animation-ai-analysis.tsx",
     "animations/animation-audit-trail": "src/animations/animation-audit-trail.tsx",

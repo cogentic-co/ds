@@ -3,14 +3,15 @@ import { AlertCircleIcon, InfoIcon, LightbulbIcon, TriangleAlertIcon } from "luc
 import type * as React from "react"
 import { cn } from "../lib/utils"
 
-const calloutVariants = cva("flex gap-3 rounded-lg border p-4", {
+const calloutVariants = cva("flex gap-3 rounded-[var(--radius-md)] border p-4", {
   variants: {
     variant: {
-      info: "border-blue-500/20 bg-blue-500/5 text-blue-900 dark:text-blue-200 [&>svg]:text-blue-500",
+      info: "border-[var(--sky-ink)]/20 bg-sky/40 text-foreground [&>svg]:text-[var(--sky-ink)]",
       warning:
-        "border-amber-500/20 bg-amber-500/5 text-amber-900 dark:text-amber-200 [&>svg]:text-amber-500",
-      danger: "border-red-500/20 bg-red-500/5 text-red-900 dark:text-red-200 [&>svg]:text-red-500",
-      tip: "border-emerald-500/20 bg-emerald-500/5 text-emerald-900 dark:text-emerald-200 [&>svg]:text-emerald-500",
+        "border-[var(--highlight-ink)]/25 bg-highlight/40 text-foreground [&>svg]:text-[var(--highlight-ink)]",
+      danger:
+        "border-[var(--blush-ink)]/25 bg-blush/40 text-foreground [&>svg]:text-[var(--blush-ink)]",
+      tip: "border-[var(--mint-ink)]/25 bg-mint/40 text-foreground [&>svg]:text-[var(--mint-ink)]",
     },
   },
   defaultVariants: { variant: "info" },

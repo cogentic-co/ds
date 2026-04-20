@@ -82,7 +82,6 @@ export * from "./components/code-block"
 export * from "./components/collapsible"
 export * from "./components/combobox"
 export * from "./components/command"
-export * from "./components/compliance-score"
 export * from "./components/context-menu"
 export * from "./components/copy-button"
 export * from "./components/data-table"
@@ -173,6 +172,9 @@ export * from "./hooks/use-local-storage"
 // Hooks
 export * from "./hooks/use-media-query"
 export * from "./hooks/use-mobile"
+// Layouts (page-level compositions)
+export * from "./layouts/dashboard-page"
+export * from "./layouts/transaction-detail-page"
 // Animation constants
 export {
   EASE_OUT,

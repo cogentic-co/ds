@@ -14,25 +14,22 @@ type CaseSeverity = "low" | "medium" | "high" | "critical"
 type CaseDirection = "inbound" | "outbound" | "internal"
 
 const SLA_BADGE: Record<CaseSla, string> = {
-  on_track:
-    "text-emerald-700 bg-emerald-700/10 border-emerald-700/30 dark:text-emerald-400 dark:bg-emerald-400/10 dark:border-emerald-400/30",
-  at_risk:
-    "text-amber-700 bg-amber-700/10 border-amber-700/30 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/30",
-  overdue:
-    "text-red-700 bg-red-700/10 border-red-700/30 dark:text-red-400 dark:bg-red-400/10 dark:border-red-400/30",
+  on_track: "bg-mint text-mint-ink border-transparent",
+  at_risk: "bg-highlight text-highlight-ink border-transparent",
+  overdue: "bg-blush text-blush-ink border-transparent",
 }
 
 const PRIORITY_BADGE: Record<CasePriority, string> = {
-  p1: "text-red-700 bg-red-700/10 border-red-700/30 dark:text-red-400 dark:bg-red-400/10 dark:border-red-400/30",
-  p2: "text-amber-700 bg-amber-700/10 border-amber-700/30 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/30",
+  p1: "bg-blush text-blush-ink border-transparent",
+  p2: "bg-highlight text-highlight-ink border-transparent",
   p3: "text-muted-foreground bg-muted border-border",
 }
 
 const SEVERITY_DOT: Record<CaseSeverity, string> = {
   low: "bg-muted-foreground/60",
-  medium: "bg-amber-500",
-  high: "bg-amber-700 dark:bg-amber-400",
-  critical: "bg-red-700 dark:bg-red-400",
+  medium: "bg-[var(--highlight-ink)]",
+  high: "bg-[var(--highlight-ink)]",
+  critical: "bg-destructive",
 }
 
 export type CaseCardAlert = {
@@ -109,8 +106,8 @@ function CaseCard({
           >
             {sla === "overdue" && (
               <span className="relative flex size-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-red-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-destructive" />
               </span>
             )}
             {sla.replace("_", " ")}

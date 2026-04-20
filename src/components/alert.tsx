@@ -4,15 +4,18 @@ import type * as React from "react"
 import { cn } from "../lib/utils"
 
 const alertVariants = cva(
-  "group/alert relative grid w-full gap-0.5 rounded-lg border px-4 py-3 text-left text-sm has-data-[slot=alert-action]:relative has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2.5 has-data-[slot=alert-action]:pr-18 *:[svg:not([class*='size-'])]:size-4 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current",
+  "group/alert relative grid w-full gap-0.5 rounded-[var(--radius-md)] border px-4 py-3 text-left text-sm has-data-[slot=alert-action]:relative has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2.5 has-data-[slot=alert-action]:pr-18 *:[svg:not([class*='size-'])]:size-4 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default: "border-border bg-card text-card-foreground",
+        info: "border-[var(--sky-ink)]/20 bg-sky/40 text-[var(--sky-ink)] *:data-[slot=alert-description]:text-foreground/80 *:[svg]:text-[var(--sky-ink)]",
         warning:
-          "border-amber-200 bg-amber-50 text-amber-800 *:data-[slot=alert-description]:text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200 dark:*:data-[slot=alert-description]:text-amber-300 *:[svg]:text-amber-600 dark:*:[svg]:text-amber-400",
+          "border-[var(--highlight-ink)]/25 bg-highlight/40 text-[var(--highlight-ink)] *:data-[slot=alert-description]:text-foreground/80 *:[svg]:text-[var(--highlight-ink)]",
+        success:
+          "border-[var(--mint-ink)]/25 bg-mint/40 text-[var(--mint-ink)] *:data-[slot=alert-description]:text-foreground/80 *:[svg]:text-[var(--mint-ink)]",
         destructive:
-          "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 *:[svg]:text-current",
+          "border-[var(--blush-ink)]/25 bg-blush/40 text-[var(--blush-ink)] *:data-[slot=alert-description]:text-foreground/80 *:[svg]:text-[var(--blush-ink)]",
       },
     },
     defaultVariants: {

@@ -35,12 +35,29 @@ function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   )
 }
 
-function AvatarFallback({ className, ...props }: AvatarPrimitive.Fallback.Props) {
+type AvatarFallbackTone = "neutral" | "mint" | "sky" | "blush" | "lilac" | "highlight"
+
+const AVATAR_FALLBACK_TONE: Record<AvatarFallbackTone, string> = {
+  neutral: "bg-muted text-muted-foreground",
+  mint: "bg-mint text-mint-ink",
+  sky: "bg-sky text-sky-ink",
+  blush: "bg-blush text-blush-ink",
+  lilac: "bg-lilac text-lilac-ink",
+  highlight: "bg-highlight text-highlight-ink",
+}
+
+function AvatarFallback({
+  className,
+  tone = "neutral",
+  ...props
+}: AvatarPrimitive.Fallback.Props & { tone?: AvatarFallbackTone }) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
+      data-tone={tone}
       className={cn(
-        "flex size-full items-center justify-center rounded-full bg-muted text-muted-foreground text-sm group-data-[size=sm]/avatar:text-xs",
+        "flex size-full items-center justify-center rounded-full font-semibold text-sm group-data-[size=sm]/avatar:text-xs",
+        AVATAR_FALLBACK_TONE[tone],
         className,
       )}
       {...props}
@@ -90,4 +107,5 @@ function AvatarGroupCount({ className, ...props }: React.ComponentProps<"div">) 
   )
 }
 
+export type { AvatarFallbackTone }
 export { Avatar, AvatarBadge, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage }

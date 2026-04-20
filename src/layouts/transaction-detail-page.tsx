@@ -1,17 +1,16 @@
 import type { ComponentProps, ReactNode } from "react"
-
+import { AddressDisplay } from "../compliance/address-display"
+import { CounterpartyIntel } from "../compliance/counterparty-intel"
+import { EventTimeline } from "../compliance/event-timeline"
+import { FlagCallout } from "../compliance/flag-callout"
+import { FlowDiagram } from "../compliance/flow-diagram"
+import { ReviewerNotes } from "../compliance/reviewer-notes"
+import { RiskScoreHero } from "../compliance/risk-score-hero"
+import { TransactionHeader } from "../compliance/transaction-header"
+import { TravelRuleCard } from "../compliance/travel-rule-card"
+import type { ReviewerNote, Transaction } from "../compliance/types"
 import { KeyValueList } from "../components/key-value-list"
 import { cn } from "../lib/utils"
-import { AddressDisplay } from "./address-display"
-import { CounterpartyIntel } from "./counterparty-intel"
-import { EventTimeline } from "./event-timeline"
-import { FlagCallout } from "./flag-callout"
-import { FlowDiagram } from "./flow-diagram"
-import { ReviewerNotes } from "./reviewer-notes"
-import { RiskScoreHero } from "./risk-score-hero"
-import { TransactionHeader } from "./transaction-header"
-import { TravelRuleCard } from "./travel-rule-card"
-import type { ReviewerNote, Transaction } from "./types"
 
 type TransactionDetailPageProps = ComponentProps<"div"> & {
   tx: Transaction

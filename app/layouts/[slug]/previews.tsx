@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { shellPreviews } from "../../shells/[slug]/previews"
 import { compliancePreviews } from "../../compliance/[slug]/previews"
+import { shellPreviews } from "../../shells/[slug]/previews"
 
 export const layoutPreviews: Record<string, React.ComponentType> = {
   "app-shell": shellPreviews["app-shell"],

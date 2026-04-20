@@ -24,16 +24,25 @@ describe("Alert", () => {
     expect(screen.getByRole("alert")).toHaveClass("bg-card")
   })
 
-  it("renders warning variant", () => {
+  it("renders warning variant (highlight pastel)", () => {
     render(<Alert variant="warning">Caution</Alert>)
     const el = screen.getByRole("alert")
-    expect(el).toHaveClass("text-amber-800")
-    expect(el).toHaveClass("bg-amber-50")
+    expect(el.className).toContain("bg-highlight")
   })
 
-  it("renders destructive variant", () => {
+  it("renders destructive variant (blush pastel)", () => {
     render(<Alert variant="destructive">Error</Alert>)
-    expect(screen.getByRole("alert")).toHaveClass("text-destructive")
+    expect(screen.getByRole("alert").className).toContain("bg-blush")
+  })
+
+  it("renders info variant (sky pastel)", () => {
+    render(<Alert variant="info">Info</Alert>)
+    expect(screen.getByRole("alert").className).toContain("bg-sky")
+  })
+
+  it("renders success variant (mint pastel)", () => {
+    render(<Alert variant="success">All good</Alert>)
+    expect(screen.getByRole("alert").className).toContain("bg-mint")
   })
 
   it("renders with title and description", () => {

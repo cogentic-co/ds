@@ -2,16 +2,15 @@
 
 import { Download, Plus } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
-
+import { AlertsCard } from "../compliance/alerts-card"
+import { AwaitingReviewCard } from "../compliance/awaiting-review-card"
+import { RecentTransactionsCard } from "../compliance/recent-transactions-card"
+import { RiskExposureCard } from "../compliance/risk-exposure-card"
+import { TransactionFlowCard } from "../compliance/transaction-flow-card"
+import type { Transaction } from "../compliance/types"
 import { Button } from "../components/button"
 import { KpiCard } from "../components/kpi-card"
 import { cn } from "../lib/utils"
-import { AlertsCard } from "./alerts-card"
-import { AwaitingReviewCard } from "./awaiting-review-card"
-import { RecentTransactionsCard } from "./recent-transactions-card"
-import { RiskExposureCard } from "./risk-exposure-card"
-import { TransactionFlowCard } from "./transaction-flow-card"
-import type { Transaction } from "./types"
 
 const DEFAULT_TXS: Transaction[] = [
   {

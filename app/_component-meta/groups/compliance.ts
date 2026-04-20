@@ -43,7 +43,7 @@ export const complianceMeta: Record<string, ComponentMeta> = {
     description:
       "SVG donut gauge showing compliance posture as a percentage. Auto-colors by score range (red/amber/emerald).",
     since: "0.5.0",
-    importStatement: 'import { ComplianceScore } from "@cogentic-co/ds/compliance-score"',
+    importStatement: 'import { ComplianceScore } from "@cogentic-co/ds/compliance"',
     dos: [
       "Use to show compliance posture at a glance",
       "Pair with a Card for dashboard widgets",
@@ -54,7 +54,7 @@ export const complianceMeta: Record<string, ComponentMeta> = {
       "Don't override color unless the auto-coloring is inappropriate",
       "Don't use at sm size without removing the label — it won't fit",
     ],
-    codeExample: `import { ComplianceScore } from "@cogentic-co/ds/compliance-score"
+    codeExample: `import { ComplianceScore } from "@cogentic-co/ds/compliance"
 
 <ComplianceScore score={85} label="Score" />
 <ComplianceScore score={45} size="lg" />

@@ -14,18 +14,18 @@ function riskTier(score: number): { label: string; color: string; icon: ReactNod
   if (score >= 70)
     return {
       label: "High",
-      color: "text-red-700 dark:text-red-400",
+      color: "text-destructive",
       icon: <ShieldAlert className="size-3" aria-hidden />,
     }
   if (score >= 40)
     return {
       label: "Medium",
-      color: "text-amber-700 dark:text-amber-400",
+      color: "text-[var(--highlight-ink)]",
       icon: <AlertTriangle className="size-3" aria-hidden />,
     }
   return {
     label: "Low",
-    color: "text-emerald-700 dark:text-emerald-400",
+    color: "text-[var(--success)]",
     icon: <CheckCircle2 className="size-3" aria-hidden />,
   }
 }

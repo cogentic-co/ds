@@ -55,8 +55,8 @@ function CounterpartyCard({
       data-slot="counterparty-card"
       data-type={type}
       className={cn(
-        "flex flex-col gap-3 rounded-xl border border-border bg-card p-4 text-sm",
-        type === "unhosted" && "border-amber-700/40 dark:border-amber-400/40",
+        "flex flex-col gap-3 rounded-[var(--radius-md)] border border-border bg-card p-4 text-sm shadow-[var(--shadow-card)]",
+        type === "unhosted" && "border-[var(--highlight-ink)]/40",
         className,
       )}
       {...props}

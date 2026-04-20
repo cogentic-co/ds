@@ -32,22 +32,19 @@ const DECISIONS: {
     value: "accepted",
     label: "Accept",
     icon: <CheckCircle2 className="size-4" />,
-    variant:
-      "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:text-emerald-400",
+    variant: "border-transparent bg-mint text-mint-ink",
   },
   {
     value: "rejected",
     label: "Reject",
     icon: <XCircle className="size-4" />,
-    variant:
-      "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:text-red-400",
+    variant: "border-transparent bg-blush text-blush-ink",
   },
   {
     value: "escalated",
     label: "Escalate",
     icon: <MessageSquare className="size-4" />,
-    variant:
-      "border-amber-700/40 bg-amber-700/10 text-amber-700 dark:border-amber-400/40 dark:text-amber-400",
+    variant: "border-transparent bg-highlight text-highlight-ink",
   },
 ]
 
