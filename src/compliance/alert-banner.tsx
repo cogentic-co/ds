@@ -5,21 +5,24 @@ import { AlertTriangle, Info, ShieldAlert, XIcon } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { cn } from "../lib/utils"
 
-const alertBannerVariants = cva("flex items-start gap-3 rounded-xl border p-4 text-sm", {
-  variants: {
-    severity: {
-      info: "border-focal/30 bg-focal-soft/50 text-foreground",
-      warning: "border-warning/30 bg-warning/10 text-foreground",
-      critical: "border-destructive/30 bg-destructive/10 text-foreground",
+const alertBannerVariants = cva(
+  "flex items-start gap-3 rounded-[var(--radius-md)] border p-4 text-sm",
+  {
+    variants: {
+      severity: {
+        info: "border-[var(--sky-ink)]/20 bg-sky/40 text-foreground",
+        warning: "border-[var(--highlight-ink)]/25 bg-highlight/40 text-foreground",
+        critical: "border-[var(--blush-ink)]/25 bg-blush/40 text-foreground",
+      },
     },
+    defaultVariants: { severity: "info" },
   },
-  defaultVariants: { severity: "info" },
-})
+)
 
 const SEVERITY_ICONS: Record<string, ReactNode> = {
-  info: <Info className="size-4 text-focal" />,
-  warning: <AlertTriangle className="size-4 text-warning-foreground" />,
-  critical: <ShieldAlert className="size-4 text-destructive" />,
+  info: <Info className="size-4 text-[var(--sky-ink)]" />,
+  warning: <AlertTriangle className="size-4 text-[var(--highlight-ink)]" />,
+  critical: <ShieldAlert className="size-4 text-[var(--blush-ink)]" />,
 }
 
 type AlertBannerProps = ComponentProps<"div"> &

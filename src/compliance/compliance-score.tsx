@@ -39,14 +39,14 @@ const sizeConfig = {
 
 function getScoreColor(score: number): string {
   if (score <= 40) return "text-destructive"
-  if (score <= 70) return "text-warning"
-  return "text-emerald-500"
+  if (score <= 70) return "text-[var(--highlight-ink)]"
+  return "text-[var(--success)]"
 }
 
 function getTrackColor(score: number): string {
   if (score <= 40) return "text-destructive/15"
-  if (score <= 70) return "text-warning/15"
-  return "text-emerald-500/15"
+  if (score <= 70) return "text-[var(--highlight)]/60"
+  return "text-[var(--mint)]/70"
 }
 
 type ComplianceScoreProps = React.ComponentProps<"div"> &

@@ -261,12 +261,6 @@
         "default": "./dist/components/command.js"
       }
     },
-    "./compliance-score": {
-      "import": {
-        "types": "./dist/components/compliance-score.d.ts",
-        "default": "./dist/components/compliance-score.js"
-      }
-    },
     "./context-menu": {
       "import": {
         "types": "./dist/components/context-menu.d.ts",
@@ -793,6 +787,30 @@
       "import": {
         "types": "./dist/shells/app-shell.d.ts",
         "default": "./dist/shells/app-shell.js"
+      }
+    },
+    "./shells/app-shell-2": {
+      "import": {
+        "types": "./dist/shells/app-shell-2.d.ts",
+        "default": "./dist/shells/app-shell-2.js"
+      }
+    },
+    "./shells/settings-layout": {
+      "import": {
+        "types": "./dist/shells/settings-layout.d.ts",
+        "default": "./dist/shells/settings-layout.js"
+      }
+    },
+    "./layouts/dashboard-page": {
+      "import": {
+        "types": "./dist/layouts/dashboard-page.d.ts",
+        "default": "./dist/layouts/dashboard-page.js"
+      }
+    },
+    "./layouts/transaction-detail-page": {
+      "import": {
+        "types": "./dist/layouts/transaction-detail-page.d.ts",
+        "default": "./dist/layouts/transaction-detail-page.js"
       }
     }
   },

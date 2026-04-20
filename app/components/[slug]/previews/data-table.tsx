@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/data-table"
 import { Input } from "@/components/ui/input"
 import { StatusPill } from "@/components/ui/status-pill"
+import { DIRECTION_TONE_CLASSES } from "@/src/lib/tone"
 import { cn } from "@/src/lib/utils"
 import { Section } from "./_shared"
 
@@ -227,12 +228,6 @@ const TXS: Tx[] = [
   },
 ]
 
-const DIR_ICON_TONE: Record<Tx["dir"], string> = {
-  inbound: "bg-mint text-mint-ink",
-  outbound: "bg-blush text-blush-ink",
-  internal: "bg-lilac text-lilac-ink",
-}
-
 function DirCell({ dir }: { dir: Tx["dir"] }) {
   const Icon = dir === "inbound" ? ArrowDownLeft : dir === "outbound" ? ArrowUpRight : RefreshCw
   return (
@@ -240,7 +235,7 @@ function DirCell({ dir }: { dir: Tx["dir"] }) {
       aria-hidden
       className={cn(
         "flex size-7 shrink-0 items-center justify-center rounded-full",
-        DIR_ICON_TONE[dir],
+        DIRECTION_TONE_CLASSES[dir],
       )}
     >
       <Icon className="size-3.5" />

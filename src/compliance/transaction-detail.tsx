@@ -16,6 +16,7 @@ import { useState } from "react"
 
 import { Button } from "../components/button"
 import { StatusPill } from "../components/status-pill"
+import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
 import { FlagCallout } from "./flag-callout"
@@ -33,12 +34,6 @@ const DIRECTION_ICONS: Record<TransactionDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-5" />,
   outbound: <ArrowUpRight className="size-5" />,
   internal: <RefreshCw className="size-4" />,
-}
-
-const DIRECTION_TONE: Record<TransactionDirection, string> = {
-  inbound: "bg-mint text-mint-ink",
-  outbound: "bg-blush text-blush-ink",
-  internal: "bg-lilac text-lilac-ink",
 }
 
 const STATUS_PILL_VARIANT: Record<ComplianceStatus, ComponentProps<typeof StatusPill>["variant"]> =
@@ -164,7 +159,7 @@ function TransactionDetail({
             <span
               className={cn(
                 "flex size-9 shrink-0 items-center justify-center rounded-[10px]",
-                DIRECTION_TONE[tx.direction],
+                DIRECTION_TONE_CLASSES[tx.direction],
               )}
               aria-hidden
             >

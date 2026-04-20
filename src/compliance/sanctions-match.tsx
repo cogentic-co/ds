@@ -42,20 +42,21 @@ function SanctionsMatch({
     matchScore >= 80
       ? "text-destructive"
       : matchScore >= 50
-        ? "text-warning-foreground"
+        ? "text-[var(--highlight-ink)]"
         : "text-muted-foreground"
 
   return (
     <div
       data-slot="sanctions-match"
-      className={cn(
-        "flex flex-col gap-3 rounded-xl border border-amber-700/30 bg-amber-700/5 p-4 text-sm dark:border-amber-400/30 dark:bg-amber-400/5",
-        className,
-      )}
+      className={cn("flex flex-col gap-3 rounded-[var(--radius-md)] p-4 text-sm", className)}
+      style={{
+        background: "color-mix(in oklab, var(--highlight) 35%, transparent)",
+        border: "1px solid color-mix(in oklab, var(--highlight-ink) 25%, transparent)",
+      }}
       {...props}
     >
       <div className="flex items-start gap-3">
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-amber-700/15 text-amber-700 dark:bg-amber-400/15 dark:text-amber-400">
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-highlight text-highlight-ink">
           <AlertTriangle className="size-4" />
         </span>
         <div className="min-w-0 flex-1">
@@ -77,7 +78,12 @@ function SanctionsMatch({
       {children}
 
       {(onDismiss || onConfirm) && (
-        <div className="flex items-center justify-end gap-2 border-amber-700/20 border-t pt-3 dark:border-amber-400/20">
+        <div
+          className="flex items-center justify-end gap-2 border-t pt-3"
+          style={{
+            borderColor: "color-mix(in oklab, var(--highlight-ink) 20%, transparent)",
+          }}
+        >
           {onDismiss && (
             <Button variant="ghost" size="sm" onClick={onDismiss}>
               <XCircle className="mr-1 size-3.5" />

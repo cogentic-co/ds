@@ -5,7 +5,6 @@ import {
   AddressDisplay,
   AlertBanner,
   AlertsCard,
-  AppSidebar,
   AuditNote,
   AwaitingReviewCard,
   CaseCard,
@@ -15,7 +14,6 @@ import {
   type ComplianceTimelineStep,
   CounterpartyCard,
   CounterpartyIntel,
-  DashboardPage,
   EventTimeline,
   FlagCallout,
   FlowDiagram,
@@ -33,7 +31,6 @@ import {
   TransactionCard,
   type TransactionData,
   TransactionDetail,
-  TransactionDetailPage,
   TransactionFilterBar,
   type TransactionFilters,
   TransactionFlowCard,
@@ -44,7 +41,7 @@ import {
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
-import { SidebarProvider } from "@/src/components/sidebar"
+import { DashboardPage, TransactionDetailPage } from "@/src/layouts"
 import { Section } from "../../components/[slug]/previews/_shared"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -1066,21 +1063,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           onExport={() => console.log("export")}
           onNewCase={() => console.log("new case")}
         />
-      </div>
-    )
-  },
-
-  "app-sidebar": function AppSidebarPreview() {
-    return (
-      <div className="h-[560px] overflow-hidden rounded-[var(--radius-lg)] border border-border">
-        <SidebarProvider>
-          <AppSidebar active="tx" />
-          <div className="flex-1 bg-background p-6">
-            <div className="text-muted-foreground text-sm">
-              Main content area. Click sidebar items to see hover/active states.
-            </div>
-          </div>
-        </SidebarProvider>
       </div>
     )
   },

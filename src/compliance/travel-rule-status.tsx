@@ -7,18 +7,15 @@ import { cn } from "../lib/utils"
 import type { TravelRuleStatusValue } from "./types"
 
 const travelRuleStatusVariants = cva(
-  "inline-flex items-center gap-1 border px-2 py-0.5 font-medium text-[11px] leading-tight",
+  "inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-medium text-[11px] leading-tight",
   {
     variants: {
       status: {
-        not_required: "border-border bg-muted text-muted-foreground",
-        pending:
-          "border-amber-700/30 bg-amber-700/10 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400",
-        sent: "border-[#3B50A8]/30 bg-[#3B50A8]/10 text-[#3B50A8] dark:border-[#8DA0FF]/30 dark:bg-[#8DA0FF]/10 dark:text-[#8DA0FF]",
-        received:
-          "border-emerald-700/30 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400",
-        expired:
-          "border-red-700/30 bg-red-700/10 text-red-700 dark:border-red-400/30 dark:bg-red-400/10 dark:text-red-400",
+        not_required: "bg-muted text-muted-foreground",
+        pending: "bg-highlight text-highlight-ink",
+        sent: "bg-sky text-sky-ink",
+        received: "bg-mint text-mint-ink",
+        expired: "bg-blush text-blush-ink",
       },
     },
     defaultVariants: { status: "not_required" },

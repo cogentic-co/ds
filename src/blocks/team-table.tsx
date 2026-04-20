@@ -40,11 +40,9 @@ type TeamTableProps = ComponentProps<"div"> & {
 }
 
 const STATUS_BADGE: Record<TeamMemberStatus, string> = {
-  active:
-    "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:bg-emerald-400/10 dark:text-emerald-400",
+  active: "border-transparent bg-mint text-mint-ink",
   invited: "border-border bg-muted text-muted-foreground",
-  suspended:
-    "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400",
+  suspended: "border-transparent bg-blush text-blush-ink",
 }
 
 function TeamTable({

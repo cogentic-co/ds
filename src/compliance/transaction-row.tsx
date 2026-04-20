@@ -3,6 +3,7 @@
 import { ArrowDownLeft, ArrowRight, ArrowUpRight, RefreshCw } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { Badge } from "../components/badge"
+import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
 import { ComplianceStatusBadge } from "./compliance-status-badge"
@@ -13,12 +14,6 @@ const DIRECTION_ICONS: Record<TransactionDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-3.5" />,
   outbound: <ArrowUpRight className="size-3.5" />,
   internal: <RefreshCw className="size-3" />,
-}
-
-const DIRECTION_CIRCLE: Record<TransactionDirection, string> = {
-  inbound: "bg-mint text-mint-ink",
-  outbound: "bg-sky text-sky-ink",
-  internal: "bg-lilac text-lilac-ink",
 }
 
 const DIRECTION_AMOUNT: Record<TransactionDirection, string> = {
@@ -51,7 +46,7 @@ function TransactionRow({ transaction: tx, onClick, className, ...props }: Trans
       <span
         className={cn(
           "flex size-7 shrink-0 items-center justify-center rounded-full",
-          DIRECTION_CIRCLE[tx.direction],
+          DIRECTION_TONE_CLASSES[tx.direction],
         )}
       >
         {DIRECTION_ICONS[tx.direction]}

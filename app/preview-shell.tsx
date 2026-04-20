@@ -154,7 +154,6 @@ const componentGroups: SidebarGroupDef[] = [
       "tag",
       "avatar",
       "carousel",
-      "compliance-score",
       "stat",
       "risk-gauge",
       "status-indicator",
@@ -560,16 +559,6 @@ function buildNav(pathname: string): NavGroup[] {
             "recent-transactions-card",
             "alerts-card",
           ].map((slug) => ({
-            label: toTitle(slug),
-            icon: Component,
-            href: `/compliance/${slug}`,
-            isActive: pathname === `/compliance/${slug}`,
-          })),
-          defaultOpen: true,
-        },
-        {
-          title: "App shell",
-          items: ["app-sidebar"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,

@@ -7,19 +7,15 @@ import { cn } from "../lib/utils"
 import type { ComplianceStatus } from "./types"
 
 const complianceStatusBadgeVariants = cva(
-  "inline-flex items-center gap-1 border px-2 py-0.5 font-medium text-[11px] leading-tight",
+  "inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-medium text-[11px] leading-tight",
   {
     variants: {
       status: {
-        pending: "border-border bg-muted text-muted-foreground",
-        accepted:
-          "border-emerald-700/40 bg-emerald-700/10 text-emerald-700 dark:border-emerald-400/40 dark:bg-emerald-400/10 dark:text-emerald-400",
-        rejected:
-          "border-red-700/40 bg-red-700/10 text-red-700 dark:border-red-400/40 dark:bg-red-400/10 dark:text-red-400",
-        flagged:
-          "border-amber-700/40 bg-amber-700/10 text-amber-700 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-400",
-        escalated:
-          "border-red-700/40 bg-red-700/5 text-red-700 dark:border-red-400/40 dark:bg-red-400/5 dark:text-red-400",
+        pending: "bg-muted text-muted-foreground",
+        accepted: "bg-mint text-mint-ink",
+        rejected: "bg-blush text-blush-ink",
+        flagged: "bg-highlight text-highlight-ink",
+        escalated: "bg-blush text-blush-ink",
       },
     },
     defaultVariants: { status: "pending" },

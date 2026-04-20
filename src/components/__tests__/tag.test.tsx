@@ -42,7 +42,7 @@ describe("Tag", () => {
 
   it("renders success variant", () => {
     const { container } = render(<Tag variant="success">Success</Tag>)
-    expect(container.querySelector("[data-slot='tag']")).toHaveClass("text-emerald-700")
+    expect(container.querySelector("[data-slot='tag']")).toHaveClass("text-mint-ink")
   })
 
   it("does not show remove button by default", () => {

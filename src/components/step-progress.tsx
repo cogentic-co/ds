@@ -56,7 +56,7 @@ function StepProgressItem({ status = "upcoming", className, ...props }: StepProg
 }
 
 const indicatorStyles: Record<StepProgressStatus, string> = {
-  complete: "border-emerald-500 bg-emerald-500 text-white",
+  complete: "border-[var(--mint-ink)] bg-[var(--mint-ink)] text-[var(--mint)]",
   current: "border-primary bg-primary text-primary-foreground",
   upcoming: "border-border bg-card text-muted-foreground",
 }
@@ -97,7 +97,7 @@ function StepProgressConnector({ className, ...props }: React.ComponentProps<"di
         // Horizontal: line going right
         "[[data-orientation='horizontal']_&]:absolute [[data-orientation='horizontal']_&]:top-4 [[data-orientation='horizontal']_&]:left-[calc(50%+20px)] [[data-orientation='horizontal']_&]:h-0.5 [[data-orientation='horizontal']_&]:w-[calc(100%-40px)]",
         "bg-border",
-        "[&[data-complete='true']]:bg-emerald-500",
+        "[&[data-complete='true']]:bg-[var(--mint-ink)]",
         className,
       )}
       {...props}

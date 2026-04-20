@@ -103,7 +103,7 @@ function CaseCard({
     <Card
       padding="none"
       className={cn(
-        "cursor-pointer p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-800 hover:bg-emerald-50/20 hover:shadow-md",
+        "cursor-pointer p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]",
         className,
       )}
       onClick={onClick}

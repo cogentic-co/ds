@@ -19,24 +19,24 @@ describe("Callout", () => {
     expect(container.querySelector("[data-slot='callout']")).toHaveClass("custom-callout")
   })
 
-  it("renders info variant by default", () => {
+  it("renders info variant by default (sky pastel)", () => {
     const { container } = render(<Callout>Info message</Callout>)
-    expect(container.querySelector("[data-slot='callout']")).toHaveClass("border-blue-500/20")
+    expect(container.querySelector("[data-slot='callout']")?.className).toContain("bg-sky")
   })
 
-  it("renders warning variant", () => {
+  it("renders warning variant (highlight pastel)", () => {
     const { container } = render(<Callout variant="warning">Warning message</Callout>)
-    expect(container.querySelector("[data-slot='callout']")).toHaveClass("border-amber-500/20")
+    expect(container.querySelector("[data-slot='callout']")?.className).toContain("bg-highlight")
   })
 
-  it("renders danger variant", () => {
+  it("renders danger variant (blush pastel)", () => {
     const { container } = render(<Callout variant="danger">Danger message</Callout>)
-    expect(container.querySelector("[data-slot='callout']")).toHaveClass("border-red-500/20")
+    expect(container.querySelector("[data-slot='callout']")?.className).toContain("bg-blush")
   })
 
-  it("renders tip variant", () => {
+  it("renders tip variant (mint pastel)", () => {
     const { container } = render(<Callout variant="tip">Tip message</Callout>)
-    expect(container.querySelector("[data-slot='callout']")).toHaveClass("border-emerald-500/20")
+    expect(container.querySelector("[data-slot='callout']")?.className).toContain("bg-mint")
   })
 
   it("renders an icon for each variant", () => {

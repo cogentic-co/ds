@@ -24,7 +24,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-6 overflow-hidden rounded-xl border border-border bg-card py-6 text-card-foreground text-sm has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        "group/card flex flex-col gap-6 overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card py-6 text-card-foreground text-sm shadow-[var(--shadow-card)] has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-[var(--radius-lg)] *:[img:last-child]:rounded-b-[var(--radius-lg)]",
         padding !== "default" && paddingStyles[padding],
         className,
       )}

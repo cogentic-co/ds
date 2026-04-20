@@ -1,6 +1,7 @@
 import { AlertTriangle } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
+import { TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 
 type AlertTone = "highlight" | "blush" | "sky" | "lilac" | "mint"
@@ -14,13 +15,6 @@ type AlertEntry = {
   icon?: ReactNode
 }
 
-const TONE_CLASSES: Record<AlertTone, string> = {
-  highlight: "bg-highlight text-highlight-ink",
-  blush: "bg-blush text-blush-ink",
-  sky: "bg-sky text-sky-ink",
-  lilac: "bg-lilac text-lilac-ink",
-  mint: "bg-mint text-mint-ink",
-}
 
 type AlertsCardProps = Omit<ComponentProps<"div">, "children" | "onSelect"> & {
   alerts: AlertEntry[]
