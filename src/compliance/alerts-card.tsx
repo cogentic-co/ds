@@ -56,13 +56,19 @@ function AlertsCard({
         )}
       </div>
 
+      {alerts.length === 0 && (
+        <div className="px-[18px] py-8 text-center text-muted-foreground text-sm">
+          No alerts in this window.
+        </div>
+      )}
+
       {alerts.map((a, i) => (
         <button
           key={a.id}
           type="button"
           onClick={onSelect ? () => onSelect(a) : undefined}
           className={cn(
-            "grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 px-[18px] py-3 text-left transition-colors",
+            "grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 px-[18px] py-3 text-left outline-none transition-colors focus-visible:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
             i < alerts.length - 1 && "border-border-light border-b",
             onSelect && "cursor-pointer hover:bg-muted/40",
           )}

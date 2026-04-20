@@ -74,7 +74,7 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
           }}
           placeholder="Add a reviewer note…"
           aria-label="Reviewer note"
-          className="min-h-[54px] w-full resize-y border-none bg-transparent text-[13px] leading-relaxed outline-none"
+          className="min-h-[54px] w-full resize-y rounded-[var(--radius-sm)] border-none bg-transparent text-[13px] leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <div className="mt-1.5 flex items-center justify-between">
           <span className="text-[11px] text-muted-foreground">⌘ + Enter to submit</span>

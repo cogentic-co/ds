@@ -66,6 +66,12 @@ function RecentTransactionsCard({
         )}
       </div>
 
+      {transactions.length === 0 && (
+        <div className="px-[18px] py-8 text-center text-muted-foreground text-sm">
+          No transactions in this window.
+        </div>
+      )}
+
       {transactions.map((tx, i) => {
         const sign = tx.dir === "inbound" ? "+" : tx.dir === "outbound" ? "−" : ""
         return (
@@ -74,7 +80,7 @@ function RecentTransactionsCard({
             type="button"
             onClick={onSelect ? () => onSelect(tx) : undefined}
             className={cn(
-              "grid w-full grid-cols-[28px_1fr_auto_auto] items-center gap-3 px-[18px] py-2.5 text-left transition-colors",
+              "grid w-full grid-cols-[28px_1fr_auto_auto] items-center gap-3 px-[18px] py-2.5 text-left outline-none transition-colors focus-visible:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
               i < transactions.length - 1 && "border-border-light border-b",
               onSelect && "cursor-pointer hover:bg-muted/40",
             )}
