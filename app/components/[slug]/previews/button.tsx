@@ -13,7 +13,7 @@ const buttonControlDefs = {
   },
   size: {
     type: "select" as const,
-    options: ["xs", "sm", "default", "lg", "icon", "icon-sm", "icon-xs", "icon-lg"],
+    options: ["xs", "sm", "default", "lg", "xl", "xxl", "icon", "icon-sm", "icon-xs", "icon-lg"],
     defaultValue: "default",
     label: "Size",
   },
@@ -59,6 +59,8 @@ export default function ButtonPreview() {
         <Button size="sm">Small</Button>
         <Button size="default">Default</Button>
         <Button size="lg">Large</Button>
+        <Button size="xl">Extra Large</Button>
+        <Button size="xxl">XX-Large</Button>
       </Section>
       <Section title="Icon sizes">
         <Button size="icon-xs">

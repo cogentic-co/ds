@@ -5,7 +5,8 @@ export const actionsMeta: Record<string, ComponentMeta> = {
   button: {
     status: "stable",
     baseUiDoc: "https://base-ui.com/react/components/button",
-    description: "Trigger actions or navigation. Supports multiple variants and sizes.",
+    description:
+      "Trigger actions or navigation. Variants: default, destructive, outline, secondary, ghost, link. Sizes: xs, sm, default, lg, xl, xxl, plus icon-* equivalents.",
     since: "0.1.0",
     importStatement: 'import { Button } from "@cogentic-co/ds/button"',
     dos: [

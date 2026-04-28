@@ -58,7 +58,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 - `RiskGauge` — Segmented bar gauge for risk scores. Props: `score`, `tier`, `size`, `label`
 
 ### Forms & Input
-- `Button` — Variants: default, destructive, outline, secondary, ghost, link. Sizes: default, sm, lg, icon
+- `Button` — Variants: default, destructive, outline, secondary, ghost, link. Sizes: xs, sm, default, lg, xl, xxl, icon, icon-xs, icon-sm, icon-lg
 - `ButtonGroup` — Group buttons together
 - `Input` — Text input with variants
 - `InputGroup`, `InputGroupText`, `InputGroupAddon` — Input with addons

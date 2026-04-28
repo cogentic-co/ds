@@ -38,7 +38,7 @@
       "figmaType": "COMPONENT_SET",
       "variantAxes": {
         "Variant": ["default", "outline", "secondary", "ghost", "destructive", "link"],
-        "Size": ["sm", "default", "lg"]
+        "Size": ["sm", "default", "lg", "xl", "xxl"]
       },
       "reactName": "Button",
       "reactImportPath": "@cogentic-co/ds",

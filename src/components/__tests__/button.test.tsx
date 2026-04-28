@@ -36,6 +36,16 @@ describe("Button", () => {
     expect(el).toHaveAttribute("href", "/test")
   })
 
+  it("renders xl size with larger height class", () => {
+    render(<Button size="xl">Big</Button>)
+    expect(screen.getByRole("button")).toHaveClass("h-12")
+  })
+
+  it("renders xxl size with even larger height class", () => {
+    render(<Button size="xxl">Bigger</Button>)
+    expect(screen.getByRole("button")).toHaveClass("h-14")
+  })
+
   it("has no accessibility violations", async () => {
     const { container } = render(<Button>Accessible</Button>)
     const results = await axe(container)
