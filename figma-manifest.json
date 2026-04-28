@@ -1,0 +1,168 @@
+{
+  "fileKey": "1FH1KCGLeK5GR222JUS2Iu",
+  "generatedAt": "2026-04-25T00:00:00.000Z",
+  "_note": "Seed manifest. Run `pnpm sync:figma` to regenerate from the live Figma file.",
+  "components": [
+    {
+      "figmaName": "Avatar",
+      "figmaPageName": "Avatar",
+      "figmaNodeId": "25:19",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=25-19",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": { "Size": ["sm", "md", "lg"], "Kind": ["initials", "image"] },
+      "reactName": "Avatar",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/avatar.tsx"
+    },
+    {
+      "figmaName": "Badge",
+      "figmaPageName": "Badge",
+      "figmaNodeId": "317:248",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=317-248",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "Tone": ["default", "secondary", "outline", "destructive", "success", "warning", "focal", "ghost"],
+        "Shape": ["pill", "square"],
+        "Size": ["sm", "default", "lg"],
+        "Dot": ["Off", "On"]
+      },
+      "reactName": "Badge",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/badge.tsx"
+    },
+    {
+      "figmaName": "Button",
+      "figmaPageName": "Button",
+      "figmaNodeId": "21:113",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=21-113",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "Variant": ["default", "outline", "secondary", "ghost", "destructive", "link"],
+        "Size": ["sm", "default", "lg"]
+      },
+      "reactName": "Button",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/button.tsx"
+    },
+    {
+      "figmaName": "Card",
+      "figmaPageName": "Card",
+      "figmaNodeId": "59:59",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=59-59",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": { "Variant": ["default", "muted", "focal"] },
+      "reactName": "Card",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/card.tsx"
+    },
+    {
+      "figmaName": "Header",
+      "figmaPageName": "Header",
+      "figmaNodeId": "450:2",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=450-2",
+      "figmaType": "COMPONENT",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Unified Header replaces Case/Transaction/Entity Header. No React equivalent yet — use Card + Breadcrumb + Button composition."
+    },
+    {
+      "figmaName": "Markdown",
+      "figmaPageName": "Markdown",
+      "figmaNodeId": "586:38",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=586-38",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": { "Variant": ["default", "inverted"] },
+      "reactName": "Markdown",
+      "reactImportPath": "@cogentic-co/ds/chatbot",
+      "reactFilePath": "src/chatbot/markdown.tsx"
+    },
+    {
+      "figmaName": "Icon Tile",
+      "figmaPageName": "Icon Tile",
+      "figmaNodeId": "461:113",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=461-113",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "Tone": ["default", "mint", "highlight", "sky", "blush", "lilac"],
+        "Size": ["sm", "md", "lg"],
+        "Shape": ["circle", "rounded"]
+      },
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Renamed from Direction. No React equivalent yet — use a div with bg + size + rounded utility."
+    },
+    {
+      "figmaName": "Step",
+      "figmaPageName": "Step",
+      "figmaNodeId": "456:63",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=456-63",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "Status": ["done", "active", "pending", "failed", "skipped"],
+        "Size": ["compact", "detailed"]
+      },
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Used inside Agent Progress and any agent step list."
+    },
+    {
+      "figmaName": "Stat",
+      "figmaPageName": "Stat",
+      "figmaNodeId": "62:76",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=62-76",
+      "figmaType": "COMPONENT",
+      "variantAxes": { "_implicit_size": ["sm", "md", "lg"] },
+      "reactName": "Stat",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/stat.tsx",
+      "_note": "Stat / sm | md | lg are 3 separate components on the consolidated Stat page."
+    },
+    {
+      "figmaName": "Section Heading",
+      "figmaPageName": "Section Heading",
+      "figmaNodeId": "316:76",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=316-76",
+      "figmaType": "COMPONENT",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null
+    },
+    {
+      "figmaName": "Sidebar",
+      "figmaPageName": "Sidebar",
+      "figmaNodeId": "63:17",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=63-17",
+      "figmaType": "COMPONENT",
+      "reactName": "Sidebar",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/sidebar.tsx"
+    },
+    {
+      "figmaName": "Docs / Header",
+      "figmaPageName": "Docs",
+      "figmaNodeId": "43:3",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=43-3",
+      "figmaType": "COMPONENT",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Used on every component page's Guidelines artboard. Not exported in code — design-only doc element."
+    },
+    {
+      "figmaName": "Docs / Guideline",
+      "figmaPageName": "Docs",
+      "figmaNodeId": "43:16",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=43-16",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": { "Kind": ["Do", "Dont"] },
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Used on every component page's Guidelines artboard. Not exported in code — design-only doc element."
+    }
+  ],
+  "unmatchedReact": []
+}

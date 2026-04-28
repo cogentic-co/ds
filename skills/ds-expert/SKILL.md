@@ -22,6 +22,8 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 | `@cogentic-co/ds/animations/*` | Individual product animations (code-split) |
 | `@cogentic-co/ds/blocks/*` | Blocks: pricing-table, stat-card, feature-section, hero-section, login-form, register-form, forgot-password-form, select-org-form, magic-link-message |
 | `@cogentic-co/ds/charts` | Chart variants (AreaChart, BarChart, LineChart, PieChart, RadialChart) |
+| `@cogentic-co/ds/chatbot` | AI/chatbot primitives (Message, Conversation, PromptInput, Markdown, Reasoning, Plan, Task, Tool, …) |
+| `@cogentic-co/ds/chatbot/markdown` | Markdown renderer only (Streamdown-based) — import directly to keep the rest of chatbot tree-shakable |
 | `@cogentic-co/ds/workflow` | React Flow workflow components (requires @xyflow/react) |
 
 ## Available Components
@@ -130,6 +132,13 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 
 ### Typography
 - `H1`, `H2`, `H3`, `H4`, `P`, `Lead`, `Large`, `Small`, `Muted`, `InlineCode`, `Blockquote`, `Ul`, `Li` — Typography primitives
+
+### AI / Chatbot (from `@cogentic-co/ds/chatbot`)
+- `Markdown` — Streaming-aware markdown renderer (wraps Vercel Streamdown). Themed with DS prose tokens, handles unterminated blocks during streaming, supports GFM/code-highlighting/tables. Auto-rendered inside `MessageResponse` when children is a string. Props: `children: string`, `variant` (default/inverted), plus full Streamdown props
+- `Message`, `MessageAvatar`, `MessageContent`, `MessageResponse`, `MessageActions`, `MessageCopyAction`, `MessageRegenerateAction`, `MessageFeedbackActions`, `MessageBranch`, `MessageBranchSelector` — Chat message bubble with role-based styling
+- `Conversation`, `ConversationContent`, `ConversationEmptyState` — Auto-scrolling conversation container
+- `PromptInput`, `PromptInputTextarea`, `PromptInputFooter`, `PromptInputSubmit`, `PromptInputAttachButton`, `PromptInputFiles` — Composable chat input
+- `Reasoning`, `ChainOfThought`, `Plan`, `Task`, `Tool`, `Sources`, `Confirmation`, `Context`, `Checkpoint`, `Queue`, `ModelSelector`, `Shimmer`, `Suggestion`, `InlineCitation`, `Attachments` — AI primitives
 
 ### Compliance Components
 - `CommentThread`, `Comment`, `CommentAvatar`, `CommentBody`, `CommentHeader`, `CommentAuthor`, `CommentTime`, `CommentContent`, `CommentActions` — Threaded comments for cases/findings. `Comment` has `reply` prop for indented replies

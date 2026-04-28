@@ -246,6 +246,10 @@
 
   --border-illustration: oklch(0.9 0.01 75);
   --illustration: oklch(0.99 0.005 80);
+
+  /* @figma-tokens light begin */
+  /* Auto-managed by `pnpm sync:tokens` — do not edit by hand. */
+  /* @figma-tokens light end */
 }
 
 .dark {
@@ -314,6 +318,10 @@
 
   --border-illustration: oklch(0.32 0.01 60);
   --illustration: oklch(0.26 0.01 60);
+
+  /* @figma-tokens dark begin */
+  /* Auto-managed by `pnpm sync:tokens` — do not edit by hand. */
+  /* @figma-tokens dark end */
 }
 
 @layer base {

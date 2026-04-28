@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -79,6 +79,18 @@
       "import": {
         "types": "./dist/card-stack.d.ts",
         "default": "./dist/card-stack.js"
+      }
+    },
+    "./chatbot": {
+      "import": {
+        "types": "./dist/chatbot.d.ts",
+        "default": "./dist/chatbot.js"
+      }
+    },
+    "./chatbot/markdown": {
+      "import": {
+        "types": "./dist/chatbot/markdown.d.ts",
+        "default": "./dist/chatbot/markdown.js"
       }
     },
     "./bento": {
@@ -848,6 +860,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "generate:props": "node --import tsx scripts/generate-props.ts",
+    "sync:figma": "node --import tsx scripts/sync-figma.ts",
+    "sync:tokens": "node --import tsx scripts/sync-tokens.ts",
     "build:pkg": "tsup",
     "start": "next start",
     "lint": "biome check .",
@@ -898,6 +912,7 @@
     "react-day-picker": "^9.13.2",
     "react-resizable-panels": "^4.6.5",
     "sonner": "^2.0.7",
+    "streamdown": "^2.5.0",
     "tailwind-merge": "^3.5.0",
     "vaul": "^1.1.2",
     "zod": "^4.3.6"

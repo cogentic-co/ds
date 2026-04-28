@@ -3,7 +3,7 @@
 import { Bell, Search, Settings } from "lucide-react"
 import type { ComponentType, ReactNode } from "react"
 
-import { type Tone, TONE_CLASSES } from "../lib/tone"
+import { TONE_CLASSES, type Tone } from "../lib/tone"
 import { cn } from "../lib/utils"
 
 type NavEntry = {

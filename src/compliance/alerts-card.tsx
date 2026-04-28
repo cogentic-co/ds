@@ -15,7 +15,6 @@ type AlertEntry = {
   icon?: ReactNode
 }
 
-
 type AlertsCardProps = Omit<ComponentProps<"div">, "children" | "onSelect"> & {
   alerts: AlertEntry[]
   title?: string

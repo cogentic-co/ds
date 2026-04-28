@@ -265,3 +265,119 @@ Every new component **must** include all of the following before it's considered
 5. **Override-friendly** — `className` overrides via `cn()` merging
 6. **Next.js-native** — Uses `next/link` in blocks, Next.js as peer dep
 7. **Motion-ready** — Animation components for onboarding, help, and landing pages
+
+## Figma source of truth
+
+The Figma file mirrors this package and is the design source of truth. Code is the implementation source of truth. Both should stay in sync.
+
+- **File key:** `1FH1KCGLeK5GR222JUS2Iu` (https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu)
+- **Manifest:** `figma-manifest.json` at repo root maps Figma node IDs ↔ React component file paths
+
+### Page structure (~196 pages, grouped)
+
+`Cover → Getting Started → — Foundations — (Colors / Shadows / Spacing & Radius / Typography) → — Components — (A–Z) → — Charts — → — Compliance Blocks — → — Case Report Editor — → — Dashboard Blocks — → — Transaction Blocks — → — Settings Blocks — → — Workflow Blocks — → — Auth Blocks — → — AI Chatbot — → — Layouts — → — Integrations — → — Prototypes — → Docs`
+
+### Variable collections
+
+- **Color** (modes: Light, Dark) — names without prefix: `foreground`, `mint`, `mint-ink`, `highlight`, `highlight-ink`, `sky`, `sky-ink`, `blush`, `blush-ink`, `lilac`, `lilac-ink`, `destructive`, `success`, `warning`, `card`, `border`, `border-light`, etc.
+- **Spacing**, **Radius**, **Typography** — single Value mode
+
+### Text styles (in Geist family)
+
+`Display`, `Heading/H1–H5`, `Body/Default|Medium|Small|SmallMedium|Large`, `Label/Default`, `Caption`, `Caption/Medium`, `Micro`, `Code/Inline|Block|Small|Small/Medium|Xsmall|Micro/Medium`
+
+## Figma work conventions
+
+When working in Figma (via the figma MCP server / `use_figma`), follow these rules — they keep the file consistent with the package.
+
+### Inspect before creating
+
+1. Run `search_design_system` or page traversal first
+2. Reuse instances of existing components — never hand-build something the DS already covers
+3. Check the Figma manifest (`figma-manifest.json`) to find the React equivalent of any component you reuse
+
+### Reusable components (most-used)
+
+Default to instances of these — don't hand-build:
+- **Button** (variant: default/outline/secondary/ghost/destructive/link × size: sm/default/lg)
+- **Badge** (tone × shape × size × dot — 96 variants including `ghost` for subtle inline use)
+- **Avatar** (size: sm/md/lg × kind: initials/image)
+- **Icon Tile** (tone × size × shape — replaces old "Direction"; icon-swap slot)
+- **Step** (status: done/active/pending/failed/skipped × size: compact/detailed) — use inside Agent Progress and any agent step list
+- **Card**, **Sidebar**, **Section Heading**, **Stat / sm|md|lg**, **Header** (unified, replaces Case/Transaction/Entity Header)
+- **Docs / Header** + **Docs / Guideline** — use these on every component page's Guidelines artboard
+
+### Variant naming
+
+Use `Axis=value, Axis=value` format consistently:
+- `Tone=success, Shape=pill, Size=sm, Dot=On`
+- `Status=done, Size=detailed`
+
+### No hardcoded colors or fonts
+
+- All SOLID fills/strokes must be bound to color variables (use `figma.variables.setBoundVariableForPaint`)
+- All text must use a text style (`setTextStyleIdAsync`), never raw `fontSize`/`fontName`
+- If you can't find a variable for a hex value, that's a signal to use the closest semantic token, not invent a new one
+
+### Guidelines artboard pattern
+
+Every component / block / layout page has a Guidelines artboard at the bottom containing:
+- One `Docs / Header` instance (Title = page name, Description = "When to use X and what to avoid")
+- A `Do` column with 3 `Docs / Guideline` `Kind=Do` instances
+- A `Don't` column with 3 `Docs / Guideline` `Kind=Dont` instances
+
+## Linking design and code
+
+Code Connect is unavailable in this org, so we maintain the link manually via:
+
+### 1. `figma-manifest.json` (repo root)
+
+A flat manifest mapping every Figma component to its React equivalent. Schema:
+
+```json
+{
+  "components": [
+    {
+      "figmaName": "Button",
+      "figmaPageName": "Button",
+      "figmaNodeId": "21:113",
+      "reactName": "Button",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/components/button.tsx",
+      "variants": ["default", "outline", "secondary", "ghost", "destructive", "link"],
+      "sizes": ["sm", "default", "lg"]
+    }
+  ]
+}
+```
+
+Keep this in sync whenever a component is added or renamed in either side. The Figma agent reads this to know which React import to suggest; the code agent reads it to know which Figma component to reference.
+
+### 2. JSDoc `@figma` annotations on each React component
+
+Each component file has a JSDoc tag pointing at its Figma source:
+
+```tsx
+/**
+ * @figma Button
+ * @figmaNode 21:113
+ * @figmaUrl https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=21-113
+ */
+export function Button(...) { }
+```
+
+This gives IDE hover-context and lets agents jump from code to design without leaving the editor.
+
+### 3. Sync script (planned)
+
+`pnpm sync:figma` (TODO) — reads the Figma file via the MCP server and updates `figma-manifest.json` automatically. Run after design system changes.
+
+### 4. Naming parity
+
+- Figma component name should match the React component name exactly (case-insensitive, `/` → space ok). E.g. Figma `Header / case` maps to React `<Header kind="case">` not a separate component.
+- New variants on either side must land on both within the same PR.
+
+### 5. Token sync
+
+- OKLch values in `src/styles/globals.css` should match the resolved Light-mode RGB of each Figma color variable
+- A future `pnpm sync:tokens` script can read Figma's color collection and emit the CSS — keeps drift out of the system

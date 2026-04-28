@@ -68,6 +68,7 @@ import LabelPreview from "./label"
 import LineChartPreview from "./line-chart"
 import LoadingOverlayPreview from "./loading-overlay"
 import LogoVaspPreview from "./logo-vasp"
+import MarkdownPreview from "./markdown"
 import MarqueePreview from "./marquee"
 import MenubarPreview from "./menubar"
 import MessagePreview from "./message"
@@ -277,6 +278,7 @@ export const previews: Record<string, React.ComponentType> = {
   sources: SourcesPreview,
   attachments: AttachmentsPreview,
   "inline-citation": InlineCitationPreview,
+  markdown: MarkdownPreview,
   message: MessagePreview,
   conversation: ConversationPreview,
   "prompt-input": PromptInputPreview,

@@ -3,7 +3,7 @@
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
 import type * as React from "react"
 
-import { type Tone, TONE_CLASSES } from "../lib/tone"
+import { TONE_CLASSES, type Tone } from "../lib/tone"
 import { cn } from "../lib/utils"
 
 function Avatar({

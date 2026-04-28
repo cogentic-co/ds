@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority"
 import { ChevronLeft, ChevronRight, Copy, RefreshCw, ThumbsDown, ThumbsUp } from "lucide-react"
 import { type ComponentProps, createContext, useCallback, useContext, useState } from "react"
 import { cn } from "../lib/utils"
+import { Markdown } from "./markdown"
 
 // ---------------------------------------------------------------------------
 // Message role context
@@ -105,21 +106,22 @@ const responseBubbleVariants = cva("rounded-2xl px-4 py-3 text-sm leading-relaxe
   defaultVariants: { from: "assistant" },
 })
 
-function MessageResponse({ className, ...props }: ComponentProps<"div">) {
+function MessageResponse({ className, children, ...props }: ComponentProps<"div">) {
   const { role } = useContext(MessageContext)
+  const isString = typeof children === "string"
 
   return (
     <div
       data-slot="message-response"
-      className={cn(
-        responseBubbleVariants({ from: role }),
-        "prose prose-sm dark:prose-invert max-w-none",
-        "[&_pre]:rounded-lg [&_pre]:bg-card [&_pre]:p-3 [&_pre]:font-mono [&_pre]:text-xs",
-        "[&_code]:rounded [&_code]:bg-card [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs",
-        className,
-      )}
+      className={cn(responseBubbleVariants({ from: role }), className)}
       {...props}
-    />
+    >
+      {isString ? (
+        <Markdown variant={role === "user" ? "inverted" : "default"}>{children as string}</Markdown>
+      ) : (
+        children
+      )}
+    </div>
   )
 }
 

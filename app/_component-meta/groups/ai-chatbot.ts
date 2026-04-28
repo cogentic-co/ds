@@ -2,6 +2,34 @@ import type { ComponentMeta } from "../index"
 
 // ── AI / Chatbot ──
 export const aiChatbotMeta: Record<string, ComponentMeta> = {
+  markdown: {
+    status: "new",
+    description:
+      "Streaming-aware Markdown renderer for AI output. Wraps Vercel's Streamdown with DS prose tokens — handles unterminated code/tables/links during streaming, supports GFM, code highlighting, and tables. Auto-rendered inside MessageResponse when children is a string.",
+    importStatement: 'import { Markdown } from "@cogentic-co/ds/chatbot"',
+    dos: [
+      "Use for any model output that may contain markdown (almost always)",
+      "Pass model output as a plain string — Streamdown handles partial blocks",
+      "Use the `inverted` variant inside primary-coloured surfaces (user message bubble)",
+      "Trust the auto-render in MessageResponse — pass strings directly",
+    ],
+    donts: [
+      "Don't double-wrap with Markdown if you're already passing a string to MessageResponse",
+      "Don't sanitize input yourself — Streamdown already sanitizes via rehype-sanitize",
+      "Don't use for plain text that contains no markdown — it adds runtime cost",
+    ],
+    codeExample: `import { Markdown } from "@cogentic-co/ds/chatbot"
+
+// Standalone
+<Markdown>{modelOutput}</Markdown>
+
+// Inside MessageResponse — auto-rendered
+<Message from="assistant">
+  <MessageContent>
+    <MessageResponse>{streamingChunk}</MessageResponse>
+  </MessageContent>
+</Message>`,
+  },
   shimmer: {
     status: "new",
     description:

@@ -295,7 +295,7 @@ const chatbotGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Streaming",
-    items: ["shimmer", "reasoning", "chain-of-thought", "task", "plan"],
+    items: ["markdown", "shimmer", "reasoning", "chain-of-thought", "task", "plan"],
   },
   {
     label: "Rich content",
