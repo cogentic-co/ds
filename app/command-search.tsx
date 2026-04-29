@@ -11,6 +11,12 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { animationPreviews } from "./animations/[slug]/previews"
+import { blockPreviews } from "./blocks/[slug]/previews"
+import { compliancePreviews } from "./compliance/[slug]/previews"
+import { previews as componentPreviews } from "./components/[slug]/previews"
+import { layoutPreviews } from "./layouts/[slug]/previews"
+import { shellPreviews } from "./shells/[slug]/previews"
 import { componentMeta, statusConfig } from "./_component-meta"
 
 function toTitle(slug: string) {
@@ -31,398 +37,97 @@ type SearchItem = {
 }
 
 // ----------------------------------------------------------------------------
-// Source of truth — keep this in sync with preview-shell.tsx
-// Slugs here generate /components/<slug>, /compliance/<slug>, etc.
+// Source of truth — every search entry is derived from the actual preview
+// registries below. New previews are auto-discoverable; no manual sync.
 // ----------------------------------------------------------------------------
 
-const componentGroups: { label: string; items: string[] }[] = [
-  {
-    label: "Actions",
-    items: ["button", "button-group", "toggle", "toggle-group", "dropdown-menu", "context-menu"],
-  },
-  {
-    label: "Forms",
-    items: [
-      "input",
-      "textarea",
-      "select",
-      "native-select",
-      "checkbox",
-      "radio-group",
-      "switch",
-      "slider",
-      "number-input",
-      "input-group",
-      "input-otp",
-      "combobox",
-      "search-input",
-      "filter-bar",
-      "calendar",
-      "date-picker",
-      "file-upload",
-      "inline-edit",
-      "segmented-control",
-      "label",
-      "field",
-      "form",
-    ],
-  },
-  {
-    label: "Layout",
-    items: [
-      "card",
-      "item",
-      "separator",
-      "aspect-ratio",
-      "resizable",
-      "split-pane",
-      "scroll-area",
-      "collapsible",
-      "accordion",
-      "tabs",
-      "grid",
-    ],
-  },
-  {
-    label: "Feedback",
-    items: [
-      "alert",
-      "alert-dialog",
-      "dialog",
-      "drawer",
-      "sheet",
-      "popover",
-      "tooltip",
-      "hover-card",
-      "sonner",
-      "progress",
-      "skeleton",
-      "spinner",
-      "loading-overlay",
-      "empty",
-      "policy-banner",
-      "deadline-countdown",
-    ],
-  },
-  {
-    label: "Navigation",
-    items: [
-      "breadcrumb",
-      "pagination",
-      "navigation-menu",
-      "menubar",
-      "command",
-      "sidebar",
-      "step",
-      "timeline",
-      "audit-log",
-    ],
-  },
-  {
-    label: "Data Display",
-    items: [
-      "table",
-      "data-table",
-      "badge",
-      "avatar",
-      "carousel",
-      "stat",
-      "risk-gauge",
-      "status-indicator",
-      "striped-bar",
-      "waffle-chart",
-      "header",
-      "logo-vasp",
-      "code-block",
-      "copy-button",
-      "kbd",
-      "typography",
-      "visually-hidden",
-    ],
-  },
-  {
-    label: "Animation",
-    items: [
-      "bg-shader",
-      "blocky-shader",
-      "ascii-shader",
-      "subtle-shader",
-      "fade-in",
-      "marquee",
-      "typewriter",
-      "animated-counter",
-      "streaming-cards",
-    ],
-  },
-  {
-    label: "DS refresh",
-    items: ["ring-card", "key-value-list", "kpi-card", "sparkline"],
-  },
+const REGISTRIES: Array<{
+  registry: Record<string, unknown>
+  group: string
+  hrefPrefix: string
+}> = [
+  { registry: componentPreviews, group: "Components", hrefPrefix: "/components" },
+  { registry: blockPreviews, group: "Blocks", hrefPrefix: "/blocks" },
+  { registry: compliancePreviews, group: "Compliance", hrefPrefix: "/compliance" },
+  { registry: layoutPreviews, group: "Layouts", hrefPrefix: "/layouts" },
+  { registry: shellPreviews, group: "Shells", hrefPrefix: "/shells" },
+  { registry: animationPreviews, group: "Animations", hrefPrefix: "/animations" },
 ]
 
-const chartItems = [
-  "area-chart",
-  "bar-chart",
-  "line-chart",
-  "pie-chart",
-  "radial-chart",
-  "scatter-chart",
-  "composed-chart",
-  "funnel-chart",
-  "heatmap-chart",
-]
-
-const workflowItems = [
-  "workflow-canvas",
-  "workflow-node",
-  "workflow-node-card",
-  "workflow-gate",
-  "workflow-group",
-  "workflow-handle",
-  "workflow-edge",
-  "workflow-connection",
-  "workflow-label",
-  "workflow-controls",
-  "workflow-minimap",
-  "workflow-panel",
-  "workflow-toolbar",
-  "workflow-block-palette",
-  "workflow-inspector",
-  "entity-graph",
-  "workflow-slack-message",
-]
-
-const chatbotItems = [
-  // Conversation
-  "message",
-  "conversation",
-  "prompt-input",
-  "suggestion",
-  // Streaming
-  "markdown",
-  "shimmer",
-  "reasoning",
-  "chain-of-thought",
-  "task",
-  "plan",
-  "agent-progress",
-  // Rich content
-  "sources",
-  "attachments",
-  "inline-citation",
-  "tool",
-  "context",
-  // Controls
-  "confirmation",
-  "checkpoint",
-  "queue",
-  "model-selector",
-]
-
-const blockItems = [
-  // Marketing
-  "hero-section",
-  "feature-section",
-  "pricing-table",
-  "page-cta",
-  "article-card",
-  "team-card",
-  // Dashboard
-  "stat-card",
-  "usage-meter",
-  "notification-center",
-  // Page chrome
-  "page-header",
-  "command-palette",
+// Components that should appear under a more specific group label in search.
+// (Their preview lives at /components/<slug> so we keep that href.)
+const COMPONENT_SUBGROUPS: Record<string, string> = {
+  // Charts
+  "area-chart": "Charts",
+  "bar-chart": "Charts",
+  "line-chart": "Charts",
+  "pie-chart": "Charts",
+  "radial-chart": "Charts",
+  "scatter-chart": "Charts",
+  "composed-chart": "Charts",
+  "funnel-chart": "Charts",
+  "heatmap-chart": "Charts",
   // Workflow
-  "kanban",
-  "multi-step-form",
-  // Admin
-  "team-table",
-  "api-key-manager",
-  // Marketing/Other
-  "changelog",
-  "invoice",
-  // Auth
-  "login-form",
-  "register-form",
-  "forgot-password-form",
-  "magic-link-message",
-  "select-org-form",
-  // Settings
-  "setting-row",
-  "settings-card-grid",
-  "rich-radio-list",
-  "sequence-builder",
-  // Onboarding
-  "product-tour",
-  // Chat
-  "chat",
-  "prompt-input-actions",
-  "prompt-input-suggestions",
-]
-
-const layoutItems = [
-  "app-shell",
-  "app-shell-2",
-  "settings-layout",
-  "transaction-detail-page",
-  "dashboard-page",
-]
-
-const complianceItems = [
-  "case-card",
-  "transaction-card",
-  "transaction-row",
-  "transaction-detail",
-  "risk-score-hero",
-  "flow-diagram",
-  "counterparty-intel",
-  "reviewer-notes",
-  "travel-rule-card",
-  "transaction-flow-card",
-  "risk-exposure-card",
-  "awaiting-review-card",
-  "recent-transactions-card",
-  "alerts-card",
-  "compliance-status-badge",
-  "address-display",
-  "network-badge",
-  "risk-score-inline",
-  "travel-rule-status",
-  "transaction-filters",
-  "compliance-score",
-  "review-form",
-  "audit-note",
-  "report-export",
-  "sanctions-match",
-  "counterparty-card",
-  "jurisdiction-card",
-  "alert-banner",
-]
-
-const animationItems = [
-  "animation-ai-analysis",
-  "animation-risk-scoring",
-  "animation-jurisdiction-detection",
-  "animation-vasp-identification",
-  "animation-sop-mapping",
-  "animation-audit-trail",
-  "animation-custom-rules",
-  "animation-compliance-reports",
-  "animation-scheduled-reports",
-  "animation-team-routing",
-  "animation-sandbox",
-  "animation-jira-ticket",
-  "animation-slack-notification",
-  "animation-teams-notification",
-  "animation-secure-messaging",
-  "animation-multi-protocol",
-  "animation-webhooks",
-  "animation-rest-api",
-  "animation-realtime-updates",
-  "animation-pricing-preview",
-]
+  "workflow-canvas": "Workflow",
+  "workflow-node": "Workflow",
+  "workflow-node-card": "Workflow",
+  "workflow-gate": "Workflow",
+  "workflow-group": "Workflow",
+  "workflow-handle": "Workflow",
+  "workflow-edge": "Workflow",
+  "workflow-connection": "Workflow",
+  "workflow-label": "Workflow",
+  "workflow-controls": "Workflow",
+  "workflow-minimap": "Workflow",
+  "workflow-panel": "Workflow",
+  "workflow-toolbar": "Workflow",
+  "workflow-block-palette": "Workflow",
+  "workflow-inspector": "Workflow",
+  "entity-graph": "Workflow",
+  "workflow-slack-message": "Workflow",
+  // AI / Chatbot
+  message: "AI / Chatbot",
+  conversation: "AI / Chatbot",
+  "prompt-input": "AI / Chatbot",
+  suggestion: "AI / Chatbot",
+  markdown: "AI / Chatbot",
+  shimmer: "AI / Chatbot",
+  reasoning: "AI / Chatbot",
+  "chain-of-thought": "AI / Chatbot",
+  task: "AI / Chatbot",
+  plan: "AI / Chatbot",
+  "agent-progress": "AI / Chatbot",
+  sources: "AI / Chatbot",
+  attachments: "AI / Chatbot",
+  "inline-citation": "AI / Chatbot",
+  tool: "AI / Chatbot",
+  context: "AI / Chatbot",
+  confirmation: "AI / Chatbot",
+  checkpoint: "AI / Chatbot",
+  queue: "AI / Chatbot",
+  "model-selector": "AI / Chatbot",
+}
 
 function buildSearchItems(): SearchItem[] {
   const items: SearchItem[] = []
+  const seen = new Set<string>()
 
-  for (const group of componentGroups) {
-    for (const slug of group.items) {
+  for (const { registry, group, hrefPrefix } of REGISTRIES) {
+    for (const slug of Object.keys(registry)) {
+      const groupLabel = group === "Components" ? COMPONENT_SUBGROUPS[slug] ?? "Components" : group
       const meta = componentMeta[slug]
+      const key = `${groupLabel}/${slug}`
+      if (seen.has(key)) continue
+      seen.add(key)
       items.push({
         slug,
         label: toTitle(slug),
-        href: `/components/${slug}`,
-        group: group.label,
+        href: `${hrefPrefix}/${slug}`,
+        group: groupLabel,
         description: meta?.description,
         status: meta?.status,
       })
     }
-  }
-
-  for (const slug of chartItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/components/${slug}`,
-      group: "Charts",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of workflowItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/components/${slug}`,
-      group: "Workflow",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of chatbotItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/components/${slug}`,
-      group: "AI / Chatbot",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of blockItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/blocks/${slug}`,
-      group: "Blocks",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of layoutItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/layouts/${slug}`,
-      group: "Layouts",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of complianceItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/compliance/${slug}`,
-      group: "Compliance",
-      description: meta?.description,
-      status: meta?.status,
-    })
-  }
-
-  for (const slug of animationItems) {
-    const meta = componentMeta[slug]
-    items.push({
-      slug,
-      label: toTitle(slug),
-      href: `/animations/${slug}`,
-      group: "Animations",
-      description: meta?.description,
-      status: meta?.status,
-    })
   }
 
   return items
@@ -452,6 +157,19 @@ export function CommandSearch() {
     [router],
   )
 
+  // Group ordering — Components / sub-groups first, then everything else
+  const GROUP_ORDER = [
+    "Components",
+    "Charts",
+    "Workflow",
+    "AI / Chatbot",
+    "Blocks",
+    "Layouts",
+    "Shells",
+    "Compliance",
+    "Animations",
+  ]
+
   const grouped = useMemo(() => {
     const map = new Map<string, SearchItem[]>()
     for (const item of items) {
@@ -459,7 +177,18 @@ export function CommandSearch() {
       list.push(item)
       map.set(item.group, list)
     }
-    return Array.from(map.entries())
+    // Sort each group's items alphabetically by label
+    for (const list of map.values()) list.sort((a, b) => a.label.localeCompare(b.label))
+    // Return in canonical order, then any unknown groups
+    const ordered: Array<[string, SearchItem[]]> = []
+    for (const g of GROUP_ORDER) {
+      const list = map.get(g)
+      if (list) ordered.push([g, list])
+    }
+    for (const [g, list] of map.entries()) {
+      if (!GROUP_ORDER.includes(g)) ordered.push([g, list])
+    }
+    return ordered
   }, [items])
 
   return (
