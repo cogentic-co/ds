@@ -20,25 +20,24 @@ function hasProgressTrack(children: React.ReactNode): boolean {
   return found
 }
 
-const progressTrackVariants = cva(
-  "relative flex w-full items-center overflow-x-hidden rounded-full",
-  {
-    variants: {
-      size: {
-        xs: "h-1",
-        sm: "h-1.5",
-        default: "h-2",
-        lg: "h-3",
-        xl: "h-5",
-      },
-      hatched: {
-        true: "bg-card",
-        false: "bg-muted",
-      },
+const progressTrackVariants = cva("relative flex w-full items-center overflow-x-hidden", {
+  variants: {
+    size: {
+      xs: "h-1 rounded-full",
+      sm: "h-1.5 rounded-full",
+      default: "h-2 rounded-full",
+      lg: "h-3 rounded-full",
+      // Bigger bars use a softer radius rather than a pill shape — matches
+      // the Figma Progress at size=xl where outer radius is 6px.
+      xl: "h-5 rounded-[6px]",
     },
-    defaultVariants: { size: "sm", hatched: false },
+    hatched: {
+      true: "bg-card",
+      false: "bg-muted",
+    },
   },
-)
+  defaultVariants: { size: "sm", hatched: false },
+})
 
 const progressIndicatorVariants = cva("h-full transition-all", {
   variants: {
@@ -48,8 +47,19 @@ const progressIndicatorVariants = cva("h-full transition-all", {
       destructive: "bg-destructive",
       success: "bg-[var(--mint-ink)]",
     },
+    // Indicator radius mirrors Figma: pill on the left edge (TL+BL), squared
+    // off on the right (TR+BR=0) so it reads as "filling up" the track.
+    // At size=xl the indicator switches to the same 6px all-corner radius
+    // as the track so the rounded ends nest cleanly.
+    size: {
+      xs: "rounded-l-full",
+      sm: "rounded-l-full",
+      default: "rounded-l-full",
+      lg: "rounded-l-full",
+      xl: "rounded-[6px]",
+    },
   },
-  defaultVariants: { variant: "default" },
+  defaultVariants: { variant: "default", size: "sm" },
 })
 
 type ProgressVariant = NonNullable<VariantProps<typeof progressIndicatorVariants>["variant"]>
@@ -95,6 +105,7 @@ function Progress({
         <ProgressTrack size={size} hatched={hatched}>
           <ProgressIndicator
             variant={variant}
+            size={size}
             className={animate ? "transition-all duration-700 ease-out" : undefined}
           />
         </ProgressTrack>
@@ -127,12 +138,13 @@ ProgressTrack.displayName = "ProgressTrack"
 type ProgressIndicatorProps = ProgressPrimitive.Indicator.Props &
   VariantProps<typeof progressIndicatorVariants>
 
-function ProgressIndicator({ className, variant, ...props }: ProgressIndicatorProps) {
+function ProgressIndicator({ className, variant, size, ...props }: ProgressIndicatorProps) {
   return (
     <ProgressPrimitive.Indicator
       data-slot="progress-indicator"
       data-variant={variant ?? "default"}
-      className={cn(progressIndicatorVariants({ variant }), className)}
+      data-size={size ?? "sm"}
+      className={cn(progressIndicatorVariants({ variant, size }), className)}
       {...props}
     />
   )
@@ -162,9 +174,9 @@ export type { ProgressIndicatorProps, ProgressProps, ProgressTrackProps, Progres
 export {
   Progress,
   ProgressIndicator,
-  progressIndicatorVariants,
   ProgressLabel,
   ProgressTrack,
-  progressTrackVariants,
   ProgressValue,
+  progressIndicatorVariants,
+  progressTrackVariants,
 }

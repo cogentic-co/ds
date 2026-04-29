@@ -56,6 +56,21 @@ describe("Progress", () => {
     expect(track.style.backgroundImage).toBe("")
   })
 
+  it("indicator squares off the right edge by default (rounded-l-full)", () => {
+    const { container } = render(<Progress value={50} />)
+    const indicator = container.querySelector("[data-slot='progress-indicator']") as HTMLElement
+    expect(indicator).toHaveClass("rounded-l-full")
+  })
+
+  it("xl size uses 6px all-corner radius on track and indicator", () => {
+    const { container } = render(<Progress value={50} size="xl" />)
+    const track = container.querySelector("[data-slot='progress-track']") as HTMLElement
+    const indicator = container.querySelector("[data-slot='progress-indicator']") as HTMLElement
+    expect(track).toHaveClass("rounded-[6px]")
+    expect(indicator).toHaveClass("rounded-[6px]")
+    expect(indicator).not.toHaveClass("rounded-l-full")
+  })
+
   it("variant changes indicator color class", () => {
     const { container, rerender } = render(<Progress value={50} variant="warning" />)
     const indicator = container.querySelector("[data-slot='progress-indicator']") as HTMLElement
