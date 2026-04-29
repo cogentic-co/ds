@@ -21,7 +21,6 @@ import {
   useDataTable,
 } from "@/components/ui/data-table"
 import { Input } from "@/components/ui/input"
-import { StatusPill } from "@/components/ui/status-pill"
 import { DIRECTION_TONE_CLASSES } from "@/src/lib/tone"
 import { cn } from "@/src/lib/utils"
 import { Section } from "./_shared"
@@ -368,9 +367,9 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
     header: () => <div className="text-right">Status</div>,
     cell: ({ row }) => (
       <div className="text-right">
-        <StatusPill variant={TX_STATUS_VARIANT[row.original.status]}>
+        <Badge variant={TX_STATUS_VARIANT[row.original.status]}>
           <Clock /> {TX_STATUS_LABEL[row.original.status]}
-        </StatusPill>
+        </Badge>
       </div>
     ),
     enableSorting: false,

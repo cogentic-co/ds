@@ -15,7 +15,7 @@ const progressControlDefs = {
   size: {
     type: "select" as const,
     options: ["xs", "sm", "default", "lg", "xl"],
-    defaultValue: "sm",
+    defaultValue: "xl",
     label: "Size",
   },
   variant: {
@@ -26,7 +26,7 @@ const progressControlDefs = {
   },
   hatched: {
     type: "boolean" as const,
-    defaultValue: false,
+    defaultValue: true,
     label: "Hatched track",
   },
   animate: {
@@ -36,12 +36,15 @@ const progressControlDefs = {
   },
 } satisfies ControlDefs
 
+const VARIANTS = ["default", "warning", "destructive", "success"] as const
+const SIZES = ["xs", "sm", "default", "lg", "xl"] as const
+
 export default function ProgressPreview() {
   const controls = useControls(progressControlDefs)
   const { value, size, variant, hatched, animate } = controls.values
 
   return (
-    <div className="max-w-md space-y-8">
+    <div className="space-y-10">
       <Playground controls={controls}>
         <div className="space-y-2">
           <p className="text-muted-foreground text-sm">{value}%</p>
@@ -57,47 +60,59 @@ export default function ProgressPreview() {
       </Playground>
 
       <Section title="Variants">
-        <div className="w-full space-y-4">
-          {(["default", "warning", "destructive", "success"] as const).map((v) => (
-            <div key={v} className="space-y-1.5">
-              <p className="text-muted-foreground text-xs">variant="{v}"</p>
-              <Progress value={62} size="lg" variant={v} />
+        <div className="grid w-full gap-4 md:grid-cols-2">
+          {VARIANTS.map((v) => (
+            <div key={v} className="space-y-2 rounded-lg border bg-card p-4">
+              <p className="font-medium text-muted-foreground text-xs uppercase tracking-wide">
+                {v}
+              </p>
+              <Progress value={62} size="xl" variant={v} />
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Variants × hatched">
+        <div className="grid w-full gap-4 md:grid-cols-2">
+          {VARIANTS.map((v) => (
+            <div key={v} className="space-y-2 rounded-lg border bg-card p-4">
+              <p className="font-medium text-muted-foreground text-xs uppercase tracking-wide">
+                {v} · hatched
+              </p>
+              <Progress value={62} size="xl" variant={v} hatched />
             </div>
           ))}
         </div>
       </Section>
 
       <Section title="Sizes">
-        <div className="w-full space-y-4">
-          {(["xs", "sm", "default", "lg", "xl"] as const).map((s) => (
-            <div key={s} className="space-y-1.5">
-              <p className="text-muted-foreground text-xs">size="{s}"</p>
+        <div className="grid w-full gap-4">
+          {SIZES.map((s) => (
+            <div key={s} className="grid grid-cols-[60px_1fr_60px_1fr] items-center gap-3">
+              <p className="font-mono text-muted-foreground text-xs">{s}</p>
               <Progress value={62} size={s} />
+              <p className="font-mono text-muted-foreground text-xs">{s} hatch</p>
+              <Progress value={62} size={s} hatched />
             </div>
           ))}
         </div>
       </Section>
 
-      <Section title="Hatched track (remaining portion)">
-        <div className="w-full space-y-4">
-          <div className="space-y-1.5">
-            <p className="text-muted-foreground text-xs">size="xl" + hatched</p>
-            <Progress value={62} size="xl" hatched />
-          </div>
-          <div className="space-y-1.5">
-            <p className="text-muted-foreground text-xs">size="lg" + hatched</p>
-            <Progress value={45} size="lg" hatched />
-          </div>
-          <div className="space-y-1.5">
-            <p className="text-muted-foreground text-xs">size="default" + hatched</p>
-            <Progress value={80} size="default" hatched />
-          </div>
+      <Section title="Value spectrum">
+        <div className="grid w-full gap-3">
+          {[0, 20, 50, 70, 100].map((v) => (
+            <div key={v} className="grid grid-cols-[60px_1fr] items-center gap-3">
+              <p className="font-mono text-muted-foreground text-xs">{v}%</p>
+              <Progress value={v} size="xl" hatched />
+            </div>
+          ))}
         </div>
       </Section>
 
-      <Section title="Animated">
-        <div className="w-full space-y-4">
+      <Section title="Animated on mount">
+        <div className="grid w-full gap-3">
           <Progress value={75} animate />
+          <Progress value={75} size="lg" variant="warning" animate />
           <Progress value={75} size="xl" hatched animate />
         </div>
       </Section>
