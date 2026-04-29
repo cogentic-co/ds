@@ -113,12 +113,17 @@ function ChatBlock({
   const handleSubmit = useCallback(
     async (message: string) => {
       if (!message.trim()) return
-      const userMsg: ChatMessage = {
-        id: `u-${Date.now()}`,
-        role: "user",
-        content: message,
+      // Auto-append the user message ONLY in uncontrolled mode. When the
+      // consumer owns the messages array (e.g. via AI SDK's useChat), they
+      // are responsible for appending — otherwise we'd duplicate.
+      if (!isControlled) {
+        const userMsg: ChatMessage = {
+          id: `u-${Date.now()}`,
+          role: "user",
+          content: message,
+        }
+        setMessages((prev) => [...prev, userMsg])
       }
-      setMessages((prev) => [...prev, userMsg])
       if (externalLoading === undefined) setInternalLoading(true)
       try {
         await onSubmit?.(message)
@@ -126,7 +131,7 @@ function ChatBlock({
         if (externalLoading === undefined) setInternalLoading(false)
       }
     },
-    [setMessages, onSubmit, externalLoading],
+    [isControlled, setMessages, onSubmit, externalLoading],
   )
 
   const isEmpty = messages.length === 0

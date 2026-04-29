@@ -492,7 +492,7 @@ import {
 } from "lucide-react"
 import { ApiKeyManager } from "@/src/blocks/api-key-manager"
 import { Changelog } from "@/src/blocks/changelog"
-import { ChatBlock } from "@/src/blocks/chat"
+import { ChatBlock, type ChatMessage } from "@/src/blocks/chat"
 import { CommandPalette } from "@/src/blocks/command-palette"
 import { Invoice } from "@/src/blocks/invoice"
 import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
@@ -503,7 +503,10 @@ import { PromptInputActionsBlock } from "@/src/blocks/prompt-input-actions"
 import { PromptInputSuggestionsBlock } from "@/src/blocks/prompt-input-suggestions"
 import { type TeamMember, TeamTable } from "@/src/blocks/team-table"
 import { UsageMeter } from "@/src/blocks/usage-meter"
+import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chatbot/tool"
+import { CodeBlock } from "@/src/components/code-block"
 import { Input } from "@/src/components/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/tabs"
 
 function PageHeaderPreview() {
   return (
@@ -956,6 +959,284 @@ function InvoicePreview() {
   )
 }
 
+// ── ChatBlock — three patterns: uncontrolled, manual history, AI SDK ──
+
+const initialHistory: ChatMessage[] = [
+  { id: "h1", role: "user", content: "What's the risk score on case CASE-104?" },
+  {
+    id: "h2",
+    role: "assistant",
+    content:
+      "Case **CASE-104** is currently scored **78** (high). The score is driven by:\n\n" +
+      "1. Counterparty matched a sanctioned bridge\n" +
+      "2. Three transactions above the $50k threshold\n" +
+      "3. Mixer-adjacent flow at hop 3\n\n" +
+      "Want me to draft an SAR?",
+  },
+]
+
+function ChatBlockUncontrolledPreview() {
+  return (
+    <div className="h-[520px] overflow-hidden rounded-lg border bg-background">
+      <ChatBlock
+        title="How can I help you today?"
+        description="Ask me anything about your compliance workflow."
+        suggestions={[
+          "Summarise this case",
+          "Find similar transactions",
+          "Generate SAR draft",
+          "Explain the risk score",
+        ]}
+        onSubmit={async (m) => {
+          await new Promise((r) => setTimeout(r, 600))
+          console.log("submit:", m)
+        }}
+      />
+    </div>
+  )
+}
+
+function ChatBlockControlledPreview() {
+  // Fully controlled — you own the messages array. ChatBlock will NOT
+  // auto-append the user message; your onSubmit must do it (and the
+  // assistant response).
+  const [messages, setMessages] = useState<ChatMessage[]>(initialHistory)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubmit = async (text: string) => {
+    setMessages((m) => [...m, { id: `u-${Date.now()}`, role: "user", content: text }])
+    setIsLoading(true)
+    // Pretend to call your API
+    await new Promise((r) => setTimeout(r, 800))
+    setMessages((m) => [
+      ...m,
+      {
+        id: `a-${Date.now()}`,
+        role: "assistant",
+        content: `Got it — looking into "${text}" now. (mock response)`,
+      },
+    ])
+    setIsLoading(false)
+  }
+
+  return (
+    <div className="h-[520px] overflow-hidden rounded-lg border bg-background">
+      <ChatBlock
+        messages={messages}
+        onMessagesChange={setMessages}
+        onSubmit={handleSubmit}
+        isLoading={isLoading}
+        placeholder="Ask a follow-up…"
+      />
+    </div>
+  )
+}
+
+const aiSdkBasicCode = `"use client"
+import { useChat } from "@ai-sdk/react"
+import { ChatBlock, type ChatMessage } from "@cogentic-co/ds/blocks/chat"
+
+export function AIChat() {
+  const { messages, sendMessage, status } = useChat({ api: "/api/chat" })
+
+  // AI SDK messages → ChatBlock messages
+  const mapped: ChatMessage[] = messages.map((m) => ({
+    id: m.id,
+    role: m.role,
+    content: m.parts
+      .filter((p) => p.type === "text")
+      .map((p) => p.text)
+      .join(""),
+  }))
+
+  return (
+    <ChatBlock
+      messages={mapped}
+      isLoading={status === "streaming"}
+      onSubmit={(text) => sendMessage({ text })}
+    />
+  )
+}`
+
+const aiSdkToolsCode = `"use client"
+import { useChat } from "@ai-sdk/react"
+import { ChatBlock, type ChatMessage } from "@cogentic-co/ds/blocks/chat"
+import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"
+
+export function AIChatWithTools() {
+  const { messages, sendMessage, status } = useChat({ api: "/api/chat" })
+
+  // Render tool-invocation parts inside Message via the children slot
+  const mapped: ChatMessage[] = messages.map((m) => {
+    const text = m.parts
+      .filter((p) => p.type === "text")
+      .map((p) => p.text)
+      .join("")
+    const tools = m.parts
+      .filter((p) => p.type.startsWith("tool-"))
+      .map((p, i) => (
+        <Tool key={i}>
+          <ToolHeader name={p.toolName} status={p.state} />
+          <ToolContent>
+            <ToolInput>{JSON.stringify(p.input, null, 2)}</ToolInput>
+            {p.output && <ToolOutput>{JSON.stringify(p.output, null, 2)}</ToolOutput>}
+          </ToolContent>
+        </Tool>
+      ))
+    return {
+      id: m.id,
+      role: m.role,
+      content: text,
+      children: tools.length ? (
+        <>
+          {tools}
+          {text}
+        </>
+      ) : undefined,
+    }
+  })
+
+  return (
+    <ChatBlock
+      messages={mapped}
+      isLoading={status === "streaming"}
+      onSubmit={(text) => sendMessage({ text })}
+    />
+  )
+}
+
+// app/api/chat/route.ts ───────────────────────────────────────────────
+import { streamText, tool } from "ai"
+import { z } from "zod"
+
+export async function POST(req: Request) {
+  const { messages } = await req.json()
+  const result = streamText({
+    model: "anthropic/claude-sonnet-4-7",
+    messages,
+    tools: {
+      searchCases: tool({
+        description: "Search cases by criteria",
+        inputSchema: z.object({ query: z.string(), limit: z.number().optional() }),
+        execute: async ({ query, limit }) => {
+          // your implementation
+          return { results: [] }
+        },
+      }),
+    },
+  })
+  return result.toTextStreamResponse()
+}`
+
+function ChatBlockToolDemoPreview() {
+  // Mock AI SDK shape — tool call + text output rendered via children slot
+  const messages: ChatMessage[] = [
+    { id: "1", role: "user", content: "Search for cases with risk > 80 in the last 30 days" },
+    {
+      id: "2",
+      role: "assistant",
+      content:
+        "Found **3 high-risk cases** matching your criteria. The highest is **CASE-104** at risk 95.",
+      children: (
+        <>
+          <Tool>
+            <ToolHeader name="searchCases" status="success" />
+            <ToolContent>
+              <ToolInput>{`{\n  "query": "risk > 80",\n  "since": "30d"\n}`}</ToolInput>
+              <ToolOutput>
+                {`{\n  "results": [\n    { "id": "CASE-104", "risk": 95, "status": "blocked" },\n    { "id": "CASE-091", "risk": 88, "status": "escalated" },\n    { "id": "CASE-082", "risk": 81, "status": "review" }\n  ]\n}`}
+              </ToolOutput>
+            </ToolContent>
+          </Tool>
+          Found **3 high-risk cases** matching your criteria. The highest is **CASE-104** at risk
+          95.
+        </>
+      ),
+    },
+  ]
+
+  return (
+    <div className="h-[520px] overflow-hidden rounded-lg border bg-background">
+      <ChatBlock
+        messages={messages}
+        onSubmit={(t) => console.log("submit:", t)}
+        placeholder="Ask another question…"
+      />
+    </div>
+  )
+}
+
+function ChatBlockPreview() {
+  return (
+    <div className="space-y-6">
+      <Tabs defaultValue="uncontrolled">
+        <TabsList>
+          <TabsTrigger value="uncontrolled">Uncontrolled (simple)</TabsTrigger>
+          <TabsTrigger value="controlled">Controlled (with history)</TabsTrigger>
+          <TabsTrigger value="ai-sdk">AI SDK + tools (live)</TabsTrigger>
+          <TabsTrigger value="ai-sdk-code">AI SDK code</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="uncontrolled" className="mt-4 space-y-3">
+          <p className="text-muted-foreground text-sm">
+            Pass <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">onSubmit</code>{" "}
+            and let ChatBlock manage the messages internally. ChatBlock auto-appends the user
+            message; your handler returns the assistant response by calling{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">
+              onMessagesChange
+            </code>{" "}
+            (or use controlled mode).
+          </p>
+          <ChatBlockUncontrolledPreview />
+        </TabsContent>
+
+        <TabsContent value="controlled" className="mt-4 space-y-3">
+          <p className="text-muted-foreground text-sm">
+            Pass <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">messages</code>{" "}
+            to fully control the array (e.g. hydrate from a database). In controlled mode ChatBlock
+            does not auto-append — your{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">onSubmit</code> must
+            push both user and assistant messages.
+          </p>
+          <ChatBlockControlledPreview />
+        </TabsContent>
+
+        <TabsContent value="ai-sdk" className="mt-4 space-y-3">
+          <p className="text-muted-foreground text-sm">
+            Demo of how a tool invocation renders inside a Message — uses our{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{"<Tool>"}</code>{" "}
+            primitive in the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">children</code> slot
+            of <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">ChatMessage</code>
+            . Wire your real AI SDK route handler to the code on the next tab.
+          </p>
+          <ChatBlockToolDemoPreview />
+        </TabsContent>
+
+        <TabsContent value="ai-sdk-code" className="mt-4 space-y-4">
+          <div>
+            <p className="mb-2 font-medium text-sm">Basic AI SDK integration</p>
+            <p className="mb-3 text-muted-foreground text-xs">
+              Map AI SDK's <code className="font-mono">messages.parts</code> array to ChatBlock's
+              flat <code className="font-mono">content</code> string.
+            </p>
+            <CodeBlock language="tsx" code={aiSdkBasicCode} />
+          </div>
+          <div>
+            <p className="mb-2 font-medium text-sm">With tool calls</p>
+            <p className="mb-3 text-muted-foreground text-xs">
+              Use <code className="font-mono">{"<Tool>"}</code> + the message's{" "}
+              <code className="font-mono">children</code> slot to render tool invocations alongside
+              text.
+            </p>
+            <CodeBlock language="tsx" code={aiSdkToolsCode} />
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}
+
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
@@ -1015,26 +1296,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       <TeamCard name="Carol Davis" role="Staff Engineer" />
     </div>
   ),
-  chat: function ChatBlockPreview() {
-    return (
-      <div className="h-[600px] overflow-hidden rounded-lg border bg-background">
-        <ChatBlock
-          title="How can I help you today?"
-          description="Ask me anything about your compliance workflow."
-          suggestions={[
-            "Summarise this case",
-            "Find similar transactions",
-            "Generate SAR draft",
-            "Explain the risk score",
-          ]}
-          onSubmit={async (m) => {
-            await new Promise((r) => setTimeout(r, 600))
-            console.log("submit:", m)
-          }}
-        />
-      </div>
-    )
-  },
+  chat: ChatBlockPreview,
   "prompt-input-actions": function PromptInputActionsPreview() {
     return (
       <div className="relative h-[200px] rounded-lg border bg-background">
