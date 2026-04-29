@@ -237,6 +237,10 @@ const blockGroups: { label: string; items: string[] }[] = [
     label: "Onboarding",
     items: ["product-tour"],
   },
+  {
+    label: "Chat",
+    items: ["chat", "prompt-input-actions", "prompt-input-suggestions"],
+  },
 ]
 
 const chartItems = [

@@ -367,7 +367,7 @@
 }
 .ringcard::after {
   inset-inline: 2.25rem;
-  top: 0.75rem;
+  top: 0.85rem;
   bottom: 0;
 }
 .ringcard > .ringcard-inner {

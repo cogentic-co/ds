@@ -78,9 +78,9 @@ function ConversationEmptyState({
   className,
   children,
   ...props
-}: ComponentProps<"div"> & {
-  title?: string
-  description?: string
+}: Omit<ComponentProps<"div">, "title"> & {
+  title?: ReactNode
+  description?: ReactNode
   icon?: ReactNode
 }) {
   return (

@@ -492,12 +492,15 @@ import {
 } from "lucide-react"
 import { ApiKeyManager } from "@/src/blocks/api-key-manager"
 import { Changelog } from "@/src/blocks/changelog"
+import { ChatBlock } from "@/src/blocks/chat"
 import { CommandPalette } from "@/src/blocks/command-palette"
 import { Invoice } from "@/src/blocks/invoice"
 import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
 import { MultiStepForm } from "@/src/blocks/multi-step-form"
 import { NotificationCenter, type NotificationItem } from "@/src/blocks/notification-center"
 import { PageHeader } from "@/src/blocks/page-header"
+import { PromptInputActionsBlock } from "@/src/blocks/prompt-input-actions"
+import { PromptInputSuggestionsBlock } from "@/src/blocks/prompt-input-suggestions"
 import { type TeamMember, TeamTable } from "@/src/blocks/team-table"
 import { UsageMeter } from "@/src/blocks/usage-meter"
 import { Input } from "@/src/components/input"
@@ -1012,4 +1015,89 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       <TeamCard name="Carol Davis" role="Staff Engineer" />
     </div>
   ),
+  chat: function ChatBlockPreview() {
+    return (
+      <div className="h-[600px] overflow-hidden rounded-lg border bg-background">
+        <ChatBlock
+          title="How can I help you today?"
+          description="Ask me anything about your compliance workflow."
+          suggestions={[
+            "Summarise this case",
+            "Find similar transactions",
+            "Generate SAR draft",
+            "Explain the risk score",
+          ]}
+          onSubmit={async (m) => {
+            await new Promise((r) => setTimeout(r, 600))
+            console.log("submit:", m)
+          }}
+        />
+      </div>
+    )
+  },
+  "prompt-input-actions": function PromptInputActionsPreview() {
+    return (
+      <div className="relative h-[200px] rounded-lg border bg-background">
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-3xl px-3 pb-3 md:px-5 md:pb-5">
+          <PromptInputActionsBlock
+            onSubmit={async (m) => {
+              await new Promise((r) => setTimeout(r, 800))
+              console.log("submit:", m)
+            }}
+          />
+        </div>
+      </div>
+    )
+  },
+  "prompt-input-suggestions": function PromptInputSuggestionsPreview() {
+    return (
+      <div className="rounded-lg border bg-background p-6">
+        <PromptInputSuggestionsBlock
+          groups={[
+            {
+              label: "Summary",
+              highlight: "Summarize",
+              items: [
+                "Summarize a document",
+                "Summarize a video",
+                "Summarize a podcast",
+                "Summarize a book",
+              ],
+            },
+            {
+              label: "Code",
+              highlight: "Help me",
+              items: [
+                "Help me write React components",
+                "Help me debug code",
+                "Help me learn Python",
+                "Help me learn SQL",
+              ],
+            },
+            {
+              label: "Design",
+              highlight: "Design",
+              items: [
+                "Design a small logo",
+                "Design a hero section",
+                "Design a landing page",
+                "Design a social media post",
+              ],
+            },
+            {
+              label: "Research",
+              highlight: "Research",
+              items: [
+                "Research the best practices for SEO",
+                "Research the best running shoes",
+                "Research the best restaurants in Paris",
+                "Research the best AI tools",
+              ],
+            },
+          ]}
+          onSubmit={(m) => console.log("submit:", m)}
+        />
+      </div>
+    )
+  },
 }

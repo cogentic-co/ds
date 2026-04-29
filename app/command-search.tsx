@@ -256,6 +256,10 @@ const blockItems = [
   "sequence-builder",
   // Onboarding
   "product-tour",
+  // Chat
+  "chat",
+  "prompt-input-actions",
+  "prompt-input-suggestions",
 ]
 
 const layoutItems = [

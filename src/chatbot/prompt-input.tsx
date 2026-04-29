@@ -42,14 +42,29 @@ function usePromptInput() {
 function PromptInput({
   onSubmit,
   isLoading = false,
+  value: controlledValue,
+  onValueChange,
   className,
   children,
   ...props
 }: Omit<ComponentProps<"form">, "onSubmit"> & {
   onSubmit?: (message: string, files: File[]) => void
   isLoading?: boolean
+  /** Controlled value. Omit for uncontrolled. */
+  value?: string
+  /** Called whenever the textarea value changes. */
+  onValueChange?: (value: string) => void
 }) {
-  const [value, setValue] = useState("")
+  const [internalValue, setInternalValue] = useState("")
+  const isControlled = controlledValue !== undefined
+  const value = isControlled ? controlledValue : internalValue
+  const setValue = useCallback(
+    (v: string) => {
+      if (!isControlled) setInternalValue(v)
+      onValueChange?.(v)
+    },
+    [isControlled, onValueChange],
+  )
   const [files, setFiles] = useState<File[]>([])
 
   const addFiles = useCallback((newFiles: File[]) => {
@@ -67,7 +82,7 @@ function PromptInput({
     onSubmit?.(value.trim(), files)
     setValue("")
     setFiles([])
-  }, [value, files, onSubmit])
+  }, [value, files, onSubmit, setValue])
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
@@ -122,6 +137,41 @@ function PromptInputFooter({ className, ...props }: ComponentProps<"div">) {
       className={cn("flex items-center gap-2 px-3 py-2", className)}
       {...props}
     />
+  )
+}
+
+/**
+ * `PromptInputActions` — row of action buttons (left-aligned utilities,
+ * right-aligned submit/voice). Mirrors prompt-kit's API.
+ */
+function PromptInputActions({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="prompt-input-actions"
+      className={cn("flex items-center gap-2", className)}
+      {...props}
+    />
+  )
+}
+
+/**
+ * `PromptInputAction` — a single action with an optional tooltip.
+ * Wraps `Tooltip` from `@base-ui/react/tooltip`.
+ */
+function PromptInputAction({
+  tooltip,
+  side = "top",
+  children,
+}: {
+  tooltip?: string
+  side?: "top" | "bottom" | "left" | "right"
+  children: React.ReactElement
+}) {
+  if (!tooltip) return children
+  return (
+    <span data-slot="prompt-input-action" title={tooltip} data-side={side}>
+      {children}
+    </span>
   )
 }
 
@@ -318,6 +368,8 @@ function PromptInputFiles({ className, ...props }: ComponentProps<"div">) {
 
 export {
   PromptInput,
+  PromptInputAction,
+  PromptInputActions,
   PromptInputAttachButton,
   PromptInputBody,
   PromptInputFiles,
