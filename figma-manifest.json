@@ -80,6 +80,20 @@
       "reactFilePath": "src/components/header.tsx"
     },
     {
+      "figmaName": "Progress",
+      "figmaPageName": "Progress",
+      "figmaNodeId": "622:84",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=622-84",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "Variant": ["default", "warning", "destructive", "success"],
+        "Size": ["xs", "sm", "default", "lg", "xl"]
+      },
+      "reactName": "Progress",
+      "reactImportPath": "@cogentic-co/ds/progress",
+      "reactFilePath": "src/components/progress.tsx"
+    },
+    {
       "figmaName": "Markdown",
       "figmaPageName": "Markdown",
       "figmaNodeId": "586:38",

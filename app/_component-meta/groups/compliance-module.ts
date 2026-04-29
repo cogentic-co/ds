@@ -155,24 +155,6 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
   riskScore={32}
 />`,
   },
-  "compliance-timeline": {
-    status: "new",
-    description:
-      "Vertical timeline showing a transaction's compliance lifecycle with step states: completed, current, upcoming, warning, rejected. Connected by colored lines with no gaps.",
-    since: "0.11.0",
-    importStatement: `import { ComplianceTimeline } from "@cogentic-co/ds/compliance/compliance-timeline"`,
-    dos: [
-      "Use in transaction detail or case detail sidebars",
-      "Order steps chronologically top to bottom",
-    ],
-    donts: ["Don't use for generic timelines — use the Timeline component"],
-    codeExample: `<ComplianceTimeline steps={[
-  { id: "1", label: "Transaction received", status: "completed", timestamp: "10:32 AM" },
-  { id: "2", label: "Screening", status: "warning", description: "Sanctions match" },
-  { id: "3", label: "Review", status: "current" },
-  { id: "4", label: "Decision", status: "upcoming" },
-]} />`,
-  },
   "jurisdiction-card": {
     status: "new",
     description:

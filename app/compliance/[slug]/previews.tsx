@@ -10,12 +10,8 @@ import {
   CaseCard,
   type ComplianceStatus,
   ComplianceStatusBadge,
-  ComplianceTimeline,
-  type ComplianceTimelineStep,
   CounterpartyCard,
   CounterpartyIntel,
-  EventTimeline,
-  FlagCallout,
   FlowDiagram,
   JurisdictionCard,
   NetworkBadge,
@@ -122,38 +118,6 @@ const sampleTransactions: TransactionData[] = [
     asset: "ETH",
     fiatValue: "$25,420",
   },
-]
-
-const timelineSteps: ComplianceTimelineStep[] = [
-  {
-    id: "1",
-    label: "Transaction received",
-    description: "Inbound transfer detected",
-    timestamp: "10:32 AM",
-    status: "completed",
-  },
-  {
-    id: "2",
-    label: "Automated screening",
-    description: "Risk engine flagged — sanctions match",
-    timestamp: "10:32 AM",
-    status: "warning",
-  },
-  {
-    id: "3",
-    label: "Assigned for review",
-    description: "Escalated to compliance team",
-    timestamp: "10:35 AM",
-    status: "completed",
-  },
-  {
-    id: "4",
-    label: "Manual review",
-    description: "Under investigation",
-    timestamp: "10:48 AM",
-    status: "current",
-  },
-  { id: "5", label: "Decision", status: "upcoming" },
 ]
 
 // ── Sample Transaction (DS refresh fixtures) ──
@@ -512,14 +476,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     )
   },
 
-  "compliance-timeline": function ComplianceTimelinePreview() {
-    return (
-      <div className="max-w-sm">
-        <ComplianceTimeline steps={timelineSteps} />
-      </div>
-    )
-  },
-
   "case-card": function CaseCardPreview() {
     return (
       <div className="grid max-w-3xl gap-4 sm:grid-cols-2">
@@ -732,19 +688,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
 
   // ── DS refresh previews ──
 
-  "flag-callout": function FlagCalloutPreview() {
-    return (
-      <div className="space-y-4">
-        <Section title="Highlight tone (default)">
-          <FlagCallout flags={sampleRichTx.flags} />
-        </Section>
-        <Section title="Blush tone (blocked)">
-          <FlagCallout flags={["blocked_jurisdiction", "sanctions_match"]} tone="blush" />
-        </Section>
-      </div>
-    )
-  },
-
   "risk-score-hero": function RiskScoreHeroPreview() {
     return (
       <div className="space-y-6">
@@ -769,14 +712,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           network={sampleRichTx.net}
           fee={sampleRichTx.fee}
         />
-      </div>
-    )
-  },
-
-  "event-timeline": function EventTimelinePreview() {
-    return (
-      <div className="max-w-md rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]">
-        <EventTimeline events={sampleRichTx.timeline ?? []} />
       </div>
     )
   },

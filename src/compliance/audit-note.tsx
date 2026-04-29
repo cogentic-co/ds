@@ -2,7 +2,7 @@
 
 import type { ComponentProps, ReactNode } from "react"
 import { cn, initials } from "../lib/utils"
-import { ComplianceStatusBadge } from "./compliance-status-badge"
+import { ComplianceStatusBadge } from "./status-helpers"
 import type { ComplianceStatus } from "./types"
 
 type AuditNoteProps = ComponentProps<"div"> & {

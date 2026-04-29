@@ -6,9 +6,9 @@ import { Badge } from "../components/badge"
 import { Card } from "../components/card"
 import { cn, timeAgo } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
-import { ComplianceStatusBadge } from "./compliance-status-badge"
 import { NetworkBadge } from "./network-badge"
 import { RiskScoreInline } from "./risk-score-inline"
+import { ComplianceStatusBadge } from "./status-helpers"
 import type { ComplianceStatus, TransactionData, TransactionDirection } from "./types"
 
 const STATUS_BORDER: Record<ComplianceStatus, string> = {

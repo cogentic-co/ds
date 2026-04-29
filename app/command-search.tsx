@@ -271,10 +271,8 @@ const complianceItems = [
   "transaction-card",
   "transaction-row",
   "transaction-detail",
-  "flag-callout",
   "risk-score-hero",
   "flow-diagram",
-  "event-timeline",
   "counterparty-intel",
   "reviewer-notes",
   "travel-rule-card",
@@ -296,7 +294,6 @@ const complianceItems = [
   "sanctions-match",
   "counterparty-card",
   "jurisdiction-card",
-  "compliance-timeline",
   "alert-banner",
 ]
 

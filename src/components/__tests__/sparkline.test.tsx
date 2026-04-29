@@ -14,10 +14,26 @@ describe("Sparkline", () => {
     expect(container.querySelector('[data-slot="sparkline"]')).toBeNull()
   })
 
-  it("omits the fill path when fill=false", () => {
-    const { container } = render(<Sparkline points={[1, 2, 3]} fill={false} />)
-    const paths = container.querySelectorAll("path")
-    expect(paths.length).toBe(1)
+  it("renders only the line path by default (no fill area, no end dot)", () => {
+    const { container } = render(<Sparkline points={[1, 2, 3]} />)
+    expect(container.querySelectorAll("path").length).toBe(1)
+    expect(container.querySelector("circle")).toBeNull()
+  })
+
+  it("opt-in fill renders an area path", () => {
+    const { container } = render(<Sparkline points={[1, 2, 3]} fill />)
+    expect(container.querySelectorAll("path").length).toBe(2)
+  })
+
+  it("opt-in showDot renders a circle at the latest point", () => {
+    const { container } = render(<Sparkline points={[1, 2, 3]} showDot />)
+    expect(container.querySelector("circle")).not.toBeNull()
+  })
+
+  it("smooth=true emits cubic bezier commands", () => {
+    const { container } = render(<Sparkline points={[1, 2, 3, 4]} smooth />)
+    const d = container.querySelector("path")?.getAttribute("d") ?? ""
+    expect(d.includes("C")).toBe(true)
   })
 
   it("has no a11y violations", async () => {

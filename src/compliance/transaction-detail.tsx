@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  AlertTriangle,
   ArrowDownLeft,
   ArrowUpRight,
   Check,
@@ -13,13 +14,12 @@ import {
 } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { useState } from "react"
-
+import { Alert, AlertDescription, AlertTitle } from "../components/alert"
 import { Badge } from "../components/badge"
 import { Button } from "../components/button"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
-import { FlagCallout } from "./flag-callout"
 import { NetworkBadge } from "./network-badge"
 import type {
   ComplianceStatus,
@@ -236,10 +236,15 @@ function TransactionDetail({
         {tab === "details" && (
           <div className="flex flex-col gap-4">
             {tx.flags && tx.flags.length > 0 && (
-              <FlagCallout
-                flags={tx.flags}
-                tone={tx.complianceStatus === "rejected" ? "blush" : "highlight"}
-              />
+              <Alert variant={tx.complianceStatus === "rejected" ? "destructive" : "warning"}>
+                <AlertTriangle />
+                <AlertTitle>
+                  {tx.flags.length} compliance flag{tx.flags.length > 1 ? "s" : ""}
+                </AlertTitle>
+                <AlertDescription className="font-mono text-[11px] uppercase tracking-wide">
+                  {tx.flags.join(" · ").replace(/_/g, " ")}
+                </AlertDescription>
+              </Alert>
             )}
             <div>
               <DetailRow label="From" first>

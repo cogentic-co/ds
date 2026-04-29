@@ -32,6 +32,41 @@ describe("Progress", () => {
     expect(container.querySelector("[data-slot='progress-value']")).toBeInTheDocument()
   })
 
+  it("applies size variant to track height", () => {
+    const { container } = render(<Progress value={50} size="xl" />)
+    expect(container.querySelector("[data-slot='progress-track']")).toHaveClass("h-5")
+  })
+
+  it("default size remains sm (h-1.5)", () => {
+    const { container } = render(<Progress value={50} />)
+    expect(container.querySelector("[data-slot='progress-track']")).toHaveClass("h-1.5")
+  })
+
+  it("hatched=true sets data-hatched and inline background", () => {
+    const { container } = render(<Progress value={50} hatched />)
+    const track = container.querySelector("[data-slot='progress-track']") as HTMLElement
+    expect(track.getAttribute("data-hatched")).toBe("true")
+    expect(track.style.backgroundImage).toContain("repeating-linear-gradient")
+  })
+
+  it("hatched=false omits the diagonal pattern", () => {
+    const { container } = render(<Progress value={50} />)
+    const track = container.querySelector("[data-slot='progress-track']") as HTMLElement
+    expect(track.getAttribute("data-hatched")).toBeNull()
+    expect(track.style.backgroundImage).toBe("")
+  })
+
+  it("variant changes indicator color class", () => {
+    const { container, rerender } = render(<Progress value={50} variant="warning" />)
+    const indicator = container.querySelector("[data-slot='progress-indicator']") as HTMLElement
+    expect(indicator.getAttribute("data-variant")).toBe("warning")
+
+    rerender(<Progress value={50} variant="destructive" />)
+    expect(
+      container.querySelector("[data-slot='progress-indicator']")?.getAttribute("data-variant"),
+    ).toBe("destructive")
+  })
+
   it("has no accessibility violations", async () => {
     const { container } = render(<Progress value={50} aria-label="Loading progress" />)
     const results = await axe(container)

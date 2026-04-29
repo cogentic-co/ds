@@ -208,8 +208,7 @@ export default defineConfig({
     "compliance/chain-icons": "src/compliance/chain-icons.tsx",
     "compliance/compliance-score": "src/compliance/compliance-score.tsx",
     "compliance/alert-banner": "src/compliance/alert-banner.tsx",
-    "compliance/compliance-status-badge": "src/compliance/compliance-status-badge.tsx",
-    "compliance/compliance-timeline": "src/compliance/compliance-timeline.tsx",
+    "compliance/status-helpers": "src/compliance/status-helpers.tsx",
     "compliance/counterparty-card": "src/compliance/counterparty-card.tsx",
     "compliance/jurisdiction-card": "src/compliance/jurisdiction-card.tsx",
     "compliance/network-badge": "src/compliance/network-badge.tsx",
@@ -221,7 +220,6 @@ export default defineConfig({
     "compliance/transaction-detail": "src/compliance/transaction-detail.tsx",
     "compliance/transaction-filters": "src/compliance/transaction-filters.tsx",
     "compliance/transaction-row": "src/compliance/transaction-row.tsx",
-    "compliance/travel-rule-status": "src/compliance/travel-rule-status.tsx",
     // Chatbot entry point
     chatbot: "src/chatbot/index.ts",
     "chatbot/agent-progress": "src/chatbot/agent-progress.tsx",

@@ -5,7 +5,7 @@ import { type ComponentProps, useCallback, useState } from "react"
 import { Button } from "../components/button"
 import { Textarea } from "../components/textarea"
 import { cn } from "../lib/utils"
-import { ComplianceStatusBadge } from "./compliance-status-badge"
+import { ComplianceStatusBadge } from "./status-helpers"
 
 type ReviewDecision = "accepted" | "rejected" | "escalated"
 

@@ -1,4 +1,5 @@
 import {
+  AlertTriangle,
   ArrowDownLeft,
   ArrowUpRight,
   Check,
@@ -10,13 +11,12 @@ import {
 import type { ComponentProps, ReactNode } from "react"
 import { AddressDisplay } from "../compliance/address-display"
 import { CounterpartyIntel } from "../compliance/counterparty-intel"
-import { EventTimeline } from "../compliance/event-timeline"
-import { FlagCallout } from "../compliance/flag-callout"
 import { FlowDiagram } from "../compliance/flow-diagram"
 import { ReviewerNotes } from "../compliance/reviewer-notes"
 import { RiskScoreHero } from "../compliance/risk-score-hero"
 import { TravelRuleCard } from "../compliance/travel-rule-card"
 import type { ReviewerNote, Transaction, TxDirection, TxStatus } from "../compliance/types"
+import { Alert, AlertDescription, AlertTitle } from "../components/alert"
 import { Badge } from "../components/badge"
 import {
   Breadcrumb,
@@ -28,8 +28,24 @@ import {
 import { Button } from "../components/button"
 import { Header } from "../components/header"
 import { KeyValueList } from "../components/key-value-list"
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineTime,
+  TimelineTitle,
+} from "../components/timeline"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
+
+const TIMELINE_DOT_BG: Record<string, string> = {
+  neutral: "bg-muted-foreground border-muted-foreground",
+  sky: "bg-[var(--sky-ink)] border-[var(--sky-ink)]",
+  mint: "bg-[var(--mint-ink)] border-[var(--mint-ink)]",
+  blush: "bg-[var(--blush-ink)] border-[var(--blush-ink)]",
+  highlight: "bg-[var(--highlight-ink)] border-[var(--highlight-ink)]",
+}
 
 const DIRECTION_ICON: Record<TxDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-5" />,
@@ -157,7 +173,15 @@ function TransactionDetailPage({
 
       {tx.flags.length > 0 && (
         <div className="mx-6 mt-4">
-          <FlagCallout flags={tx.flags} tone={tx.status === "blocked" ? "blush" : "highlight"} />
+          <Alert variant={tx.status === "blocked" ? "destructive" : "warning"}>
+            <AlertTriangle />
+            <AlertTitle>
+              {tx.flags.length} compliance flag{tx.flags.length > 1 ? "s" : ""}
+            </AlertTitle>
+            <AlertDescription className="font-mono text-[11px] uppercase tracking-wide">
+              {tx.flags.join(" · ").replace(/_/g, " ")}
+            </AlertDescription>
+          </Alert>
         </div>
       )}
 
@@ -230,7 +254,18 @@ function TransactionDetailPage({
           {tx.timeline && tx.timeline.length > 0 && (
             <Section title="Timeline">
               <div className="rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]">
-                <EventTimeline events={tx.timeline} />
+                <Timeline className="pl-6">
+                  {tx.timeline.map((e, i) => (
+                    <TimelineItem key={`${e.time}-${e.title}-${i}`}>
+                      <TimelineDot className={cn("size-2.5", TIMELINE_DOT_BG[e.variant])} />
+                      <TimelineContent>
+                        <TimelineTime className="font-mono">{e.time}</TimelineTime>
+                        <TimelineTitle className="text-[13px]">{e.title}</TimelineTitle>
+                        <p className="mt-0.5 text-muted-foreground text-xs">{e.by}</p>
+                      </TimelineContent>
+                    </TimelineItem>
+                  ))}
+                </Timeline>
               </div>
             </Section>
           )}

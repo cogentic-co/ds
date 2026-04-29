@@ -535,10 +535,8 @@ function buildNav(pathname: string): NavGroup[] {
         {
           title: "Detail blocks",
           items: [
-            "flag-callout",
             "risk-score-hero",
             "flow-diagram",
-            "event-timeline",
             "counterparty-intel",
             "reviewer-notes",
             "travel-rule-card",
@@ -614,18 +612,14 @@ function buildNav(pathname: string): NavGroup[] {
         },
         {
           title: "Supporting",
-          items: [
-            "sanctions-match",
-            "counterparty-card",
-            "jurisdiction-card",
-            "compliance-timeline",
-            "alert-banner",
-          ].map((slug) => ({
-            label: toTitle(slug),
-            icon: Component,
-            href: `/compliance/${slug}`,
-            isActive: pathname === `/compliance/${slug}`,
-          })),
+          items: ["sanctions-match", "counterparty-card", "jurisdiction-card", "alert-banner"].map(
+            (slug) => ({
+              label: toTitle(slug),
+              icon: Component,
+              href: `/compliance/${slug}`,
+              isActive: pathname === `/compliance/${slug}`,
+            }),
+          ),
           defaultOpen: true,
         },
       ],

@@ -6,8 +6,8 @@ import { Badge } from "../components/badge"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
-import { ComplianceStatusBadge } from "./compliance-status-badge"
 import { RiskScoreInline } from "./risk-score-inline"
+import { ComplianceStatusBadge } from "./status-helpers"
 import type { TransactionData, TransactionDirection } from "./types"
 
 const DIRECTION_ICONS: Record<TransactionDirection, ReactNode> = {
