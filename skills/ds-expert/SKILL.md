@@ -37,14 +37,14 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 - `AspectRatio` — Constrain child to aspect ratio
 - `ScrollArea` — Custom scrollbar area
 - `Resizable`, `ResizablePanel`, `ResizableHandle` — Resizable panels
-- `Direction` — RTL/LTR context provider
+- `Header` — Unified page/section header. Slots: breadcrumb, leadingIcon, title (rich JSX), subtitle, badges, description, meta, author, actions. Replaces EntityHeader and TransactionHeader. Use `bordered` for transaction-style full-width with bottom border
 - `VisuallyHidden` — Screen-reader-only content
 
 ### Data Display
 - `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell` — HTML table primitives
 - `DataTable` — Full-featured data table with TanStack Table (sorting, filtering, pagination, selection, virtualization)
 - `Badge` — Status/category label with variants: default, secondary, destructive, outline
-- `Tag` — Interactive badge with variants (default/primary/secondary/destructive/success), optional `onRemove`
+- (`Tag` is consolidated into `Badge` — use `<Badge closable onClose={...}>` for the closable-chip use case)
 - `Stat`, `StatLabel`, `StatValue`, `StatTrend` — Composable KPI display
 - `DescriptionList`, `DescriptionTerm`, `DescriptionDetails` — Key-value pairs
 - `Avatar`, `AvatarImage`, `AvatarFallback` — User avatar
@@ -95,7 +95,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 - `ContextMenu` — Right-click menu
 - `Menubar` — Menu bar
 - `Alert` — Inline alert with variants: default, destructive
-- `Callout` — Info/warning/danger/tip boxes with auto icon
+- (`Callout` is consolidated into `Alert` — use `<Alert variant="info|warning|destructive|success">`)
 - `Sonner` — Toast notifications (wraps sonner)
 - `Progress` — Progress bar
 - `Spinner` — Loading spinner
@@ -113,8 +113,7 @@ You are an expert in building UIs with the Cogentic Design System (`@cogentic-co
 - `Sidebar` + sub-components — Full sidebar system
 - `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent` — Expandable sections
 - `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` — Single collapsible
-- `Stepper`, `Step`, `StepSeparator` _(deprecated — use StepProgress)_
-- `StepProgress` — Multi-step process tracker with vertical/horizontal orientation. Sub-components: `StepProgressItem`, `StepProgressIndicator`, `StepProgressConnector`, `StepProgressContent`, `StepProgressTitle`, `StepProgressDescription`
+- `Step`, `Stepper` — Single step + container. Status: done | active | pending | failed | skipped. Size: compact | detailed. Replaces the older StepProgress* family. Use `trailing` slot for a Badge with status text or progress count
 - `Timeline`, `TimelineItem`, `TimelineDot`, `TimelineContent`, `TimelineTitle`, `TimelineTime` — Vertical timeline
 
 ### Animation

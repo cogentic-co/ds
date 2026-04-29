@@ -3,7 +3,7 @@
 import { motion, useInView } from "motion/react"
 import { type ComponentProps, useEffect, useRef, useState } from "react"
 import { Button } from "../components/button"
-import { EntityHeader } from "../components/entity-header"
+import { Header } from "../components/header"
 import { cn } from "../lib/utils"
 import type { ActionSummaryLine } from "./types"
 
@@ -57,9 +57,9 @@ export function Action({
           transition={{ delay: 0.2, duration: 0.35, ease: "easeOut" }}
           className="rounded-xl border border-border bg-card p-3"
         >
-          <EntityHeader
+          <Header
             size="sm"
-            name={entityName}
+            title={entityName}
             subtitle={entitySubtitle}
             meta={secondary.map((line) => ({ text: `${line.label}: ${line.value}` }))}
           />

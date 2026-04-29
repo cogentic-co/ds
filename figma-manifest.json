@@ -61,10 +61,9 @@
       "figmaNodeId": "450:2",
       "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=450-2",
       "figmaType": "COMPONENT",
-      "reactName": null,
-      "reactImportPath": null,
-      "reactFilePath": null,
-      "_note": "Unified Header replaces Case/Transaction/Entity Header. No React equivalent yet — use Card + Breadcrumb + Button composition."
+      "reactName": "Header",
+      "reactImportPath": "@cogentic-co/ds/header",
+      "reactFilePath": "src/components/header.tsx"
     },
     {
       "figmaName": "Markdown",
@@ -103,10 +102,9 @@
         "Status": ["done", "active", "pending", "failed", "skipped"],
         "Size": ["compact", "detailed"]
       },
-      "reactName": null,
-      "reactImportPath": null,
-      "reactFilePath": null,
-      "_note": "Used inside Agent Progress and any agent step list."
+      "reactName": "Step",
+      "reactImportPath": "@cogentic-co/ds/step",
+      "reactFilePath": "src/components/step.tsx"
     },
     {
       "figmaName": "Stat",

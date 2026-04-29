@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -213,12 +213,6 @@
         "default": "./dist/components/calendar.js"
       }
     },
-    "./callout": {
-      "import": {
-        "types": "./dist/components/callout.d.ts",
-        "default": "./dist/components/callout.js"
-      }
-    },
     "./card": {
       "import": {
         "types": "./dist/components/card.d.ts",
@@ -229,12 +223,6 @@
       "import": {
         "types": "./dist/components/carousel.d.ts",
         "default": "./dist/components/carousel.js"
-      }
-    },
-    "./case-card": {
-      "import": {
-        "types": "./dist/components/case-card.d.ts",
-        "default": "./dist/components/case-card.js"
       }
     },
     "./chart": {
@@ -309,12 +297,6 @@
         "default": "./dist/components/dialog.js"
       }
     },
-    "./direction": {
-      "import": {
-        "types": "./dist/components/direction.d.ts",
-        "default": "./dist/components/direction.js"
-      }
-    },
     "./drawer": {
       "import": {
         "types": "./dist/components/drawer.d.ts",
@@ -331,12 +313,6 @@
       "import": {
         "types": "./dist/components/empty.d.ts",
         "default": "./dist/components/empty.js"
-      }
-    },
-    "./entity-header": {
-      "import": {
-        "types": "./dist/components/entity-header.d.ts",
-        "default": "./dist/components/entity-header.js"
       }
     },
     "./fade-in": {
@@ -373,6 +349,12 @@
       "import": {
         "types": "./dist/components/grid.d.ts",
         "default": "./dist/components/grid.js"
+      }
+    },
+    "./header": {
+      "import": {
+        "types": "./dist/components/header.d.ts",
+        "default": "./dist/components/header.js"
       }
     },
     "./hover-card": {
@@ -597,10 +579,10 @@
         "default": "./dist/components/status-indicator.js"
       }
     },
-    "./step-progress": {
+    "./step": {
       "import": {
-        "types": "./dist/components/step-progress.d.ts",
-        "default": "./dist/components/step-progress.js"
+        "types": "./dist/components/step.d.ts",
+        "default": "./dist/components/step.js"
       }
     },
     "./streaming-cards": {
@@ -637,12 +619,6 @@
       "import": {
         "types": "./dist/components/tabs.d.ts",
         "default": "./dist/components/tabs.js"
-      }
-    },
-    "./tag": {
-      "import": {
-        "types": "./dist/components/tag.d.ts",
-        "default": "./dist/components/tag.js"
       }
     },
     "./textarea": {

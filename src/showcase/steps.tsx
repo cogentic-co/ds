@@ -2,23 +2,17 @@
 
 import { motion, useInView } from "motion/react"
 import { type ComponentProps, useEffect, useRef, useState } from "react"
-import {
-  StepProgress,
-  StepProgressContent,
-  StepProgressIndicator,
-  StepProgressItem,
-  StepProgressTitle,
-} from "../components/step-progress"
+import { type StepStatus as DsStepStatus, Step, Stepper } from "../components/step"
 import { cn } from "../lib/utils"
 import type { StepStatus, StepsStep } from "./types"
 
-const MotionStepItem = motion.create(StepProgressItem)
+const MotionStep = motion.create(Step)
 
-const STATUS_MAP: Record<StepStatus, "complete" | "current" | "upcoming"> = {
-  completed: "complete",
-  running: "current",
-  pending: "upcoming",
-  upcoming: "upcoming",
+const STATUS_MAP: Record<StepStatus, DsStepStatus> = {
+  completed: "done",
+  running: "active",
+  pending: "pending",
+  upcoming: "pending",
 }
 
 export interface StepsProps extends ComponentProps<"div"> {
@@ -49,28 +43,22 @@ export function Steps({ steps, className, ...props }: StepsProps) {
       {...props}
     >
       <div className="w-full max-w-[300px]">
-        <StepProgress orientation="vertical">
+        <Stepper orientation="vertical">
           {steps.map((step, i) => {
             const isVisible = i < visibleCount
-            const mapped = STATUS_MAP[step.status] ?? "upcoming"
+            const mapped = STATUS_MAP[step.status] ?? "pending"
             return (
-              <MotionStepItem
+              <MotionStep
                 key={step.label}
                 status={mapped}
+                title={step.label}
                 initial={{ opacity: 0, y: 8 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0.3, y: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                <StepProgressIndicator status={mapped} step={i + 1} />
-                <StepProgressContent>
-                  <StepProgressTitle className="font-medium text-xs">
-                    {step.label}
-                  </StepProgressTitle>
-                </StepProgressContent>
-              </MotionStepItem>
+              />
             )
           })}
-        </StepProgress>
+        </Stepper>
       </div>
     </div>
   )

@@ -1,6 +1,10 @@
+"use client"
+
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
+import { XIcon } from "lucide-react"
+import type { MouseEvent } from "react"
 
 import { cn } from "../lib/utils"
 
@@ -31,18 +35,48 @@ const badgeVariants = cva(
   },
 )
 
+type BadgeOwnProps = VariantProps<typeof badgeVariants> & {
+  square?: boolean
+  /** Show a trailing × button. Mirrors Figma "Show close#578:0". */
+  closable?: boolean
+  /** Called when the close × is clicked. Implies `closable=true`. */
+  onClose?: (e: MouseEvent<HTMLButtonElement>) => void
+}
+
 function Badge({
   className,
   variant = "default",
   square = false,
+  closable,
+  onClose,
+  children,
   render,
   ...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants> & { square?: boolean }) {
+}: useRender.ComponentProps<"span"> & BadgeOwnProps) {
+  const showClose = closable || !!onClose
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
         className: cn(badgeVariants({ variant }), square && "rounded-none", className),
+        children: (
+          <>
+            {children}
+            {showClose && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onClose?.(e)
+                }}
+                aria-label="Remove"
+                className="-mr-0.5 ml-0.5 inline-flex cursor-pointer items-center justify-center rounded-sm opacity-70 transition-opacity hover:opacity-100"
+              >
+                <XIcon className="size-3" />
+              </button>
+            )}
+          </>
+        ),
       },
       props,
     ),

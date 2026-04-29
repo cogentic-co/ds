@@ -488,56 +488,31 @@ import { Bell, Mail } from "lucide-react"
   />
 </Card>`,
   },
-  "step-progress": {
+  step: {
     status: "new",
     description:
-      "Vertical or horizontal step indicator with complete, current, and upcoming states. For multi-step workflows.",
-    since: "0.5.0",
-    importStatement: `import {
-  StepProgress, StepProgressItem, StepProgressIndicator,
-  StepProgressConnector, StepProgressContent,
-  StepProgressTitle, StepProgressDescription,
-} from "@cogentic-co/ds/step-progress"`,
+      "Single step indicator. Status: done | active | pending | failed | skipped. Size: compact (single-line) | detailed (with description). Use inside Stepper or Plan/Agent Progress lists. Replaces the older StepProgress family.",
+    since: "0.18.0",
+    importStatement: 'import { Step, Stepper } from "@cogentic-co/ds/step"',
     dos: [
-      "Use for multi-step workflows like KYC, onboarding, or review processes",
-      "Mark completed steps with status='complete' for the checkmark indicator",
-      "Include StepProgressConnector between steps for visual continuity",
-      "Use StepProgressDescription for additional context on each step",
+      "Use Stepper as the container, Step as each item",
+      "Use detailed size for KYC/onboarding wizards where each step needs context",
+      "Use compact size for agent progress lists, plans, or queues",
+      "Pass a Badge as `trailing` for status text ('Done', '60/100', 'Error')",
     ],
     donts: [
-      "Don't use for navigation tabs — use Tabs instead",
-      "Don't use more than 7 steps — simplify the workflow or group steps",
-      "Don't omit the status prop — every step needs a clear state",
+      "Don't nest Step outside a Stepper unless you need a single status indicator",
+      "Don't use more than 7 steps in a wizard — simplify or group",
+      "Don't override the indicator icon unless absolutely necessary",
     ],
-    codeExample: `import {
-  StepProgress, StepProgressItem, StepProgressIndicator,
-  StepProgressConnector, StepProgressContent,
-  StepProgressTitle, StepProgressDescription,
-} from "@cogentic-co/ds/step-progress"
+    codeExample: `import { Step, Stepper } from "@cogentic-co/ds/step"
+import { Badge } from "@cogentic-co/ds"
 
-<StepProgress>
-  <StepProgressItem status="complete">
-    <StepProgressIndicator status="complete" />
-    <StepProgressConnector data-complete="true" />
-    <StepProgressContent>
-      <StepProgressTitle>Identity Verification</StepProgressTitle>
-      <StepProgressDescription>ID verified successfully.</StepProgressDescription>
-    </StepProgressContent>
-  </StepProgressItem>
-  <StepProgressItem status="current">
-    <StepProgressIndicator status="current" step={2} />
-    <StepProgressConnector />
-    <StepProgressContent>
-      <StepProgressTitle>Document Review</StepProgressTitle>
-    </StepProgressContent>
-  </StepProgressItem>
-  <StepProgressItem status="upcoming">
-    <StepProgressIndicator status="upcoming" step={3} />
-    <StepProgressContent>
-      <StepProgressTitle>Approval</StepProgressTitle>
-    </StepProgressContent>
-  </StepProgressItem>
-</StepProgress>`,
+<Stepper>
+  <Step status="done" title="Validate inputs" />
+  <Step status="active" title="Run sanctions screening" trailing={<Badge variant="ghost">60/100</Badge>} />
+  <Step status="pending" title="Generate report" />
+</Stepper>`,
   },
   "product-tour": {
     status: "new",

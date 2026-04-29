@@ -106,7 +106,6 @@ const componentGroups: SidebarGroupDef[] = [
       "accordion",
       "tabs",
       "grid",
-      "direction",
     ],
   },
   {
@@ -114,7 +113,6 @@ const componentGroups: SidebarGroupDef[] = [
     items: [
       "alert",
       "alert-dialog",
-      "callout",
       "dialog",
       "drawer",
       "sheet",
@@ -140,7 +138,7 @@ const componentGroups: SidebarGroupDef[] = [
       "menubar",
       "command",
       "sidebar",
-      "step-progress",
+      "step",
       "timeline",
       "audit-log",
     ],
@@ -151,7 +149,6 @@ const componentGroups: SidebarGroupDef[] = [
       "table",
       "data-table",
       "badge",
-      "tag",
       "avatar",
       "carousel",
       "stat",
@@ -159,7 +156,7 @@ const componentGroups: SidebarGroupDef[] = [
       "status-indicator",
       "striped-bar",
       "waffle-chart",
-      "entity-header",
+      "header",
       "logo-vasp",
       "code-block",
       "copy-button",
@@ -184,7 +181,7 @@ const componentGroups: SidebarGroupDef[] = [
   },
   {
     label: "DS refresh",
-    items: ["ring-card", "status-pill", "key-value-list", "kpi-card", "sparkline"],
+    items: ["ring-card", "key-value-list", "kpi-card", "sparkline"],
   },
 ]
 
@@ -519,12 +516,7 @@ function buildNav(pathname: string): NavGroup[] {
       groups: [
         {
           title: "Transaction",
-          items: [
-            "transaction-card",
-            "transaction-row",
-            "transaction-detail",
-            "transaction-header",
-          ].map((slug) => ({
+          items: ["transaction-card", "transaction-row", "transaction-detail"].map((slug) => ({
             label: toTitle(slug),
             icon: Component,
             href: `/compliance/${slug}`,

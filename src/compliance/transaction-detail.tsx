@@ -14,8 +14,8 @@ import {
 import type { ComponentProps, ReactNode } from "react"
 import { useState } from "react"
 
+import { Badge } from "../components/badge"
 import { Button } from "../components/button"
-import { StatusPill } from "../components/status-pill"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import { AddressDisplay } from "./address-display"
@@ -36,20 +36,16 @@ const DIRECTION_ICONS: Record<TransactionDirection, ReactNode> = {
   internal: <RefreshCw className="size-4" />,
 }
 
-const STATUS_PILL_VARIANT: Record<ComplianceStatus, ComponentProps<typeof StatusPill>["variant"]> =
-  {
-    pending: "neutral",
-    accepted: "mint",
-    rejected: "blush",
-    flagged: "highlight",
-    escalated: "blush",
-  }
+const STATUS_PILL_VARIANT: Record<ComplianceStatus, ComponentProps<typeof Badge>["variant"]> = {
+  pending: "secondary",
+  accepted: "mint",
+  rejected: "blush",
+  flagged: "highlight",
+  escalated: "blush",
+}
 
-const TRAVEL_RULE_PILL: Record<
-  TravelRuleStatusValue,
-  ComponentProps<typeof StatusPill>["variant"]
-> = {
-  not_required: "neutral",
+const TRAVEL_RULE_PILL: Record<TravelRuleStatusValue, ComponentProps<typeof Badge>["variant"]> = {
+  not_required: "secondary",
   pending: "highlight",
   sent: "sky",
   received: "mint",
@@ -179,9 +175,9 @@ function TransactionDetail({
                 </div>
               )}
               <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                <StatusPill variant={STATUS_PILL_VARIANT[tx.complianceStatus]}>
+                <Badge variant={STATUS_PILL_VARIANT[tx.complianceStatus]}>
                   <Clock /> {statusLabel}
-                </StatusPill>
+                </Badge>
                 <NetworkBadge network={tx.network} />
               </div>
             </div>
@@ -298,9 +294,9 @@ function TransactionDetail({
               )}
               {tx.travelRuleStatus && (
                 <DetailRow label="Travel rule">
-                  <StatusPill variant={TRAVEL_RULE_PILL[tx.travelRuleStatus]} className="ml-auto">
+                  <Badge variant={TRAVEL_RULE_PILL[tx.travelRuleStatus]} className="ml-auto">
                     <Clock /> {TRAVEL_RULE_LABEL[tx.travelRuleStatus]}
-                  </StatusPill>
+                  </Badge>
                 </DetailRow>
               )}
               <DetailRow label="Timestamp">

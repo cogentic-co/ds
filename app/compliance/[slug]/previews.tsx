@@ -34,7 +34,6 @@ import {
   TransactionFilterBar,
   type TransactionFilters,
   TransactionFlowCard,
-  TransactionHeader,
   TransactionRow,
   TravelRuleCard,
   TravelRuleStatus,
@@ -849,19 +848,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           provider="Notabene"
           status="not_required"
           body="Counterparty below travel-rule threshold."
-        />
-      </div>
-    )
-  },
-
-  "transaction-header": function TransactionHeaderPreview() {
-    return (
-      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
-        <TransactionHeader
-          tx={sampleRichTx}
-          explorerHref="#"
-          onApprove={() => console.log("approve")}
-          onEscalate={() => console.log("escalate")}
         />
       </div>
     )

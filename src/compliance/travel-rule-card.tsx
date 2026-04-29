@@ -1,7 +1,7 @@
 import { Clock, ExternalLink } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
-import { StatusPill } from "../components/status-pill"
+import { Badge } from "../components/badge"
 import { cn } from "../lib/utils"
 import type { TravelRuleStatusValue } from "./types"
 
@@ -15,11 +15,8 @@ type TravelRuleCardProps = Omit<ComponentProps<"div">, "children"> & {
   framed?: boolean
 }
 
-const statusToPill: Record<
-  TravelRuleStatusValue,
-  React.ComponentProps<typeof StatusPill>["variant"]
-> = {
-  not_required: "neutral",
+const statusToPill: Record<TravelRuleStatusValue, React.ComponentProps<typeof Badge>["variant"]> = {
+  not_required: "secondary",
   pending: "highlight",
   sent: "sky",
   received: "mint",
@@ -52,9 +49,9 @@ function TravelRuleCard({
     >
       <div className="mb-2 flex items-start justify-between gap-3">
         <span className="font-semibold text-sm">{provider} request</span>
-        <StatusPill variant={statusToPill[status]}>
+        <Badge variant={statusToPill[status]}>
           <Clock /> {statusLabel[status]}
-        </StatusPill>
+        </Badge>
       </div>
       <div className="text-[13px] text-muted-foreground leading-relaxed">{body}</div>
       {payloadHref && (

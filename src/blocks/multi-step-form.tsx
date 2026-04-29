@@ -1,15 +1,9 @@
 "use client"
 
-import { ArrowLeft, ArrowRight, Check } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import { type ComponentProps, type ReactNode, useCallback, useState } from "react"
 import { Button } from "../components/button"
-import {
-  StepProgress,
-  StepProgressContent,
-  StepProgressIndicator,
-  StepProgressItem,
-  StepProgressTitle,
-} from "../components/step-progress"
+import { Step, Stepper } from "../components/step"
 import { cn } from "../lib/utils"
 
 type MultiStepFormStep = {
@@ -82,21 +76,12 @@ function MultiStepForm({
 
   return (
     <div data-slot="multi-step-form" className={cn("flex flex-col gap-6", className)} {...props}>
-      <StepProgress>
+      <Stepper orientation="horizontal">
         {steps.map((s, i) => {
-          const status = i < index ? "complete" : i === index ? "current" : "upcoming"
-          return (
-            <StepProgressItem key={s.id} status={status}>
-              <StepProgressIndicator status={status} step={i + 1}>
-                {status === "complete" && <Check className="size-3" />}
-              </StepProgressIndicator>
-              <StepProgressContent>
-                <StepProgressTitle>{s.title}</StepProgressTitle>
-              </StepProgressContent>
-            </StepProgressItem>
-          )
+          const status = i < index ? "done" : i === index ? "active" : "pending"
+          return <Step key={s.id} status={status} title={s.title} />
         })}
-      </StepProgress>
+      </Stepper>
 
       <div data-slot="multi-step-form-content" className="flex flex-col gap-3">
         <div>

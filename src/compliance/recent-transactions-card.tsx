@@ -3,7 +3,7 @@
 import { ArrowDownLeft, ArrowRight, ArrowUpRight, RefreshCw } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
-import { StatusPill } from "../components/status-pill"
+import { Badge } from "../components/badge"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
 import type { Transaction, TxDirection, TxStatus } from "./types"
@@ -14,11 +14,11 @@ const DIR_ICON: Record<TxDirection, ReactNode> = {
   internal: <RefreshCw className="size-3" />,
 }
 
-const STATUS_VARIANT: Record<TxStatus, ComponentProps<typeof StatusPill>["variant"]> = {
+const STATUS_VARIANT: Record<TxStatus, ComponentProps<typeof Badge>["variant"]> = {
   verified: "mint",
   review: "highlight",
   blocked: "blush",
-  pending: "neutral",
+  pending: "secondary",
 }
 
 type RecentTransactionsCardProps = Omit<ComponentProps<"div">, "children" | "onSelect"> & {
@@ -113,7 +113,7 @@ function RecentTransactionsCard({
               {sign}
               {tx.usd}
             </div>
-            <StatusPill variant={STATUS_VARIANT[tx.status]}>
+            <Badge variant={STATUS_VARIANT[tx.status]}>
               {tx.status === "verified"
                 ? "Verified"
                 : tx.status === "review"
@@ -121,7 +121,7 @@ function RecentTransactionsCard({
                   : tx.status === "blocked"
                     ? "Blocked"
                     : "Pending"}
-            </StatusPill>
+            </Badge>
           </button>
         )
       })}

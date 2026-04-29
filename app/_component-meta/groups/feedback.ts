@@ -205,27 +205,29 @@ toast.error("Something went wrong")`,
       "Don't use without context — add a label or use LoadingOverlay",
     ],
   },
-  "entity-header": {
+  header: {
     status: "new",
     description:
-      "Header block for entity pages with avatar, name, metadata, and right column slot.",
-    since: "0.4.0",
-    importStatement: 'import { EntityHeader } from "@cogentic-co/ds/entity-header"',
+      "Unified page/section header. Replaces EntityHeader and TransactionHeader. Slots: breadcrumb, leadingIcon, title (string or rich JSX), subtitle, badges, description, meta, author, actions.",
+    since: "0.18.0",
+    importStatement: 'import { Header } from "@cogentic-co/ds/header"',
     dos: [
-      "Use for entity detail pages (companies, users, organisations)",
-      "Provide meta items for key attributes",
+      "Use for any page or section header — entity, transaction, settings, etc.",
+      "Pass rich JSX as `title` for amounts/codes that need monospace or sign formatting",
+      "Use `bordered` for full-width transaction-style headers, omit for inline use",
     ],
     donts: [
-      "Don't nest EntityHeader inside Card — it's designed to be standalone",
-      "Don't use for page headers without an entity context",
+      "Don't nest Header inside Card — it has its own padding and is designed standalone",
+      "Don't use multiple Headers on a page — use Section heading or smaller patterns instead",
     ],
-    codeExample: `import { EntityHeader } from "@cogentic-co/ds/entity-header"
+    codeExample: `import { Header } from "@cogentic-co/ds/header"
+import { Badge, Button } from "@cogentic-co/ds"
 
-<EntityHeader
-  name="Acme Corp"
-  subtitle="Licensed VASP"
-  meta={[{ text: "Singapore", icon: "🇸🇬" }]}
-  rightCol={<Badge>Active</Badge>}
+<Header
+  title="Acme Corp"
+  subtitle="Licensed VASP · Singapore"
+  badges={<Badge variant="mint">Active</Badge>}
+  actions={<Button>Open case</Button>}
 />`,
   },
   "logo-vasp": {

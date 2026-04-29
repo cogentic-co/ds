@@ -18,10 +18,8 @@ import BreadcrumbPreview from "./breadcrumb"
 import ButtonPreview from "./button"
 import ButtonGroupPreview from "./button-group"
 import CalendarPreview from "./calendar"
-import CalloutPreview from "./callout"
 import CardPreview from "./card"
 import CarouselPreview from "./carousel"
-import CaseCardPreview from "./case-card"
 import ChainOfThoughtPreview from "./chain-of-thought"
 import ChartPreview from "./chart"
 import CheckboxPreview from "./checkbox"
@@ -40,12 +38,10 @@ import DataTablePreview from "./data-table"
 import DatePickerPreview from "./date-picker"
 import DeadlineCountdownPreview from "./deadline-countdown"
 import DialogPreview from "./dialog"
-import DirectionPreview from "./direction"
 import DrawerPreview from "./drawer"
 import DropdownMenuPreview from "./dropdown-menu"
 import EmptyPreview from "./empty"
 import EntityGraphPreview from "./entity-graph"
-import EntityHeaderPreview from "./entity-header"
 import FadeInPreview from "./fade-in"
 import FieldPreview from "./field"
 import FileUploadPreview from "./file-upload"
@@ -53,6 +49,7 @@ import FilterBarPreview from "./filter-bar"
 import FormPreview from "./form"
 import FunnelChartPreview from "./funnel-chart"
 import GridPreview from "./grid"
+import HeaderPreview from "./header"
 import HeatmapChartPreview from "./heatmap-chart"
 import HoverCardPreview from "./hover-card"
 import InlineCitationPreview from "./inline-citation"
@@ -107,8 +104,7 @@ import SpinnerPreview from "./spinner"
 import SplitPanePreview from "./split-pane"
 import StatPreview from "./stat"
 import StatusIndicatorPreview from "./status-indicator"
-import StatusPillPreview from "./status-pill"
-import StepProgressPreview from "./step-progress"
+import StepPreview from "./step"
 import StreamingCardsPreview from "./streaming-cards"
 import StripedBarPreview from "./striped-bar"
 import SubtleShaderPreview from "./subtle-shader"
@@ -116,7 +112,6 @@ import SuggestionPreview from "./suggestion"
 import SwitchPreview from "./switch"
 import TablePreview from "./table"
 import TabsPreview from "./tabs"
-import TagPreview from "./tag"
 import TaskPreview from "./task"
 import TextareaPreview from "./textarea"
 import TimelinePreview from "./timeline"
@@ -149,7 +144,6 @@ export const previews: Record<string, React.ComponentType> = {
   "approval-actions": ApprovalActionsPreview,
   button: ButtonPreview,
   card: CardPreview,
-  "case-card": CaseCardPreview,
   item: ItemPreview,
   input: InputPreview,
   badge: BadgePreview,
@@ -199,7 +193,7 @@ export const previews: Record<string, React.ComponentType> = {
   "hover-card": HoverCardPreview,
   sonner: SonnerPreview,
   empty: EmptyPreview,
-  "entity-header": EntityHeaderPreview,
+  header: HeaderPreview,
   "logo-vasp": LogoVaspPreview,
   "search-input": SearchInputPreview,
   breadcrumb: BreadcrumbPreview,
@@ -233,23 +227,19 @@ export const previews: Record<string, React.ComponentType> = {
   "status-indicator": StatusIndicatorPreview,
   "striped-bar": StripedBarPreview,
   // New components
-  tag: TagPreview,
   stat: StatPreview,
   "number-input": NumberInputPreview,
   timeline: TimelinePreview,
   "segmented-control": SegmentedControlPreview,
-  callout: CalloutPreview,
   "file-upload": FileUploadPreview,
   "code-block": CodeBlockPreview,
   "loading-overlay": LoadingOverlayPreview,
   "inline-edit": InlineEditPreview,
   "copy-button": CopyButtonPreview,
   "visually-hidden": VisuallyHiddenPreview,
-  direction: DirectionPreview,
   "waffle-chart": WaffleChartPreview,
   // DS refresh
   "ring-card": RingCardPreview,
-  "status-pill": StatusPillPreview,
   "key-value-list": KeyValueListPreview,
   "kpi-card": KpiCardPreview,
   sparkline: SparklinePreview,
@@ -295,5 +285,5 @@ export const previews: Record<string, React.ComponentType> = {
   "audit-log": AuditLogPreview,
   "filter-bar": FilterBarPreview,
   "split-pane": SplitPanePreview,
-  "step-progress": StepProgressPreview,
+  step: StepPreview,
 }

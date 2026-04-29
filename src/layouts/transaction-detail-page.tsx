@@ -1,3 +1,12 @@
+import {
+  ArrowDownLeft,
+  ArrowUpRight,
+  Check,
+  ExternalLink,
+  Flag,
+  MoreHorizontal,
+  RefreshCw,
+} from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { AddressDisplay } from "../compliance/address-display"
 import { CounterpartyIntel } from "../compliance/counterparty-intel"
@@ -6,11 +15,34 @@ import { FlagCallout } from "../compliance/flag-callout"
 import { FlowDiagram } from "../compliance/flow-diagram"
 import { ReviewerNotes } from "../compliance/reviewer-notes"
 import { RiskScoreHero } from "../compliance/risk-score-hero"
-import { TransactionHeader } from "../compliance/transaction-header"
 import { TravelRuleCard } from "../compliance/travel-rule-card"
-import type { ReviewerNote, Transaction } from "../compliance/types"
+import type { ReviewerNote, Transaction, TxDirection, TxStatus } from "../compliance/types"
+import { Badge } from "../components/badge"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "../components/breadcrumb"
+import { Button } from "../components/button"
+import { Header } from "../components/header"
 import { KeyValueList } from "../components/key-value-list"
+import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
+
+const DIRECTION_ICON: Record<TxDirection, ReactNode> = {
+  inbound: <ArrowDownLeft className="size-5" />,
+  outbound: <ArrowUpRight className="size-5" />,
+  internal: <RefreshCw className="size-5" />,
+}
+
+const STATUS_VARIANT: Record<TxStatus, "mint" | "highlight" | "blush" | "secondary"> = {
+  verified: "mint",
+  review: "highlight",
+  blocked: "blush",
+  pending: "secondary",
+}
 
 type TransactionDetailPageProps = ComponentProps<"div"> & {
   tx: Transaction
@@ -57,14 +89,70 @@ function TransactionDetailPage({
   className,
   ...props
 }: TransactionDetailPageProps) {
+  const sign = tx.dir === "inbound" ? "+" : tx.dir === "outbound" ? "−" : ""
   return (
     <div data-slot="transaction-detail-page" className={cn(className)} {...props}>
-      <TransactionHeader
-        tx={tx}
-        backHref={backHref}
-        explorerHref={explorerHref}
-        onApprove={onApprove}
-        onEscalate={onEscalate}
+      <Header
+        bordered
+        breadcrumb={
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href={backHref ?? "/transactions"}>Transactions</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem className="font-mono text-foreground">{tx.ref}</BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        }
+        leadingIcon={
+          <span
+            className={cn(
+              "flex size-12 items-center justify-center rounded-[var(--radius-md)]",
+              DIRECTION_TONE_CLASSES[tx.dir],
+            )}
+          >
+            {DIRECTION_ICON[tx.dir]}
+          </span>
+        }
+        title={
+          <span
+            className="font-mono font-semibold"
+            style={{ fontSize: 30, letterSpacing: "-0.02em" }}
+          >
+            {sign}
+            {tx.amt} <span className="font-medium text-muted-foreground">{tx.asset}</span>
+          </span>
+        }
+        badges={<Badge variant={STATUS_VARIANT[tx.status]}>{tx.status}</Badge>}
+        subtitle={
+          <span className="font-mono">
+            {tx.usd} · {tx.time}
+          </span>
+        }
+        actions={
+          <>
+            {explorerHref && (
+              <Button
+                variant="ghost"
+                render={
+                  <a href={explorerHref} target="_blank" rel="noreferrer">
+                    <ExternalLink className="size-3.5" /> Explorer
+                  </a>
+                }
+              />
+            )}
+            <Button variant="secondary" onClick={onEscalate}>
+              <Flag className="size-3.5" /> Escalate
+            </Button>
+            <Button onClick={onApprove}>
+              <Check className="size-3.5" /> Approve
+            </Button>
+            <Button variant="ghost" size="icon" aria-label="More actions">
+              <MoreHorizontal className="size-4" />
+            </Button>
+          </>
+        }
       />
 
       {tx.flags.length > 0 && (
