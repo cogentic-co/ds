@@ -292,7 +292,15 @@ const chatbotGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Streaming",
-    items: ["markdown", "shimmer", "reasoning", "chain-of-thought", "task", "plan"],
+    items: [
+      "markdown",
+      "shimmer",
+      "reasoning",
+      "chain-of-thought",
+      "task",
+      "plan",
+      "agent-progress",
+    ],
   },
   {
     label: "Rich content",

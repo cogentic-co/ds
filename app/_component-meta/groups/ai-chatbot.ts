@@ -2,6 +2,43 @@ import type { ComponentMeta } from "../index"
 
 // ── AI / Chatbot ──
 export const aiChatbotMeta: Record<string, ComponentMeta> = {
+  "agent-progress": {
+    status: "new",
+    description:
+      "Live status card for an agent or workflow run. Composes Step/Stepper, Badge, Progress, Separator, and Button. Variants: State (running|completed|failed) × Density (compact|detailed).",
+    since: "0.19.0",
+    importStatement: 'import { AgentProgress } from "@cogentic-co/ds/chatbot/agent-progress"',
+    dos: [
+      "Use for agent or workflow runs that have a fixed list of steps",
+      "Pass step descriptions even in compact density — they're used by detailed mode",
+      "Include a `progress` object when the run has a measurable percentage",
+      "Use `meta` for the secondary footer line (started X ago · ETA Y)",
+    ],
+    donts: [
+      "Don't use for chat messages — use Message instead",
+      "Don't use for free-form workflows without discrete steps — use a Plan or Task list",
+      "Don't override step status manually — flow through `status: 'done'|'active'|'pending'|'failed'|'skipped'`",
+    ],
+    codeExample: `import { AgentProgress } from "@cogentic-co/ds/chatbot/agent-progress"
+
+<AgentProgress
+  state="running"
+  density="compact"
+  title="Investigation created"
+  reference="INV-104"
+  description="Wallet risk investigation"
+  steps={[
+    { id: "1", title: "Parse transaction", status: "done" },
+    { id: "2", title: "Resolve counterparties", status: "done" },
+    { id: "3", title: "Risk score", status: "active" },
+    { id: "4", title: "Recommendation", status: "pending" },
+  ]}
+  progress={{ value: 48, summary: "ETA 2 min" }}
+  meta="Started 4 min ago"
+  onCancel={() => stop()}
+  onOpen={() => open()}
+/>`,
+  },
   markdown: {
     status: "new",
     description:

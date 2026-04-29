@@ -4,6 +4,20 @@
   "_note": "Seed manifest. Run `pnpm sync:figma` to regenerate from the live Figma file.",
   "components": [
     {
+      "figmaName": "Agent Progress",
+      "figmaPageName": "Agent Progress",
+      "figmaNodeId": "388:184",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=388-184",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "State": ["running", "completed", "failed"],
+        "Density": ["compact", "detailed"]
+      },
+      "reactName": "AgentProgress",
+      "reactImportPath": "@cogentic-co/ds/chatbot/agent-progress",
+      "reactFilePath": "src/chatbot/agent-progress.tsx"
+    },
+    {
       "figmaName": "Avatar",
       "figmaPageName": "Avatar",
       "figmaNodeId": "25:19",

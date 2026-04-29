@@ -224,6 +224,7 @@ export default defineConfig({
     "compliance/travel-rule-status": "src/compliance/travel-rule-status.tsx",
     // Chatbot entry point
     chatbot: "src/chatbot/index.ts",
+    "chatbot/agent-progress": "src/chatbot/agent-progress.tsx",
     "chatbot/markdown": "src/chatbot/markdown.tsx",
     // Workflow diagram — inline SVG workflow renderer + animated beam
     "workflow-diagram": "src/workflow-diagram/index.ts",

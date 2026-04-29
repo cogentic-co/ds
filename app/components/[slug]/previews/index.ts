@@ -1,5 +1,6 @@
 import type React from "react"
 import AccordionPreview from "./accordion"
+import AgentProgressPreview from "./agent-progress"
 import AlertPreview from "./alert"
 import AlertDialogPreview from "./alert-dialog"
 import AnimatedCounterPreview from "./animated-counter"
@@ -262,6 +263,7 @@ export const previews: Record<string, React.ComponentType> = {
   "workflow-group": WorkflowGroupPreview,
   "workflow-handle": WorkflowHandlePreview,
   // AI / Chatbot
+  "agent-progress": AgentProgressPreview,
   shimmer: ShimmerPreview,
   suggestion: SuggestionPreview,
   reasoning: ReasoningPreview,

@@ -205,6 +205,7 @@ const chatbotItems = [
   "chain-of-thought",
   "task",
   "plan",
+  "agent-progress",
   // Rich content
   "sources",
   "attachments",

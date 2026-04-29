@@ -49,7 +49,7 @@ const stepIndicatorVariants = cva(
   },
 )
 
-type StepProps = ComponentProps<"div"> &
+type StepProps = Omit<ComponentProps<"div">, "title"> &
   VariantProps<typeof stepVariants> & {
     status?: StepStatus
     title: ReactNode

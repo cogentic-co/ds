@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -85,6 +85,12 @@
       "import": {
         "types": "./dist/chatbot.d.ts",
         "default": "./dist/chatbot.js"
+      }
+    },
+    "./chatbot/agent-progress": {
+      "import": {
+        "types": "./dist/chatbot/agent-progress.d.ts",
+        "default": "./dist/chatbot/agent-progress.js"
       }
     },
     "./chatbot/markdown": {
