@@ -11,13 +11,13 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { componentMeta, statusConfig } from "./_component-meta"
 import { animationPreviews } from "./animations/[slug]/previews"
 import { blockPreviews } from "./blocks/[slug]/previews"
 import { compliancePreviews } from "./compliance/[slug]/previews"
 import { previews as componentPreviews } from "./components/[slug]/previews"
 import { layoutPreviews } from "./layouts/[slug]/previews"
 import { shellPreviews } from "./shells/[slug]/previews"
-import { componentMeta, statusConfig } from "./_component-meta"
 
 function toTitle(slug: string) {
   return slug
@@ -114,7 +114,8 @@ function buildSearchItems(): SearchItem[] {
 
   for (const { registry, group, hrefPrefix } of REGISTRIES) {
     for (const slug of Object.keys(registry)) {
-      const groupLabel = group === "Components" ? COMPONENT_SUBGROUPS[slug] ?? "Components" : group
+      const groupLabel =
+        group === "Components" ? (COMPONENT_SUBGROUPS[slug] ?? "Components") : group
       const meta = componentMeta[slug]
       const key = `${groupLabel}/${slug}`
       if (seen.has(key)) continue
