@@ -90,6 +90,7 @@
         "Size": ["xs", "sm", "default", "lg", "xl"],
         "Value": ["20", "50", "70", "100"]
       },
+      "booleanProps": ["Hatched"],
       "reactName": "Progress",
       "reactImportPath": "@cogentic-co/ds/progress",
       "reactFilePath": "src/components/progress.tsx"
