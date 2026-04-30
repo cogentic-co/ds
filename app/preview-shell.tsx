@@ -308,7 +308,7 @@ const chatbotGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Rich content",
-    items: ["sources", "attachments", "inline-citation", "tool", "context"],
+    items: ["sources", "inline-citation", "tool"],
   },
   {
     label: "Controls",

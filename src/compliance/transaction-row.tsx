@@ -5,10 +5,9 @@ import type { ComponentProps, ReactNode } from "react"
 import { Badge } from "../components/badge"
 import { DIRECTION_TONE_CLASSES } from "../lib/tone"
 import { cn } from "../lib/utils"
-import { AddressDisplay } from "./address-display"
 import { RiskScoreInline } from "./risk-score-inline"
 import { ComplianceStatusBadge } from "./status-helpers"
-import type { TransactionData, TransactionDirection } from "./types"
+import type { TransactionData, TransactionDirection, TransactionParty } from "./types"
 
 const DIRECTION_ICONS: Record<TransactionDirection, ReactNode> = {
   inbound: <ArrowDownLeft className="size-3.5" />,
@@ -38,6 +37,22 @@ function formatTimestamp(t: string | Date) {
   })
 }
 
+function shortAddress(a: string, chars = 4) {
+  if (a.length <= chars * 2 + 3) return a
+  return `${a.slice(0, chars)}…${a.slice(-chars)}`
+}
+
+function PartySnippet({ party }: { party: TransactionParty }) {
+  const label = party.label ?? party.vasp
+  return (
+    <span className="min-w-0 flex-1 truncate">
+      {label && <span className="font-medium font-sans text-foreground">{label}</span>}
+      {label && " "}
+      <span className="text-muted-foreground">{shortAddress(party.address)}</span>
+    </span>
+  )
+}
+
 function TransactionRow({ transaction: tx, onClick, className, ...props }: TransactionRowProps) {
   const ts = formatTimestamp(tx.timestamp)
   const sign = tx.direction === "inbound" ? "+" : tx.direction === "outbound" ? "−" : ""
@@ -65,20 +80,10 @@ function TransactionRow({ transaction: tx, onClick, className, ...props }: Trans
       </span>
 
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-        <div className="flex min-w-0 items-center gap-1">
-          <AddressDisplay
-            address={tx.from.address}
-            label={tx.from.label ?? tx.from.vasp}
-            copyable={false}
-            className="min-w-0 flex-1"
-          />
+        <div className="flex min-w-0 items-center gap-1.5">
+          <PartySnippet party={tx.from} />
           <ArrowRight className="size-3 shrink-0 text-muted-foreground/40" />
-          <AddressDisplay
-            address={tx.to.address}
-            label={tx.to.label ?? tx.to.vasp}
-            copyable={false}
-            className="min-w-0 flex-1"
-          />
+          <PartySnippet party={tx.to} />
         </div>
         <span className="truncate text-[10px] text-muted-foreground/70">{ts}</span>
       </div>

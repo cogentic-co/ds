@@ -8,7 +8,6 @@ import ApprovalActionsPreview from "./approval-actions"
 import AreaChartPreview from "./area-chart"
 import AsciiShaderPreview from "./ascii-shader"
 import AspectRatioPreview from "./aspect-ratio"
-import AttachmentsPreview from "./attachments"
 import AuditLogPreview from "./audit-log"
 import AvatarPreview from "./avatar"
 import BadgePreview from "./badge"
@@ -31,7 +30,6 @@ import ComboboxPreview from "./combobox"
 import CommandPreview from "./command"
 import ComposedChartPreview from "./composed-chart"
 import ConfirmationPreview from "./confirmation"
-import ContextPreview from "./context"
 import ContextMenuPreview from "./context-menu"
 import ConversationPreview from "./conversation"
 import CopyButtonPreview from "./copy-button"
@@ -268,7 +266,6 @@ export const previews: Record<string, React.ComponentType> = {
   suggestion: SuggestionPreview,
   reasoning: ReasoningPreview,
   sources: SourcesPreview,
-  attachments: AttachmentsPreview,
   "inline-citation": InlineCitationPreview,
   markdown: MarkdownPreview,
   message: MessagePreview,
@@ -276,7 +273,6 @@ export const previews: Record<string, React.ComponentType> = {
   "prompt-input": PromptInputPreview,
   "chain-of-thought": ChainOfThoughtPreview,
   confirmation: ConfirmationPreview,
-  context: ContextPreview,
   checkpoint: CheckpointPreview,
   plan: PlanPreview,
   task: TaskPreview,

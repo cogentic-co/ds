@@ -161,29 +161,6 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
   </SourcesContent>
 </Sources>`,
   },
-  attachments: {
-    status: "new",
-    description:
-      "File attachment display for chat messages. Supports image, video, audio, and generic file types.",
-    importStatement: 'import { Attachments, Attachment } from "@cogentic-co/ds/chatbot"',
-    dos: [
-      "Set the correct `type` prop for proper icon and preview rendering",
-      "Provide `url` for image attachments to show thumbnails",
-      "Include `onRemove` for user-uploaded attachments that haven't been sent yet",
-      "Truncate long filenames — the component handles this via CSS",
-    ],
-    donts: [
-      "Don't allow attachments without file type validation",
-      "Don't show remove buttons on attachments in sent messages",
-      "Don't render image previews for files larger than 5MB without lazy loading",
-    ],
-    codeExample: `import { Attachments, Attachment } from "@cogentic-co/ds/chatbot"
-
-<Attachments>
-  <Attachment name="report.pdf" type="file" />
-  <Attachment name="photo.jpg" type="image" url="/photo.jpg" onRemove={() => {}} />
-</Attachments>`,
-  },
   "inline-citation": {
     status: "new",
     description:
@@ -372,32 +349,6 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     <ConfirmationAction variant="destructive" onClick={reject}>Reject</ConfirmationAction>
   </ConfirmationActions>
 </Confirmation>`,
-  },
-  context: {
-    status: "new",
-    description:
-      "Token and context window usage display. Shows progress bars for token consumption.",
-    importStatement:
-      'import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic-co/ds/chatbot"',
-    dos: [
-      "Show context usage proactively when approaching limits (>70%)",
-      "Use human-readable numbers (e.g. 45K / 128K) for large token counts",
-      "Warn users with colour changes when usage is high (handled automatically at 80%)",
-    ],
-    donts: [
-      "Don't show context usage by default in simple chat UIs — only for power users",
-      "Don't update the display more than once per message to avoid flicker",
-      "Don't show raw byte counts — convert to tokens or messages",
-    ],
-    codeExample: `import { Context, ContextHeader, ContextBody, ContextUsage } from "@cogentic-co/ds/chatbot"
-
-<Context>
-  <ContextHeader>Context Usage</ContextHeader>
-  <ContextBody>
-    <ContextUsage label="Tokens" used={45000} total={128000} />
-    <ContextUsage label="Messages" used={12} total={50} />
-  </ContextBody>
-</Context>`,
   },
   checkpoint: {
     status: "new",
