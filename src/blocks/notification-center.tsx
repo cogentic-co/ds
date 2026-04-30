@@ -70,7 +70,7 @@ function NotificationCenter({
             </Button>
           }
         />
-        <PopoverContent align="end" className="w-96 p-0">
+        <PopoverContent align="end" className="w-[min(24rem,calc(100vw-1rem))] p-0">
           <div className="flex items-center justify-between border-border border-b px-3 py-2.5">
             <span className="font-semibold text-sm">{label}</span>
             {onMarkAllRead && unreadCount > 0 && (

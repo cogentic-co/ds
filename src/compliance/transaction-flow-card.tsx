@@ -132,10 +132,13 @@ function TransactionFlowCard({
           </div>
           <div className="grid gap-1">
             {topCounterparties.map((c) => (
-              <div key={c.name} className="flex items-center justify-between text-[13px]">
-                <span className="font-medium">{c.name}</span>
+              <div
+                key={c.name}
+                className="flex min-w-0 items-center justify-between gap-3 text-[13px]"
+              >
+                <span className="min-w-0 truncate font-medium">{c.name}</span>
                 <span
-                  className="font-mono font-semibold"
+                  className="shrink-0 whitespace-nowrap font-mono font-semibold"
                   style={{
                     color: c.direction === "in" ? "var(--success)" : "var(--foreground)",
                   }}

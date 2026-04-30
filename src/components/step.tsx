@@ -122,7 +122,7 @@ const stepperVariants = cva("", {
   variants: {
     orientation: {
       vertical: "flex flex-col gap-3",
-      horizontal: "flex w-full items-start gap-2",
+      horizontal: "flex w-full items-start gap-2 overflow-x-auto",
     },
   },
   defaultVariants: { orientation: "vertical" },

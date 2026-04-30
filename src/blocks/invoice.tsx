@@ -111,56 +111,58 @@ function Invoice({
         </div>
       </div>
 
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-border border-b">
-            <th className="pb-2 text-left font-medium text-muted-foreground text-xs uppercase">
-              Description
-            </th>
-            <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
-              Qty
-            </th>
-            <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
-              Unit
-            </th>
-            <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
-              Total
-            </th>
-          </tr>
-        </thead>
-        <tbody className="font-mono tabular-nums">
-          {items.map((item) => (
-            <tr key={item.id} className="border-border/60 border-b">
-              <td className="py-3 font-sans">{item.description}</td>
-              <td className="py-3 text-right">{item.quantity ?? 1}</td>
-              <td className="py-3 text-right">{item.unitPrice}</td>
-              <td className="py-3 text-right">{item.total}</td>
+      <div className="-mx-8 overflow-x-auto px-8">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-border border-b">
+              <th className="pb-2 text-left font-medium text-muted-foreground text-xs uppercase">
+                Description
+              </th>
+              <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
+                Qty
+              </th>
+              <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
+                Unit
+              </th>
+              <th className="pb-2 text-right font-medium text-muted-foreground text-xs uppercase">
+                Total
+              </th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot className="font-mono tabular-nums">
-          <tr>
-            <td colSpan={3} className="pt-3 text-right font-sans text-muted-foreground text-xs">
-              Subtotal
-            </td>
-            <td className="pt-3 text-right">{subtotal}</td>
-          </tr>
-          {tax && (
+          </thead>
+          <tbody className="font-mono tabular-nums">
+            {items.map((item) => (
+              <tr key={item.id} className="border-border/60 border-b">
+                <td className="py-3 font-sans">{item.description}</td>
+                <td className="py-3 text-right">{item.quantity ?? 1}</td>
+                <td className="py-3 text-right">{item.unitPrice}</td>
+                <td className="py-3 text-right">{item.total}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot className="font-mono tabular-nums">
             <tr>
-              <td colSpan={3} className="pt-1 text-right font-sans text-muted-foreground text-xs">
-                {tax.label}
+              <td colSpan={3} className="pt-3 text-right font-sans text-muted-foreground text-xs">
+                Subtotal
               </td>
-              <td className="pt-1 text-right">{tax.amount}</td>
+              <td className="pt-3 text-right">{subtotal}</td>
             </tr>
-          )}
-          <tr className="border-border border-t">
-            <td colSpan={3} className="pt-2 text-right font-sans font-semibold text-sm">
-              Total {currency && <span className="text-muted-foreground">{currency}</span>}
-            </td>
-            <td className="pt-2 text-right font-semibold">{total}</td>
-          </tr>
-        </tfoot>
-      </table>
+            {tax && (
+              <tr>
+                <td colSpan={3} className="pt-1 text-right font-sans text-muted-foreground text-xs">
+                  {tax.label}
+                </td>
+                <td className="pt-1 text-right">{tax.amount}</td>
+              </tr>
+            )}
+            <tr className="border-border border-t">
+              <td colSpan={3} className="pt-2 text-right font-sans font-semibold text-sm">
+                Total {currency && <span className="text-muted-foreground">{currency}</span>}
+              </td>
+              <td className="pt-2 text-right font-semibold">{total}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
       {notes && (
         <div className="rounded-lg bg-muted/60 p-4 text-muted-foreground text-sm">{notes}</div>

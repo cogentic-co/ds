@@ -70,7 +70,7 @@ function TransactionCard({ transaction: tx, onClick, className, ...props }: Tran
 
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 py-1 font-mono text-xs">
           <dt className="text-muted-foreground uppercase">From</dt>
-          <dd>
+          <dd className="min-w-0 truncate">
             <AddressDisplay
               address={tx.from.address}
               label={tx.from.label ?? tx.from.vasp}
@@ -78,7 +78,7 @@ function TransactionCard({ transaction: tx, onClick, className, ...props }: Tran
             />
           </dd>
           <dt className="text-muted-foreground uppercase">To</dt>
-          <dd>
+          <dd className="min-w-0 truncate">
             <AddressDisplay
               address={tx.to.address}
               label={tx.to.label ?? tx.to.vasp}

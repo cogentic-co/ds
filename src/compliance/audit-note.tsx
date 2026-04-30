@@ -21,9 +21,11 @@ function AuditNote({ author, timestamp, decision, children, className, ...props 
         {author.avatar ?? initials(author.name)}
       </div>
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span className="font-semibold text-sm">{author.name}</span>
-          <span className="font-mono text-[11px] text-muted-foreground">{timestamp}</span>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span className="truncate font-semibold text-sm">{author.name}</span>
+          <span className="whitespace-nowrap font-mono text-[11px] text-muted-foreground">
+            {timestamp}
+          </span>
           {decision && <ComplianceStatusBadge status={decision} />}
         </div>
         <div className="mt-1 text-muted-foreground text-sm leading-relaxed">{children}</div>

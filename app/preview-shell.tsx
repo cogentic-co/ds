@@ -616,14 +616,12 @@ function buildNav(pathname: string): NavGroup[] {
         },
         {
           title: "Supporting",
-          items: ["sanctions-match", "counterparty-card", "jurisdiction-card", "alert-banner"].map(
-            (slug) => ({
-              label: toTitle(slug),
-              icon: Component,
-              href: `/compliance/${slug}`,
-              isActive: pathname === `/compliance/${slug}`,
-            }),
-          ),
+          items: ["counterparty-card", "jurisdiction-card"].map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/compliance/${slug}`,
+            isActive: pathname === `/compliance/${slug}`,
+          })),
           defaultOpen: true,
         },
       ],

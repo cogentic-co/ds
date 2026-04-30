@@ -70,12 +70,12 @@ function RiskScoreHero({
           </div>
         </div>
 
-        <div className="min-w-[280px] flex-1">
+        <div className="min-w-0 flex-1">
           <div className="mb-2.5 font-semibold text-[13px]">What drives this score</div>
           {drivers.map((d) => (
             <div
               key={d.label}
-              className="grid grid-cols-[1fr_120px_40px] items-center gap-2.5 py-1.5"
+              className="grid grid-cols-[1fr_64px_28px] items-center gap-2.5 py-1.5 sm:grid-cols-[1fr_120px_40px]"
             >
               <span className="text-[13px]">{d.label}</span>
               <span className="h-1.5 overflow-hidden rounded-full bg-muted">

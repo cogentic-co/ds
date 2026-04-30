@@ -3,7 +3,6 @@
 import { useState } from "react"
 import {
   AddressDisplay,
-  AlertBanner,
   AlertsCard,
   AuditNote,
   AwaitingReviewCard,
@@ -22,7 +21,6 @@ import {
   RiskExposureCard,
   RiskScoreHero,
   RiskScoreInline,
-  SanctionsMatch,
   type Transaction,
   TransactionCard,
   type TransactionData,
@@ -219,15 +217,6 @@ const txCardControlDefs = {
   riskScore: { type: "number", defaultValue: 72, min: 0, max: 100, step: 1, label: "Risk score" },
 } satisfies ControlDefs
 
-const alertControlDefs = {
-  severity: {
-    type: "select",
-    options: ["info", "warning", "critical"],
-    defaultValue: "critical",
-    label: "Severity",
-  },
-} satisfies ControlDefs
-
 const counterpartyControlDefs = {
   type: {
     type: "select",
@@ -415,28 +404,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     )
   },
 
-  "sanctions-match": function SanctionsMatchPreview() {
-    return (
-      <div className="flex max-w-lg flex-col gap-4">
-        <SanctionsMatch
-          source="OFAC SDN"
-          entityName="Alpha Exchange LLC"
-          matchScore={87}
-          reason="Name similarity + jurisdiction overlap"
-          onDismiss={() => console.log("dismiss")}
-          onConfirm={() => console.log("confirm")}
-        />
-        <SanctionsMatch
-          source="EU Consolidated"
-          entityName="Beta Holdings"
-          matchScore={42}
-          reason="Partial alias match"
-          onDismiss={() => console.log("dismiss")}
-        />
-      </div>
-    )
-  },
-
   "counterparty-card": function CounterpartyCardPreview() {
     const controls = useControls(counterpartyControlDefs)
     return (
@@ -588,42 +555,6 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           cpiScore={82}
           onClick={() => console.log("CH")}
         />
-      </div>
-    )
-  },
-
-  "alert-banner": function AlertBannerPreview() {
-    const controls = useControls(alertControlDefs)
-    return (
-      <div className="space-y-8">
-        <Playground controls={controls}>
-          <AlertBanner
-            severity={controls.values.severity as "critical"}
-            title="3 transactions flagged for immediate review"
-            description="High-risk transfers detected from sanctioned jurisdictions."
-            actions={<Button size="sm">Review now</Button>}
-            onDismiss={() => console.log("dismiss")}
-          />
-        </Playground>
-        <Section title="All severities">
-          <div className="flex max-w-xl flex-col gap-4">
-            <AlertBanner
-              severity="critical"
-              title="3 transactions flagged for immediate review"
-              description="High-risk transfers detected from sanctioned jurisdictions."
-            />
-            <AlertBanner
-              severity="warning"
-              title="Travel Rule data pending"
-              description="2 outbound transfers are awaiting counterparty VASP response."
-            />
-            <AlertBanner
-              severity="info"
-              title="Screening rules updated"
-              description="OFAC SDN list was refreshed 5 minutes ago."
-            />
-          </div>
-        </Section>
       </div>
     )
   },

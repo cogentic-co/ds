@@ -843,7 +843,7 @@ function ChangelogPreview() {
                   status borders
                 </li>
                 <li>NetworkBadge with inline SVG chain icons (ETH, BTC, TRX, MATIC, SOL, BNB)</li>
-                <li>SanctionsMatch, CounterpartyCard, ComplianceTimeline, AlertBanner</li>
+                <li>CounterpartyCard</li>
               </ul>
             ),
           },

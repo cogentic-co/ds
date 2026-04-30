@@ -70,7 +70,7 @@ function FlowDiagram({ from, to, network, fee, className, ...props }: FlowDiagra
   return (
     <div
       data-slot="flow-diagram"
-      className={cn("grid grid-cols-[1fr_auto_1fr] items-center gap-3", className)}
+      className={cn("grid grid-cols-1 items-center gap-3 sm:grid-cols-[1fr_auto_1fr]", className)}
       {...props}
     >
       <PartyCard party={from} side="From" />

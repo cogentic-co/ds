@@ -95,12 +95,14 @@ function RecentTransactionsCard({
               {DIR_ICON[tx.dir]}
             </span>
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 font-medium text-[13px]">
-                <span className="max-w-[140px] truncate">{tx.from.lbl}</span>
+              <div className="flex min-w-0 items-center gap-1.5 font-medium text-[13px]">
+                <span className="min-w-0 max-w-[88px] truncate sm:max-w-[140px]">
+                  {tx.from.lbl}
+                </span>
                 <ArrowRight className="size-3 shrink-0 text-muted-foreground" />
                 <span
                   className={cn(
-                    "max-w-[140px] truncate",
+                    "min-w-0 max-w-[88px] truncate sm:max-w-[140px]",
                     tx.risk >= 75 && "font-semibold text-destructive",
                   )}
                 >

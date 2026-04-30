@@ -49,7 +49,7 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
         >
           <div className="mb-1.5 flex items-center gap-2">
             <div
-              className="flex size-6 items-center justify-center rounded-full font-bold text-[11px]"
+              className="flex size-6 shrink-0 items-center justify-center rounded-full font-bold text-[11px]"
               style={{
                 background: toneBg[n.avatarTone ?? "sky"],
                 color: toneFg[n.avatarTone ?? "sky"],
@@ -57,9 +57,13 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
             >
               {n.who[0]}
             </div>
-            <span className="font-semibold text-[13px]">{n.who}</span>
-            <span className="text-muted-foreground text-xs">· {n.role}</span>
-            <span className="ml-auto text-muted-foreground text-xs">{n.at}</span>
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <span className="truncate font-semibold text-[13px]">{n.who}</span>
+              <span className="hidden truncate text-muted-foreground text-xs sm:inline">
+                · {n.role}
+              </span>
+            </div>
+            <span className="shrink-0 whitespace-nowrap text-muted-foreground text-xs">{n.at}</span>
           </div>
           <div className="text-[13px] leading-relaxed">{n.body}</div>
         </div>

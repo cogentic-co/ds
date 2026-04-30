@@ -41,12 +41,14 @@ function AddressDisplay({
   return (
     <span
       data-slot="address-display"
-      className={cn("inline-flex items-center gap-1.5 font-mono text-xs", className)}
+      className={cn("inline-flex min-w-0 items-center gap-1.5 font-mono text-xs", className)}
       title={address}
       {...props}
     >
-      {label && <span className="font-medium font-sans text-foreground">{label}</span>}
-      <span className="text-muted-foreground">{displayed}</span>
+      {label && (
+        <span className="min-w-0 truncate font-medium font-sans text-foreground">{label}</span>
+      )}
+      <span className="min-w-0 truncate text-muted-foreground">{displayed}</span>
       {riskScore != null && <RiskDot score={riskScore} />}
       {copyable && (
         <button

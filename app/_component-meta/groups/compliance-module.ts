@@ -121,23 +121,6 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
     donts: ["Don't abbreviate the label — the statuses are already short"],
     codeExample: `<TravelRuleStatus status="sent" />`,
   },
-  "sanctions-match": {
-    status: "new",
-    description:
-      "Watchlist/sanctions hit card showing source list (OFAC, EU, UN), entity name, match score percentage, reason, and dismiss/confirm actions.",
-    since: "0.11.0",
-    importStatement: `import { SanctionsMatch } from "@cogentic-co/ds/compliance/sanctions-match"`,
-    dos: ["Use in case detail views and alert triage panels"],
-    donts: ["Don't show more than 3 matches without grouping/collapsing"],
-    codeExample: `<SanctionsMatch
-  source="OFAC SDN"
-  entityName="Alpha Exchange LLC"
-  matchScore={87}
-  reason="Name similarity + jurisdiction overlap"
-  onDismiss={() => dismiss(id)}
-  onConfirm={() => confirm(id)}
-/>`,
-  },
   "counterparty-card": {
     status: "new",
     description:
@@ -180,25 +163,6 @@ export const complianceModuleMeta: Record<string, ComponentMeta> = {
   baselAmlScore={3.2}
   cpiScore={83}
   onClick={() => router.push("/jurisdictions/SG")}
-/>`,
-  },
-  "alert-banner": {
-    status: "new",
-    description:
-      "Severity-colored compliance alert banner (info, warning, critical) with icon, title, description, dismiss button, and actions slot.",
-    since: "0.11.0",
-    importStatement: `import { AlertBanner } from "@cogentic-co/ds/compliance/alert-banner"`,
-    dos: [
-      "Use at the top of dashboard pages for urgent compliance items",
-      "Pass actions for quick triage (e.g. 'Review now')",
-    ],
-    donts: ["Don't use for success messages — use a toast instead"],
-    codeExample: `<AlertBanner
-  severity="critical"
-  title="3 transactions flagged for immediate review"
-  description="High-risk transfers detected."
-  actions={<Button size="sm">Review now</Button>}
-  onDismiss={() => dismiss()}
 />`,
   },
 }

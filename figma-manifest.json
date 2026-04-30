@@ -169,6 +169,16 @@
       "reactFilePath": "src/components/sidebar.tsx"
     },
     {
+      "figmaName": "Workflow Slack Message",
+      "figmaPageName": "Workflow Blocks",
+      "figmaNodeId": "104:3",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=104-3",
+      "figmaType": "COMPONENT",
+      "reactName": "WorkflowSlackMessage",
+      "reactImportPath": "@cogentic-co/ds",
+      "reactFilePath": "src/workflow/workflow-slack-message.tsx"
+    },
+    {
       "figmaName": "Docs / Header",
       "figmaPageName": "Docs",
       "figmaNodeId": "43:3",

@@ -57,9 +57,9 @@ function UsageMeter({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-medium text-sm">{label}</span>
-            <span className="font-mono text-muted-foreground text-xs tabular-nums">
+          <div className="flex min-w-0 items-center justify-between gap-2">
+            <span className="min-w-0 truncate font-medium text-sm">{label}</span>
+            <span className="shrink-0 whitespace-nowrap font-mono text-muted-foreground text-xs tabular-nums">
               {used.toLocaleString()} / {limit.toLocaleString()}
               {unit && <span className="ml-0.5">{unit}</span>}
             </span>
