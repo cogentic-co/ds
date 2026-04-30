@@ -1,8 +1,16 @@
 "use client"
 
 import { cva } from "class-variance-authority"
-import { ChevronDown } from "lucide-react"
-import { type ComponentProps, createContext, useCallback, useContext, useId, useState } from "react"
+import { AlertCircle, Check, ChevronDown, Circle, GripVertical, Loader2 } from "lucide-react"
+import {
+  type ComponentProps,
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useId,
+  useState,
+} from "react"
 import { cn } from "../lib/utils"
 
 // ---------------------------------------------------------------------------
@@ -92,22 +100,32 @@ function QueueList({ className, ...props }: ComponentProps<"div">) {
 }
 
 // ---------------------------------------------------------------------------
-// Queue item
+// Queue item (aligned with Step styling — border-circle indicator + icon)
 // ---------------------------------------------------------------------------
 
 type QueueItemStatus = "pending" | "active" | "complete" | "error"
 
-const queueItemIndicatorVariants = cva("size-2 shrink-0 rounded-full", {
-  variants: {
-    status: {
-      pending: "bg-muted-foreground/30",
-      active: "animate-pulse bg-primary",
-      complete: "bg-emerald-500",
-      error: "bg-red-500",
+const queueItemIndicatorVariants = cva(
+  "relative z-10 flex size-5 shrink-0 items-center justify-center rounded-full border-2 font-semibold text-xs",
+  {
+    variants: {
+      status: {
+        pending: "border-border bg-card text-muted-foreground",
+        active: "border-primary bg-primary text-primary-foreground",
+        complete: "border-[var(--mint-ink)] bg-[var(--mint-ink)] text-[var(--mint)]",
+        error: "border-destructive bg-destructive text-destructive-foreground",
+      },
     },
+    defaultVariants: { status: "pending" },
   },
-  defaultVariants: { status: "pending" },
-})
+)
+
+const STATUS_ICON: Record<QueueItemStatus, ReactNode> = {
+  pending: <Circle className="size-2 fill-current" />,
+  active: <Loader2 className="size-3 animate-spin" />,
+  complete: <Check className="size-3.5" />,
+  error: <AlertCircle className="size-3.5" />,
+}
 
 function QueueItem({ className, ...props }: ComponentProps<"div">) {
   return (
@@ -115,7 +133,7 @@ function QueueItem({ className, ...props }: ComponentProps<"div">) {
       data-slot="queue-item"
       role="listitem"
       className={cn(
-        "flex items-start gap-3 rounded-lg px-3 py-2.5",
+        "group/queue-item flex items-start gap-3 rounded-lg px-3 py-2.5",
         "transition-colors hover:bg-muted/50",
         className,
       )}
@@ -124,9 +142,28 @@ function QueueItem({ className, ...props }: ComponentProps<"div">) {
   )
 }
 
+function QueueItemDragHandle({ className, ...props }: ComponentProps<"button">) {
+  return (
+    <button
+      data-slot="queue-item-drag-handle"
+      type="button"
+      aria-label="Drag to reorder"
+      tabIndex={-1}
+      className={cn(
+        "flex shrink-0 cursor-grab items-center pt-1 text-muted-foreground/40 transition-colors hover:text-muted-foreground active:cursor-grabbing",
+        className,
+      )}
+      {...props}
+    >
+      <GripVertical aria-hidden="true" className="size-4" />
+    </button>
+  )
+}
+
 function QueueItemIndicator({
   status = "pending",
   className,
+  children,
   ...props
 }: ComponentProps<"span"> & { status?: QueueItemStatus }) {
   return (
@@ -134,9 +171,12 @@ function QueueItemIndicator({
       data-slot="queue-item-indicator"
       role="img"
       aria-label={status}
-      className={cn(queueItemIndicatorVariants({ status }), "mt-1.5", className)}
+      data-status={status}
+      className={cn(queueItemIndicatorVariants({ status }), "mt-0.5", className)}
       {...props}
-    />
+    >
+      {children ?? STATUS_ICON[status]}
+    </span>
   )
 }
 
@@ -172,6 +212,7 @@ export {
   QueueItemActions,
   QueueItemContent,
   QueueItemDescription,
+  QueueItemDragHandle,
   QueueItemIndicator,
   QueueList,
   QueueSection,

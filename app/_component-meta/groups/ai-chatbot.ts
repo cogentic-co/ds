@@ -460,13 +460,15 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
   },
   queue: {
     status: "new",
-    description: "Structured task/message queue list. Collapsible sections with status indicators.",
+    description:
+      "Structured task/message queue list with collapsible sections. Indicators match Step styling (border-circle + status icon). Optional QueueItemDragHandle for reorderable backlogs — wire DnD via native HTML5 drag events or any DnD library.",
     importStatement:
-      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemContent } from "@cogentic-co/ds/chatbot"',
+      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemDragHandle, QueueItemContent } from "@cogentic-co/ds/chatbot"',
     dos: [
       "Group related items into QueueSections with descriptive labels",
       "Show the item count in the section trigger",
       "Use status indicators consistently (pending, active, complete, error)",
+      "Add `QueueItemDragHandle` for reorderable items + spread `draggable` / `onDragStart` / `onDrop` on `QueueItem`",
       "Add descriptions to items that need more context",
     ],
     donts: [
