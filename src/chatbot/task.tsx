@@ -1,42 +1,74 @@
 "use client"
 
-import { Check, ChevronDown, Circle, Loader2 } from "lucide-react"
-import { type ComponentProps, createContext, useCallback, useContext, useId, useState } from "react"
+import { Check, ChevronDown, Circle, XCircle } from "lucide-react"
+import {
+  type ComponentProps,
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useId,
+  useState,
+} from "react"
+import { Spinner } from "../components/spinner"
 import { cn } from "../lib/utils"
 
 type TaskContextValue = {
   open: boolean
   toggle: () => void
   contentId: string
+  collapsible: boolean
 }
 
 const TaskContext = createContext<TaskContextValue | null>(null)
 
 type TaskStatus = "pending" | "running" | "complete" | "error"
 
-const statusIcons: Record<TaskStatus, typeof Check> = {
-  pending: Circle,
-  running: Loader2,
-  complete: Check,
-  error: Circle,
+function StatusIcon({ status, className }: { status: TaskStatus; className?: string }) {
+  if (status === "running") return <Spinner variant="lines" className={cn("size-4", className)} />
+  if (status === "complete") return <Check aria-hidden="true" className={className} />
+  if (status === "error") return <XCircle aria-hidden="true" className={className} />
+  return <Circle aria-hidden="true" className={className} />
+}
+
+const statusIconColor: Record<TaskStatus, string> = {
+  pending: "text-muted-foreground",
+  running: "text-mint-ink",
+  complete: "text-mint-ink",
+  error: "text-blush-ink",
+}
+
+const triggerToneClass: Record<TaskStatus, string> = {
+  pending: "",
+  running: "",
+  complete: "bg-mint/40 text-mint-ink hover:bg-mint/50",
+  error: "bg-blush/40 text-blush-ink hover:bg-blush/50",
 }
 
 function Task({
   defaultOpen = false,
+  collapsible = true,
   className,
   children,
   ...props
-}: ComponentProps<"div"> & { defaultOpen?: boolean }) {
+}: ComponentProps<"div"> & {
+  defaultOpen?: boolean
+  /** When false the trigger doesn't toggle and no chevron is shown. */
+  collapsible?: boolean
+}) {
   const [open, setOpen] = useState(defaultOpen)
-  const toggle = useCallback(() => setOpen((o) => !o), [])
+  const toggle = useCallback(() => {
+    if (collapsible) setOpen((o) => !o)
+  }, [collapsible])
   const contentId = useId()
 
   return (
-    <TaskContext.Provider value={{ open, toggle, contentId }}>
+    <TaskContext.Provider value={{ open, toggle, contentId, collapsible }}>
       <div
         data-slot="task"
         data-state={open ? "open" : "closed"}
-        className={cn("rounded-xl border border-border bg-card", className)}
+        data-collapsible={collapsible || undefined}
+        className={cn("w-full overflow-hidden rounded-xl border border-border bg-card", className)}
         {...props}
       >
         {children}
@@ -54,47 +86,50 @@ function TaskTrigger({
   const ctx = useContext(TaskContext)
   if (!ctx) throw new Error("TaskTrigger must be used within <Task>")
 
-  const Icon = statusIcons[status]
+  const buttonProps = ctx.collapsible
+    ? { onClick: ctx.toggle, "aria-expanded": ctx.open, "aria-controls": ctx.contentId }
+    : { tabIndex: -1 as const, "aria-disabled": true }
 
   return (
     <button
       data-slot="task-trigger"
       type="button"
-      onClick={ctx.toggle}
-      aria-expanded={ctx.open}
-      aria-controls={ctx.contentId}
+      data-status={status}
       className={cn(
-        "flex w-full items-center gap-2.5 px-4 py-3 text-sm",
-        "text-foreground transition-colors hover:bg-muted/50",
+        "flex w-full items-center gap-2.5 px-4 text-sm",
+        ctx.collapsible ? "py-3" : "py-2",
+        "text-foreground transition-colors",
+        ctx.collapsible && "cursor-pointer hover:bg-muted/50",
+        triggerToneClass[status],
+        !ctx.collapsible && "cursor-default",
         className,
       )}
+      {...buttonProps}
       {...props}
     >
-      <Icon
-        aria-hidden="true"
-        className={cn(
-          "size-4 shrink-0",
-          status === "complete" && "text-emerald-500",
-          status === "running" && "animate-spin text-primary",
-          status === "error" && "text-red-500",
-          status === "pending" && "text-muted-foreground",
-        )}
-      />
+      <StatusIcon status={status} className={cn("size-4 shrink-0", statusIconColor[status])} />
       <span className="flex-1 truncate text-left font-medium">{children}</span>
-      <ChevronDown
-        aria-hidden="true"
-        className={cn(
-          "size-4 shrink-0 text-muted-foreground transition-transform duration-200",
-          ctx.open && "rotate-180",
-        )}
-      />
+      {ctx.collapsible && (
+        <ChevronDown
+          aria-hidden="true"
+          className={cn(
+            "size-4 shrink-0 text-muted-foreground transition-transform duration-200",
+            ctx.open && "rotate-180",
+          )}
+        />
+      )}
     </button>
   )
 }
 
-function TaskContent({ className, ...props }: ComponentProps<"div">) {
+function TaskContent({
+  className,
+  children,
+  ...props
+}: ComponentProps<"div"> & { children?: ReactNode }) {
   const ctx = useContext(TaskContext)
-  if (!ctx?.open) return null
+  if (!ctx) return null
+  if (ctx.collapsible && !ctx.open) return null
 
   return (
     <div
@@ -106,32 +141,32 @@ function TaskContent({ className, ...props }: ComponentProps<"div">) {
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 }
 
 function TaskItem({
   status = "pending",
   className,
+  children,
   ...props
 }: ComponentProps<"div"> & { status?: TaskStatus }) {
-  const Icon = statusIcons[status]
-
   return (
     <div data-slot="task-item" className={cn("flex items-center gap-2 py-1", className)} {...props}>
-      <Icon
+      <StatusIcon
+        status={status}
         className={cn(
           "size-3.5 shrink-0",
-          status === "complete" && "text-emerald-500",
-          status === "running" && "animate-spin text-primary",
-          status === "error" && "text-red-500",
-          status === "pending" && "text-muted-foreground/50",
+          status === "complete" && "text-mint-ink",
+          status === "running" && "text-mint-ink",
+          status === "error" && "text-blush-ink",
+          status === "pending" && "text-muted-foreground/60",
         )}
       />
-      <span
-        className={cn("text-sm", status === "complete" && "text-muted-foreground line-through")}
-      >
-        {props.children}
+      <span className={cn("text-sm", status === "complete" && "text-muted-foreground")}>
+        {children}
       </span>
     </div>
   )

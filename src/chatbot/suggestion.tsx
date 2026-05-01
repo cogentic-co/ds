@@ -16,9 +16,11 @@ type SuggestionProps = ComponentProps<"button"> & {
    * prompt-kit's `<PromptSuggestion highlight>` API.
    */
   highlight?: string
+  /** Optional leading icon. Sized to 1rem and inherits muted-foreground. */
+  icon?: ReactNode
 }
 
-function Suggestion({ className, children, highlight, ...props }: SuggestionProps) {
+function Suggestion({ className, children, highlight, icon, ...props }: SuggestionProps) {
   let body: ReactNode = children
   if (highlight && typeof children === "string") {
     const idx = children.toLowerCase().indexOf(highlight.toLowerCase())
@@ -46,10 +48,19 @@ function Suggestion({ className, children, highlight, ...props }: SuggestionProp
         highlight && "text-muted-foreground",
         "hover:bg-accent hover:text-accent-foreground",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "[&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-muted-foreground",
         className,
       )}
       {...props}
     >
+      {icon && (
+        <span
+          data-slot="suggestion-icon"
+          className="flex size-4 items-center justify-center text-muted-foreground"
+        >
+          {icon}
+        </span>
+      )}
       {body}
     </button>
   )

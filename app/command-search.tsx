@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -203,42 +202,40 @@ export function CommandSearch() {
         </kbd>
       </button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command shouldFilter>
-          <CommandInput placeholder="Search components, blocks, layouts…" />
-          <CommandList>
-            <CommandEmpty>No results.</CommandEmpty>
-            {grouped.map(([group, list]) => (
-              <CommandGroup key={group} heading={group}>
-                {list.map((item) => (
-                  <CommandItem
-                    key={`${item.group}/${item.slug}`}
-                    value={`${item.label} ${item.slug} ${item.description ?? ""}`}
-                    onSelect={() => onSelect(item.href)}
-                  >
-                    <div className="flex flex-1 items-center justify-between">
-                      <div className="flex flex-col">
-                        <span className="text-sm">{item.label}</span>
-                        {item.description && (
-                          <span className="line-clamp-1 text-muted-foreground text-xs">
-                            {item.description}
-                          </span>
-                        )}
-                      </div>
-                      {item.status && item.status !== "stable" && (
-                        <span
-                          className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[item.status as keyof typeof statusConfig]?.color ?? ""}`}
-                        >
-                          {statusConfig[item.status as keyof typeof statusConfig]?.label ??
-                            item.status}
+        <CommandInput placeholder="Search components, blocks, layouts…" />
+        <CommandList>
+          <CommandEmpty>No results.</CommandEmpty>
+          {grouped.map(([group, list]) => (
+            <CommandGroup key={group} heading={group}>
+              {list.map((item) => (
+                <CommandItem
+                  key={`${item.group}/${item.slug}`}
+                  value={`${item.label} ${item.slug} ${item.description ?? ""}`}
+                  onSelect={() => onSelect(item.href)}
+                >
+                  <div className="flex flex-1 items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-sm">{item.label}</span>
+                      {item.description && (
+                        <span className="line-clamp-1 text-muted-foreground text-xs">
+                          {item.description}
                         </span>
                       )}
                     </div>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            ))}
-          </CommandList>
-        </Command>
+                    {item.status && item.status !== "stable" && (
+                      <span
+                        className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[item.status as keyof typeof statusConfig]?.color ?? ""}`}
+                      >
+                        {statusConfig[item.status as keyof typeof statusConfig]?.label ??
+                          item.status}
+                      </span>
+                    )}
+                  </div>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+        </CommandList>
       </CommandDialog>
     </>
   )

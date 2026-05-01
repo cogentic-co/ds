@@ -106,4 +106,47 @@ describe("Task", () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
+
+  it("non-collapsible Task hides chevron and renders content immediately", () => {
+    render(
+      <Task collapsible={false}>
+        <TaskTrigger status="complete">Single task</TaskTrigger>
+        <TaskContent>Always visible</TaskContent>
+      </Task>,
+    )
+    const trigger = screen.getByRole("button", { name: /Single task/ })
+    expect(trigger).not.toHaveAttribute("aria-expanded")
+    expect(screen.getByText("Always visible")).toBeInTheDocument()
+  })
+
+  it("complete status applies success tone class", () => {
+    render(
+      <Task>
+        <TaskTrigger status="complete">Done</TaskTrigger>
+      </Task>,
+    )
+    expect(screen.getByRole("button", { name: /Done/ })).toHaveClass("bg-mint/40")
+  })
+
+  it("error status applies error tone class", () => {
+    render(
+      <Task>
+        <TaskTrigger status="error">Failed</TaskTrigger>
+      </Task>,
+    )
+    expect(screen.getByRole("button", { name: /Failed/ })).toHaveClass("bg-blush/40")
+  })
+
+  it("complete TaskItem text does not have line-through", () => {
+    const { container } = render(
+      <Task defaultOpen>
+        <TaskTrigger>Group</TaskTrigger>
+        <TaskContent>
+          <TaskItem status="complete">Done</TaskItem>
+        </TaskContent>
+      </Task>,
+    )
+    const span = container.querySelector("[data-slot='task-item'] span")
+    expect(span).not.toHaveClass("line-through")
+  })
 })

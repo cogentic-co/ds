@@ -48,4 +48,12 @@ describe("Suggestions", () => {
     const results = await axe(container)
     expect(results).toHaveNoViolations()
   })
+
+  it("renders a leading icon when icon prop is set", () => {
+    const { container } = render(
+      <Suggestion icon={<svg data-testid="icon" />}>Run command</Suggestion>,
+    )
+    expect(container.querySelector("[data-slot='suggestion-icon']")).toBeInTheDocument()
+    expect(screen.getByTestId("icon")).toBeInTheDocument()
+  })
 })
