@@ -23,6 +23,7 @@ import { ScrollArea } from "../components/scroll-area"
 import { Separator } from "../components/separator"
 import {
   Sidebar,
+  SidebarBrand,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -39,6 +40,7 @@ import {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
+  SidebarUser,
   useSidebar,
 } from "../components/sidebar"
 import { cn, initials } from "../lib/utils"
@@ -299,68 +301,21 @@ function ShellUserMenu({
   userMenuItems?: React.ReactNode
   onLogout?: () => void
 }) {
-  const userInitials = initials(user.name)
-
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <SidebarMenuButton
-                size="lg"
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-              />
-            }
-          >
-            <Avatar className="size-8 rounded-lg">
-              {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-              <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>
-            </Avatar>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">{user.name}</span>
-              <span className="truncate text-muted-foreground text-xs">{user.email}</span>
-            </div>
-            <ChevronsUpDown className="ml-auto size-4" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="min-w-56 rounded-lg"
-            side="bottom"
-            align="end"
-            sideOffset={4}
-          >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="size-8 rounded-lg">
-                  {user.avatar && <AvatarImage src={user.avatar} alt={user.name} />}
-                  <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-muted-foreground text-xs">{user.email}</span>
-                </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {userMenuItems ?? (
-              <DropdownMenuItem>
-                <User className="mr-2 size-4" />
-                Account
-              </DropdownMenuItem>
-            )}
-            {onLogout && (
-              <>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={onLogout}>
-                  <LogOut className="mr-2 size-4" />
-                  Log out
-                </DropdownMenuItem>
-              </>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </SidebarMenuItem>
-    </SidebarMenu>
+    <SidebarUser
+      name={user.name}
+      subtitle={user.email}
+      avatar={user.avatar}
+      menuContent={
+        userMenuItems ?? (
+          <DropdownMenuItem>
+            <User className="mr-2 size-4" />
+            Account
+          </DropdownMenuItem>
+        )
+      }
+      onLogout={onLogout}
+    />
   )
 }
 
@@ -484,7 +439,11 @@ function AppShell({
         )}
         <Sidebar variant="inset">
           <SidebarHeader>
-            {!iconRail && <ShellLogo logo={logo} />}
+            {iconRail ? (
+              <SidebarBrand logo={logo.icon} label={logo.title} />
+            ) : (
+              <ShellLogo logo={logo} />
+            )}
             {sidebarHeaderExtra}
           </SidebarHeader>
 

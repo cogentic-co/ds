@@ -94,6 +94,8 @@ import SelectPreview from "./select"
 import SeparatorPreview from "./separator"
 import SheetPreview from "./sheet"
 import ShimmerPreview from "./shimmer"
+import SidebarPreview from "./sidebar"
+import SidebarCardPreview from "./sidebar-card"
 import SkeletonPreview from "./skeleton"
 import SliderPreview from "./slider"
 import SonnerPreview from "./sonner"
@@ -157,6 +159,8 @@ export const previews: Record<string, React.ComponentType> = {
   grid: GridPreview,
   checkbox: CheckboxPreview,
   separator: SeparatorPreview,
+  sidebar: SidebarPreview,
+  "sidebar-card": SidebarCardPreview,
   textarea: TextareaPreview,
   switch: SwitchPreview,
   skeleton: SkeletonPreview,

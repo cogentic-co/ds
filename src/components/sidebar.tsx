@@ -3,20 +3,30 @@
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
-import { PanelLeftIcon } from "lucide-react"
+import { LogOut, MoreHorizontal, PanelLeftIcon } from "lucide-react"
 import * as React from "react"
 import { useIsMobile } from "../hooks/use-mobile"
-import { cn } from "../lib/utils"
+import { cn, initials } from "../lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 import { Button } from "./button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./dropdown-menu"
 import { Input } from "./input"
 import { Separator } from "./separator"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "./sheet"
 import { Skeleton } from "./skeleton"
+import { StatusIndicator } from "./status-indicator"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "16rem"
+const SIDEBAR_WIDTH = "15rem"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
@@ -302,7 +312,7 @@ function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input
     <Input
       data-slot="sidebar-input"
       data-sidebar="input"
-      className={cn("h-8 w-full bg-card shadow-none", className)}
+      className={cn("h-9 w-full rounded-md bg-card shadow-none", className)}
       {...props}
     />
   )
@@ -313,7 +323,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn("flex flex-col gap-2 p-4 pb-3", className)}
       {...props}
     />
   )
@@ -324,10 +334,248 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-footer"
       data-sidebar="footer"
-      className={cn("flex flex-col gap-2 p-2", className)}
+      className={cn("flex flex-col gap-2 p-4 pt-3", className)}
       {...props}
     />
   )
+}
+
+/**
+ * Brand row for the sidebar header — logo + label + optional trailing
+ * actions (notifications, account avatar). Mirrors the Figma `Sidebar`
+ * top section.
+ */
+function SidebarBrand({
+  logo,
+  label,
+  actions,
+  className,
+  children: _children,
+  ...props
+}: Omit<React.ComponentProps<"div">, "children"> & {
+  logo: React.ReactNode
+  label?: React.ReactNode
+  actions?: React.ReactNode
+  children?: never
+}) {
+  return (
+    <div
+      data-slot="sidebar-brand"
+      data-sidebar="brand"
+      className={cn(
+        "flex w-full items-center gap-2",
+        "group-data-[collapsible=icon]:justify-center",
+        className,
+      )}
+      {...props}
+    >
+      <span
+        data-slot="sidebar-brand-logo"
+        className="flex size-6 shrink-0 items-center justify-center [&>svg]:size-6"
+      >
+        {logo}
+      </span>
+      {label != null && (
+        <span
+          data-slot="sidebar-brand-label"
+          className="flex-1 truncate font-semibold text-foreground text-sm group-data-[collapsible=icon]:hidden"
+        >
+          {label}
+        </span>
+      )}
+      {actions && (
+        <div
+          data-slot="sidebar-brand-actions"
+          className="flex shrink-0 items-center gap-1 group-data-[collapsible=icon]:hidden"
+        >
+          {actions}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Account row for the sidebar footer — avatar + name + subtitle + trailing
+ * `…` menu trigger. Mirrors the Figma `Sidebar` footer.
+ *
+ * Compose dropdown content via `menuContent` (rendered inside
+ * `<DropdownMenuContent>`). Provide `onLogout` to append a default Log out
+ * item below `menuContent`.
+ */
+function SidebarUser({
+  name,
+  subtitle,
+  avatar,
+  fallback,
+  menuContent,
+  onLogout,
+  menuSide = "top",
+  menuAlign = "end",
+  className,
+  ...props
+}: Omit<React.ComponentProps<"button">, "children"> & {
+  name: string
+  /** Secondary line — email, role, workspace, etc. */
+  subtitle?: React.ReactNode
+  /** Avatar image src. Falls back to initials. */
+  avatar?: string
+  /** Override the avatar fallback (defaults to initials of `name`). */
+  fallback?: React.ReactNode
+  /**
+   * Dropdown items rendered inside `<DropdownMenuContent>`. Compose with
+   * `<DropdownMenuItem>`, `<DropdownMenuSeparator>`, etc.
+   */
+  menuContent?: React.ReactNode
+  /** When set, a Log out item is appended after `menuContent`. */
+  onLogout?: () => void
+  /** Dropdown side. Defaults to `"top"` for footer placement. */
+  menuSide?: React.ComponentProps<typeof DropdownMenuContent>["side"]
+  /** Dropdown align. Defaults to `"end"`. */
+  menuAlign?: React.ComponentProps<typeof DropdownMenuContent>["align"]
+  children?: never
+}) {
+  const computedFallback = fallback ?? initials(name)
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <button
+            type="button"
+            data-slot="sidebar-user"
+            data-sidebar="user"
+            className={cn(
+              "flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left outline-hidden ring-sidebar-ring transition-colors hover:bg-sidebar-accent focus-visible:ring-2 data-[state=open]:bg-sidebar-accent",
+              "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0",
+              className,
+            )}
+            {...props}
+          />
+        }
+      >
+        <SidebarUserAvatar src={avatar} fallback={computedFallback} alt={name} />
+        <span className="grid min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
+          <span className="truncate font-medium text-foreground text-sm leading-tight">{name}</span>
+          {subtitle != null && (
+            <span className="truncate text-muted-foreground text-xs leading-tight">{subtitle}</span>
+          )}
+        </span>
+        <MoreHorizontal
+          aria-hidden="true"
+          className="size-4 shrink-0 text-muted-foreground group-data-[collapsible=icon]:hidden"
+        />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        side={menuSide}
+        align={menuAlign}
+        sideOffset={6}
+        className="min-w-56 rounded-lg"
+      >
+        <DropdownMenuLabel>
+          <span className="grid leading-tight">
+            <span className="truncate font-medium">{name}</span>
+            {subtitle != null && (
+              <span className="truncate font-normal text-muted-foreground text-xs">{subtitle}</span>
+            )}
+          </span>
+        </DropdownMenuLabel>
+        {(menuContent || onLogout) && <DropdownMenuSeparator />}
+        {menuContent}
+        {onLogout && (
+          <>
+            {menuContent && <DropdownMenuSeparator />}
+            <DropdownMenuItem onClick={onLogout}>
+              <LogOut aria-hidden="true" className="mr-2 size-4" />
+              Log out
+            </DropdownMenuItem>
+          </>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
+function SidebarUserAvatar({
+  src,
+  fallback,
+  alt,
+}: {
+  src?: string
+  fallback: React.ReactNode
+  alt?: string
+}) {
+  return (
+    <Avatar className="size-8 shrink-0 rounded-md">
+      {src && <AvatarImage src={src} alt={alt ?? ""} />}
+      <AvatarFallback className="rounded-md">{fallback}</AvatarFallback>
+    </Avatar>
+  )
+}
+
+/**
+ * Three-line entity row for the sidebar — status dot + reference + title +
+ * meta. Mirrors the Figma `Sidebar Card` component (Mode=Case / Investigation).
+ *
+ * Use for surfacing recent or pinned items like cases / investigations
+ * directly in the sidebar.
+ */
+function SidebarCard({
+  reference,
+  title,
+  meta,
+  status,
+  isActive,
+  className,
+  render,
+  ...props
+}: useRender.ComponentProps<"button"> &
+  React.ComponentProps<"button"> & {
+    /** Top-line reference — e.g. "CASE-72". */
+    reference: React.ReactNode
+    /** Main label — e.g. "Sanctions hit — Helix Labs". */
+    title: React.ReactNode
+    /** Bottom meta line — e.g. "P2 · 2d ago". */
+    meta?: React.ReactNode
+    /** StatusIndicator variant for the leading dot. Omit for no dot. */
+    status?: React.ComponentProps<typeof StatusIndicator>["variant"]
+    isActive?: boolean
+  }) {
+  return useRender({
+    defaultTagName: "button",
+    props: mergeProps<"button">(
+      {
+        type: "button",
+        ...(isActive ? { "data-active": "true" as const } : {}),
+        className: cn(
+          "group/sidebar-card flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-left outline-hidden ring-sidebar-ring transition-colors",
+          "hover:bg-sidebar-accent focus-visible:ring-2",
+          "data-active:bg-sidebar-accent data-active:font-medium data-active:text-foreground",
+          className,
+        ),
+        children: (
+          <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+            <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+              {status && <StatusIndicator variant={status} size="sm" />}
+              <span className="truncate font-mono uppercase tracking-wide">{reference}</span>
+            </span>
+            <span className="truncate font-medium text-foreground text-sm leading-tight">
+              {title}
+            </span>
+            {meta != null && (
+              <span className="truncate text-muted-foreground text-xs leading-tight">{meta}</span>
+            )}
+          </span>
+        ),
+      },
+      props,
+    ),
+    render,
+    state: {
+      slot: "sidebar-card",
+      sidebar: "card",
+    },
+  })
 }
 
 function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof Separator>) {
@@ -430,7 +678,7 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-slot="sidebar-menu"
       data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      className={cn("flex w-full min-w-0 flex-col gap-0.5", className)}
       {...props}
     />
   )
@@ -448,7 +696,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-card data-active:font-semibold data-active:text-foreground data-active:shadow-[var(--shadow-card)] data-active:ring-1 data-active:ring-border data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&_svg]:size-4 [&_svg]:shrink-0",
+  "peer/menu-button group/menu-button flex w-full items-center gap-2.5 overflow-hidden rounded-md px-2.5 py-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:bg-sidebar-accent data-active:font-medium data-active:text-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -457,7 +705,7 @@ const sidebarMenuButtonVariants = cva(
           "bg-card shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
       size: {
-        default: "h-8 text-sm",
+        default: "h-9 text-sm",
         sm: "h-7 text-xs",
         lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!",
       },
@@ -672,6 +920,8 @@ function SidebarMenuSubButton({
 
 export {
   Sidebar,
+  SidebarBrand,
+  SidebarCard,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
@@ -694,5 +944,6 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
+  SidebarUser,
   useSidebar,
 }
