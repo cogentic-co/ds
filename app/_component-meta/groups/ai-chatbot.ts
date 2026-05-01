@@ -249,6 +249,45 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
   </ConversationContent>
 </Conversation>`,
   },
+  "text-command": {
+    status: "new",
+    description:
+      "AI prompt input with inline chips. Typing `/` opens a slash-command picker; `@` opens a mention picker. Selections insert as atomic chips inside the text. Value is a structured parts array — serialize via `textCommandToPayload` to send `{ text, commands, mentions }` to an API.",
+    importStatement: 'import { TextCommand, textCommandToPayload } from "@cogentic-co/ds"',
+    dos: [
+      "Pass `commands` for `/`-triggered actions and `mentions` for `@`-triggered people",
+      "Treat `value` as the source of truth — it is a parts array, not a string",
+      "Use `textCommandToPayload(value)` to extract `{ text, commands, mentions }` for API calls",
+      "Provide an `icon` per item to make the picker scannable",
+      "Use ArrowUp/ArrowDown + Enter to pick — already wired",
+    ],
+    donts: [
+      "Don't reach into the DOM to read text — use the parts value",
+      "Don't pass thousands of items unfiltered — pre-filter externally for large lists",
+      "Don't use for free-form chat without command/mention semantics — use PromptInput",
+    ],
+    codeExample: `import { TextCommand, textCommandToPayload, type TextCommandValue } from "@cogentic-co/ds"
+import { Rocket, UserRound } from "lucide-react"
+import { useState } from "react"
+
+const [value, setValue] = useState<TextCommandValue>([])
+
+<TextCommand
+  value={value}
+  onValueChange={setValue}
+  commands={[
+    { value: "deploy", label: "deploy", description: "Ship", icon: <Rocket /> },
+  ]}
+  mentions={[
+    { value: "alice", label: "Alice Chen", icon: <UserRound /> },
+  ]}
+/>
+
+// On submit:
+const payload = textCommandToPayload(value)
+// payload = { text: "Run /deploy with @alice", commands: [...], mentions: [...] }
+fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
+  },
   "prompt-input": {
     status: "new",
     description:

@@ -112,6 +112,7 @@ import SwitchPreview from "./switch"
 import TablePreview from "./table"
 import TabsPreview from "./tabs"
 import TaskPreview from "./task"
+import TextCommandPreview from "./text-command"
 import TextareaPreview from "./textarea"
 import TimelinePreview from "./timeline"
 import TogglePreview from "./toggle"
@@ -271,6 +272,7 @@ export const previews: Record<string, React.ComponentType> = {
   message: MessagePreview,
   conversation: ConversationPreview,
   "prompt-input": PromptInputPreview,
+  "text-command": TextCommandPreview,
   "chain-of-thought": ChainOfThoughtPreview,
   confirmation: ConfirmationPreview,
   checkpoint: CheckpointPreview,

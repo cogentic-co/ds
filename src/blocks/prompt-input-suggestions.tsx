@@ -4,7 +4,7 @@ import { ArrowUp, Brain } from "lucide-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
 
-import { PromptInput, PromptInputActions, PromptInputTextarea } from "../chatbot/prompt-input"
+import { PromptInput, PromptInputFooter, PromptInputTextarea } from "../chatbot/prompt-input"
 import { Suggestion, Suggestions } from "../chatbot/suggestion"
 import { Button } from "../components/button"
 import { cn } from "../lib/utils"
@@ -82,7 +82,7 @@ function PromptInputSuggestionsBlock({
           placeholder={placeholder}
           className="min-h-[44px] pt-3 pl-4 text-base leading-[1.3]"
         />
-        <PromptInputActions className="mt-5 w-full justify-end px-3 pb-3">
+        <PromptInputFooter className="mt-5 w-full justify-end px-3 pb-3">
           <Button
             type="submit"
             size="icon"
@@ -92,7 +92,7 @@ function PromptInputSuggestionsBlock({
           >
             <ArrowUp className="size-4" />
           </Button>
-        </PromptInputActions>
+        </PromptInputFooter>
       </PromptInput>
 
       {active ? (

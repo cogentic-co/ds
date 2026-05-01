@@ -1,20 +1,34 @@
 "use client"
 
-import { ArrowUp, Paperclip, Square, X } from "lucide-react"
+import { ArrowUp, Paperclip, X } from "lucide-react"
 import {
   type ComponentProps,
   createContext,
   type FormEvent,
   useCallback,
   useContext,
+  useMemo,
   useRef,
   useState,
 } from "react"
+import { Button } from "../components/button"
+import { Spinner } from "../components/spinner"
+import {
+  TextCommand,
+  type TextCommandItem,
+  type TextCommandValue,
+  textCommandToPayload,
+} from "../components/text-command"
 import { cn } from "../lib/utils"
 
 // ---------------------------------------------------------------------------
 // Context for sharing input state
 // ---------------------------------------------------------------------------
+
+type PromptInputCommandPayload = {
+  commands: { value: string; label: string }[]
+  mentions: { value: string; label: string }[]
+}
 
 type PromptInputContextValue = {
   value: string
@@ -25,6 +39,12 @@ type PromptInputContextValue = {
   clearFiles: () => void
   submit: () => void
   isLoading: boolean
+  // Rich-text command mode (set when PromptInput has commands/mentions/parts).
+  parts: TextCommandValue
+  setParts: (parts: TextCommandValue) => void
+  commands: TextCommandItem[]
+  mentions: TextCommandItem[]
+  isRich: boolean
 }
 
 const PromptInputContext = createContext<PromptInputContextValue | null>(null)
@@ -44,27 +64,63 @@ function PromptInput({
   isLoading = false,
   value: controlledValue,
   onValueChange,
+  parts: controlledParts,
+  defaultParts,
+  onPartsChange,
+  commands,
+  mentions,
   className,
   children,
   ...props
 }: Omit<ComponentProps<"form">, "onSubmit"> & {
-  onSubmit?: (message: string, files: File[]) => void
+  onSubmit?: (message: string, files: File[], payload?: PromptInputCommandPayload) => void
   isLoading?: boolean
-  /** Controlled value. Omit for uncontrolled. */
+  /** Controlled string value (plain-text mode). Omit for uncontrolled. */
   value?: string
-  /** Called whenever the textarea value changes. */
+  /** Called whenever the plain-text value changes. */
   onValueChange?: (value: string) => void
+  /** Controlled parts value (rich-text command mode). */
+  parts?: TextCommandValue
+  /** Default parts (uncontrolled rich-text mode). */
+  defaultParts?: TextCommandValue
+  /** Called whenever the rich-text parts change. */
+  onPartsChange?: (parts: TextCommandValue) => void
+  /** Slash-command items. Setting this enables rich-text command mode. */
+  commands?: TextCommandItem[]
+  /** Mention items. Setting this enables rich-text command mode. */
+  mentions?: TextCommandItem[]
 }) {
   const [internalValue, setInternalValue] = useState("")
-  const isControlled = controlledValue !== undefined
-  const value = isControlled ? controlledValue : internalValue
+  const isValueControlled = controlledValue !== undefined
+  const isPartsControlled = controlledParts !== undefined
+  const isRich = Boolean(commands || mentions || controlledParts || defaultParts)
+
+  const [internalParts, setInternalParts] = useState<TextCommandValue>(defaultParts ?? [])
+  const parts = isPartsControlled ? (controlledParts as TextCommandValue) : internalParts
+
+  const value = isRich
+    ? parts
+        .map((p) => (p.type === "text" ? p.value : `${p.type === "command" ? "/" : "@"}${p.value}`))
+        .join("")
+    : isValueControlled
+      ? (controlledValue as string)
+      : internalValue
+
   const setValue = useCallback(
     (v: string) => {
-      if (!isControlled) setInternalValue(v)
+      if (!isValueControlled) setInternalValue(v)
       onValueChange?.(v)
     },
-    [isControlled, onValueChange],
+    [isValueControlled, onValueChange],
   )
+  const setParts = useCallback(
+    (next: TextCommandValue) => {
+      if (!isPartsControlled) setInternalParts(next)
+      onPartsChange?.(next)
+    },
+    [isPartsControlled, onPartsChange],
+  )
+
   const [files, setFiles] = useState<File[]>([])
 
   const addFiles = useCallback((newFiles: File[]) => {
@@ -78,11 +134,21 @@ function PromptInput({
   const clearFiles = useCallback(() => setFiles([]), [])
 
   const submit = useCallback(() => {
-    if (!value.trim() && files.length === 0) return
-    onSubmit?.(value.trim(), files)
+    if (isRich) {
+      const payload = textCommandToPayload(parts)
+      const trimmed = payload.text.trim()
+      if (!trimmed && files.length === 0) return
+      onSubmit?.(trimmed, files, { commands: payload.commands, mentions: payload.mentions })
+      setParts([])
+      setFiles([])
+      return
+    }
+    const trimmed = value.trim()
+    if (!trimmed && files.length === 0) return
+    onSubmit?.(trimmed, files)
     setValue("")
     setFiles([])
-  }, [value, files, onSubmit, setValue])
+  }, [isRich, parts, value, files, onSubmit, setValue, setParts])
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
@@ -92,16 +158,47 @@ function PromptInput({
     [submit],
   )
 
+  const ctxValue = useMemo<PromptInputContextValue>(
+    () => ({
+      value,
+      setValue,
+      files,
+      addFiles,
+      removeFile,
+      clearFiles,
+      submit,
+      isLoading,
+      parts,
+      setParts,
+      commands: commands ?? [],
+      mentions: mentions ?? [],
+      isRich,
+    }),
+    [
+      value,
+      setValue,
+      files,
+      addFiles,
+      removeFile,
+      clearFiles,
+      submit,
+      isLoading,
+      parts,
+      setParts,
+      commands,
+      mentions,
+      isRich,
+    ],
+  )
+
   return (
-    <PromptInputContext.Provider
-      value={{ value, setValue, files, addFiles, removeFile, clearFiles, submit, isLoading }}
-    >
+    <PromptInputContext.Provider value={ctxValue}>
       <form
         data-slot="prompt-input"
         onSubmit={handleSubmit}
         className={cn(
-          "flex flex-col rounded-2xl border border-border bg-card shadow-sm",
-          "focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+          "relative flex w-full flex-col rounded-3xl border border-input bg-popover shadow-xs",
+          "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20",
           className,
         )}
         {...props}
@@ -135,20 +232,6 @@ function PromptInputFooter({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="prompt-input-footer"
       className={cn("flex items-center gap-2 px-3 py-2", className)}
-      {...props}
-    />
-  )
-}
-
-/**
- * `PromptInputActions` — row of action buttons (left-aligned utilities,
- * right-aligned submit/voice). Mirrors prompt-kit's API.
- */
-function PromptInputActions({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="prompt-input-actions"
-      className={cn("flex items-center gap-2", className)}
       {...props}
     />
   )
@@ -227,6 +310,55 @@ function PromptInputTextarea({ className, onKeyDown, ...props }: ComponentProps<
 }
 
 // ---------------------------------------------------------------------------
+// Command-mode editor — TextCommand bound to the prompt context
+// ---------------------------------------------------------------------------
+
+/**
+ * Drop-in replacement for `PromptInputTextarea` that supports `/slash`
+ * commands and `@mentions`. Reads `commands`/`mentions` from the parent
+ * `<PromptInput>` and writes structured parts back via context.
+ */
+function PromptInputCommand({
+  className,
+  placeholder = "Type / for commands or @ to mention",
+  rows = 1,
+  onTriggerQueryChange,
+  filterItems,
+  ariaLabel,
+}: {
+  className?: string
+  placeholder?: string
+  rows?: number
+  onTriggerQueryChange?: Parameters<typeof TextCommand>[0]["onTriggerQueryChange"]
+  filterItems?: boolean
+  ariaLabel?: string
+}) {
+  const { parts, setParts, submit, isLoading, commands, mentions } = usePromptInput()
+  return (
+    <TextCommand
+      value={parts}
+      onValueChange={setParts}
+      commands={commands}
+      mentions={mentions}
+      onTriggerQueryChange={onTriggerQueryChange}
+      filterItems={filterItems}
+      placeholder={placeholder}
+      rows={rows}
+      disabled={isLoading}
+      ariaLabel={ariaLabel}
+      onSubmit={isLoading ? undefined : submit}
+      data-slot="prompt-input-command"
+      className={cn("w-full", className)}
+      editorClassName={cn(
+        "border-0 bg-transparent px-0 py-0 shadow-none",
+        "focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-offset-0",
+        "dark:bg-transparent",
+      )}
+    />
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Toolbar / tools
 // ---------------------------------------------------------------------------
 
@@ -283,20 +415,18 @@ function PromptInputAttachButton({
         aria-hidden="true"
         tabIndex={-1}
       />
-      <button
+      <Button
         data-slot="prompt-input-attach-button"
         type="button"
+        variant="outline"
+        size="icon"
         onClick={handleClick}
         aria-label="Attach files"
-        className={cn(
-          "inline-flex items-center justify-center rounded-md p-2",
-          "text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-          className,
-        )}
+        className={cn("size-9 rounded-full", className)}
         {...props}
       >
         <Paperclip aria-hidden="true" className="size-4" />
-      </button>
+      </Button>
     </>
   )
 }
@@ -310,25 +440,21 @@ function PromptInputSubmit({ className, ...props }: ComponentProps<"button">) {
   const hasContent = value.trim().length > 0 || files.length > 0
 
   return (
-    <button
+    <Button
       data-slot="prompt-input-submit"
       type="submit"
+      size="icon"
       disabled={!hasContent && !isLoading}
-      aria-label={isLoading ? "Stop generation" : "Send message"}
-      className={cn(
-        "ml-auto inline-flex items-center justify-center rounded-full p-2",
-        "transition-colors",
-        isLoading
-          ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
-          : hasContent
-            ? "bg-primary text-primary-foreground hover:bg-primary/90"
-            : "bg-muted text-muted-foreground",
-        className,
-      )}
+      aria-label={isLoading ? "Working…" : "Send message"}
+      className={cn("ml-auto size-9 rounded-full", className)}
       {...props}
     >
-      {isLoading ? <Square className="size-4" /> : <ArrowUp className="size-4" />}
-    </button>
+      {isLoading ? (
+        <Spinner variant="lines" className="size-3" />
+      ) : (
+        <ArrowUp aria-hidden="true" className="size-4" />
+      )}
+    </Button>
   )
 }
 
@@ -366,12 +492,13 @@ function PromptInputFiles({ className, ...props }: ComponentProps<"div">) {
   )
 }
 
+export type { PromptInputCommandPayload }
 export {
   PromptInput,
   PromptInputAction,
-  PromptInputActions,
   PromptInputAttachButton,
   PromptInputBody,
+  PromptInputCommand,
   PromptInputFiles,
   PromptInputFooter,
   PromptInputHeader,

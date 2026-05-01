@@ -80,6 +80,44 @@
       "reactFilePath": "src/components/header.tsx"
     },
     {
+      "figmaName": "Inbox",
+      "figmaPageName": "Inbox",
+      "figmaNodeId": "703:5",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=703-5",
+      "figmaType": "COMPONENT",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Compliance block — two-pane case-message viewer (list + preview). Composed from Card, Badge, Avatar, Header, Button, Item instances. Design-only for now."
+    },
+    {
+      "figmaName": "Case Card",
+      "figmaPageName": "Case Card",
+      "figmaNodeId": "126:114",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=126-114",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": {
+        "SLA": ["on_track", "at_risk", "overdue", "closed"],
+        "Size": ["default", "sm", "xs"]
+      },
+      "textProps": ["Title", "Status Label", "Priority Label", "Case ID", "Deadline", "Assignee"],
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Compliance block sub-component used inside Kanban. 12 variants (4 SLA × 3 Size). Title/Case ID/Deadline TEXT props bind across all variants; Priority Label and Assignee TEXT props are wired only on Size=xs (in default/sm those texts live inside nested Badge/Avatar instances, so override via the Badge/Avatar props on each instance instead)."
+    },
+    {
+      "figmaName": "Kanban",
+      "figmaPageName": "Kanban",
+      "figmaNodeId": "703:4",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=703-4",
+      "figmaType": "COMPONENT",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Compliance block — case-board with Triage / In Review / Awaiting Decision / Closed columns. Composes Case Card instances; uses sm size in all columns and SLA=closed in the Closed column."
+    },
+    {
       "figmaName": "Progress",
       "figmaPageName": "Progress",
       "figmaNodeId": "624:264",
@@ -114,7 +152,7 @@
       "figmaType": "COMPONENT_SET",
       "variantAxes": {
         "Tone": ["default", "mint", "highlight", "sky", "blush", "lilac"],
-        "Size": ["sm", "md", "lg"],
+        "Size": ["xs", "sm", "md", "lg"],
         "Shape": ["circle", "rounded"]
       },
       "reactName": null,
@@ -169,6 +207,18 @@
       "reactFilePath": "src/components/sidebar.tsx"
     },
     {
+      "figmaName": "Sidebar Navigation",
+      "figmaPageName": "Sidebar Navigation",
+      "figmaNodeId": "682:5",
+      "figmaUrl": "https://figma.com/design/1FH1KCGLeK5GR222JUS2Iu?node-id=682-5",
+      "figmaType": "COMPONENT_SET",
+      "variantAxes": { "Mode": ["Default", "Case"] },
+      "instanceSwapProps": ["Icon"],
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null
+    },
+    {
       "figmaName": "Workflow Slack Message",
       "figmaPageName": "Workflow Blocks",
       "figmaNodeId": "104:3",
@@ -200,6 +250,54 @@
       "reactImportPath": null,
       "reactFilePath": null,
       "_note": "Used on every component page's Guidelines artboard. Not exported in code — design-only doc element."
+    },
+    {
+      "fileKey": "Bo5PeSUilTYUGbiiohnKXF",
+      "figmaName": "Dashboard / Officer",
+      "figmaPageName": "Dashboard",
+      "figmaNodeId": "15:821",
+      "figmaUrl": "https://figma.com/design/Bo5PeSUilTYUGbiiohnKXF?node-id=15-821",
+      "figmaType": "FRAME",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Layout — composed from DS components. No React equivalent."
+    },
+    {
+      "fileKey": "Bo5PeSUilTYUGbiiohnKXF",
+      "figmaName": "Dashboard / Manager",
+      "figmaPageName": "Dashboard",
+      "figmaNodeId": "27:1029",
+      "figmaUrl": "https://figma.com/design/Bo5PeSUilTYUGbiiohnKXF?node-id=27-1029",
+      "figmaType": "FRAME",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Layout — composed from DS components. No React equivalent."
+    },
+    {
+      "fileKey": "Bo5PeSUilTYUGbiiohnKXF",
+      "figmaName": "Reports / Draft",
+      "figmaPageName": "Dashboard",
+      "figmaNodeId": "43:3",
+      "figmaUrl": "https://figma.com/design/Bo5PeSUilTYUGbiiohnKXF?node-id=43-3",
+      "figmaType": "FRAME",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Layout — SAR draft with Google-Docs-style margin comments, agent rail, mid-edit affordances (cursor, selection chip, agent suggestion, comment markers). Composed from Sidebar Navigation, Header, Section Heading, Step, Badge, Button, Avatar, Input, Prompt Input."
+    },
+    {
+      "fileKey": "Bo5PeSUilTYUGbiiohnKXF",
+      "figmaName": "Reports / Final",
+      "figmaPageName": "Dashboard",
+      "figmaNodeId": "61:395",
+      "figmaUrl": "https://figma.com/design/Bo5PeSUilTYUGbiiohnKXF?node-id=61-395",
+      "figmaType": "FRAME",
+      "reactName": null,
+      "reactImportPath": null,
+      "reactFilePath": null,
+      "_note": "Layout — submitted SAR, read-only, edit chrome stripped. No toolbar, no margin comments, History tab active in right rail with version entries, success Submitted badge, read-only banner footer. Sibling of Reports / Draft."
     }
   ],
   "unmatchedReact": []

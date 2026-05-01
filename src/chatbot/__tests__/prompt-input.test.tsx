@@ -6,6 +6,7 @@ import {
   PromptInput,
   PromptInputAttachButton,
   PromptInputBody,
+  PromptInputCommand,
   PromptInputFooter,
   PromptInputSubmit,
   PromptInputTextarea,
@@ -49,7 +50,7 @@ describe("PromptInput", () => {
         </PromptInputFooter>
       </PromptInput>,
     )
-    expect(screen.getByRole("button", { name: "Stop generation" })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Working…" })).toBeInTheDocument()
   })
 
   it("attach button has aria-label", () => {
@@ -108,6 +109,35 @@ describe("PromptInput", () => {
     )
     expect(container.querySelector("[data-slot='prompt-input']")).toBeInTheDocument()
     expect(container.querySelector("[data-slot='prompt-input-textarea']")).toBeInTheDocument()
+  })
+
+  it("PromptInputCommand opens slash menu and submits payload on Enter", async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn()
+    render(
+      <PromptInput
+        onSubmit={onSubmit}
+        commands={[{ value: "deploy", label: "deploy" }]}
+        mentions={[{ value: "alice", label: "Alice" }]}
+      >
+        <PromptInputBody>
+          <PromptInputCommand placeholder="ask…" />
+        </PromptInputBody>
+      </PromptInput>,
+    )
+    const editor = screen.getByRole("combobox")
+    editor.focus()
+    await user.keyboard("Run /dep")
+    await user.click(screen.getByRole("option", { name: /deploy/ }))
+    await user.keyboard("{Enter}")
+    expect(onSubmit).toHaveBeenCalledTimes(1)
+    const [text, files, payload] = onSubmit.mock.calls[0]
+    expect(text).toBe("Run /deploy")
+    expect(files).toEqual([])
+    expect(payload).toEqual({
+      commands: [{ value: "deploy", label: "deploy" }],
+      mentions: [],
+    })
   })
 
   it("has no accessibility violations", async () => {

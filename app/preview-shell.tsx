@@ -292,7 +292,7 @@ const workflowGroups: { label: string; items: string[] }[] = [
 const chatbotGroups: { label: string; items: string[] }[] = [
   {
     label: "Conversation",
-    items: ["message", "conversation", "prompt-input", "suggestion"],
+    items: ["message", "conversation", "prompt-input", "text-command", "suggestion"],
   },
   {
     label: "Streaming",

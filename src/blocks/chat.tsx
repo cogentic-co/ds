@@ -14,7 +14,7 @@ import {
   MessageRegenerateAction,
   MessageResponse,
 } from "../chatbot/message"
-import { PromptInput, PromptInputActions, PromptInputTextarea } from "../chatbot/prompt-input"
+import { PromptInput, PromptInputFooter, PromptInputTextarea } from "../chatbot/prompt-input"
 import { Suggestion, Suggestions } from "../chatbot/suggestion"
 import { Button } from "../components/button"
 import { cn } from "../lib/utils"
@@ -194,7 +194,7 @@ function ChatBlock({
             placeholder={placeholder}
             className="min-h-[44px] pt-3 pl-4 text-base leading-[1.3]"
           />
-          <PromptInputActions className="mt-2 w-full justify-end px-3 pb-3">
+          <PromptInputFooter className="mt-2 w-full justify-end px-3 pb-3">
             <Button
               type="submit"
               size="icon"
@@ -204,7 +204,7 @@ function ChatBlock({
             >
               {isLoading ? <Square className="size-3" /> : <ArrowUp className="size-4" />}
             </Button>
-          </PromptInputActions>
+          </PromptInputFooter>
         </PromptInput>
       </div>
     </div>

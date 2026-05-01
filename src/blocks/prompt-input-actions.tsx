@@ -4,12 +4,7 @@ import { ArrowUp, Globe, Mic, MoreHorizontal, Plus, Square } from "lucide-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
 
-import {
-  PromptInput,
-  PromptInputAction,
-  PromptInputActions,
-  PromptInputTextarea,
-} from "../chatbot/prompt-input"
+import { PromptInput, PromptInputAction, PromptInputTextarea } from "../chatbot/prompt-input"
 import { Button } from "../components/button"
 import { cn } from "../lib/utils"
 
@@ -110,11 +105,11 @@ function PromptInputActionsBlock({
           className="min-h-[44px] pt-3 pl-4 text-base leading-[1.3]"
         />
         <div className="mt-5 flex w-full items-center justify-between gap-2 px-3 pb-3">
-          <PromptInputActions>{leftActions ?? <DefaultLeftActions />}</PromptInputActions>
-          <PromptInputActions>
+          <div className="flex items-center gap-2">{leftActions ?? <DefaultLeftActions />}</div>
+          <div className="flex items-center gap-2">
             {rightActions ?? <DefaultRightActions />}
             <SubmitButton isLoading={isLoading} />
-          </PromptInputActions>
+          </div>
         </div>
       </div>
     </PromptInput>
