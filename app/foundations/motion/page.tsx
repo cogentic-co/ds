@@ -209,10 +209,10 @@ function EasingVisual({ points }: { points: [number, number, number, number] }) 
         strokeLinejoin="round"
       />
       {/* Labels */}
-      <text x={pad} y={h - 2} className="fill-muted-foreground text-[9px]">
+      <text x={pad} y={h - 2} className="fill-muted-foreground text-3xs">
         0
       </text>
-      <text x={w - pad - 4} y={h - 2} className="fill-muted-foreground text-[9px]">
+      <text x={w - pad - 4} y={h - 2} className="fill-muted-foreground text-3xs">
         1
       </text>
     </svg>
@@ -364,7 +364,7 @@ export default function MotionPage() {
                 <code className="rounded bg-muted px-2 py-0.5 font-mono font-semibold text-sm">
                   {c.name}
                 </code>
-                <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+                <span className="rounded-full bg-muted px-2 py-0.5 font-medium text-2xs text-muted-foreground uppercase tracking-wider">
                   {c.type}
                 </span>
               </div>

@@ -66,8 +66,8 @@ describe("Progress", () => {
     const { container } = render(<Progress value={50} size="xl" />)
     const track = container.querySelector("[data-slot='progress-track']") as HTMLElement
     const indicator = container.querySelector("[data-slot='progress-indicator']") as HTMLElement
-    expect(track).toHaveClass("rounded-[6px]")
-    expect(indicator).toHaveClass("rounded-[6px]")
+    expect(track).toHaveClass("rounded-xs")
+    expect(indicator).toHaveClass("rounded-xs")
     expect(indicator).not.toHaveClass("rounded-l-full")
   })
 

@@ -721,7 +721,7 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
 
   "transaction-detail-page": function TransactionDetailPagePreview() {
     return (
-      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background">
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
         <TransactionDetailPage
           tx={sampleRichTx}
           explorerHref="#"
@@ -901,11 +901,11 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
 
   "dashboard-page": function DashboardPagePreview() {
     return (
-      <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background">
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
         <DashboardPage
           tagline={
             <>
-              <span className="rounded-[3px] bg-highlight px-1 py-px font-semibold text-highlight-ink">
+              <span className="rounded-3xs bg-highlight px-1 py-px font-semibold text-highlight-ink">
                 3 items
               </span>{" "}
               need your eyes before end of day · queue cleared{" "}

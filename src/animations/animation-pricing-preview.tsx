@@ -72,7 +72,7 @@ export default function AnimationPricingPreview({
         <div className="flex items-center gap-3">
           <span
             className={cn(
-              "font-semibold text-[11px] transition-colors",
+              "font-semibold text-xxs transition-colors",
               !yearly ? "text-gray-900" : "text-gray-400",
             )}
           >
@@ -90,7 +90,7 @@ export default function AnimationPricingPreview({
           </span>
           <span
             className={cn(
-              "font-semibold text-[11px] transition-colors",
+              "font-semibold text-xxs transition-colors",
               yearly ? "text-gray-900" : "text-gray-400",
             )}
           >
@@ -118,9 +118,9 @@ export default function AnimationPricingPreview({
                 )}
               >
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-[11px] text-gray-900">{plan.name}</span>
+                  <span className="font-bold text-gray-900 text-xxs">{plan.name}</span>
                   {plan.highlight && (
-                    <span className="rounded bg-gray-900 px-1.5 py-0.5 font-bold text-[8px] text-white">
+                    <span className="rounded bg-gray-900 px-1.5 py-0.5 font-bold text-3xs text-white">
                       Popular
                     </span>
                   )}
@@ -139,7 +139,7 @@ export default function AnimationPricingPreview({
                       {price}
                     </m.span>
                   </AnimatePresence>
-                  {hasPrice && <span className="text-[9px] text-gray-400">/mo</span>}
+                  {hasPrice && <span className="text-3xs text-gray-400">/mo</span>}
                 </div>
 
                 <div className="mt-2.5 flex flex-col gap-1.5">
@@ -149,16 +149,14 @@ export default function AnimationPricingPreview({
                         className="size-3 shrink-0 text-emerald-500"
                         strokeWidth={2.5}
                       />
-                      <span className="font-medium text-[9px] text-gray-600 leading-tight">
-                        {f}
-                      </span>
+                      <span className="font-medium text-3xs text-gray-600 leading-tight">{f}</span>
                     </div>
                   ))}
                 </div>
 
                 <div
                   className={cn(
-                    "mt-3 rounded-md py-1.5 text-center font-semibold text-[9px]",
+                    "mt-3 rounded-md py-1.5 text-center font-semibold text-3xs",
                     plan.highlight
                       ? "bg-gray-900 text-white"
                       : "border border-gray-200 text-gray-700",
@@ -186,7 +184,7 @@ export default function AnimationPricingPreview({
               className="flex flex-1 flex-col items-center rounded-lg border border-gray-100 bg-white px-2 py-2"
             >
               <span className="font-bold text-gray-900 text-sm">{metric.value}</span>
-              <span className="text-[8px] text-gray-400">{metric.sub}</span>
+              <span className="text-3xs text-gray-400">{metric.sub}</span>
             </m.div>
           ))}
         </div>

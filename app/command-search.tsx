@@ -197,7 +197,7 @@ export function CommandSearch() {
         className="inline-flex h-8 items-center gap-2 rounded-md border border-input bg-background px-2.5 text-muted-foreground text-xs hover:bg-muted"
       >
         <span className="hidden sm:inline">Search</span>
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] text-muted-foreground">
+        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-2xs text-muted-foreground">
           ⌘K
         </kbd>
       </button>
@@ -224,7 +224,7 @@ export function CommandSearch() {
                     </div>
                     {item.status && item.status !== "stable" && (
                       <span
-                        className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[item.status as keyof typeof statusConfig]?.color ?? ""}`}
+                        className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-2xs leading-none ${statusConfig[item.status as keyof typeof statusConfig]?.color ?? ""}`}
                       >
                         {statusConfig[item.status as keyof typeof statusConfig]?.label ??
                           item.status}

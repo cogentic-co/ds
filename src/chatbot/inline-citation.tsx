@@ -36,7 +36,7 @@ function InlineCitation({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Citation ${index}: ${title}`}
-        className="ml-0.5 inline-flex size-4 items-center justify-center rounded-full bg-primary/10 align-super font-bold text-[10px] text-primary transition-colors hover:bg-primary/20"
+        className="ml-0.5 inline-flex size-4 items-center justify-center rounded-full bg-primary/10 align-super font-bold text-2xs text-primary transition-colors hover:bg-primary/20"
       >
         {index}
       </a>

@@ -227,7 +227,7 @@ function DataTable<TData>({
     <div
       data-slot="data-table"
       className={cn(
-        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        "overflow-hidden rounded-lg border border-border bg-card shadow-card",
         className,
       )}
     >
@@ -309,7 +309,7 @@ function DataTableVirtual<TData>({
     <div
       data-slot="data-table"
       className={cn(
-        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        "overflow-hidden rounded-lg border border-border bg-card shadow-card",
         className,
       )}
     >

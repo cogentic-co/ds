@@ -4,11 +4,11 @@ import { cn } from "../lib/utils"
 const statusIndicatorVariants = cva("relative inline-flex shrink-0 rounded-full", {
   variants: {
     variant: {
-      online: "bg-[var(--mint-ink)]",
+      online: "bg-mint-ink",
       offline: "bg-muted-foreground/40",
       busy: "bg-destructive",
-      away: "bg-[var(--highlight-ink)]",
-      pending: "bg-[var(--sky-ink)]",
+      away: "bg-highlight-ink",
+      pending: "bg-sky-ink",
     },
     size: {
       sm: "size-2",

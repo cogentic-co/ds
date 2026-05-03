@@ -85,11 +85,11 @@ function TransactionRow({ transaction: tx, onClick, className, ...props }: Trans
           <ArrowRight className="size-3 shrink-0 text-muted-foreground/40" />
           <PartySnippet party={tx.to} />
         </div>
-        <span className="truncate text-[10px] text-muted-foreground/70">{ts}</span>
+        <span className="truncate text-2xs text-muted-foreground/70">{ts}</span>
       </div>
 
       <span className="hidden w-20 shrink-0 sm:block">
-        <Badge square variant="outline" className="px-1 py-0.5 text-[9px] uppercase leading-none">
+        <Badge square variant="outline" className="px-1 py-0.5 text-3xs uppercase leading-none">
           {tx.network}
         </Badge>
       </span>

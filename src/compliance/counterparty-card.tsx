@@ -55,8 +55,8 @@ function CounterpartyCard({
       data-slot="counterparty-card"
       data-type={type}
       className={cn(
-        "flex flex-col gap-3 rounded-[var(--radius-md)] border border-border bg-card p-4 text-sm shadow-[var(--shadow-card)]",
-        type === "unhosted" && "border-[var(--highlight-ink)]/40",
+        "flex flex-col gap-3 rounded-md border border-border bg-card p-4 text-sm shadow-card",
+        type === "unhosted" && "border-highlight-ink/40",
         className,
       )}
       {...props}
@@ -83,16 +83,16 @@ function CounterpartyCard({
               ))}
           </div>
           <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-muted-foreground text-xs">
-            <span className="border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-[10px] uppercase">
+            <span className="border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-2xs uppercase">
               {TYPE_LABELS[type]}
             </span>
             {jurisdiction && (
-              <span className="border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-[10px]">
+              <span className="border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-2xs">
                 {countryFlag(jurisdiction)} {jurisdiction.toUpperCase()}
               </span>
             )}
             {registrationStatus && (
-              <span className="text-[10px] text-muted-foreground">{registrationStatus}</span>
+              <span className="text-2xs text-muted-foreground">{registrationStatus}</span>
             )}
           </div>
         </div>

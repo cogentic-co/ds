@@ -160,7 +160,7 @@ export default function WorkflowNodePreview() {
             label="Application"
             value="Webflow"
             icon={
-              <span className="inline-flex size-5 items-center justify-center rounded bg-primary font-bold text-[10px] text-primary-foreground">
+              <span className="inline-flex size-5 items-center justify-center rounded bg-primary font-bold text-2xs text-primary-foreground">
                 W
               </span>
             }
@@ -174,7 +174,7 @@ export default function WorkflowNodePreview() {
             label="Account source"
             value="Anna Peterson"
             icon={
-              <span className="inline-flex size-6 items-center justify-center rounded-full bg-accent font-semibold text-[10px]">
+              <span className="inline-flex size-6 items-center justify-center rounded-full bg-accent font-semibold text-2xs">
                 AP
               </span>
             }

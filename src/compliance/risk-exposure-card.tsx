@@ -62,7 +62,7 @@ function RiskExposureCard({
   return (
     <RingCard className={cn(className)} {...props}>
       <div className="font-semibold text-sm">{title}</div>
-      <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>
+      <div className="mt-0.5 text-muted-foreground text-sm-plus">{subtitle}</div>
 
       <div className="mt-3.5 flex items-baseline gap-2">
         <div className="font-semibold" style={{ fontSize: 28, letterSpacing: "-0.02em" }}>
@@ -80,7 +80,7 @@ function RiskExposureCard({
           <div
             // biome-ignore lint/suspicious/noArrayIndexKey: fixed-order chart bars
             key={i}
-            className={cn("flex-1 rounded-t-[3px]", i === active && "bar-breathe")}
+            className={cn("flex-1 rounded-t-3xs", i === active && "bar-breathe")}
             style={{
               height: `${(h / max) * 100}%`,
               background:
@@ -93,7 +93,7 @@ function RiskExposureCard({
         ))}
       </div>
       {(rangeStart || rangeEnd) && (
-        <div className="mt-1.5 flex justify-between font-mono text-[11px] text-muted-foreground">
+        <div className="mt-1.5 flex justify-between font-mono text-muted-foreground text-xxs">
           <span>{rangeStart}</span>
           <span>{rangeEnd}</span>
         </div>
@@ -101,15 +101,15 @@ function RiskExposureCard({
 
       {breakdown && breakdown.length > 0 && (
         <>
-          <div className="mt-3 mb-2 border-border border-t border-dashed pt-3 font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+          <div className="mt-3 mb-2 border-border border-t border-dashed pt-3 font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase">
             {breakdownLabel}
           </div>
           <div className="grid gap-1.5">
             {breakdown.map((b) => (
-              <div key={b.label} className="flex items-center justify-between text-[13px]">
+              <div key={b.label} className="flex items-center justify-between text-sm-plus">
                 <span className="flex items-center gap-2 font-medium">
                   <span
-                    className="inline-block size-1.5 rounded-[2px]"
+                    className="inline-block size-1.5 rounded-3xs"
                     style={{ background: breakdownColor[b.tone] }}
                   />
                   {b.label}

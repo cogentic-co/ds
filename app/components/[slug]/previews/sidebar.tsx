@@ -29,6 +29,7 @@ import {
   SidebarProvider,
   SidebarUser,
 } from "@/components/ui/sidebar"
+import { Code, PropTable, Row } from "./_shared"
 
 function CogenticMark({ className }: { className?: string }) {
   return (
@@ -38,33 +39,6 @@ function CogenticMark({ className }: { className?: string }) {
         d="M77.268 97.78a1 1 0 0 1-.066-1.659l41.948-30.653a15 15 0 0 1 17.7 0l41.933 30.643a1 1 0 0 1-.076 1.664l-18.156 10.894a1 1 0 0 1-1.081-.033l-30.345-20.863a2 2 0 0 0-2.255-.008l-30.835 20.873a1 1 0 0 1-1.085.024zM46.565 113.336c-10.625 8.21-10.113 24.409 1.01 31.932l71.918 48.64a16 16 0 0 0 17.987-.041l71.019-48.501c11.108-7.586 11.584-23.802.94-32.027a.79.79 0 0 0-.908-.042l-78.435 49.692a3 3 0 0 1-3.197.009l-79.433-49.707a.79.79 0 0 0-.9.045"
       />
     </svg>
-  )
-}
-
-function Code({ children }: { children: React.ReactNode }) {
-  return <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">{children}</code>
-}
-
-function Row({ name, type, children }: { name: string; type: string; children: React.ReactNode }) {
-  return (
-    <tr className="border-border border-b last:border-b-0">
-      <td className="py-1.5 pr-4 align-top font-mono text-xs">{name}</td>
-      <td className="py-1.5 pr-4 align-top font-mono text-muted-foreground text-xs">{type}</td>
-      <td className="py-1.5 align-top text-foreground text-sm">{children}</td>
-    </tr>
-  )
-}
-
-function PropTable({ title, rows }: { title: string; rows: React.ReactNode }) {
-  return (
-    <div className="space-y-2 rounded-lg border border-border p-3">
-      <div className="font-medium text-muted-foreground text-xs uppercase tracking-wide">
-        {title}
-      </div>
-      <table className="w-full">
-        <tbody>{rows}</tbody>
-      </table>
-    </div>
   )
 }
 

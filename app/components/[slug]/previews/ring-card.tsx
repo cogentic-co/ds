@@ -9,7 +9,7 @@ export default function RingCardPreview() {
       <Section title="Default — hover any card to see the stack lift">
         <div className="grid max-w-4xl grid-cols-1 gap-6 pt-4 md:grid-cols-3">
           <RingCard>
-            <div className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">
+            <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
               Flagged
             </div>
             <div className="mt-2 flex items-baseline gap-1.5">
@@ -25,7 +25,7 @@ export default function RingCardPreview() {
           </RingCard>
 
           <RingCard>
-            <div className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">
+            <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
               Risk score
             </div>
             <div className="mt-2 flex items-baseline gap-1.5">
@@ -42,7 +42,7 @@ export default function RingCardPreview() {
               <span className="font-mono text-muted-foreground text-xs">/ 100</span>
             </div>
             <div
-              className="mt-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold text-[11px]"
+              className="mt-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold text-xxs"
               style={{
                 background: "color-mix(in oklab, var(--blush) 70%, transparent)",
                 color: "var(--blush-ink)",
@@ -53,7 +53,7 @@ export default function RingCardPreview() {
           </RingCard>
 
           <RingCard>
-            <div className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">
+            <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
               Volume (24h)
             </div>
             <div className="mt-2 flex items-baseline gap-1.5">
@@ -65,7 +65,7 @@ export default function RingCardPreview() {
               </span>
             </div>
             <div
-              className="mt-2 font-mono font-semibold text-[11px]"
+              className="mt-2 font-mono font-semibold text-xxs"
               style={{ color: "var(--success)" }}
             >
               +12% vs 7d

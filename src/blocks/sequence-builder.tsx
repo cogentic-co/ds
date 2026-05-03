@@ -96,7 +96,7 @@ const stepNumberVariants = cva(
   {
     variants: {
       size: {
-        sm: "size-6 text-[10px]",
+        sm: "size-6 text-2xs",
         md: "size-7 text-xs",
       },
     },

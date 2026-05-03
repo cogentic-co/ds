@@ -117,10 +117,7 @@ function AgentProgress({
       data-slot="agent-progress"
       data-state={state}
       data-density={density}
-      className={cn(
-        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card",
-        className,
-      )}
+      className={cn("overflow-hidden rounded-lg border border-border bg-card", className)}
       {...props}
     >
       {/* Header */}

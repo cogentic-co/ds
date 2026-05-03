@@ -36,7 +36,7 @@ const EVENTS: WebhookEvent[] = [
     status: 200,
     latency: "51ms",
     payload: '{ "transfer": "TXN-0845", "travel_rule": "verified" }',
-    colour: "text-[#00D4FF]",
+    colour: "text-cyan",
   },
   {
     event: "report.generated",
@@ -71,17 +71,17 @@ export default function AnimationWebhooks({ className }: { className?: string })
 
   return (
     <LazyMotion features={domAnimation}>
-      <div ref={timerRef} className={cn("flex flex-col bg-[#1a1a2e]", className)}>
+      <div ref={timerRef} className={cn("flex flex-col bg-terminal", className)}>
         {/* Header */}
         <div className="flex items-center gap-2 border-white/10 border-b px-4 py-2">
           <Zap className="size-3 text-amber-400" />
-          <span className="font-mono text-[11px] text-white/60">Webhook Events</span>
+          <span className="font-mono text-white/60 text-xxs">Webhook Events</span>
           <span className="ml-auto flex items-center gap-1">
             <span className="relative flex size-1.5">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
             </span>
-            <span className="font-mono text-[10px] text-emerald-400">live</span>
+            <span className="font-mono text-2xs text-emerald-400">live</span>
           </span>
         </div>
 
@@ -102,20 +102,20 @@ export default function AnimationWebhooks({ className }: { className?: string })
                     className="rounded-md border border-white/5 bg-white/5 px-3 py-2"
                   >
                     <div className="flex items-center gap-2">
-                      <span className={cn("font-mono font-semibold text-[11px]", ev.colour)}>
+                      <span className={cn("font-mono font-semibold text-xxs", ev.colour)}>
                         {ev.event}
                       </span>
-                      <span className="ml-auto font-mono text-[10px] text-emerald-400">
+                      <span className="ml-auto font-mono text-2xs text-emerald-400">
                         {ev.status}
                       </span>
-                      <span className="font-mono text-[10px] text-white/30">{ev.latency}</span>
+                      <span className="font-mono text-2xs text-white/30">{ev.latency}</span>
                     </div>
                     {isLatest && (
                       <m.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.15 }}
-                        className="mt-1 truncate font-mono text-[10px] text-white/40"
+                        className="mt-1 truncate font-mono text-2xs text-white/40"
                       >
                         {ev.payload}
                       </m.p>

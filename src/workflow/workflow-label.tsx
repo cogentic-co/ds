@@ -27,7 +27,7 @@ function WorkflowLabel({ variant = "default", className, ...props }: WorkflowLab
     <div
       data-slot="workflow-label"
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold text-[11px] shadow-sm ring-1",
+        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold text-xxs shadow-sm ring-1",
         variantClasses[variant],
         className,
       )}

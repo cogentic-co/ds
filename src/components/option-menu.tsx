@@ -66,7 +66,7 @@ function OptionMenu({
       {...props}
     >
       {heading && (
-        <div className="px-2 py-1 font-medium text-[10px] text-muted-foreground uppercase tracking-wide">
+        <div className="px-2 py-1 font-medium text-2xs text-muted-foreground uppercase tracking-wide">
           {heading}
         </div>
       )}

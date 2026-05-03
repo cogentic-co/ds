@@ -203,7 +203,7 @@ function DashboardPage({
           <div className="font-semibold" style={{ fontSize: 22, letterSpacing: "-0.02em" }}>
             {greeting}
           </div>
-          {tagline && <div className="mt-1 text-[13px] text-muted-foreground">{tagline}</div>}
+          {tagline && <div className="mt-1 text-muted-foreground text-sm-plus">{tagline}</div>}
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={onExport}>

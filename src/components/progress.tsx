@@ -29,7 +29,7 @@ const progressTrackVariants = cva("relative flex w-full items-center overflow-x-
       lg: "h-3 rounded-full",
       // Bigger bars use a softer radius rather than a pill shape — matches
       // the Figma Progress at size=xl where outer radius is 6px.
-      xl: "h-5 rounded-[6px]",
+      xl: "h-5 rounded-xs",
     },
     hatched: {
       true: "bg-card",
@@ -43,9 +43,9 @@ const progressIndicatorVariants = cva("h-full transition-all", {
   variants: {
     variant: {
       default: "bg-primary",
-      warning: "bg-[var(--highlight-ink)]",
+      warning: "bg-highlight-ink",
       destructive: "bg-destructive",
-      success: "bg-[var(--mint-ink)]",
+      success: "bg-mint-ink",
     },
     // Indicator radius mirrors Figma: pill on the left edge (TL+BL), squared
     // off on the right (TR+BR=0) so it reads as "filling up" the track.
@@ -56,7 +56,7 @@ const progressIndicatorVariants = cva("h-full transition-all", {
       sm: "rounded-l-full",
       default: "rounded-l-full",
       lg: "rounded-l-full",
-      xl: "rounded-[6px]",
+      xl: "rounded-xs",
     },
   },
   defaultVariants: { variant: "default", size: "sm" },

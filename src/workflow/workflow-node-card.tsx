@@ -47,7 +47,7 @@ const statusBadgeVariants = cva(
   [
     "absolute right-3 bottom-full z-10 mb-1.5",
     "inline-flex items-center gap-1 rounded-md border px-2 py-0.5",
-    "font-medium text-[11px]",
+    "font-medium text-xxs",
   ].join(" "),
   {
     variants: {
@@ -224,7 +224,7 @@ const workflowNodeIconVariants = cva(
       tone: {
         default: "bg-muted text-muted-foreground",
         ai: "bg-violet-100 text-violet-600 dark:bg-violet-900/40 dark:text-violet-300",
-        slack: "bg-[#4A154B] text-white",
+        slack: "bg-slack text-white",
         email: "bg-sky-100 text-sky-600 dark:bg-sky-900/40 dark:text-sky-300",
         success: "bg-success/15 text-success",
         warning: "bg-warning/15 text-warning",
@@ -322,7 +322,7 @@ function WorkflowNodeCard({
       {kind && (
         <span
           data-slot="workflow-node-kind"
-          className="absolute bottom-full left-3 z-10 mb-1.5 inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 font-medium text-[11px] text-muted-foreground"
+          className="absolute bottom-full left-3 z-10 mb-1.5 inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-0.5 font-medium text-muted-foreground text-xxs"
         >
           {kind}
         </span>
@@ -348,7 +348,7 @@ function WorkflowNodeCard({
             <span className="relative shrink-0 [&>img]:size-8 [&>img]:rounded-lg [&>svg]:size-7">
               {icon}
               {badge != null && (
-                <span className="absolute -top-1.5 -right-1.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 font-bold text-[10px] text-primary-foreground leading-none ring-2 ring-card">
+                <span className="absolute -top-1.5 -right-1.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 font-bold text-2xs text-primary-foreground leading-none ring-2 ring-card">
                   {badge}
                 </span>
               )}
@@ -358,7 +358,7 @@ function WorkflowNodeCard({
           {category && (
             <span
               data-slot="workflow-node-category"
-              className="ml-auto inline-flex shrink-0 items-center rounded-md border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-[11px] text-muted-foreground"
+              className="ml-auto inline-flex shrink-0 items-center rounded-md border border-border bg-muted/60 px-1.5 py-0.5 font-medium text-muted-foreground text-xxs"
             >
               {category}
             </span>

@@ -88,8 +88,8 @@ export default function AnimationRealtimeUpdates({ className }: { className?: st
         {/* Dashboard header */}
         <div className="flex items-start justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Compliance Overview</p>
-            <p className="text-[12px] text-gray-400">Weekly screening summary</p>
+            <p className="font-semibold text-foreground text-sm">Compliance Overview</p>
+            <p className="text-gray-400 text-xs">Weekly screening summary</p>
           </div>
           <div className="flex gap-0.5">
             <span className="size-1 rounded-full bg-gray-300" />
@@ -106,17 +106,17 @@ export default function AnimationRealtimeUpdates({ className }: { className?: st
                 <metric.icon className="size-4 text-foreground" strokeWidth={1.5} />
               </div>
               <div className="flex-1">
-                <p className="font-medium text-[13px] text-foreground">{metric.label}</p>
-                <p className="text-[10px] text-gray-400">{metric.sub}</p>
+                <p className="font-medium text-foreground text-sm-plus">{metric.label}</p>
+                <p className="text-2xs text-gray-400">{metric.sub}</p>
               </div>
               <div className="text-right">
-                <p className="font-mono font-semibold text-[14px] text-foreground">
+                <p className="font-mono font-semibold text-foreground text-sm">
                   <AnimatedValue value={metric.value} />
                 </p>
               </div>
               <div
                 className={cn(
-                  "flex items-center gap-0.5 font-medium text-[11px]",
+                  "flex items-center gap-0.5 font-medium text-xxs",
                   metric.up ? "text-foreground" : "text-emerald-600",
                 )}
               >
@@ -157,7 +157,7 @@ export default function AnimationRealtimeUpdates({ className }: { className?: st
               </div>
               <span
                 className={cn(
-                  "font-medium text-[10px]",
+                  "font-medium text-2xs",
                   i === scenario.activeBar ? "text-gray-900" : "text-gray-400",
                 )}
               >

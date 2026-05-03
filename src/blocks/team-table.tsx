@@ -78,7 +78,7 @@ function TeamTable({
                 <div className="flex items-center gap-3">
                   <Avatar className="size-8">
                     {member.avatar && <AvatarImage src={member.avatar} alt={member.name} />}
-                    <AvatarFallback className="text-[11px]">{initials(member.name)}</AvatarFallback>
+                    <AvatarFallback className="text-xxs">{initials(member.name)}</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
                     <span className="font-medium text-sm">{member.name}</span>
@@ -112,7 +112,7 @@ function TeamTable({
                   square
                   variant="outline"
                   className={cn(
-                    "px-1.5 py-0.5 text-[10px] uppercase leading-none",
+                    "px-1.5 py-0.5 text-2xs uppercase leading-none",
                     STATUS_BADGE[member.status ?? "active"],
                   )}
                 >

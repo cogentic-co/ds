@@ -38,25 +38,25 @@ function KpiCard({
     <div
       data-slot="kpi-card"
       className={cn(
-        "flex min-h-[132px] flex-col gap-2.5 rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]",
+        "flex min-h-[132px] flex-col gap-2.5 rounded-lg border border-border bg-card p-4 shadow-card",
         className,
       )}
       {...props}
     >
       <div className="flex items-baseline justify-between">
-        <div className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-wider">
+        <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
           {label}
         </div>
         {delta && (
           <span
-            className="font-mono font-semibold text-[11px]"
+            className="font-mono font-semibold text-xxs"
             style={{ color: deltaColor[deltaTone] }}
           >
             {delta}
           </span>
         )}
       </div>
-      <div className="font-semibold text-[26px] leading-none tracking-tight">{value}</div>
+      <div className="font-semibold text-stat leading-none tracking-tight">{value}</div>
       {hint && <div className="text-muted-foreground text-xs">{hint}</div>}
       {sparkline && (
         <Sparkline

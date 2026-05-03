@@ -88,9 +88,9 @@ function TransactionCard({ transaction: tx, onClick, className, ...props }: Tran
         </dl>
       </div>
 
-      <div className="-mx-4 -mb-3 flex items-center justify-between gap-2 border-t border-dashed px-4 py-3 font-mono text-[10px]">
+      <div className="-mx-4 -mb-3 flex items-center justify-between gap-2 border-t border-dashed px-4 py-3 font-mono text-2xs">
         <div className="flex items-center gap-2">
-          <Badge square variant="outline" className="px-1 py-0.5 text-[9px] uppercase leading-none">
+          <Badge square variant="outline" className="px-1 py-0.5 text-3xs uppercase leading-none">
             {tx.network}
           </Badge>
           {tx.riskScore != null && <RiskScoreInline score={tx.riskScore} />}

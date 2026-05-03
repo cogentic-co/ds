@@ -20,33 +20,33 @@ const complianceScoreVariants = cva("relative inline-flex items-center justify-c
 
 /** Map size to SVG stroke width and font sizing */
 const sizeConfig = {
-  sm: { strokeWidth: 5, viewBox: 80, radius: 34, fontSize: "text-lg", labelSize: "text-[8px]" },
+  sm: { strokeWidth: 5, viewBox: 80, radius: 34, fontSize: "text-lg", labelSize: "text-3xs" },
   default: {
     strokeWidth: 6,
     viewBox: 80,
     radius: 34,
     fontSize: "text-2xl",
-    labelSize: "text-[9px]",
+    labelSize: "text-3xs",
   },
   lg: {
     strokeWidth: 7,
     viewBox: 80,
     radius: 34,
     fontSize: "text-3xl",
-    labelSize: "text-[10px]",
+    labelSize: "text-2xs",
   },
 } as const
 
 function getScoreColor(score: number): string {
   if (score <= 40) return "text-destructive"
-  if (score <= 70) return "text-[var(--highlight-ink)]"
-  return "text-[var(--success)]"
+  if (score <= 70) return "text-highlight-ink"
+  return "text-success"
 }
 
 function getTrackColor(score: number): string {
   if (score <= 40) return "text-destructive/15"
-  if (score <= 70) return "text-[var(--highlight)]/60"
-  return "text-[var(--mint)]/70"
+  if (score <= 70) return "text-highlight/60"
+  return "text-mint/70"
 }
 
 type ComplianceScoreProps = React.ComponentProps<"div"> &

@@ -57,10 +57,10 @@ function MarqueeRow({
             key={`${item.name}-${i}`}
             className="flex shrink-0 items-center gap-2 rounded-full border border-gray-200 bg-white px-3.5 py-2 shadow-sm"
           >
-            <div className="flex size-6 items-center justify-center rounded-full bg-gray-100 font-bold text-[10px] text-gray-500">
+            <div className="flex size-6 items-center justify-center rounded-full bg-gray-100 font-bold text-2xs text-gray-500">
               {item.icon}
             </div>
-            <span className="font-medium text-[12px] text-gray-700">{item.name}</span>
+            <span className="font-medium text-gray-700 text-xs">{item.name}</span>
           </div>
         ))}
       </div>

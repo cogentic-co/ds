@@ -66,12 +66,12 @@ export default function AnimationCustomRules({ className }: { className?: string
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Custom Rules</p>
-            <p className="text-[12px] text-gray-400">{RULES.length} rules configured</p>
+            <p className="font-semibold text-foreground text-sm">Custom Rules</p>
+            <p className="text-gray-400 text-xs">{RULES.length} rules configured</p>
           </div>
           <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1">
             <ShieldCheck className="size-3 text-emerald-600" />
-            <span className="font-semibold text-[11px] text-emerald-700">All active</span>
+            <span className="font-semibold text-emerald-700 text-xxs">All active</span>
           </div>
         </div>
 
@@ -92,10 +92,10 @@ export default function AnimationCustomRules({ className }: { className?: string
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold font-mono text-[10px] text-gray-400">{rule.id}</span>
-                    <span className="font-semibold text-[12px] text-gray-800">{rule.name}</span>
+                    <span className="font-bold font-mono text-2xs text-gray-400">{rule.id}</span>
+                    <span className="font-semibold text-gray-800 text-xs">{rule.name}</span>
                   </div>
-                  <span className={cn("rounded-full px-2 py-0.5 font-semibold text-[10px]", st.bg)}>
+                  <span className={cn("rounded-full px-2 py-0.5 font-semibold text-2xs", st.bg)}>
                     {st.label}
                   </span>
                 </div>
@@ -107,11 +107,11 @@ export default function AnimationCustomRules({ className }: { className?: string
                     transition={{ duration: 0.25 }}
                     className="mt-2 space-y-1 border-gray-100 border-t pt-2"
                   >
-                    <p className="font-mono text-[#0099BB] text-[10px]">{rule.condition}</p>
-                    <p className="font-mono text-[10px] text-gray-600">{rule.action}</p>
+                    <p className="font-mono text-2xs text-cyan-dark">{rule.condition}</p>
+                    <p className="font-mono text-2xs text-gray-600">{rule.action}</p>
                     <div className="flex items-center gap-1 pt-1">
                       <AlertTriangle className="size-2.5 text-gray-400" />
-                      <span className="text-[10px] text-gray-400">{rule.triggers}</span>
+                      <span className="text-2xs text-gray-400">{rule.triggers}</span>
                     </div>
                   </m.div>
                 )}

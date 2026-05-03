@@ -112,7 +112,7 @@ const queueItemIndicatorVariants = cva(
       status: {
         pending: "border-border bg-card text-muted-foreground",
         active: "border-primary bg-primary text-primary-foreground",
-        complete: "border-[var(--mint-ink)] bg-[var(--mint-ink)] text-[var(--mint)]",
+        complete: "border-mint-ink bg-mint-ink text-mint",
         error: "border-destructive bg-destructive text-destructive-foreground",
       },
     },

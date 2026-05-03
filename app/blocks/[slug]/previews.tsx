@@ -687,7 +687,7 @@ function KanbanItem({ title, tag }: { title: string; tag: string }) {
     <div className="rounded-lg border border-border bg-card p-3 text-sm shadow-sm">
       <div className="flex items-center justify-between gap-2">
         <span className="font-medium">{title}</span>
-        <span className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[9px] uppercase">
+        <span className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-3xs uppercase">
           {tag}
         </span>
       </div>
@@ -914,7 +914,7 @@ function InvoicePreview() {
         issuedAt="9 April 2026"
         dueAt="9 May 2026"
         status={
-          <span className="inline-flex items-center rounded-md border border-amber-700/40 bg-amber-700/10 px-2 py-0.5 font-medium text-[11px] text-amber-700 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-400">
+          <span className="inline-flex items-center rounded-md border border-amber-700/40 bg-amber-700/10 px-2 py-0.5 font-medium text-amber-700 text-xxs dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-400">
             Due
           </span>
         }

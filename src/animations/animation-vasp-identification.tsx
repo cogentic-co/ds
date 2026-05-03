@@ -68,15 +68,15 @@ export default function AnimationVaspIdentification({ className }: { className?:
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Counterparty VASP</p>
-            <p className="text-[12px] text-gray-400">Identity verification</p>
+            <p className="font-semibold text-foreground text-sm">Counterparty VASP</p>
+            <p className="text-gray-400 text-xs">Identity verification</p>
           </div>
           <m.span
             key={index}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className={cn(
-              "rounded-full px-2.5 py-1 font-semibold text-[11px]",
+              "rounded-full px-2.5 py-1 font-semibold text-xxs",
               riskColour[v.riskLevel],
             )}
           >
@@ -98,8 +98,8 @@ export default function AnimationVaspIdentification({ className }: { className?:
               {v.flag}
             </div>
             <div>
-              <p className="font-semibold text-[13px] text-gray-900">{v.name}</p>
-              <p className="text-[11px] text-gray-500">
+              <p className="font-semibold text-gray-900 text-sm-plus">{v.name}</p>
+              <p className="text-gray-500 text-xxs">
                 {v.jurisdiction} {"\u2022"} {v.regulator}
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function AnimationVaspIdentification({ className }: { className?:
                 ) : (
                   <XCircle className="size-3 text-red-500" />
                 )}
-                <span className="font-medium text-[10px] text-gray-600">{check.label}</span>
+                <span className="font-medium text-2xs text-gray-600">{check.label}</span>
               </m.div>
             ))}
           </div>
@@ -139,16 +139,16 @@ export default function AnimationVaspIdentification({ className }: { className?:
           transition={{ delay: 0.3 }}
           className="mt-3 flex items-center gap-2"
         >
-          <span className="font-medium text-[10px] text-gray-400">Protocols:</span>
+          <span className="font-medium text-2xs text-gray-400">Protocols:</span>
           {v.protocols.map((p) => (
             <span
               key={p}
-              className="rounded-full border border-gray-200 bg-white px-2.5 py-0.5 font-semibold text-[10px] text-gray-600"
+              className="rounded-full border border-gray-200 bg-white px-2.5 py-0.5 font-semibold text-2xs text-gray-600"
             >
               {p}
             </span>
           ))}
-          <span className="ml-auto text-[10px] text-gray-400">Verified {v.lastVerified}</span>
+          <span className="ml-auto text-2xs text-gray-400">Verified {v.lastVerified}</span>
         </m.div>
       </div>
     </LazyMotion>

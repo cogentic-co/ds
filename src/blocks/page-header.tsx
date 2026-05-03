@@ -99,7 +99,7 @@ function PageHeader({
               <TabsTrigger key={tab.value} value={tab.value}>
                 {tab.label}
                 {tab.count != null && (
-                  <span className="ml-1.5 rounded bg-muted px-1 font-medium text-[10px] text-muted-foreground">
+                  <span className="ml-1.5 rounded bg-muted px-1 font-medium text-2xs text-muted-foreground">
                     {tab.count}
                   </span>
                 )}

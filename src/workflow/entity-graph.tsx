@@ -61,7 +61,7 @@ function EntityNodeView({ data }: NodeProps<Node<EntityNodeData>>) {
       {(data.riskScore != null || data.jurisdiction) && (
         <div className="flex items-center gap-2 text-xs">
           {data.jurisdiction && (
-            <span className="rounded border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px]">
+            <span className="rounded border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-2xs">
               {data.jurisdiction}
             </span>
           )}

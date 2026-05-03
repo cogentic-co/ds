@@ -36,7 +36,7 @@ function AlertsCard({
     <div
       data-slot="alerts-card"
       className={cn(
-        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        "overflow-hidden rounded-lg border border-border bg-card shadow-card",
         className,
       )}
       {...props}
@@ -75,19 +75,17 @@ function AlertsCard({
           <span
             aria-hidden
             className={cn(
-              "mt-0.5 inline-flex size-7 items-center justify-center rounded-[var(--radius-md)]",
+              "mt-0.5 inline-flex size-7 items-center justify-center rounded-md",
               TONE_CLASSES[a.tone],
             )}
           >
             {a.icon ?? <AlertTriangle className="size-3.5" />}
           </span>
           <div className="min-w-0">
-            <div className="font-semibold text-[13px]">{a.title}</div>
+            <div className="font-semibold text-sm-plus">{a.title}</div>
             <div className="mt-0.5 text-muted-foreground text-xs leading-[1.45]">{a.body}</div>
           </div>
-          <div className="whitespace-nowrap font-mono text-[11px] text-muted-foreground">
-            {a.time}
-          </div>
+          <div className="whitespace-nowrap font-mono text-muted-foreground text-xxs">{a.time}</div>
         </button>
       ))}
     </div>

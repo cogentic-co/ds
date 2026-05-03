@@ -190,8 +190,8 @@ export default function AnimationAuditTrail({ className }: { className?: string 
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
           </span>
-          <span className="font-semibold text-[10px] text-gray-700">Audit Log</span>
-          <span className="ml-auto font-mono text-[10px] text-gray-400">{entryCount} entries</span>
+          <span className="font-semibold text-2xs text-gray-700">Audit Log</span>
+          <span className="ml-auto font-mono text-2xs text-gray-400">{entryCount} entries</span>
         </div>
 
         {/* Log entries */}
@@ -205,7 +205,7 @@ export default function AnimationAuditTrail({ className }: { className?: string 
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="flex items-start gap-1.5 font-mono text-[10px] leading-relaxed"
+                  className="flex items-start gap-1.5 font-mono text-2xs leading-relaxed"
                 >
                   <span className="shrink-0 text-foreground">{entry.timestamp}</span>
                   <Icon className={cn("mt-0.5 size-2.5 shrink-0", colorMap[entry.type])} />
@@ -216,7 +216,7 @@ export default function AnimationAuditTrail({ className }: { className?: string 
               )
             })}
             {visibleEntries.length < sequence.length && (
-              <div className="flex items-center gap-1.5 font-mono text-[10px] text-gray-300">
+              <div className="flex items-center gap-1.5 font-mono text-2xs text-gray-300">
                 <span className="shrink-0 text-transparent">00:00:00</span>
                 <ChevronRight className="size-2.5 shrink-0" />
                 <span className="animate-pulse">▌</span>

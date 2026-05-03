@@ -20,8 +20,8 @@ type CounterpartyIntelProps = ComponentProps<"div"> & {
 
 function MiniStatCard({ label, value, hint }: CounterpartyIntelStat) {
   return (
-    <div className="rounded-[var(--radius-md)] border border-border bg-card p-3.5">
-      <div className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+    <div className="rounded-md border border-border bg-card p-3.5">
+      <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase">
         {label}
       </div>
       <div
@@ -30,7 +30,7 @@ function MiniStatCard({ label, value, hint }: CounterpartyIntelStat) {
       >
         {value}
       </div>
-      {hint && <div className="mt-1 text-[12px] text-muted-foreground">{hint}</div>}
+      {hint && <div className="mt-1 text-muted-foreground text-xs">{hint}</div>}
     </div>
   )
 }
@@ -56,10 +56,10 @@ function CounterpartyIntel({
 
       {related.length > 0 && (
         <>
-          <div className="mt-4 mb-2 font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+          <div className="mt-4 mb-2 font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase">
             {relatedLabel}
           </div>
-          <div className="overflow-hidden rounded-[var(--radius-md)] border border-border bg-card">
+          <div className="overflow-hidden rounded-md border border-border bg-card">
             {related.map((r, i) => (
               <div
                 key={r.id}
@@ -69,13 +69,13 @@ function CounterpartyIntel({
                 )}
               >
                 <div className="min-w-0">
-                  <div className="truncate font-semibold text-[13px]">{r.lbl}</div>
-                  <div className="mt-px truncate font-mono text-[11px] text-muted-foreground">
+                  <div className="truncate font-semibold text-sm-plus">{r.lbl}</div>
+                  <div className="mt-px truncate font-mono text-muted-foreground text-xxs">
                     {r.addr}
                   </div>
                 </div>
-                <div className="font-mono font-semibold text-[13px]">{r.amt}</div>
-                <div className="w-14 text-right text-[12px] text-muted-foreground">{r.time}</div>
+                <div className="font-mono font-semibold text-sm-plus">{r.amt}</div>
+                <div className="w-14 text-right text-muted-foreground text-xs">{r.time}</div>
               </div>
             ))}
           </div>

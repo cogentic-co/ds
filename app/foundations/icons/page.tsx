@@ -104,7 +104,7 @@ import { Home } from "pixelarticons/react/Home"
                 aria-label={`Copy import for ${name}`}
               >
                 <Component className="size-5" />
-                <span className="w-full truncate text-[10px] text-muted-foreground group-hover:text-foreground">
+                <span className="w-full truncate text-2xs text-muted-foreground group-hover:text-foreground">
                   {name}
                 </span>
               </button>
@@ -128,7 +128,7 @@ import { Home } from "pixelarticons/react/Home"
                 aria-label={`Copy import for ${name}`}
               >
                 <Component width={20} height={20} />
-                <span className="w-full truncate text-[10px] text-muted-foreground group-hover:text-foreground">
+                <span className="w-full truncate text-2xs text-muted-foreground group-hover:text-foreground">
                   {name}
                 </span>
               </button>

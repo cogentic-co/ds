@@ -54,7 +54,7 @@ function Changelog({ entries, className, ...props }: ChangelogProps) {
                 key={tag}
                 square
                 variant="outline"
-                className={cn("px-1.5 py-0.5 text-[10px] uppercase leading-none", TAG_CLASS[tag])}
+                className={cn("px-1.5 py-0.5 text-2xs uppercase leading-none", TAG_CLASS[tag])}
               >
                 {TAG_LABEL[tag]}
               </Badge>

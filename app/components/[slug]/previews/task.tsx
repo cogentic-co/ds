@@ -5,7 +5,7 @@ import { Task, TaskContent, TaskItem, TaskTrigger } from "@/src/chatbot"
 import { Section } from "./_shared"
 
 function Code({ children }: { children: React.ReactNode }) {
-  return <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">{children}</code>
+  return <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{children}</code>
 }
 
 function Row({ name, type, children }: { name: string; type: string; children: React.ReactNode }) {

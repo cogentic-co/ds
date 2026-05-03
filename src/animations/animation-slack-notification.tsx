@@ -10,8 +10,8 @@ export default function AnimationSlackNotification({ className }: { className?: 
     <div className={cn("flex flex-col bg-white p-4", className)}>
       {/* Channel header */}
       <div className="flex items-center gap-2 border-gray-100 border-b pb-2.5">
-        <span className="font-bold text-[13px] text-gray-900"># compliance-alerts</span>
-        <span className="rounded bg-red-100 px-1.5 py-0.5 font-bold text-[9px] text-red-600">
+        <span className="font-bold text-gray-900 text-sm-plus"># compliance-alerts</span>
+        <span className="rounded bg-red-100 px-1.5 py-0.5 font-bold text-3xs text-red-600">
           3 new
         </span>
       </div>
@@ -32,8 +32,8 @@ export default function AnimationSlackNotification({ className }: { className?: 
 
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-2">
-            <span className="font-bold text-[13px] text-gray-900">Cogentic</span>
-            <span className="text-[10px] text-gray-400">APP 10:42 AM</span>
+            <span className="font-bold text-gray-900 text-sm-plus">Cogentic</span>
+            <span className="text-2xs text-gray-400">APP 10:42 AM</span>
           </div>
 
           {/* Attachment card */}
@@ -43,18 +43,18 @@ export default function AnimationSlackNotification({ className }: { className?: 
             transition={{ duration: 0.4, ease: EASE_OUT, delay: 0.6 }}
             className="mt-1.5 rounded-md border-red-400 border-l-[3px] bg-gray-50 px-3 py-2.5"
           >
-            <p className="font-semibold text-[12px] text-gray-900">
+            <p className="font-semibold text-gray-900 text-xs">
               Transfer flagged — manual review required
             </p>
             <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
-              <span className="text-[11px] text-gray-500">
+              <span className="text-gray-500 text-xxs">
                 <span className="font-medium text-gray-700">TXN-0847</span> &middot; AU &rarr; SG
               </span>
-              <span className="text-[11px] text-gray-500">
+              <span className="text-gray-500 text-xxs">
                 Risk: <span className="font-semibold text-red-500">High (72)</span>
               </span>
             </div>
-            <p className="mt-1.5 text-[11px] text-gray-500 leading-relaxed">
+            <p className="mt-1.5 text-gray-500 text-xxs leading-relaxed">
               PEP screening match detected. Beneficiary threshold exceeded for SG corridor.
             </p>
           </motion.div>
@@ -69,7 +69,7 @@ export default function AnimationSlackNotification({ className }: { className?: 
             {["Review", "Approve", "Escalate"].map((label) => (
               <span
                 key={label}
-                className="rounded border border-gray-200 bg-white px-2.5 py-1 font-medium text-[11px] text-gray-700"
+                className="rounded border border-gray-200 bg-white px-2.5 py-1 font-medium text-gray-700 text-xxs"
               >
                 {label}
               </span>
@@ -83,13 +83,13 @@ export default function AnimationSlackNotification({ className }: { className?: 
             transition={{ duration: 0.4, ease: EASE_OUT, delay: 1.3 }}
             className="mt-3 flex items-start gap-2 border-gray-100 border-t pt-2.5"
           >
-            <div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-bold text-[9px] text-emerald-700">
+            <div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 font-bold text-3xs text-emerald-700">
               JC
             </div>
             <div>
-              <span className="font-semibold text-[11px] text-gray-900">J. Chen</span>
-              <span className="ml-1.5 text-[10px] text-gray-400">10:44 AM</span>
-              <p className="mt-0.5 text-[11px] text-gray-600">
+              <span className="font-semibold text-gray-900 text-xxs">J. Chen</span>
+              <span className="ml-1.5 text-2xs text-gray-400">10:44 AM</span>
+              <p className="mt-0.5 text-gray-600 text-xxs">
                 Reviewed. PEP match is a false positive — approved.
               </p>
             </div>

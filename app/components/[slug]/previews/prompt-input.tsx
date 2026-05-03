@@ -60,12 +60,12 @@ function Block({
 }
 
 function Code({ children }: { children: React.ReactNode }) {
-  return <code className="rounded bg-muted px-1 py-0.5 font-mono text-[12px]">{children}</code>
+  return <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{children}</code>
 }
 
 function Kbd({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-[11px]">
+    <kbd className="rounded border border-border bg-muted px-1 py-0.5 font-mono text-xxs">
       {children}
     </kbd>
   )

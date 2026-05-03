@@ -53,7 +53,7 @@ const REPORTS: ScheduledReport[] = [
 
 const statusConfig: Record<string, { icon: typeof Clock; colour: string; label: string }> = {
   sent: { icon: CheckCircle2, colour: "text-emerald-500", label: "Sent" },
-  scheduled: { icon: Clock, colour: "text-[#00D4FF]", label: "Scheduled" },
+  scheduled: { icon: Clock, colour: "text-cyan", label: "Scheduled" },
   overdue: { icon: Clock, colour: "text-red-500", label: "Overdue" },
 }
 
@@ -66,12 +66,12 @@ export default function AnimationScheduledReports({ className }: { className?: s
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Scheduled Reports</p>
-            <p className="text-[12px] text-gray-400">{REPORTS.length} active schedules</p>
+            <p className="font-semibold text-foreground text-sm">Scheduled Reports</p>
+            <p className="text-gray-400 text-xs">{REPORTS.length} active schedules</p>
           </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-[#00D4FF]/10 px-2.5 py-1">
-            <Mail className="size-3 text-[#00D4FF]" />
-            <span className="font-semibold text-[#0099BB] text-[11px]">Auto</span>
+          <div className="flex items-center gap-1.5 rounded-full bg-cyan/10 px-2.5 py-1">
+            <Mail className="size-3 text-cyan" />
+            <span className="font-semibold text-cyan-dark text-xxs">Auto</span>
           </div>
         </div>
 
@@ -92,10 +92,10 @@ export default function AnimationScheduledReports({ className }: { className?: s
               >
                 <div className="flex items-center gap-2">
                   <Icon className={cn("size-3.5 shrink-0", st.colour)} />
-                  <span className="flex-1 truncate font-semibold text-[12px] text-gray-800">
+                  <span className="flex-1 truncate font-semibold text-gray-800 text-xs">
                     {r.name}
                   </span>
-                  <span className="text-[10px] text-gray-400">{r.frequency}</span>
+                  <span className="text-2xs text-gray-400">{r.frequency}</span>
                 </div>
 
                 {isActive && (
@@ -106,12 +106,12 @@ export default function AnimationScheduledReports({ className }: { className?: s
                     className="mt-2 grid grid-cols-2 gap-2 border-gray-100 border-t pt-2"
                   >
                     <div>
-                      <p className="text-[9px] text-gray-400">Recipients</p>
-                      <p className="font-mono text-[10px] text-gray-600">{r.recipients}</p>
+                      <p className="text-3xs text-gray-400">Recipients</p>
+                      <p className="font-mono text-2xs text-gray-600">{r.recipients}</p>
                     </div>
                     <div>
-                      <p className="text-[9px] text-gray-400">Last sent</p>
-                      <p className="font-medium text-[10px] text-gray-700">{r.lastSent}</p>
+                      <p className="text-3xs text-gray-400">Last sent</p>
+                      <p className="font-medium text-2xs text-gray-700">{r.lastSent}</p>
                     </div>
                   </m.div>
                 )}

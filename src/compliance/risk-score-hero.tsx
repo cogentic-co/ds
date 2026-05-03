@@ -42,7 +42,7 @@ function RiskScoreHero({
     <RingCard solid data-slot="risk-score-hero" className={cn(className)} {...props}>
       <div className="flex flex-wrap items-start gap-6">
         <div className="shrink-0">
-          <div className="font-medium text-[11px] text-muted-foreground uppercase tracking-wider">
+          <div className="font-medium text-muted-foreground text-xxs uppercase tracking-wider">
             Risk score
           </div>
           <div className="mt-1 flex items-baseline gap-1.5">
@@ -71,13 +71,13 @@ function RiskScoreHero({
         </div>
 
         <div className="min-w-0 flex-1">
-          <div className="mb-2.5 font-semibold text-[13px]">What drives this score</div>
+          <div className="mb-2.5 font-semibold text-sm-plus">What drives this score</div>
           {drivers.map((d) => (
             <div
               key={d.label}
               className="grid grid-cols-[1fr_64px_28px] items-center gap-2.5 py-1.5 sm:grid-cols-[1fr_120px_40px]"
             >
-              <span className="text-[13px]">{d.label}</span>
+              <span className="text-sm-plus">{d.label}</span>
               <span className="h-1.5 overflow-hidden rounded-full bg-muted">
                 <span
                   className="block h-full opacity-85"

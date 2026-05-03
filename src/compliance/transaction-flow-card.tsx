@@ -53,10 +53,10 @@ function TransactionFlowCard({
   return (
     <RingCard className={cn(className)} {...props}>
       <div className="font-semibold text-sm">{title}</div>
-      <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>
+      <div className="mt-0.5 text-muted-foreground text-sm-plus">{subtitle}</div>
 
       {/* Stacked bar */}
-      <div className="relative mt-4 mb-3.5 flex overflow-hidden rounded-[6px] border border-[color-mix(in_oklab,var(--border)_60%,transparent)]">
+      <div className="relative mt-4 mb-3.5 flex overflow-hidden rounded-xs border border-[color-mix(in_oklab,var(--border)_60%,transparent)]">
         <div
           className="h-5"
           style={{
@@ -86,11 +86,11 @@ function TransactionFlowCard({
       >
         <div style={{ width: `${inboundPct}%` }}>
           <div className="font-semibold text-xl">{inboundUsd}</div>
-          <div className="text-[13px] text-muted-foreground">Inbound</div>
+          <div className="text-muted-foreground text-sm-plus">Inbound</div>
         </div>
         <div style={{ width: `${100 - inboundPct}%` }}>
           <div className="font-semibold text-xl">{outboundUsd}</div>
-          <div className="text-[13px] text-muted-foreground">Outbound</div>
+          <div className="text-muted-foreground text-sm-plus">Outbound</div>
         </div>
       </div>
 
@@ -108,7 +108,7 @@ function TransactionFlowCard({
                   background: c.tone === "muted" ? "var(--muted-foreground)" : "var(--foreground)",
                 }}
               />
-              <span className="font-medium text-[13px]">
+              <span className="font-medium text-sm-plus">
                 {c.label} <span className="text-muted-foreground">({c.percent}%)</span>
                 {c.hint && <span className="text-muted-foreground"> {c.hint}</span>}
               </span>
@@ -122,7 +122,7 @@ function TransactionFlowCard({
         <>
           <div
             className={cn(
-              "mb-2 font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]",
+              "mb-2 font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase",
               categories && categories.length > 0
                 ? "mt-3 border-border border-t border-dashed pt-3"
                 : "mt-2.5",
@@ -134,7 +134,7 @@ function TransactionFlowCard({
             {topCounterparties.map((c) => (
               <div
                 key={c.name}
-                className="flex min-w-0 items-center justify-between gap-3 text-[13px]"
+                className="flex min-w-0 items-center justify-between gap-3 text-sm-plus"
               >
                 <span className="min-w-0 truncate font-medium">{c.name}</span>
                 <span

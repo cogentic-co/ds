@@ -98,7 +98,7 @@ export default function TimelinePreview() {
             <TimelineContent>
               <div className="flex items-baseline gap-2">
                 <TimelineTitle className="text-xs">Policy updated</TimelineTitle>
-                <TimelineTime className="text-[10px]">2 min ago</TimelineTime>
+                <TimelineTime className="text-2xs">2 min ago</TimelineTime>
               </div>
             </TimelineContent>
           </TimelineItem>
@@ -107,7 +107,7 @@ export default function TimelinePreview() {
             <TimelineContent>
               <div className="flex items-baseline gap-2">
                 <TimelineTitle className="text-xs">Report exported</TimelineTitle>
-                <TimelineTime className="text-[10px]">15 min ago</TimelineTime>
+                <TimelineTime className="text-2xs">15 min ago</TimelineTime>
               </div>
             </TimelineContent>
           </TimelineItem>
@@ -116,7 +116,7 @@ export default function TimelinePreview() {
             <TimelineContent>
               <div className="flex items-baseline gap-2">
                 <TimelineTitle className="text-xs">User role changed</TimelineTitle>
-                <TimelineTime className="text-[10px]">1 hour ago</TimelineTime>
+                <TimelineTime className="text-2xs">1 hour ago</TimelineTime>
               </div>
             </TimelineContent>
           </TimelineItem>

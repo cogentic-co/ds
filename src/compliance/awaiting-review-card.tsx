@@ -44,13 +44,13 @@ function AwaitingReviewCard({
   return (
     <RingCard className={cn(className)} {...props}>
       <div className="font-semibold text-sm">{title}</div>
-      <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>
+      <div className="mt-0.5 text-muted-foreground text-sm-plus">{subtitle}</div>
 
       <div className="mt-3.5 grid gap-2">
         {rules.map((r) => (
           <div key={r.name} className="grid grid-cols-[auto_1fr_auto] items-center gap-2.5">
-            <span className={cn("size-2 rounded-[2px]", toneBg[r.tone])} />
-            <span className="truncate font-medium text-[13px]">{r.name}</span>
+            <span className={cn("size-2 rounded-3xs", toneBg[r.tone])} />
+            <span className="truncate font-medium text-sm-plus">{r.name}</span>
             <span className="flex items-center gap-2">
               <span className="inline-block h-1.5 w-14 overflow-hidden rounded-full bg-muted">
                 <span
@@ -67,7 +67,7 @@ function AwaitingReviewCard({
       {avgResolution && (
         <div
           className={cn(
-            "mt-3.5 flex items-baseline justify-between border-border border-t border-dashed pt-2.5 text-[13px]",
+            "mt-3.5 flex items-baseline justify-between border-border border-t border-dashed pt-2.5 text-sm-plus",
             oldestInQueue && "border-b pb-2.5",
           )}
         >
@@ -78,7 +78,7 @@ function AwaitingReviewCard({
 
       {oldestInQueue && oldestInQueue.length > 0 && (
         <>
-          <div className="mt-3 mb-2 font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+          <div className="mt-3 mb-2 font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase">
             Oldest in queue
           </div>
           <div className="grid gap-1">
@@ -86,7 +86,7 @@ function AwaitingReviewCard({
               <div
                 key={item.id}
                 className={cn(
-                  "flex items-center justify-between text-[13px]",
+                  "flex items-center justify-between text-sm-plus",
                   i === oldestInQueue.length - 1 && "text-muted-foreground",
                 )}
               >

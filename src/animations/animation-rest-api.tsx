@@ -17,7 +17,7 @@ const REQUEST: CodeLine[] = [
   { text: "Content-Type: application/json", colour: "text-gray-500" },
   { text: "" },
   { text: "{", colour: "text-gray-300" },
-  { text: '"transfer_id": "TXN-0847",', colour: "text-[#00D4FF]", indent: 1 },
+  { text: '"transfer_id": "TXN-0847",', colour: "text-cyan", indent: 1 },
   { text: '"originator": {', colour: "text-gray-300", indent: 1 },
   { text: '"vasp_id": "vasp_au_001",', colour: "text-amber-400", indent: 2 },
   { text: '"jurisdiction": "AU"', colour: "text-amber-400", indent: 2 },
@@ -36,7 +36,7 @@ const RESPONSE: CodeLine[] = [
   { text: "" },
   { text: "{", colour: "text-gray-300" },
   { text: '"status": "compliant",', colour: "text-emerald-400", indent: 1 },
-  { text: '"risk_score": 18,', colour: "text-[#00D4FF]", indent: 1 },
+  { text: '"risk_score": 18,', colour: "text-cyan", indent: 1 },
   { text: '"travel_rule": "verified",', colour: "text-emerald-400", indent: 1 },
   { text: '"jurisdiction_pair": "AU→SG",', colour: "text-amber-400", indent: 1 },
   { text: '"report_ref": "CR-2024-0847"', colour: "text-violet-400", indent: 1 },
@@ -80,7 +80,7 @@ export default function AnimationRestApi({ className }: { className?: string }) 
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className={cn("flex flex-col bg-[#1a1a2e]", className)}>
+      <div className={cn("flex flex-col bg-terminal", className)}>
         {/* Tab bar */}
         <div className="flex items-center gap-3 border-white/10 border-b px-4 py-2">
           <div className="flex gap-1.5">
@@ -88,13 +88,13 @@ export default function AnimationRestApi({ className }: { className?: string }) 
             <span className="size-2.5 rounded-full bg-amber-400/80" />
             <span className="size-2.5 rounded-full bg-emerald-400/80" />
           </div>
-          <span className="ml-2 font-mono text-[10px] text-white/40">cogentic-api</span>
+          <span className="ml-2 font-mono text-2xs text-white/40">cogentic-api</span>
           <m.span
             key={phase}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className={cn(
-              "ml-auto rounded-full px-2 py-0.5 font-bold text-[9px]",
+              "ml-auto rounded-full px-2 py-0.5 font-bold text-3xs",
               phase === "request"
                 ? "bg-amber-500/20 text-amber-300"
                 : "bg-emerald-500/20 text-emerald-300",
@@ -114,11 +114,11 @@ export default function AnimationRestApi({ className }: { className?: string }) 
                 animate={{ opacity: 1 }}
                 className="flex"
               >
-                <span className="w-5 shrink-0 text-right font-mono text-[10px] text-white/20">
+                <span className="w-5 shrink-0 text-right font-mono text-2xs text-white/20">
                   {i + 1}
                 </span>
                 <span
-                  className={cn("ml-3 font-mono text-[11px]", line.colour ?? "text-white/60")}
+                  className={cn("ml-3 font-mono text-xxs", line.colour ?? "text-white/60")}
                   style={{ paddingLeft: (line.indent ?? 0) * 16 }}
                 >
                   {line.text || "\u00A0"}
@@ -128,7 +128,7 @@ export default function AnimationRestApi({ className }: { className?: string }) 
             {visibleLines < lines.length && (
               <div className="flex">
                 <span className="w-5" />
-                <span className="ml-3 animate-pulse font-mono text-[11px] text-white/30">
+                <span className="ml-3 animate-pulse font-mono text-white/30 text-xxs">
                   {"\u2588"}
                 </span>
               </div>

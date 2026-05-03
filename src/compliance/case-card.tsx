@@ -27,8 +27,8 @@ const PRIORITY_BADGE: Record<CasePriority, string> = {
 
 const SEVERITY_DOT: Record<CaseSeverity, string> = {
   low: "bg-muted-foreground/60",
-  medium: "bg-[var(--highlight-ink)]",
-  high: "bg-[var(--highlight-ink)]",
+  medium: "bg-highlight-ink",
+  high: "bg-highlight-ink",
   critical: "bg-destructive",
 }
 
@@ -93,14 +93,14 @@ function CaseCard({
     >
       <div className="flex flex-col gap-y-2 pb-2">
         <div className="flex items-center justify-between">
-          <span className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground">
+          <span className="flex items-center gap-2 font-mono text-2xs text-muted-foreground">
             {id.replace("case-", "CASE-")}
           </span>
           <Badge
             square
             variant="outline"
             className={cn(
-              "items-center px-1 py-0.5 text-[9px] uppercase leading-none",
+              "items-center px-1 py-0.5 text-3xs uppercase leading-none",
               SLA_BADGE[sla],
             )}
           >
@@ -124,7 +124,7 @@ function CaseCard({
             <Badge
               square
               variant="outline"
-              className={cn("px-1.5 py-0.5 text-[10px] leading-none", PRIORITY_BADGE[priority])}
+              className={cn("px-1.5 py-0.5 text-2xs leading-none", PRIORITY_BADGE[priority])}
             >
               {priority.toUpperCase()}
             </Badge>
@@ -132,7 +132,7 @@ function CaseCard({
           {assignee && assigneeInitials && (
             <HoverCard>
               <HoverCardTrigger onClick={(e: React.MouseEvent) => e.stopPropagation()}>
-                <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-[10px] text-primary transition-all hover:ring-2 hover:ring-primary/20">
+                <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-2xs text-primary transition-all hover:ring-2 hover:ring-primary/20">
                   {assigneeInitials}
                 </div>
               </HoverCardTrigger>
@@ -181,7 +181,7 @@ function CaseCard({
                   </ItemMedia>
                   <ItemContent>
                     <ItemTitle className="text-xs">{a.trigger}</ItemTitle>
-                    <ItemDescription className="text-[10px]">
+                    <ItemDescription className="text-2xs">
                       {a.id} · {a.type}
                     </ItemDescription>
                   </ItemContent>
@@ -222,7 +222,7 @@ function CaseCard({
                     <ItemTitle className="text-xs">
                       {t.amount} {t.asset}
                     </ItemTitle>
-                    <ItemDescription className="text-[10px]">
+                    <ItemDescription className="text-2xs">
                       {t.id} · {t.direction}
                     </ItemDescription>
                   </ItemContent>

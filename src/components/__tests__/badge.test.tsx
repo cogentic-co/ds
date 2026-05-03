@@ -61,7 +61,7 @@ describe("Badge", () => {
 
   it("shape=square applies square radius", () => {
     render(<Badge shape="square">Square</Badge>)
-    expect(screen.getByText("Square")).toHaveClass("rounded-[6px]")
+    expect(screen.getByText("Square")).toHaveClass("rounded-xs")
   })
 
   it("shape=pill applies pill radius", () => {
@@ -71,7 +71,7 @@ describe("Badge", () => {
 
   it("legacy `square` prop still maps to shape=square", () => {
     render(<Badge square>Legacy</Badge>)
-    expect(screen.getByText("Legacy")).toHaveClass("rounded-[6px]")
+    expect(screen.getByText("Legacy")).toHaveClass("rounded-xs")
   })
 
   it("dot=true renders a leading status dot", () => {

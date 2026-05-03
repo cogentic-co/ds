@@ -103,8 +103,8 @@ export default function AnimationRiskScoring({ className }: { className?: string
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-forground">Risk Analysis</p>
-            <p className="text-[12px] text-gray-400">Real-time transfer scoring</p>
+            <p className="font-semibold text-forground text-sm">Risk Analysis</p>
+            <p className="text-gray-400 text-xs">Real-time transfer scoring</p>
           </div>
           <m.div
             key={index}
@@ -120,7 +120,7 @@ export default function AnimationRiskScoring({ className }: { className?: string
             )}
           >
             <Icon className={cn("size-3.5", s.colour)} strokeWidth={2} />
-            <span className={cn("font-semibold text-[11px]", s.colour)}>{s.level}</span>
+            <span className={cn("font-semibold text-xxs", s.colour)}>{s.level}</span>
           </m.div>
         </div>
 
@@ -133,14 +133,14 @@ export default function AnimationRiskScoring({ className }: { className?: string
           className="mt-4 flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50 px-3 py-2.5"
         >
           <div className="flex-1">
-            <p className="font-bold font-mono text-[11px] text-gray-400">{s.txn}</p>
-            <p className="font-medium text-[12px] text-gray-700">{s.corridor}</p>
+            <p className="font-bold font-mono text-gray-400 text-xxs">{s.txn}</p>
+            <p className="font-medium text-gray-700 text-xs">{s.corridor}</p>
           </div>
           <div className="text-right">
             <p className="font-bold font-mono text-2xl text-gray-900">
               <AnimatedNumber value={s.score} />
             </p>
-            <p className="text-[10px] text-gray-400">/100</p>
+            <p className="text-2xs text-gray-400">/100</p>
           </div>
         </m.div>
 
@@ -166,10 +166,10 @@ export default function AnimationRiskScoring({ className }: { className?: string
               transition={{ duration: 0.25, delay: 0.1 + i * 0.08 }}
               className="flex items-center justify-between rounded-lg border border-gray-100 bg-white px-3 py-2"
             >
-              <span className="font-medium text-[11px] text-gray-600">{check.label}</span>
+              <span className="font-medium text-gray-600 text-xxs">{check.label}</span>
               <span
                 className={cn(
-                  "font-semibold text-[10px]",
+                  "font-semibold text-2xs",
                   check.ok ? "text-emerald-600" : "text-red-500",
                 )}
               >

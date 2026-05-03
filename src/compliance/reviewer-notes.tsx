@@ -37,7 +37,7 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
     <div
       data-slot="reviewer-notes"
       className={cn(
-        "rounded-[var(--radius-lg)] border border-border bg-card px-[18px] pb-1 shadow-[var(--shadow-card)]",
+        "rounded-lg border border-border bg-card px-[18px] pb-1 shadow-card",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
         >
           <div className="mb-1.5 flex items-center gap-2">
             <div
-              className="flex size-6 shrink-0 items-center justify-center rounded-full font-bold text-[11px]"
+              className="flex size-6 shrink-0 items-center justify-center rounded-full font-bold text-xxs"
               style={{
                 background: toneBg[n.avatarTone ?? "sky"],
                 color: toneFg[n.avatarTone ?? "sky"],
@@ -58,18 +58,18 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
               {n.who[0]}
             </div>
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <span className="truncate font-semibold text-[13px]">{n.who}</span>
+              <span className="truncate font-semibold text-sm-plus">{n.who}</span>
               <span className="hidden truncate text-muted-foreground text-xs sm:inline">
                 · {n.role}
               </span>
             </div>
             <span className="shrink-0 whitespace-nowrap text-muted-foreground text-xs">{n.at}</span>
           </div>
-          <div className="text-[13px] leading-relaxed">{n.body}</div>
+          <div className="text-sm-plus leading-relaxed">{n.body}</div>
         </div>
       ))}
 
-      <div className="my-3.5 rounded-[var(--radius-md)] border border-border bg-card p-2.5">
+      <div className="my-3.5 rounded-md border border-border bg-card p-2.5">
         <textarea
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
@@ -78,10 +78,10 @@ function ReviewerNotes({ notes, onSubmit, className, ...props }: ReviewerNotesPr
           }}
           placeholder="Add a reviewer note…"
           aria-label="Reviewer note"
-          className="min-h-[54px] w-full resize-y rounded-[var(--radius-sm)] border-none bg-transparent text-[13px] leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="min-h-[54px] w-full resize-y rounded-sm border-none bg-transparent text-sm-plus leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
         <div className="mt-1.5 flex items-center justify-between">
-          <span className="text-[11px] text-muted-foreground">⌘ + Enter to submit</span>
+          <span className="text-muted-foreground text-xxs">⌘ + Enter to submit</span>
           <Button size="sm" onClick={submit}>
             Add note
           </Button>

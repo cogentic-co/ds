@@ -99,7 +99,7 @@ const ITEMS: SopItem[] = [
 const statusStyle: Record<SopItem["status"], { dot: string; label: string; bg: string }> = {
   mapped: { dot: "bg-emerald-400", label: "Mapped", bg: "bg-emerald-50 text-emerald-700" },
   review: { dot: "bg-amber-400", label: "Review", bg: "bg-amber-50 text-amber-700" },
-  updated: { dot: "bg-[#00D4FF]", label: "Updated", bg: "bg-sky-50 text-sky-700" },
+  updated: { dot: "bg-cyan", label: "Updated", bg: "bg-sky-50 text-sky-700" },
 }
 
 export default function AnimationSopMapping({ className }: { className?: string }) {
@@ -126,13 +126,10 @@ export default function AnimationSopMapping({ className }: { className?: string 
             >
               {/* Header */}
               <div className="flex items-center gap-2 border-gray-100 border-b px-4 py-3">
-                <span className="font-bold font-mono text-[11px] text-gray-400">{item.code}</span>
-                <span className="text-[10px] text-gray-300">{item.version}</span>
+                <span className="font-bold font-mono text-gray-400 text-xxs">{item.code}</span>
+                <span className="text-2xs text-gray-300">{item.version}</span>
                 <span
-                  className={cn(
-                    "ml-auto rounded-full px-2 py-0.5 font-semibold text-[10px]",
-                    st.bg,
-                  )}
+                  className={cn("ml-auto rounded-full px-2 py-0.5 font-semibold text-2xs", st.bg)}
                 >
                   {st.label}
                 </span>
@@ -141,19 +138,19 @@ export default function AnimationSopMapping({ className }: { className?: string 
               {/* Body */}
               <div className="flex flex-col gap-2.5 px-4 py-3">
                 <div>
-                  <p className="font-semibold text-[13px] text-gray-900 leading-snug">
+                  <p className="font-semibold text-gray-900 text-sm-plus leading-snug">
                     {item.regulation}
                   </p>
                   <div className="mt-1 flex items-center gap-1.5">
                     <span className="text-sm">{item.flag}</span>
-                    <span className="text-[11px] text-gray-500">{item.jurisdiction}</span>
+                    <span className="text-gray-500 text-xxs">{item.jurisdiction}</span>
                   </div>
                 </div>
 
                 {/* Progress bar */}
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-[10px] text-gray-500">{item.coverage}</span>
+                    <span className="font-medium text-2xs text-gray-500">{item.coverage}</span>
                   </div>
                   <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-gray-100">
                     <div
@@ -162,7 +159,7 @@ export default function AnimationSopMapping({ className }: { className?: string 
                         item.status === "mapped"
                           ? "bg-emerald-400"
                           : item.status === "updated"
-                            ? "bg-[#00D4FF]"
+                            ? "bg-cyan"
                             : "bg-amber-400",
                       )}
                       style={{
@@ -177,7 +174,7 @@ export default function AnimationSopMapping({ className }: { className?: string 
                   </div>
                 </div>
 
-                <p className="text-[10px] text-gray-400">{item.lastReview}</p>
+                <p className="text-2xs text-gray-400">{item.lastReview}</p>
               </div>
             </div>
           )

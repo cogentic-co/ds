@@ -115,7 +115,7 @@ function ColorTokenEditor({
         <div className="flex items-center gap-2">
           <code className="font-medium font-mono text-xs">{label}</code>
           {overrides[tokenKey] && (
-            <span className="rounded-full bg-blue-500/15 px-1.5 py-0.5 font-medium text-[10px] text-blue-700 dark:text-blue-400">
+            <span className="rounded-full bg-blue-500/15 px-1.5 py-0.5 font-medium text-2xs text-blue-700 dark:text-blue-400">
               modified
             </span>
           )}

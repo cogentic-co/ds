@@ -86,7 +86,7 @@ export function PropsTable({ slug }: { slug: string }) {
                       <TableCell className="font-mono text-xs">
                         {prop.name}
                         {prop.required && (
-                          <Badge variant="outline" className="ml-2 text-[10px]">
+                          <Badge variant="outline" className="ml-2 text-2xs">
                             required
                           </Badge>
                         )}

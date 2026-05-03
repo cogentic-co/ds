@@ -84,7 +84,7 @@ export default function WorkflowNodeCardPreview() {
           footer={
             <div className="flex w-full items-center justify-between text-xs">
               <span className="font-mono font-semibold">$48,000</span>
-              <Badge variant="secondary" className="text-[10px]">
+              <Badge variant="secondary" className="text-2xs">
                 Stage 3 of 5
               </Badge>
             </div>

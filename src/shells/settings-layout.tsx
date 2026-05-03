@@ -45,7 +45,7 @@ function SettingsLayout({
           {nav.map((group, gi) => (
             <div key={group.title ?? `group-${gi}`} className="flex flex-col gap-1">
               {group.title && (
-                <span className="px-2 font-medium text-[11px] text-muted-foreground uppercase tracking-wide">
+                <span className="px-2 font-medium text-muted-foreground text-xxs uppercase tracking-wide">
                   {group.title}
                 </span>
               )}

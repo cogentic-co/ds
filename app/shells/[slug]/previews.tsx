@@ -116,7 +116,7 @@ function AppShell2Preview() {
     <iframe
       src="/preview-live/app-shell-2"
       title="App Shell 2 live preview"
-      className="h-[700px] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border"
+      className="h-[700px] w-full overflow-hidden rounded-lg border border-border"
     />
   )
 }

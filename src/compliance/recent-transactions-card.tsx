@@ -44,7 +44,7 @@ function RecentTransactionsCard({
     <div
       data-slot="recent-transactions-card"
       className={cn(
-        "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        "overflow-hidden rounded-lg border border-border bg-card shadow-card",
         className,
       )}
       {...props}
@@ -52,7 +52,7 @@ function RecentTransactionsCard({
       <div className="flex items-center justify-between border-border-light border-b px-[18px] py-3.5">
         <div>
           <div className="font-semibold text-sm">{title}</div>
-          {subtitle && <div className="mt-0.5 text-[13px] text-muted-foreground">{subtitle}</div>}
+          {subtitle && <div className="mt-0.5 text-muted-foreground text-sm-plus">{subtitle}</div>}
         </div>
         {onViewAll && (
           <button
@@ -95,7 +95,7 @@ function RecentTransactionsCard({
               {DIR_ICON[tx.dir]}
             </span>
             <div className="min-w-0">
-              <div className="flex min-w-0 items-center gap-1.5 font-medium text-[13px]">
+              <div className="flex min-w-0 items-center gap-1.5 font-medium text-sm-plus">
                 <span className="min-w-0 max-w-[88px] truncate sm:max-w-[140px]">
                   {tx.from.lbl}
                 </span>
@@ -109,9 +109,9 @@ function RecentTransactionsCard({
                   {tx.to.lbl}
                 </span>
               </div>
-              <div className="mt-px font-mono text-[11px] text-muted-foreground">{tx.time}</div>
+              <div className="mt-px font-mono text-muted-foreground text-xxs">{tx.time}</div>
             </div>
-            <div className="font-mono font-semibold text-[13px] tabular-nums">
+            <div className="font-mono font-semibold text-sm-plus tabular-nums">
               {sign}
               {tx.usd}
             </div>

@@ -72,9 +72,9 @@ export default function AnimationSecureMessaging({ className }: { className?: st
       <div ref={timerRef} className={cn("flex flex-col", className)}>
         {/* Header */}
         <div className="flex items-center gap-2 border-gray-100 border-b bg-gray-50/80 px-4 py-2">
-          <Lock className="size-3 text-[#00D4FF]" />
-          <span className="font-semibold text-[11px] text-gray-700">Encrypted Channel</span>
-          <span className="ml-auto flex items-center gap-1 text-[10px] text-emerald-600">
+          <Lock className="size-3 text-cyan" />
+          <span className="font-semibold text-gray-700 text-xxs">Encrypted Channel</span>
+          <span className="ml-auto flex items-center gap-1 text-2xs text-emerald-600">
             <ShieldCheck className="size-3" />
             TLS 1.3
           </span>
@@ -93,18 +93,18 @@ export default function AnimationSecureMessaging({ className }: { className?: st
                 transition={{ duration: 0.35 }}
                 className={cn(
                   "max-w-[85%] rounded-lg border bg-white p-3",
-                  msg.direction === "sent" ? "ml-auto border-[#00D4FF]/20" : "border-gray-100",
+                  msg.direction === "sent" ? "ml-auto border-cyan/20" : "border-gray-100",
                 )}
               >
                 <div className="flex items-center gap-1.5">
-                  <Lock className="size-2.5 text-[#00D4FF]" />
-                  <span className="font-semibold text-[10px] text-gray-600">{msg.label}</span>
+                  <Lock className="size-2.5 text-cyan" />
+                  <span className="font-semibold text-2xs text-gray-600">{msg.label}</span>
                 </div>
                 <div className="mt-2 space-y-1">
                   {msg.fields.map((f) => (
                     <div key={f.key} className="flex items-center justify-between">
-                      <span className="text-[10px] text-gray-400">{f.key}</span>
-                      <span className="font-medium font-mono text-[10px] text-gray-700">
+                      <span className="text-2xs text-gray-400">{f.key}</span>
+                      <span className="font-medium font-mono text-2xs text-gray-700">
                         {f.value}
                       </span>
                     </div>
@@ -117,7 +117,7 @@ export default function AnimationSecureMessaging({ className }: { className?: st
 
         {/* Footer */}
         <div className="border-gray-100 border-t bg-gray-50/60 px-4 py-2">
-          <p className="text-center text-[9px] text-gray-400">
+          <p className="text-center text-3xs text-gray-400">
             AES-256 at rest {"\u2022"} TLS 1.3 in transit {"\u2022"} End-to-end encrypted
           </p>
         </div>

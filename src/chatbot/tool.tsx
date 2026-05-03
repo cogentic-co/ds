@@ -16,7 +16,7 @@ const ToolContext = createContext<ToolContextValue | null>(null)
 type ToolStatus = "pending" | "running" | "success" | "error"
 
 const statusBadgeVariants = cva(
-  "inline-flex items-center rounded-full px-2 py-0.5 font-medium text-[10px] uppercase tracking-wider",
+  "inline-flex items-center rounded-full px-2 py-0.5 font-medium text-2xs uppercase tracking-wider",
   {
     variants: {
       status: {
@@ -128,9 +128,7 @@ function ToolContent({ className, ...props }: ComponentProps<"div">) {
 function ToolInput({ className, ...props }: ComponentProps<"div">) {
   return (
     <div data-slot="tool-input" className={cn("space-y-1 px-4 py-3", className)} {...props}>
-      <p className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
-        Input
-      </p>
+      <p className="font-medium text-2xs text-muted-foreground uppercase tracking-wider">Input</p>
       <pre className="overflow-x-auto rounded-lg bg-muted p-3 font-mono text-xs">
         {props.children}
       </pre>
@@ -145,9 +143,7 @@ function ToolOutput({ className, ...props }: ComponentProps<"div">) {
       className={cn("space-y-1 border-border border-t px-4 py-3", className)}
       {...props}
     >
-      <p className="font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
-        Output
-      </p>
+      <p className="font-medium text-2xs text-muted-foreground uppercase tracking-wider">Output</p>
       <pre className="overflow-x-auto rounded-lg bg-muted p-3 font-mono text-xs">
         {props.children}
       </pre>

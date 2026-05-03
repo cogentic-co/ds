@@ -109,7 +109,7 @@ function WorkflowBlockPalette({
           )}
           {grouped.map((group) => (
             <div key={group.category} className="flex flex-col gap-1">
-              <div className="px-2 pb-1 font-medium text-[11px] text-muted-foreground uppercase tracking-wide">
+              <div className="px-2 pb-1 font-medium text-muted-foreground text-xxs uppercase tracking-wide">
                 {group.category}
               </div>
               {group.items.map((block) => (

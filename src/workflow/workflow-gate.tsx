@@ -110,7 +110,7 @@ function BranchLabel({
     <span
       className={cn(
         "absolute top-1/2 -translate-y-1/2 whitespace-nowrap",
-        "rounded-md border px-2.5 py-1 font-semibold text-[11px]",
+        "rounded-md border px-2.5 py-1 font-semibold text-xxs",
         branchLabelColor[type] ?? branchLabelColor["if-else"],
         side === "left" ? "right-full mr-4" : "left-full ml-4",
       )}
@@ -173,7 +173,7 @@ function WorkflowGate({
           {icon && <span className={cn("[&>svg]:size-5", iconColor[gateType])}>{icon}</span>}
           {label && !icon && (
             <span
-              className={cn("font-bold text-[9px] uppercase tracking-wider", iconColor[gateType])}
+              className={cn("font-bold text-3xs uppercase tracking-wider", iconColor[gateType])}
             >
               {label}
             </span>

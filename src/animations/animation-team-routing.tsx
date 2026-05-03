@@ -68,19 +68,19 @@ export default function AnimationTeamRouting({ className }: { className?: string
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Team Routing</p>
-            <p className="text-[12px] text-gray-400">Automatic assignment</p>
+            <p className="font-semibold text-foreground text-sm">Team Routing</p>
+            <p className="text-gray-400 text-xs">Automatic assignment</p>
           </div>
           <div className="flex -space-x-1.5">
             {["SC", "MW", "LW"].map((init) => (
               <div
                 key={init}
-                className="flex size-6 items-center justify-center rounded-full border-2 border-white bg-gray-100 font-bold text-[9px] text-gray-500"
+                className="flex size-6 items-center justify-center rounded-full border-2 border-white bg-gray-100 font-bold text-3xs text-gray-500"
               >
                 {init}
               </div>
             ))}
-            <div className="flex size-6 items-center justify-center rounded-full border-2 border-white bg-gray-100 font-bold text-[9px] text-gray-400">
+            <div className="flex size-6 items-center justify-center rounded-full border-2 border-white bg-gray-100 font-bold text-3xs text-gray-400">
               +4
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function AnimationTeamRouting({ className }: { className?: string
                 {/* Avatar */}
                 <div
                   className={cn(
-                    "flex size-8 shrink-0 items-center justify-center rounded-full font-bold text-[11px]",
+                    "flex size-8 shrink-0 items-center justify-center rounded-full font-bold text-xxs",
                     t.assignee.colour,
                   )}
                 >
@@ -115,16 +115,16 @@ export default function AnimationTeamRouting({ className }: { className?: string
                 {/* Info */}
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-bold font-mono text-[11px] text-gray-400">{t.txn}</span>
-                    <span className="text-[11px] text-gray-400">{t.corridor}</span>
+                    <span className="font-bold font-mono text-gray-400 text-xxs">{t.txn}</span>
+                    <span className="text-gray-400 text-xxs">{t.corridor}</span>
                   </div>
-                  <p className="truncate text-[11px] text-gray-500">{t.reason}</p>
+                  <p className="truncate text-gray-500 text-xxs">{t.reason}</p>
                 </div>
 
                 {/* Risk badge */}
                 <span
                   className={cn(
-                    "shrink-0 rounded-full px-2 py-0.5 font-semibold text-[10px]",
+                    "shrink-0 rounded-full px-2 py-0.5 font-semibold text-2xs",
                     riskColour[t.risk],
                   )}
                 >

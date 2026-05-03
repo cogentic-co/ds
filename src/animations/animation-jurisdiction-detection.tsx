@@ -50,15 +50,15 @@ export default function AnimationJurisdictionDetection({ className }: { classNam
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Jurisdiction Detection</p>
-            <p className="text-[12px] text-gray-400">Automatic corridor mapping</p>
+            <p className="font-semibold text-foreground text-sm">Jurisdiction Detection</p>
+            <p className="text-gray-400 text-xs">Automatic corridor mapping</p>
           </div>
           <m.span
             key={index}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className={cn(
-              "rounded-full px-2.5 py-1 font-semibold text-[11px]",
+              "rounded-full px-2.5 py-1 font-semibold text-xxs",
               c.status === "Resolved"
                 ? "bg-emerald-50 text-emerald-700"
                 : "bg-amber-50 text-amber-700",
@@ -79,22 +79,22 @@ export default function AnimationJurisdictionDetection({ className }: { classNam
           {/* From */}
           <div className="text-center">
             <span className="text-2xl">{c.from.flag}</span>
-            <p className="mt-1 font-bold font-mono text-[12px] text-gray-900">{c.from.code}</p>
-            <p className="text-[10px] text-gray-400">{c.from.jurisdiction}</p>
+            <p className="mt-1 font-bold font-mono text-gray-900 text-xs">{c.from.code}</p>
+            <p className="text-2xs text-gray-400">{c.from.jurisdiction}</p>
           </div>
 
           {/* Arrow */}
           <div className="mx-3 flex flex-1 flex-col items-center gap-1">
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#00D4FF] to-transparent" />
-            <span className="font-medium text-[#0099BB] text-[10px]">Travel Rule</span>
+            <span className="font-medium text-2xs text-cyan-dark">Travel Rule</span>
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#00D4FF] to-transparent" />
           </div>
 
           {/* To */}
           <div className="text-center">
             <span className="text-2xl">{c.to.flag}</span>
-            <p className="mt-1 font-bold font-mono text-[12px] text-gray-900">{c.to.code}</p>
-            <p className="text-[10px] text-gray-400">{c.to.jurisdiction}</p>
+            <p className="mt-1 font-bold font-mono text-gray-900 text-xs">{c.to.code}</p>
+            <p className="text-2xs text-gray-400">{c.to.jurisdiction}</p>
           </div>
         </m.div>
 
@@ -107,12 +107,12 @@ export default function AnimationJurisdictionDetection({ className }: { classNam
           className="mt-3 grid grid-cols-2 gap-2"
         >
           <div className="rounded-lg border border-gray-100 bg-white px-3 py-2.5">
-            <span className="font-medium text-[10px] text-gray-400">Requirement</span>
-            <p className="mt-0.5 font-semibold text-[12px] text-gray-800">{c.requirement}</p>
+            <span className="font-medium text-2xs text-gray-400">Requirement</span>
+            <p className="mt-0.5 font-semibold text-gray-800 text-xs">{c.requirement}</p>
           </div>
           <div className="rounded-lg border border-gray-100 bg-white px-3 py-2.5">
-            <span className="font-medium text-[10px] text-gray-400">Threshold</span>
-            <p className="mt-0.5 font-semibold text-[12px] text-gray-800">{c.threshold}</p>
+            <span className="font-medium text-2xs text-gray-400">Threshold</span>
+            <p className="mt-0.5 font-semibold text-gray-800 text-xs">{c.threshold}</p>
           </div>
         </m.div>
 
@@ -129,7 +129,7 @@ export default function AnimationJurisdictionDetection({ className }: { classNam
             `Beneficiary jurisdiction: ${c.to.jurisdiction}`,
             `Applicable requirement: ${c.requirement}`,
           ].map((line, i) => (
-            <p key={i} className="font-mono text-[10px] text-gray-500">
+            <p key={i} className="font-mono text-2xs text-gray-500">
               <span className="text-emerald-500">{"\u2713"}</span> {line}
             </p>
           ))}

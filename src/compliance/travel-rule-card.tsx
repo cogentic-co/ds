@@ -44,7 +44,7 @@ function TravelRuleCard({
   const card = (
     <div
       data-slot="travel-rule-card"
-      className={cn("rounded-[var(--radius-md)] border border-border bg-card p-4", className)}
+      className={cn("rounded-md border border-border bg-card p-4", className)}
       {...props}
     >
       <div className="mb-2 flex items-start justify-between gap-3">
@@ -53,11 +53,11 @@ function TravelRuleCard({
           <Clock /> {statusLabel[status]}
         </Badge>
       </div>
-      <div className="text-[13px] text-muted-foreground leading-relaxed">{body}</div>
+      <div className="text-muted-foreground text-sm-plus leading-relaxed">{body}</div>
       {payloadHref && (
         <a
           href={payloadHref}
-          className="mt-3 inline-flex items-center gap-1 font-medium text-[13px]"
+          className="mt-3 inline-flex items-center gap-1 font-medium text-sm-plus"
           style={{ color: "var(--focal)" }}
         >
           View FATF payload <ExternalLink className="size-3" />

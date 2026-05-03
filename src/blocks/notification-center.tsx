@@ -33,7 +33,7 @@ type NotificationCenterProps = ComponentProps<"div"> & {
 
 const SEVERITY_DOT: Record<NotificationSeverity, string> = {
   info: "bg-focal",
-  warning: "bg-[var(--highlight-ink)]",
+  warning: "bg-highlight-ink",
   critical: "bg-destructive",
 }
 
@@ -62,7 +62,7 @@ function NotificationCenter({
             <Button variant="ghost" size="icon-sm" className="relative">
               <Bell className="size-4" />
               {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-destructive font-bold text-[10px] text-destructive-foreground leading-none">
+                <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-destructive font-bold text-2xs text-destructive-foreground leading-none">
                   {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               )}
@@ -89,7 +89,7 @@ function NotificationCenter({
               <TabsTrigger value="unread">
                 Unread
                 {unreadCount > 0 && (
-                  <Badge square variant="secondary" className="ml-1.5 px-1 py-0 text-[9px]">
+                  <Badge square variant="secondary" className="ml-1.5 px-1 py-0 text-3xs">
                     {unreadCount}
                   </Badge>
                 )}
@@ -137,7 +137,7 @@ function NotificationCenter({
                           {n.description}
                         </span>
                       )}
-                      <span className="mt-1 block font-mono text-[10px] text-muted-foreground/70">
+                      <span className="mt-1 block font-mono text-2xs text-muted-foreground/70">
                         {timeAgo(n.timestamp)}
                       </span>
                     </span>

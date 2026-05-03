@@ -39,7 +39,7 @@ const lineColour: Record<ConsoleLine["type"], string> = {
   command: "text-white/90",
   output: "text-white/50",
   success: "text-emerald-400",
-  info: "text-[#00D4FF]/80",
+  info: "text-cyan/80",
 }
 
 export default function AnimationSandbox({ className }: { className?: string }) {
@@ -72,7 +72,7 @@ export default function AnimationSandbox({ className }: { className?: string }) 
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className={cn("flex flex-col bg-[#1a1a2e]", className)}>
+      <div className={cn("flex flex-col bg-terminal", className)}>
         {/* Terminal bar */}
         <div className="flex items-center gap-3 border-white/10 border-b px-4 py-2">
           <div className="flex gap-1.5">
@@ -80,9 +80,9 @@ export default function AnimationSandbox({ className }: { className?: string }) 
             <span className="size-2.5 rounded-full bg-amber-400/80" />
             <span className="size-2.5 rounded-full bg-emerald-400/80" />
           </div>
-          <span className="ml-2 font-mono text-[10px] text-white/40">cogentic-sandbox</span>
+          <span className="ml-2 font-mono text-2xs text-white/40">cogentic-sandbox</span>
           <div className="ml-auto flex items-center gap-2">
-            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 font-bold font-mono text-[9px] text-amber-300">
+            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 font-bold font-mono text-3xs text-amber-300">
               SANDBOX
             </span>
             <button
@@ -103,13 +103,13 @@ export default function AnimationSandbox({ className }: { className?: string }) 
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={cn("font-mono text-[11px] leading-relaxed", lineColour[line.type])}
+                className={cn("font-mono text-xxs leading-relaxed", lineColour[line.type])}
               >
                 {line.text || "\u00A0"}
               </m.p>
             ))}
             {visibleLines < SCRIPT.length && (
-              <p className="animate-pulse font-mono text-[11px] text-white/30">{"\u2588"}</p>
+              <p className="animate-pulse font-mono text-white/30 text-xxs">{"\u2588"}</p>
             )}
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function AnimationSandbox({ className }: { className?: string }) 
         {/* Footer */}
         <div className="flex items-center gap-2 border-white/10 border-t px-4 py-1.5">
           <Play className="size-3 text-emerald-400" />
-          <span className="font-mono text-[9px] text-white/30">
+          <span className="font-mono text-3xs text-white/30">
             Sandbox {"\u2022"} No production data {"\u2022"} Realistic responses
           </span>
         </div>

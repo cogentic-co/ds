@@ -59,8 +59,8 @@ export default function AnimationComplianceReports({ className }: { className?: 
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold text-[15px] text-foreground">Compliance Reports</p>
-            <p className="text-[12px] text-gray-400">One-click generation</p>
+            <p className="font-semibold text-foreground text-sm">Compliance Reports</p>
+            <p className="text-gray-400 text-xs">One-click generation</p>
           </div>
           <FileText className="size-4 text-gray-400" />
         </div>
@@ -76,14 +76,14 @@ export default function AnimationComplianceReports({ className }: { className?: 
           <div className="flex items-center gap-3 border-gray-100 border-b px-4 py-3">
             <span className="text-lg">{r.flag}</span>
             <div className="flex-1">
-              <p className="font-semibold text-[13px] text-gray-900">{r.title}</p>
-              <p className="text-[10px] text-gray-400">
+              <p className="font-semibold text-gray-900 text-sm-plus">{r.title}</p>
+              <p className="text-2xs text-gray-400">
                 {r.ref} {"\u2022"} {r.period}
               </p>
             </div>
             <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5">
               <CheckCircle2 className="size-3 text-emerald-500" />
-              <span className="font-semibold text-[10px] text-emerald-700">{r.status}</span>
+              <span className="font-semibold text-2xs text-emerald-700">{r.status}</span>
             </div>
           </div>
 
@@ -97,8 +97,8 @@ export default function AnimationComplianceReports({ className }: { className?: 
                 transition={{ delay: 0.1 + i * 0.08 }}
                 className="rounded-md bg-white px-3 py-2"
               >
-                <p className="text-[10px] text-gray-400">{s.name}</p>
-                <p className="mt-0.5 font-bold font-mono text-[14px] text-gray-900">
+                <p className="text-2xs text-gray-400">{s.name}</p>
+                <p className="mt-0.5 font-bold font-mono text-gray-900 text-sm">
                   {typeof s.items === "number" && s.items > 100
                     ? s.items.toLocaleString()
                     : s.name.includes("compliance")
@@ -116,7 +116,7 @@ export default function AnimationComplianceReports({ className }: { className?: 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white py-2 font-medium text-[12px] text-gray-600"
+          className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white py-2 font-medium text-gray-600 text-xs"
         >
           <Download className="size-3.5" />
           Download PDF

@@ -59,7 +59,7 @@ function HeatmapChart({
   return (
     <div data-slot="heatmap-chart" className={cn("flex flex-col gap-3", className)} {...props}>
       {showLegend && (
-        <div className="flex items-center justify-end gap-2 text-[10px] text-muted-foreground">
+        <div className="flex items-center justify-end gap-2 text-2xs text-muted-foreground">
           <span>{legendLow}</span>
           <div className="flex gap-0.5">
             {["bg-muted/30", "bg-focal/10", "bg-focal/25", "bg-focal/50", "bg-focal/80"].map(
@@ -79,7 +79,7 @@ function HeatmapChart({
               {xLabels.map((x) => (
                 <th
                   key={x}
-                  className="px-0 pb-1 text-center font-mono font-normal text-[10px] text-muted-foreground"
+                  className="px-0 pb-1 text-center font-mono font-normal text-2xs text-muted-foreground"
                 >
                   {x}
                 </th>
@@ -89,7 +89,7 @@ function HeatmapChart({
           <tbody>
             {yLabels.map((y) => (
               <tr key={y}>
-                <td className="pr-2 text-right font-mono text-[10px] text-muted-foreground">{y}</td>
+                <td className="pr-2 text-right font-mono text-2xs text-muted-foreground">{y}</td>
                 {xLabels.map((x) => {
                   const val = lookup.get(`${y}|${x}`) ?? 0
                   return (

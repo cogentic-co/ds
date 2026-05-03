@@ -7,16 +7,19 @@ import { CHAIN_ICONS } from "./chain-icons"
 import type { ChainNetwork } from "./types"
 
 const networkBadgeVariants = cva(
-  "inline-flex items-center gap-1 border px-1.5 py-0.5 font-medium text-[11px] leading-tight",
+  "inline-flex items-center gap-1 border px-1.5 py-0.5 font-medium text-xxs leading-tight",
   {
     variants: {
       network: {
-        ethereum: "border-[#4B64C8]/40 bg-[#4B64C8]/10 text-[#3B50A8] dark:text-[#8DA0FF]",
-        bitcoin: "border-[#E8820A]/40 bg-[#E8820A]/10 text-[#C06C00] dark:text-[#F5A623]",
-        tron: "border-[#D4000F]/40 bg-[#D4000F]/10 text-[#B8000D] dark:text-[#FF4D5C]",
-        polygon: "border-[#7038C8]/40 bg-[#7038C8]/10 text-[#5B2DA8] dark:text-[#A674FF]",
-        solana: "border-[#8030E0]/40 bg-[#8030E0]/10 text-[#6A24BD] dark:text-[#B468FF]",
-        bnb: "border-[#C89A00]/40 bg-[#C89A00]/10 text-[#9E7A00] dark:text-[#F0C030]",
+        ethereum:
+          "border-chain-eth/40 bg-chain-eth/10 text-chain-eth-fg dark:text-chain-eth-fg-dark",
+        bitcoin:
+          "border-chain-btc/40 bg-chain-btc/10 text-chain-btc-fg dark:text-chain-btc-fg-dark",
+        tron: "border-chain-tron/40 bg-chain-tron/10 text-chain-tron-fg dark:text-chain-tron-fg-dark",
+        polygon:
+          "border-chain-poly/40 bg-chain-poly/10 text-chain-poly-fg dark:text-chain-poly-fg-dark",
+        solana: "border-chain-sol/40 bg-chain-sol/10 text-chain-sol-fg dark:text-chain-sol-fg-dark",
+        bnb: "border-chain-bnb/40 bg-chain-bnb/10 text-chain-bnb-fg dark:text-chain-bnb-fg-dark",
         unknown: "border-border bg-muted text-muted-foreground",
       },
     },

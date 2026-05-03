@@ -15,13 +15,13 @@ const badgeVariants = cva(
       // `size` and `shape` come first so explicit `variant` styles can win when
       // they need to (e.g. `tagline` overrides shape with `rounded-full`).
       size: {
-        sm: "h-4 px-1.5 text-[10px] [&>svg]:size-2.5!",
+        sm: "h-4 px-1.5 text-2xs [&>svg]:size-2.5!",
         default: "h-5 px-2 py-0.5 text-xs",
         lg: "h-6 px-2.5 py-1 text-sm [&>svg]:size-3.5!",
       },
       shape: {
         pill: "rounded-4xl",
-        square: "rounded-[6px]",
+        square: "rounded-xs",
       },
       variant: {
         default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",

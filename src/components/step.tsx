@@ -38,7 +38,7 @@ const stepIndicatorVariants = cva(
     variants: {
       size: { compact: "size-5", detailed: "size-7" },
       status: {
-        done: "border-[var(--mint-ink)] bg-[var(--mint-ink)] text-[var(--mint)]",
+        done: "border-mint-ink bg-mint-ink text-mint",
         active: "border-primary bg-primary text-primary-foreground",
         pending: "border-border bg-card text-muted-foreground",
         failed: "border-destructive bg-destructive text-destructive-foreground",

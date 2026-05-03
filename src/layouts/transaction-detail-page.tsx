@@ -41,10 +41,10 @@ import { cn } from "../lib/utils"
 
 const TIMELINE_DOT_BG: Record<string, string> = {
   neutral: "bg-muted-foreground border-muted-foreground",
-  sky: "bg-[var(--sky-ink)] border-[var(--sky-ink)]",
-  mint: "bg-[var(--mint-ink)] border-[var(--mint-ink)]",
-  blush: "bg-[var(--blush-ink)] border-[var(--blush-ink)]",
-  highlight: "bg-[var(--highlight-ink)] border-[var(--highlight-ink)]",
+  sky: "bg-sky-ink border-sky-ink",
+  mint: "bg-mint-ink border-mint-ink",
+  blush: "bg-blush-ink border-blush-ink",
+  highlight: "bg-highlight-ink border-highlight-ink",
 }
 
 const DIRECTION_ICON: Record<TxDirection, ReactNode> = {
@@ -124,7 +124,7 @@ function TransactionDetailPage({
         leadingIcon={
           <span
             className={cn(
-              "flex size-12 items-center justify-center rounded-[var(--radius-md)]",
+              "flex size-12 items-center justify-center rounded-md",
               DIRECTION_TONE_CLASSES[tx.dir],
             )}
           >
@@ -178,7 +178,7 @@ function TransactionDetailPage({
             <AlertTitle>
               {tx.flags.length} compliance flag{tx.flags.length > 1 ? "s" : ""}
             </AlertTitle>
-            <AlertDescription className="font-mono text-[11px] uppercase tracking-wide">
+            <AlertDescription className="font-mono text-xxs uppercase tracking-wide">
               {tx.flags.join(" · ").replace(/_/g, " ")}
             </AlertDescription>
           </Alert>
@@ -253,14 +253,14 @@ function TransactionDetailPage({
         <aside>
           {tx.timeline && tx.timeline.length > 0 && (
             <Section title="Timeline">
-              <div className="rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]">
+              <div className="rounded-lg border border-border bg-card p-4 shadow-card">
                 <Timeline className="pl-6">
                   {tx.timeline.map((e, i) => (
                     <TimelineItem key={`${e.time}-${e.title}-${i}`}>
                       <TimelineDot className={cn("size-2.5", TIMELINE_DOT_BG[e.variant])} />
                       <TimelineContent>
                         <TimelineTime className="font-mono">{e.time}</TimelineTime>
-                        <TimelineTitle className="text-[13px]">{e.title}</TimelineTitle>
+                        <TimelineTitle className="text-sm-plus">{e.title}</TimelineTitle>
                         <p className="mt-0.5 text-muted-foreground text-xs">{e.by}</p>
                       </TimelineContent>
                     </TimelineItem>

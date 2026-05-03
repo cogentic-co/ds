@@ -251,7 +251,7 @@ const NETWORK_COLOR: Record<Tx["net"], string> = {
 
 function NetCell({ net }: { net: Tx["net"] }) {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-[4px] border border-border bg-card px-1.5 py-0.5 font-mono font-semibold text-[10px] text-muted-foreground tracking-[0.06em]">
+    <span className="inline-flex items-center gap-1.5 rounded-2xs border border-border bg-card px-1.5 py-0.5 font-mono font-semibold text-2xs text-muted-foreground tracking-wider">
       <span className="size-1.5 rounded-full" style={{ background: NETWORK_COLOR[net] }} />
       {net}
     </span>
@@ -266,7 +266,7 @@ function RiskCell({ score }: { score: number }) {
       className="inline-flex items-center gap-1.5 font-mono font-semibold text-xs"
       style={{ color }}
     >
-      <span className="relative inline-block h-1 w-4 overflow-hidden rounded-[2px] bg-muted">
+      <span className="relative inline-block h-1 w-4 overflow-hidden rounded-3xs bg-muted">
         <span className="absolute inset-0" style={{ width: `${score}%`, background: color }} />
       </span>
       {score}
@@ -301,19 +301,19 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
       const tx = row.original
       return (
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5 font-medium text-[13px]">
+          <div className="flex items-center gap-1.5 font-medium text-sm-plus">
             <span className="truncate">{tx.from.lbl}</span>
             <ArrowRight className="size-3 shrink-0 text-muted-foreground" />
             <span className={cn("truncate", tx.risk >= 75 && "font-semibold text-destructive")}>
               {tx.to.lbl}
             </span>
           </div>
-          <div className="mt-0.5 flex gap-2 font-mono text-[11px] text-muted-foreground">
+          <div className="mt-0.5 flex gap-2 font-mono text-muted-foreground text-xxs">
             <span>{tx.from.addr}</span>
             <span className="text-border">·</span>
             <span>{tx.time}</span>
             {tx.flags.length > 0 && (
-              <span className="font-semibold text-[var(--highlight-ink)]">
+              <span className="font-semibold text-highlight-ink">
                 {tx.flags.length} flag{tx.flags.length > 1 ? "s" : ""}
               </span>
             )}
@@ -332,17 +332,17 @@ const txColumns: ColumnDef<Tx, unknown>[] = [
       const sign = tx.dir === "inbound" ? "+" : tx.dir === "outbound" ? "−" : ""
       const color =
         tx.dir === "inbound"
-          ? "text-[var(--success)]"
+          ? "text-success"
           : tx.dir === "outbound"
             ? "text-foreground"
             : "text-muted-foreground"
       return (
         <div className="text-right">
-          <div className={cn("font-mono font-semibold text-[13px]", color)}>
+          <div className={cn("font-mono font-semibold text-sm-plus", color)}>
             {sign}
             {tx.amt} <span className="font-medium text-muted-foreground">{tx.asset}</span>
           </div>
-          <div className="mt-px font-mono text-[11px] text-muted-foreground">{tx.usd}</div>
+          <div className="mt-px font-mono text-muted-foreground text-xxs">{tx.usd}</div>
         </div>
       )
     },

@@ -204,7 +204,7 @@ function ModelSelectorGroup({
   return (
     <div data-slot="model-selector-group" className={cn("py-1", className)} {...props}>
       {label && (
-        <p className="px-2 py-1.5 font-medium text-[10px] text-muted-foreground uppercase tracking-wider">
+        <p className="px-2 py-1.5 font-medium text-2xs text-muted-foreground uppercase tracking-wider">
           {label}
         </p>
       )}

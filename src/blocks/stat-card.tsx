@@ -13,7 +13,7 @@ type StatCardProps = Omit<React.ComponentProps<"div">, "children"> & {
 }
 
 const TREND_COLOR: Record<NonNullable<StatCardProps["trendDirection"]>, string> = {
-  up: "text-[var(--success)]",
+  up: "text-success",
   down: "text-destructive",
   neutral: "text-muted-foreground",
 }
@@ -31,14 +31,11 @@ function StatCard({
   return (
     <div
       data-slot="stat-card"
-      className={cn(
-        "rounded-[var(--radius-md)] border border-border bg-card p-4 shadow-[var(--shadow-card)]",
-        className,
-      )}
+      className={cn("rounded-md border border-border bg-card p-4 shadow-card", className)}
       {...props}
     >
       <div className="flex items-center justify-between">
-        <span className="font-mono font-semibold text-[11px] text-muted-foreground uppercase tracking-[0.08em]">
+        <span className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-uppercase">
           {label}
         </span>
         {icon && <span className="text-muted-foreground [&>svg]:size-4">{icon}</span>}

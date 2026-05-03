@@ -66,7 +66,7 @@ function AppShell2Sidebar({
       {/* Brand */}
       <div className="mb-2.5 flex items-center gap-2.5 border-border border-b border-dashed px-2 pt-1 pb-3.5">
         <div
-          className="flex size-7 items-center justify-center rounded-[var(--radius-md)] font-bold text-[13px] text-primary-foreground tracking-tight"
+          className="flex size-7 items-center justify-center rounded-md font-bold text-primary-foreground text-sm-plus tracking-tight"
           style={{
             background:
               "linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--primary) 60%, var(--focal)))",
@@ -76,15 +76,13 @@ function AppShell2Sidebar({
           {brand.initial}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="truncate font-semibold text-[13px] tracking-tight">{brand.title}</div>
-          {brand.subtitle && (
-            <div className="text-[11px] text-muted-foreground">{brand.subtitle}</div>
-          )}
+          <div className="truncate font-semibold text-sm-plus tracking-tight">{brand.title}</div>
+          {brand.subtitle && <div className="text-muted-foreground text-xxs">{brand.subtitle}</div>}
         </div>
         {brand.env && (
           <span
             className={cn(
-              "rounded-[4px] px-1.5 py-0.5 font-mono font-semibold text-[10px]",
+              "rounded-2xs px-1.5 py-0.5 font-mono font-semibold text-2xs",
               TONE_CLASSES[envTone],
             )}
           >
@@ -106,10 +104,10 @@ function AppShell2Sidebar({
       </div>
 
       {/* User footer card */}
-      <div className="mt-2 flex items-center gap-2.5 rounded-[var(--radius-md)] border border-border bg-card p-2.5 shadow-[var(--shadow-card)]">
+      <div className="mt-2 flex items-center gap-2.5 rounded-md border border-border bg-card p-2.5 shadow-card">
         <div
           className={cn(
-            "flex size-7 shrink-0 items-center justify-center rounded-full font-bold text-[11px]",
+            "flex size-7 shrink-0 items-center justify-center rounded-full font-bold text-xxs",
             TONE_CLASSES[avatarTone],
           )}
           aria-hidden
@@ -118,7 +116,7 @@ function AppShell2Sidebar({
         </div>
         <div className="min-w-0 flex-1">
           <div className="truncate font-semibold text-xs">{user.name}</div>
-          <div className="truncate text-[11px] text-muted-foreground">{user.role}</div>
+          <div className="truncate text-muted-foreground text-xxs">{user.role}</div>
         </div>
         <button
           type="button"
@@ -126,7 +124,7 @@ function AppShell2Sidebar({
           className="rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Settings"
         >
-          <Settings className="size-[14px]" />
+          <Settings className="size-3.5" />
         </button>
       </div>
     </aside>
@@ -145,7 +143,7 @@ function AppShell2NavGroup({
   return (
     <div className="flex flex-col gap-0.5 pb-2.5">
       {section.label && (
-        <div className="px-2.5 pt-2 pb-1 font-mono font-semibold text-[10px] text-muted-foreground uppercase tracking-[0.1em]">
+        <div className="px-2.5 pt-2 pb-1 font-mono font-semibold text-2xs text-muted-foreground uppercase tracking-widest">
           {section.label}
         </div>
       )}
@@ -177,7 +175,7 @@ function AppShell2NavItem({
       onClick={() => onNavigate?.(item.key, item.href)}
       data-active={isActive || undefined}
       className={cn(
-        "relative flex w-full items-center gap-2.5 rounded-[8px] px-2.5 py-[7px] text-left text-[13px] transition-colors",
+        "relative flex w-full items-center gap-2.5 rounded-sm px-2.5 py-[7px] text-left text-sm-plus transition-colors",
         isActive
           ? "bg-card font-semibold text-foreground shadow-[inset_0_0_0_1px_var(--border),_var(--shadow-card)]"
           : "font-medium text-muted-foreground hover:bg-[color-mix(in_oklab,var(--muted)_70%,transparent)]",
@@ -185,17 +183,17 @@ function AppShell2NavItem({
     >
       {isActive && (
         <span
-          className="absolute top-1/2 left-[-12px] h-4 w-[3px] -translate-y-1/2 rounded-[2px]"
+          className="absolute top-1/2 left-[-12px] h-4 w-[3px] -translate-y-1/2 rounded-3xs"
           style={{ background: "var(--highlight-ink)" }}
           aria-hidden
         />
       )}
-      <Icon className={cn("size-[15px] shrink-0", isActive ? "text-[var(--highlight-ink)]" : "")} />
+      <Icon className={cn("size-[15px] shrink-0", isActive ? "text-highlight-ink" : "")} />
       <span className="flex-1 truncate">{item.label}</span>
       {item.count != null && (
         <span
           className={cn(
-            "rounded-full px-1.5 py-[1px] font-mono font-semibold text-[10px]",
+            "rounded-full px-1.5 py-[1px] font-mono font-semibold text-2xs",
             isActive
               ? "bg-highlight text-highlight-ink"
               : "bg-[color-mix(in_oklab,var(--muted)_80%,transparent)] text-muted-foreground shadow-[inset_0_0_0_1px_var(--border-light)]",
@@ -251,11 +249,11 @@ function AppShell2Header({
           value={searchValue}
           onChange={(e) => onSearchChange?.(e.target.value)}
           placeholder={searchPlaceholder}
-          className="h-9 w-80 rounded-[var(--radius-md)] border border-border bg-card pr-3 pl-8 text-sm outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/25"
+          className="h-9 w-80 rounded-md border border-border bg-card pr-3 pl-8 text-sm outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/25"
         />
       </div>
       {kbdHint && (
-        <span className="inline-flex h-9 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-card px-2.5 font-mono font-semibold text-[11px] text-muted-foreground">
+        <span className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-card px-2.5 font-mono font-semibold text-muted-foreground text-xxs">
           {kbdHint}
         </span>
       )}
@@ -263,7 +261,7 @@ function AppShell2Header({
         type="button"
         onClick={onBell}
         aria-label="Notifications"
-        className="relative inline-flex size-9 items-center justify-center rounded-[var(--radius-md)] border border-border bg-card text-foreground"
+        className="relative inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-foreground"
       >
         <Bell className="size-[15px]" />
         {hasNotifications && (

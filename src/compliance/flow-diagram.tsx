@@ -13,13 +13,10 @@ function PartyCard({ party, side, className, ...props }: PartyCardProps) {
   return (
     <div
       data-slot="party-card"
-      className={cn(
-        "flex-1 rounded-[var(--radius-lg)] border border-border bg-card p-4 shadow-[var(--shadow-card)]",
-        className,
-      )}
+      className={cn("flex-1 rounded-lg border border-border bg-card p-4 shadow-card", className)}
       {...props}
     >
-      <div className="font-medium text-[11px] text-muted-foreground uppercase tracking-wider">
+      <div className="font-medium text-muted-foreground text-xxs uppercase tracking-wider">
         {side}
       </div>
       <div className="mt-2 mb-2.5 flex items-center gap-2.5">
@@ -75,7 +72,7 @@ function FlowDiagram({ from, to, network, fee, className, ...props }: FlowDiagra
     >
       <PartyCard party={from} side="From" />
       <div className="flex flex-col items-center gap-1.5 px-1">
-        <div className="font-medium text-[11px] text-muted-foreground uppercase tracking-wider">
+        <div className="font-medium text-muted-foreground text-xxs uppercase tracking-wider">
           via
         </div>
         <span className="rounded-full border border-border bg-card px-2 py-0.5 font-mono font-semibold text-xs">
@@ -92,7 +89,7 @@ function FlowDiagram({ from, to, network, fee, className, ...props }: FlowDiagra
           <path d="M0 10 H72" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
           <path d="M64 4 L76 10 L64 16" stroke="currentColor" strokeWidth="1" fill="none" />
         </svg>
-        {fee && <div className="font-mono text-[11px] text-muted-foreground">fee {fee}</div>}
+        {fee && <div className="font-mono text-muted-foreground text-xxs">fee {fee}</div>}
       </div>
       <PartyCard party={to} side="To" />
     </div>

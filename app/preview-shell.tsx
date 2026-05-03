@@ -361,7 +361,7 @@ function buildBadge(slug: string) {
   if (!status || status === "stable") return undefined
   return (
     <span
-      className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-[10px] leading-none ${statusConfig[status].color}`}
+      className={`inline-flex items-center rounded-full px-1.5 py-0.5 font-medium text-2xs leading-none ${statusConfig[status].color}`}
     >
       {statusConfig[status].label}
     </span>

@@ -89,9 +89,8 @@ type TransactionDetailProps = Omit<ComponentProps<"div">, "children" | "onClick"
 
 const VARIANT_CLASSES: Record<TransactionDetailVariant, string> = {
   inline: "",
-  card: "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
-  panel:
-    "overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-lifted)]",
+  card: "overflow-hidden rounded-lg border border-border bg-card shadow-card",
+  panel: "overflow-hidden rounded-lg border border-border bg-card shadow-lifted",
 }
 
 function DetailRow({
@@ -110,7 +109,7 @@ function DetailRow({
         !first && "border-border-light border-t",
       )}
     >
-      <span className="shrink-0 text-[13px] text-muted-foreground">{label}</span>
+      <span className="shrink-0 text-muted-foreground text-sm-plus">{label}</span>
       <div className="min-w-0 text-right">{children}</div>
     </div>
   )
@@ -154,7 +153,7 @@ function TransactionDetail({
           <div className="flex items-start gap-3">
             <span
               className={cn(
-                "flex size-9 shrink-0 items-center justify-center rounded-[10px]",
+                "flex size-9 shrink-0 items-center justify-center rounded-md",
                 DIRECTION_TONE_CLASSES[tx.direction],
               )}
               aria-hidden
@@ -170,7 +169,7 @@ function TransactionDetail({
                 {tx.amount} <span className="text-muted-foreground">{tx.asset}</span>
               </div>
               {tx.fiatValue && (
-                <div className="mt-px font-mono text-[13px] text-muted-foreground tabular-nums">
+                <div className="mt-px font-mono text-muted-foreground text-sm-plus tabular-nums">
                   {tx.fiatValue}
                 </div>
               )}
@@ -187,7 +186,7 @@ function TransactionDetail({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="flex size-7 items-center justify-center rounded-[var(--radius-md)] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <X className="size-4" />
             </button>
@@ -220,7 +219,7 @@ function TransactionDetail({
             type="button"
             onClick={() => setTab(t)}
             className={cn(
-              "relative h-[38px] px-2.5 text-[13px] capitalize transition-colors",
+              "relative h-[38px] px-2.5 text-sm-plus capitalize transition-colors",
               tab === t
                 ? "font-semibold text-foreground after:absolute after:right-0 after:bottom-[-1px] after:left-0 after:h-[2px] after:bg-foreground"
                 : "font-medium text-muted-foreground",
@@ -241,26 +240,26 @@ function TransactionDetail({
                 <AlertTitle>
                   {tx.flags.length} compliance flag{tx.flags.length > 1 ? "s" : ""}
                 </AlertTitle>
-                <AlertDescription className="font-mono text-[11px] uppercase tracking-wide">
+                <AlertDescription className="font-mono text-xxs uppercase tracking-wide">
                   {tx.flags.join(" · ").replace(/_/g, " ")}
                 </AlertDescription>
               </Alert>
             )}
             <div>
               <DetailRow label="From" first>
-                <div className="font-semibold text-[13px]">
+                <div className="font-semibold text-sm-plus">
                   {tx.from.label ?? tx.from.vasp ?? "—"}
                 </div>
                 <AddressDisplay
                   address={tx.from.address}
                   copyable={false}
-                  className="mt-0.5 justify-end text-[11px] text-muted-foreground"
+                  className="mt-0.5 justify-end text-muted-foreground text-xxs"
                 />
               </DetailRow>
               <DetailRow label="To">
                 <div
                   className={cn(
-                    "font-semibold text-[13px]",
+                    "font-semibold text-sm-plus",
                     (tx.riskScore ?? 0) >= 75 && "text-destructive",
                   )}
                 >
@@ -269,7 +268,7 @@ function TransactionDetail({
                 <AddressDisplay
                   address={tx.to.address}
                   copyable={false}
-                  className="mt-0.5 justify-end text-[11px] text-muted-foreground"
+                  className="mt-0.5 justify-end text-muted-foreground text-xxs"
                 />
               </DetailRow>
               <DetailRow label="Hash">
@@ -277,24 +276,24 @@ function TransactionDetail({
                   address={tx.hash}
                   chars={4}
                   copyable={false}
-                  className="justify-end text-[13px]"
+                  className="justify-end text-sm-plus"
                 />
               </DetailRow>
               {tx.blockNumber != null && (
                 <DetailRow label="Block">
-                  <span className="font-mono text-[13px] tabular-nums">
+                  <span className="font-mono text-sm-plus tabular-nums">
                     {tx.blockNumber.toLocaleString()}
                   </span>
                 </DetailRow>
               )}
               {tx.confirmations != null && (
                 <DetailRow label="Confirmations">
-                  <span className="font-mono text-[13px] tabular-nums">{tx.confirmations}</span>
+                  <span className="font-mono text-sm-plus tabular-nums">{tx.confirmations}</span>
                 </DetailRow>
               )}
               {tx.fee && (
                 <DetailRow label="Network fee">
-                  <span className="font-mono text-[13px] tabular-nums">{tx.fee}</span>
+                  <span className="font-mono text-sm-plus tabular-nums">{tx.fee}</span>
                 </DetailRow>
               )}
               {tx.travelRuleStatus && (
@@ -305,7 +304,7 @@ function TransactionDetail({
                 </DetailRow>
               )}
               <DetailRow label="Timestamp">
-                <span className="font-mono text-[13px] tabular-nums">{ts} UTC</span>
+                <span className="font-mono text-sm-plus tabular-nums">{ts} UTC</span>
               </DetailRow>
             </div>
             {explorerUrl && (
@@ -313,7 +312,7 @@ function TransactionDetail({
                 href={explorerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-medium text-[13px]"
+                className="inline-flex items-center gap-1 font-medium text-sm-plus"
                 style={{ color: "var(--focal)" }}
               >
                 View on block explorer <ExternalLink className="size-3" />

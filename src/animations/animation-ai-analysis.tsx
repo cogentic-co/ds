@@ -41,7 +41,7 @@ function renderHighlightedText(text: string) {
   const parts = text.split(/\{([^}]+)\}/g)
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <span key={i} className="rounded-sm bg-[#00D4FF]/10 px-1 font-medium text-[#0099BB]">
+      <span key={i} className="rounded-sm bg-cyan/10 px-1 font-medium text-cyan-dark">
         {part}
       </span>
     ) : (
@@ -90,15 +90,13 @@ export default function AnimationAIAnalysis({ className }: { className?: string 
                     isLatest ? "border-gray-200 shadow-sm" : "border-gray-100",
                   )}
                 >
-                  <div className="flex items-center gap-2 font-medium text-[11px] text-gray-400">
-                    <Sparkles
-                      className={cn("h-3 w-3", isLatest ? "text-[#00D4FF]" : "text-gray-300")}
-                    />
+                  <div className="flex items-center gap-2 font-medium text-gray-400 text-xxs">
+                    <Sparkles className={cn("h-3 w-3", isLatest ? "text-cyan" : "text-gray-300")} />
                     {insight.category}
                   </div>
                   <p
                     className={cn(
-                      "mt-1.5 text-[12px] leading-relaxed sm:text-[13px]",
+                      "mt-1.5 text-xs leading-relaxed sm:text-sm-plus",
                       isLatest ? "text-gray-700" : "text-gray-400",
                     )}
                   >

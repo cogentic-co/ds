@@ -19,8 +19,7 @@ function KeyValueList({ items, bordered = true, className, ...props }: KeyValueL
       data-slot="key-value-list"
       className={cn(
         "px-[18px]",
-        bordered &&
-          "rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-card)]",
+        bordered && "rounded-lg border border-border bg-card shadow-card",
         className,
       )}
       {...props}
@@ -34,9 +33,9 @@ function KeyValueList({ items, bordered = true, className, ...props }: KeyValueL
             i > 0 && "border-border-light border-t",
           )}
         >
-          <span className="shrink-0 pt-px text-[13px] text-muted-foreground">{item.label}</span>
+          <span className="shrink-0 pt-px text-muted-foreground text-sm-plus">{item.label}</span>
           <div
-            className={cn("min-w-0 text-right font-medium text-[13px]", item.mono && "font-mono")}
+            className={cn("min-w-0 text-right font-medium text-sm-plus", item.mono && "font-mono")}
           >
             {item.value}
           </div>

@@ -130,7 +130,7 @@ function KanbanColumnView({
         <div className={cn("flex items-center gap-1.5 font-semibold text-sm", column.accent)}>
           {column.icon}
           {column.title}
-          <Badge square variant="secondary" className="text-[10px]">
+          <Badge square variant="secondary" className="text-2xs">
             {column.limit ? `${cards.length}/${column.limit}` : cards.length}
           </Badge>
         </div>

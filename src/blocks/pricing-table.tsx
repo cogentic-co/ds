@@ -116,14 +116,14 @@ function PricingCard({
         <div className="mt-auto">
           {price ? (
             <>
-              <div className="font-semibold text-[40px] text-foreground leading-none sm:text-[44px]">
+              <div className="font-semibold text-4xl text-foreground leading-none sm:text-5xl">
                 {price}
               </div>
               {!!perUnit && <div className="mt-2 text-muted-foreground text-sm">{perUnit}</div>}
             </>
           ) : (
             <>
-              <div className="font-medium text-[40px] text-foreground leading-none sm:text-[44px]">
+              <div className="font-medium text-4xl text-foreground leading-none sm:text-5xl">
                 {index === 0 ? "Free" : "Let\u2019s talk"}
               </div>
               <div className="mt-2 text-muted-foreground text-sm">
@@ -168,7 +168,7 @@ function PricingTable({ headline, subheadline, plans, className }: PricingTableP
         <div className="relative overflow-hidden">
           {headline && (
             <div className="mx-auto max-w-4xl px-6 py-12 text-center sm:px-8 sm:py-16 md:py-20">
-              <h1 className="text-balance font-medium text-4xl text-foreground leading-tight tracking-tight sm:text-5xl md:text-[68px]">
+              <h1 className="text-balance font-medium text-4xl text-foreground leading-tight tracking-tight sm:text-5xl md:text-7xl">
                 {headline}
               </h1>
               {subheadline && (
