@@ -1,3 +1,4 @@
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
 import { cn } from "../lib/utils"
@@ -10,7 +11,11 @@ type KpiCardProps = Omit<ComponentProps<"div">, "children"> & {
   value: ReactNode
   delta?: string
   deltaTone?: KpiDeltaTone
+  /** Adds a trend arrow before `delta` based on `deltaTone`. */
+  deltaArrow?: boolean
   hint?: ReactNode
+  /** Trailing icon shown next to the label. */
+  icon?: ReactNode
   sparkline?: number[]
   sparklineColor?: string
   sparklineFill?: boolean
@@ -27,7 +32,9 @@ function KpiCard({
   value,
   delta,
   deltaTone = "positive",
+  deltaArrow = false,
   hint,
+  icon,
   sparkline,
   sparklineColor = "var(--focal)",
   sparklineFill = true,
@@ -47,17 +54,34 @@ function KpiCard({
         <div className="font-mono font-semibold text-muted-foreground text-xxs uppercase tracking-wider">
           {label}
         </div>
-        {delta && (
+        {icon && (
+          <span data-slot="kpi-card-icon" className="text-muted-foreground [&>svg]:size-4">
+            {icon}
+          </span>
+        )}
+        {delta && !icon && (
           <span
-            className="font-mono font-semibold text-xxs"
+            className="inline-flex items-center gap-0.5 font-mono font-semibold text-xxs"
             style={{ color: deltaColor[deltaTone] }}
           >
+            {deltaArrow && deltaTone === "positive" && <TrendingUpIcon className="size-3" />}
+            {deltaArrow && deltaTone === "negative" && <TrendingDownIcon className="size-3" />}
             {delta}
           </span>
         )}
       </div>
       <div className="font-semibold text-stat leading-none tracking-tight">{value}</div>
       {hint && <div className="text-muted-foreground text-xs">{hint}</div>}
+      {delta && icon && (
+        <span
+          className="inline-flex items-center gap-0.5 font-mono font-semibold text-xxs"
+          style={{ color: deltaColor[deltaTone] }}
+        >
+          {deltaArrow && deltaTone === "positive" && <TrendingUpIcon className="size-3" />}
+          {deltaArrow && deltaTone === "negative" && <TrendingDownIcon className="size-3" />}
+          {delta}
+        </span>
+      )}
       {sparkline && (
         <Sparkline
           className="mt-auto"

@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -783,12 +783,6 @@
         "default": "./dist/shells/app-shell.js"
       }
     },
-    "./shells/app-shell-2": {
-      "import": {
-        "types": "./dist/shells/app-shell-2.d.ts",
-        "default": "./dist/shells/app-shell-2.js"
-      }
-    },
     "./shells/settings-layout": {
       "import": {
         "types": "./dist/shells/settings-layout.d.ts",
@@ -876,7 +870,7 @@
     }
   },
   "dependencies": {
-    "@base-ui/react": "^1.2.0",
+    "@base-ui/react": "^1.4.1",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",

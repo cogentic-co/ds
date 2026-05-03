@@ -15,7 +15,6 @@ import {
 } from "lucide-react"
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
-import { AppShell2 } from "@/src/shells/app-shell-2"
 import { SettingsLayout } from "@/src/shells/settings-layout"
 
 const sampleNav: NavGroup[] = [
@@ -111,18 +110,7 @@ function SettingsLayoutPreview() {
   )
 }
 
-function AppShell2Preview() {
-  return (
-    <iframe
-      src="/preview-live/app-shell-2"
-      title="App Shell 2 live preview"
-      className="h-[700px] w-full overflow-hidden rounded-lg border border-border"
-    />
-  )
-}
-
 export const shellPreviews: Record<string, React.ComponentType> = {
   "app-shell": AppShellPreview,
-  "app-shell-2": AppShell2Preview,
   "settings-layout": SettingsLayoutPreview,
 }

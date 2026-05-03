@@ -46,7 +46,7 @@ describe("RichRadioList", () => {
 
   it("respects defaultValue", () => {
     render(<RichRadioList options={options} defaultValue="viewer" aria-label="Role" />)
-    const viewerRadio = screen.getByRole("radio", { name: "Viewer" })
+    const viewerRadio = screen.getByRole("radio", { name: /Viewer/ })
     expect(viewerRadio).toHaveAttribute("data-checked")
   })
 

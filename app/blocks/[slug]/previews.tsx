@@ -18,64 +18,11 @@ import { SelectOrgForm } from "@/src/blocks/select-org-form"
 import { SequenceBuilder, type SequenceStep } from "@/src/blocks/sequence-builder"
 import { SettingRow } from "@/src/blocks/setting-row"
 import { SettingsCardGrid } from "@/src/blocks/settings-card-grid"
-import { StatCard } from "@/src/blocks/stat-card"
 import { Button } from "@/src/components/button"
 import { Card } from "@/src/components/card"
 import { Separator } from "@/src/components/separator"
 import { Switch } from "@/src/components/switch"
 import { type ControlDefs, Playground, useControls } from "../../controls"
-
-// ── Stat Card ──────────────────────────────────────────────────────────
-
-const statCardControlDefs = {
-  label: { type: "text", defaultValue: "Revenue", label: "Label" },
-  value: { type: "text", defaultValue: "$12,400", label: "Value" },
-  trend: { type: "text", defaultValue: "+12%", label: "Trend" },
-  trendDirection: {
-    type: "select",
-    options: ["up", "down", "neutral"],
-    defaultValue: "up",
-    label: "Direction",
-  },
-} satisfies ControlDefs
-
-function StatCardPreview() {
-  const controls = useControls(statCardControlDefs)
-  return (
-    <div className="space-y-8">
-      <Playground controls={controls}>
-        <div className="max-w-xs">
-          <StatCard
-            label={controls.values.label}
-            value={controls.values.value}
-            description="vs last month"
-            trend={controls.values.trend || undefined}
-            trendDirection={controls.values.trendDirection as "up"}
-          />
-        </div>
-      </Playground>
-
-      <div className="grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          label="Revenue"
-          value="$12,400"
-          description="vs last month"
-          trend="+12%"
-          trendDirection="up"
-        />
-        <StatCard
-          label="Users"
-          value="1,234"
-          description="active this week"
-          trend="-3%"
-          trendDirection="down"
-        />
-        <StatCard label="Orders" value="89" description="today" trend="+5%" trendDirection="up" />
-        <StatCard label="Conversion" value="3.2%" description="30-day avg" />
-      </div>
-    </div>
-  )
-}
 
 // ── Hero Section ───────────────────────────────────────────────────────
 
@@ -498,7 +445,6 @@ import { Invoice } from "@/src/blocks/invoice"
 import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
 import { MultiStepForm } from "@/src/blocks/multi-step-form"
 import { NotificationCenter, type NotificationItem } from "@/src/blocks/notification-center"
-import { PageHeader } from "@/src/blocks/page-header"
 import { PromptInputActionsBlock } from "@/src/blocks/prompt-input-actions"
 import { PromptInputSuggestionsBlock } from "@/src/blocks/prompt-input-suggestions"
 import { type TeamMember, TeamTable } from "@/src/blocks/team-table"
@@ -507,37 +453,6 @@ import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chat
 import { CodeBlock } from "@/src/components/code-block"
 import { Input } from "@/src/components/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/tabs"
-
-function PageHeaderPreview() {
-  return (
-    <div className="space-y-10">
-      <PageHeader
-        breadcrumbs={[
-          { label: "Compliance", href: "#" },
-          { label: "Cases", href: "#" },
-          { label: "CASE-1042" },
-        ]}
-        title="High-risk VASP transfer"
-        description="Travel Rule threshold triggered on inbound transfer from Singapore."
-        actions={
-          <>
-            <Button variant="outline" size="sm">
-              Assign
-            </Button>
-            <Button size="sm">Resolve</Button>
-          </>
-        }
-        tabs={[
-          { value: "overview", label: "Overview" },
-          { value: "transactions", label: "Transactions", count: 3 },
-          { value: "alerts", label: "Alerts", count: 1 },
-          { value: "notes", label: "Notes" },
-        ]}
-        activeTab="overview"
-      />
-    </div>
-  )
-}
 
 function CommandPalettePreview() {
   const [open, setOpen] = useState(false)
@@ -1240,7 +1155,6 @@ function ChatBlockPreview() {
 // ── Static block previews ──────────────────────────────────────────────
 
 export const blockPreviews: Record<string, React.ComponentType> = {
-  "stat-card": StatCardPreview,
   "feature-section": FeatureSectionPreview,
   "hero-section": HeroSectionPreview,
   "login-form": LoginFormPreview,
@@ -1250,7 +1164,6 @@ export const blockPreviews: Record<string, React.ComponentType> = {
   "magic-link-message": MagicLinkMessagePreview,
   "pricing-table": () => <PricingTable />,
   "product-tour": ProductTourPreview,
-  "page-header": PageHeaderPreview,
   "command-palette": CommandPalettePreview,
   "notification-center": NotificationCenterPreview,
   kanban: KanbanPreview,

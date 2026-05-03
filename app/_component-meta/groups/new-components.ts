@@ -116,30 +116,6 @@ export const newComponentsMeta: Record<string, ComponentMeta> = {
   ]}
 />`,
   },
-  "stat-card": {
-    status: "stable",
-    description:
-      "Dashboard KPI card with a label, value, trend indicator, and optional description.",
-    since: "0.1.0",
-    importStatement: 'import { StatCard } from "@cogentic-co/ds/blocks/stat-card"',
-    dos: [
-      "Use in a grid of 2-4 for a metrics overview at the top of dashboards",
-      "Set trendDirection to auto-colour the trend value (up=green, down=red, neutral=grey)",
-      "Keep values concise ($12.4k, not $12,400.00)",
-    ],
-    donts: [
-      "Don't overload with more than one trend per card",
-      "Don't use for complex data — reach for a chart instead",
-    ],
-    codeExample: `import { StatCard } from "@cogentic-co/ds/blocks/stat-card"
-
-<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  <StatCard label="Revenue" value="$12.4k" description="vs last month" trend="+12%" trendDirection="up" />
-  <StatCard label="Users" value="1,234" description="active this week" trend="-3%" trendDirection="down" />
-  <StatCard label="Orders" value="89" description="today" trend="+5%" trendDirection="up" />
-  <StatCard label="Conversion" value="3.2%" description="30-day avg" />
-</div>`,
-  },
   "feature-section": {
     status: "stable",
     description:

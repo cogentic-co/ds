@@ -200,11 +200,11 @@ const blockGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Dashboard",
-    items: ["stat-card", "usage-meter", "notification-center"],
+    items: ["usage-meter", "notification-center"],
   },
   {
     label: "Page chrome",
-    items: ["page-header", "command-palette"],
+    items: ["command-palette"],
   },
   {
     label: "Workflow",
@@ -473,18 +473,14 @@ function buildNav(pathname: string): NavGroup[] {
       id: "layouts",
       icon: LayoutDashboard,
       title: "Layouts",
-      items: [
-        "app-shell",
-        "app-shell-2",
-        "settings-layout",
-        "transaction-detail-page",
-        "dashboard-page",
-      ].map((slug) => ({
-        label: toTitle(slug),
-        icon: LayoutDashboard,
-        href: `/layouts/${slug}`,
-        isActive: pathname === `/layouts/${slug}`,
-      })),
+      items: ["app-shell", "settings-layout", "transaction-detail-page", "dashboard-page"].map(
+        (slug) => ({
+          label: toTitle(slug),
+          icon: LayoutDashboard,
+          href: `/layouts/${slug}`,
+          isActive: pathname === `/layouts/${slug}`,
+        }),
+      ),
     },
     {
       id: "charts",

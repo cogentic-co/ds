@@ -117,7 +117,6 @@ export default defineConfig({
     "lib/icon-map": "src/lib/icon-map.tsx",
     // Shell entry points
     "shells/app-shell": "src/shells/app-shell.tsx",
-    "shells/app-shell-2": "src/shells/app-shell-2.tsx",
     "shells/settings-layout": "src/shells/settings-layout.tsx",
     // Layout entry points (page-level compositions)
     "layouts/dashboard-page": "src/layouts/dashboard-page.tsx",
@@ -151,12 +150,10 @@ export default defineConfig({
     "blocks/kanban": "src/blocks/kanban.tsx",
     "blocks/multi-step-form": "src/blocks/multi-step-form.tsx",
     "blocks/notification-center": "src/blocks/notification-center.tsx",
-    "blocks/page-header": "src/blocks/page-header.tsx",
     "blocks/pricing-table": "src/blocks/pricing-table.tsx",
     "blocks/team-table": "src/blocks/team-table.tsx",
     "blocks/usage-meter": "src/blocks/usage-meter.tsx",
     "blocks/product-tour": "src/blocks/product-tour.tsx",
-    "blocks/stat-card": "src/blocks/stat-card.tsx",
     "blocks/feature-section": "src/blocks/feature-section.tsx",
     "blocks/hero-section": "src/blocks/hero-section.tsx",
     "blocks/login-form": "src/blocks/login-form.tsx",

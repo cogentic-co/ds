@@ -1,7 +1,17 @@
 import { cva, type VariantProps } from "class-variance-authority"
 import type { ComponentProps, ReactNode } from "react"
+import { Fragment } from "react"
 
 import { cn } from "../lib/utils"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./breadcrumb"
+import { Tabs, TabsList, TabsTrigger } from "./tabs"
 
 /**
  * @figma Header
@@ -28,6 +38,17 @@ interface HeaderAuthor {
   name: string
   role?: string
   avatarSrc?: string
+}
+
+interface HeaderBreadcrumb {
+  label: string
+  href?: string
+}
+
+interface HeaderTab {
+  value: string
+  label: ReactNode
+  count?: number
 }
 
 const headerVariants = cva("flex flex-col", {
@@ -72,7 +93,10 @@ const leadingIconVariants = cva(
 
 type HeaderProps = Omit<ComponentProps<"div">, "title"> &
   VariantProps<typeof headerVariants> & {
+    /** Custom breadcrumb slot. Takes precedence over `breadcrumbs`. */
     breadcrumb?: ReactNode
+    /** Typed breadcrumb segments — last segment is rendered as the current page. */
+    breadcrumbs?: HeaderBreadcrumb[]
     leadingIcon?: ReactNode
     title: ReactNode
     subtitle?: ReactNode
@@ -81,10 +105,15 @@ type HeaderProps = Omit<ComponentProps<"div">, "title"> &
     meta?: HeaderMeta[]
     author?: HeaderAuthor
     actions?: ReactNode
+    /** Tab triggers rendered under the header. Pair with your own TabsContent. */
+    tabs?: HeaderTab[]
+    activeTab?: string
+    onTabChange?: (value: string) => void
   }
 
 function Header({
   breadcrumb,
+  breadcrumbs,
   leadingIcon,
   title,
   subtitle,
@@ -93,19 +122,46 @@ function Header({
   meta,
   author,
   actions,
+  tabs,
+  activeTab,
+  onTabChange,
   size,
   bordered,
   className,
   children,
   ...props
 }: HeaderProps) {
+  const renderedBreadcrumb =
+    breadcrumb ??
+    (breadcrumbs && breadcrumbs.length > 0 ? (
+      <Breadcrumb>
+        <BreadcrumbList>
+          {breadcrumbs.map((segment, i) => {
+            const isLast = i === breadcrumbs.length - 1
+            return (
+              <Fragment key={`${segment.label}-${i}`}>
+                <BreadcrumbItem>
+                  {isLast || !segment.href ? (
+                    <BreadcrumbPage>{segment.label}</BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink href={segment.href}>{segment.label}</BreadcrumbLink>
+                  )}
+                </BreadcrumbItem>
+                {!isLast && <BreadcrumbSeparator />}
+              </Fragment>
+            )
+          })}
+        </BreadcrumbList>
+      </Breadcrumb>
+    ) : null)
+
   return (
     <div
       data-slot="header"
       className={cn(headerVariants({ size, bordered }), className)}
       {...props}
     >
-      {breadcrumb && <div data-slot="header-breadcrumb">{breadcrumb}</div>}
+      {renderedBreadcrumb && <div data-slot="header-breadcrumb">{renderedBreadcrumb}</div>}
 
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div className="flex min-w-0 flex-1 items-start gap-4">
@@ -206,10 +262,27 @@ function Header({
         </p>
       )}
 
+      {tabs && tabs.length > 0 && (
+        <Tabs value={activeTab} onValueChange={onTabChange}>
+          <TabsList>
+            {tabs.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value}>
+                {tab.label}
+                {tab.count != null && (
+                  <span className="ml-1.5 rounded bg-muted px-1 font-medium text-2xs text-muted-foreground">
+                    {tab.count}
+                  </span>
+                )}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      )}
+
       {children}
     </div>
   )
 }
 
-export type { HeaderAuthor, HeaderMeta, HeaderProps }
+export type { HeaderAuthor, HeaderBreadcrumb, HeaderMeta, HeaderProps, HeaderTab }
 export { Header, headerVariants }

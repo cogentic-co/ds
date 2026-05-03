@@ -1,26 +1,6 @@
 import type { ComponentMeta } from "../index"
 
 export const v013BlocksMeta: Record<string, ComponentMeta> = {
-  "page-header": {
-    status: "new",
-    description:
-      "Page chrome block with breadcrumbs, title, description, action buttons, and optional tabs row. Used as the top of every detail/list page for consistent layout.",
-    since: "0.13.0",
-    importStatement: `import { PageHeader } from "@cogentic-co/ds/blocks/page-header"`,
-    dos: [
-      "Use on every inner page for consistent chrome",
-      "Pair with separate Tabs/TabsContent — PageHeader only renders the trigger row",
-      "Put primary CTA buttons in the actions slot",
-    ],
-    donts: ["Don't nest inside a Card — it manages its own divider", "Don't use without a title"],
-    codeExample: `<PageHeader
-  breadcrumbs={[{ label: "Cases", href: "/cases" }, { label: "CASE-1042" }]}
-  title="High-risk VASP transfer"
-  description="Travel Rule threshold triggered."
-  actions={<Button>Resolve</Button>}
-  tabs={[{ value: "overview", label: "Overview" }, { value: "txns", label: "Transactions", count: 3 }]}
-/>`,
-  },
   "command-palette": {
     status: "new",
     description:

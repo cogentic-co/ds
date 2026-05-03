@@ -42,9 +42,6 @@ export type {
   SettingsCardGridProps,
 } from "./blocks/settings-card-grid"
 export { SettingsCardGrid } from "./blocks/settings-card-grid"
-export type { StatCardProps } from "./blocks/stat-card"
-// New blocks
-export { StatCard } from "./blocks/stat-card"
 export type { TeamCardProps } from "./blocks/team-card"
 export { TeamCard } from "./blocks/team-card"
 export type {
@@ -185,6 +182,5 @@ export {
 export { cn, timeAgo } from "./lib/utils"
 // Shells
 export * from "./shells/app-shell"
-export * from "./shells/app-shell-2"
 // Workflow is NOT re-exported from main entry to avoid requiring @xyflow/react.
 // Import from "@cogentic-co/ds/workflow" instead.
