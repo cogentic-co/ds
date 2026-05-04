@@ -725,13 +725,9 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     )
   },
 
-  "transaction-detail-page": function TransactionDetailPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <TransactionDetailPage />
-      </div>
-    )
-  },
+  // Layouts are example/recipe files — registered as their default exports.
+  // Source lives at src/layouts/<slug>.tsx — copy/paste, don't import.
+  "transaction-detail-page": TransactionDetailPage,
 
   "transaction-flow-card": function TransactionFlowCardPreview() {
     return (
@@ -899,51 +895,10 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
     )
   },
 
-  "dashboard-page": function DashboardPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <DashboardPage />
-      </div>
-    )
-  },
-
-  "settings-page": function SettingsPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsPage />
-      </div>
-    )
-  },
-
-  "settings-members-page": function SettingsMembersPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsMembersPage />
-      </div>
-    )
-  },
-
-  "settings-integrations-page": function SettingsIntegrationsPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsIntegrationsPage />
-      </div>
-    )
-  },
-
-  "settings-billing-page": function SettingsBillingPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsBillingPage />
-      </div>
-    )
-  },
-
-  "settings-notifications-page": function SettingsNotificationsPagePreview() {
-    return (
-      <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsNotificationsPage />
-      </div>
-    )
-  },
+  "dashboard-page": DashboardPage,
+  "settings-page": SettingsPage,
+  "settings-members-page": SettingsMembersPage,
+  "settings-integrations-page": SettingsIntegrationsPage,
+  "settings-billing-page": SettingsBillingPage,
+  "settings-notifications-page": SettingsNotificationsPage,
 }

@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.33.0",
+  "version": "0.33.1",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
