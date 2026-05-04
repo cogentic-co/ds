@@ -34,7 +34,7 @@ import {
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
-import { DashboardPage, TransactionDetailPage } from "@/src/layouts"
+import { DashboardPage, SettingsPage, TransactionDetailPage } from "@/src/layouts"
 import { Section } from "../../components/[slug]/previews/_shared"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -914,6 +914,17 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
           }
           onExport={() => console.log("export")}
           onNewCase={() => console.log("new case")}
+        />
+      </div>
+    )
+  },
+
+  "settings-page": function SettingsPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <SettingsPage
+          onCreateApiKey={() => console.log("create api key")}
+          onRevokeApiKey={(id) => console.log("revoke", id)}
         />
       </div>
     )

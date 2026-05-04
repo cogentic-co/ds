@@ -473,14 +473,18 @@ function buildNav(pathname: string): NavGroup[] {
       id: "layouts",
       icon: LayoutDashboard,
       title: "Layouts",
-      items: ["app-shell", "settings-layout", "transaction-detail-page", "dashboard-page"].map(
-        (slug) => ({
-          label: toTitle(slug),
-          icon: LayoutDashboard,
-          href: `/layouts/${slug}`,
-          isActive: pathname === `/layouts/${slug}`,
-        }),
-      ),
+      items: [
+        "app-shell",
+        "settings-layout",
+        "transaction-detail-page",
+        "dashboard-page",
+        "settings-page",
+      ].map((slug) => ({
+        label: toTitle(slug),
+        icon: LayoutDashboard,
+        href: `/layouts/${slug}`,
+        isActive: pathname === `/layouts/${slug}`,
+      })),
     },
     {
       id: "charts",

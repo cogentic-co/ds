@@ -9,4 +9,5 @@ export const layoutPreviews: Record<string, React.ComponentType> = {
   "settings-layout": shellPreviews["settings-layout"],
   "transaction-detail-page": compliancePreviews["transaction-detail-page"],
   "dashboard-page": compliancePreviews["dashboard-page"],
+  "settings-page": compliancePreviews["settings-page"],
 }

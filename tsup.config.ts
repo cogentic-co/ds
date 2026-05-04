@@ -120,6 +120,7 @@ export default defineConfig({
     "shells/settings-layout": "src/shells/settings-layout.tsx",
     // Layout entry points (page-level compositions)
     "layouts/dashboard-page": "src/layouts/dashboard-page.tsx",
+    "layouts/settings-page": "src/layouts/settings-page.tsx",
     "layouts/transaction-detail-page": "src/layouts/transaction-detail-page.tsx",
     // Per-animation entry points for code-splitting (next/dynamic)
     "animations/animation-ai-analysis": "src/animations/animation-ai-analysis.tsx",
