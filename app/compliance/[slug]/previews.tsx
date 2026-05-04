@@ -34,7 +34,13 @@ import {
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
-import { DashboardPage, SettingsPage, TransactionDetailPage } from "@/src/layouts"
+import { DashboardPage } from "@/src/layouts/dashboard-page"
+import { SettingsBillingPage } from "@/src/layouts/settings-billing-page"
+import { SettingsIntegrationsPage } from "@/src/layouts/settings-integrations-page"
+import { SettingsMembersPage } from "@/src/layouts/settings-members-page"
+import { SettingsNotificationsPage } from "@/src/layouts/settings-notifications-page"
+import { SettingsPage } from "@/src/layouts/settings-page"
+import { TransactionDetailPage } from "@/src/layouts/transaction-detail-page"
 import { Section } from "../../components/[slug]/previews/_shared"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -922,10 +928,39 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "settings-page": function SettingsPagePreview() {
     return (
       <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <SettingsPage
-          onCreateApiKey={() => console.log("create api key")}
-          onRevokeApiKey={(id) => console.log("revoke", id)}
-        />
+        <SettingsPage />
+      </div>
+    )
+  },
+
+  "settings-members-page": function SettingsMembersPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <SettingsMembersPage />
+      </div>
+    )
+  },
+
+  "settings-integrations-page": function SettingsIntegrationsPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <SettingsIntegrationsPage />
+      </div>
+    )
+  },
+
+  "settings-billing-page": function SettingsBillingPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <SettingsBillingPage />
+      </div>
+    )
+  },
+
+  "settings-notifications-page": function SettingsNotificationsPagePreview() {
+    return (
+      <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <SettingsNotificationsPage />
       </div>
     )
   },

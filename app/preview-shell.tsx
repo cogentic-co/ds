@@ -473,18 +473,37 @@ function buildNav(pathname: string): NavGroup[] {
       id: "layouts",
       icon: LayoutDashboard,
       title: "Layouts",
-      items: [
-        "app-shell",
-        "settings-layout",
-        "transaction-detail-page",
-        "dashboard-page",
-        "settings-page",
-      ].map((slug) => ({
-        label: toTitle(slug),
-        icon: LayoutDashboard,
-        href: `/layouts/${slug}`,
-        isActive: pathname === `/layouts/${slug}`,
-      })),
+      items: [],
+      groups: [
+        {
+          title: "Pages",
+          defaultOpen: true,
+          items: ["app-shell", "sidebar-layout", "dashboard-page", "transaction-detail-page"].map(
+            (slug) => ({
+              label: toTitle(slug),
+              icon: LayoutDashboard,
+              href: `/layouts/${slug}`,
+              isActive: pathname === `/layouts/${slug}`,
+            }),
+          ),
+        },
+        {
+          title: "Settings",
+          defaultOpen: true,
+          items: [
+            { slug: "settings-page", label: "Settings" },
+            { slug: "settings-members-page", label: "Members" },
+            { slug: "settings-integrations-page", label: "Integrations" },
+            { slug: "settings-billing-page", label: "Billing" },
+            { slug: "settings-notifications-page", label: "Notifications" },
+          ].map(({ slug, label }) => ({
+            label,
+            icon: LayoutDashboard,
+            href: `/layouts/${slug}`,
+            isActive: pathname === `/layouts/${slug}`,
+          })),
+        },
+      ],
     },
     {
       id: "charts",

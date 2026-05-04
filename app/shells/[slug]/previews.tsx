@@ -13,9 +13,9 @@ import {
   Shield,
   Users,
 } from "lucide-react"
+import { SidebarLayout } from "@/src/layouts/sidebar-layout"
 import type { NavGroup } from "@/src/shells/app-shell"
 import { AppShell } from "@/src/shells/app-shell"
-import { SettingsLayout } from "@/src/shells/settings-layout"
 
 const sampleNav: NavGroup[] = [
   {
@@ -64,9 +64,9 @@ function AppShellPreview() {
   )
 }
 
-function SettingsLayoutPreview() {
+function SidebarLayoutPreview() {
   return (
-    <SettingsLayout
+    <SidebarLayout
       nav={[
         {
           title: "Workspace",
@@ -106,11 +106,11 @@ function SettingsLayoutPreview() {
         <h3 className="font-medium text-sm">Default jurisdiction</h3>
         <p className="mt-1 text-muted-foreground text-xs">Applied to new cases.</p>
       </div>
-    </SettingsLayout>
+    </SidebarLayout>
   )
 }
 
 export const shellPreviews: Record<string, React.ComponentType> = {
   "app-shell": AppShellPreview,
-  "settings-layout": SettingsLayoutPreview,
+  "sidebar-layout": SidebarLayoutPreview,
 }

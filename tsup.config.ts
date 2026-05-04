@@ -117,11 +117,9 @@ export default defineConfig({
     "lib/icon-map": "src/lib/icon-map.tsx",
     // Shell entry points
     "shells/app-shell": "src/shells/app-shell.tsx",
-    "shells/settings-layout": "src/shells/settings-layout.tsx",
-    // Layout entry points (page-level compositions)
-    "layouts/dashboard-page": "src/layouts/dashboard-page.tsx",
-    "layouts/settings-page": "src/layouts/settings-page.tsx",
-    "layouts/transaction-detail-page": "src/layouts/transaction-detail-page.tsx",
+    // Layouts (src/layouts/*) are NOT bundled — they live as copy-source
+    // recipes for consumers to fork. The dev preview app imports them from
+    // src/ directly.
     // Per-animation entry points for code-splitting (next/dynamic)
     "animations/animation-ai-analysis": "src/animations/animation-ai-analysis.tsx",
     "animations/animation-audit-trail": "src/animations/animation-audit-trail.tsx",

@@ -179,26 +179,26 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
   currency="USD"
 />`,
   },
-  "settings-layout": {
-    status: "new",
+  "sidebar-layout": {
+    status: "stable",
     description:
-      "Settings page shell with sticky left-rail nav and content column. Supports grouped nav with optional headers and icons.",
+      "Generic sidebar + content page layout. Sticky left-rail nav with grouped items, scrollable main column. Copy-source recipe in src/layouts/.",
     since: "0.13.0",
-    importStatement: `import { SettingsLayout } from "@cogentic-co/ds/shells/settings-layout"`,
+    importStatement: `// Copy from src/layouts/sidebar-layout.tsx — layouts are not packaged.`,
     dos: [
-      "Use as the layout for /settings/* pages",
       "Group nav items by domain (Workspace, Compliance, Billing)",
       "Pass linkComponent={Link} for Next.js client-side navigation",
+      "Fork the file and tailor for your app",
     ],
     donts: ["Don't nest inside AppShell's main content column"],
-    codeExample: `<SettingsLayout
+    codeExample: `<SidebarLayout
   nav={[
     { title: "Workspace", items: [{ label: "General", href: "/settings", isActive: true }, { label: "Members", href: "/settings/members" }] },
   ]}
 >
   <h1>General</h1>
   ...
-</SettingsLayout>`,
+</SidebarLayout>`,
   },
   "entity-graph": {
     status: "new",

@@ -3,21 +3,21 @@
 import type { ComponentProps, ReactNode } from "react"
 import { cn } from "../lib/utils"
 
-type SettingsLayoutItem = {
+type SidebarLayoutItem = {
   label: string
   href: string
   icon?: ReactNode
   isActive?: boolean
 }
 
-type SettingsLayoutGroup = {
+type SidebarLayoutGroup = {
   title?: string
-  items: SettingsLayoutItem[]
+  items: SidebarLayoutItem[]
 }
 
-type SettingsLayoutProps = ComponentProps<"div"> & {
+type SidebarLayoutProps = ComponentProps<"div"> & {
   /** Navigation groups rendered in the left rail */
-  nav: SettingsLayoutGroup[]
+  nav: SidebarLayoutGroup[]
   /** Page content (the settings form / sections) */
   children: ReactNode
   /** Component to use for links (e.g. Next.js Link). Default: `"a"`. */
@@ -26,17 +26,17 @@ type SettingsLayoutProps = ComponentProps<"div"> & {
   contentMaxWidth?: string
 }
 
-function SettingsLayout({
+function SidebarLayout({
   nav,
   children,
   linkComponent: Link = "a",
   contentMaxWidth = "max-w-3xl",
   className,
   ...props
-}: SettingsLayoutProps) {
+}: SidebarLayoutProps) {
   return (
     <div
-      data-slot="settings-layout"
+      data-slot="sidebar-layout"
       className={cn("flex flex-col gap-8 md:flex-row md:gap-10", className)}
       {...props}
     >
@@ -77,5 +77,5 @@ function SettingsLayout({
   )
 }
 
-export type { SettingsLayoutGroup, SettingsLayoutItem, SettingsLayoutProps }
-export { SettingsLayout }
+export type { SidebarLayoutGroup, SidebarLayoutItem, SidebarLayoutProps }
+export { SidebarLayout }

@@ -166,8 +166,9 @@ export * from "./hooks/use-local-storage"
 export * from "./hooks/use-media-query"
 export * from "./hooks/use-mobile"
 // Layouts (page-level compositions)
-export * from "./layouts/dashboard-page"
-export * from "./layouts/transaction-detail-page"
+// Layouts (src/layouts/*) are not exported from the package barrel —
+// they are copy-source recipes. Browse them at:
+// https://github.com/cogentic-co/ds/tree/main/src/layouts
 // Animation constants
 export {
   EASE_OUT,
