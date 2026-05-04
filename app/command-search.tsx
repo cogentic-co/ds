@@ -210,7 +210,9 @@ export function CommandSearch() {
               {list.map((item) => (
                 <CommandItem
                   key={`${item.group}/${item.slug}`}
-                  value={`${item.label} ${item.slug} ${item.description ?? ""}`}
+                  // Search only matches the readable name + kebab slug —
+                  // descriptions are noisy and cause loose fuzzy hits.
+                  value={`${item.label} ${item.slug}`}
                   onSelect={() => onSelect(item.href)}
                 >
                   <div className="flex flex-1 items-center justify-between">
