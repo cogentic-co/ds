@@ -1,15 +1,17 @@
 "use client"
 
-import { CreditCard, Lock, Settings as SettingsIcon, User } from "lucide-react"
+import { Bell, Mail, MessageSquare } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { useState } from "react"
 
-import { type ApiKey, ApiKeyManager } from "../blocks/api-key-manager"
 import { SettingRow } from "../blocks/setting-row"
-import { SettingsCardGrid, type SettingsCardGridItem } from "../blocks/settings-card-grid"
 import { type TeamMember, TeamTable } from "../blocks/team-table"
 import { UsageMeter, type UsageMeterProps } from "../blocks/usage-meter"
+import { Badge } from "../components/badge"
+import { Button } from "../components/button"
 import { Header } from "../components/header"
+import { Input } from "../components/input"
+import { Label } from "../components/label"
 import { Separator } from "../components/separator"
 import { Switch } from "../components/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/tabs"
@@ -18,62 +20,6 @@ import { cn } from "../lib/utils"
 // ---------------------------------------------------------------------------
 // Defaults — sample data so the layout renders out-of-the-box
 // ---------------------------------------------------------------------------
-
-const DEFAULT_QUICK_ACCESS: SettingsCardGridItem[] = [
-  {
-    icon: <User className="size-5" />,
-    title: "Profile",
-    description: "Manage your personal information.",
-    href: "#profile",
-  },
-  {
-    icon: <SettingsIcon className="size-5" />,
-    title: "Workspace",
-    description: "Name, slug, and domain for this workspace.",
-    href: "#workspace",
-  },
-  {
-    icon: <Lock className="size-5" />,
-    title: "Security",
-    description: "Two-factor, SSO, and session controls.",
-    href: "#security",
-  },
-  {
-    icon: <CreditCard className="size-5" />,
-    title: "Billing",
-    description: "Plan, usage, and invoices.",
-    href: "#billing",
-  },
-]
-
-const DEFAULT_API_KEYS: ApiKey[] = [
-  {
-    id: "k1",
-    name: "Production key",
-    preview: "sk_live_…d674",
-    createdAt: "2026-03-09T10:00:00Z",
-    lastUsed: "2026-05-02T08:30:00Z",
-    scope: "Full access",
-    active: true,
-  },
-  {
-    id: "k2",
-    name: "Staging key",
-    preview: "sk_test_…ab92",
-    createdAt: "2026-02-14T14:20:00Z",
-    lastUsed: "2026-04-30T11:14:00Z",
-    scope: "Read only",
-    active: true,
-  },
-  {
-    id: "k3",
-    name: "Analytics read-only",
-    preview: "sk_live_…f10c",
-    createdAt: "2026-01-20T09:45:00Z",
-    scope: "Read only",
-    active: false,
-  },
-]
 
 const DEFAULT_MEMBERS: TeamMember[] = [
   {
@@ -118,8 +64,9 @@ const DEFAULT_ROLES = [
   { value: "member", label: "Member" },
 ]
 
-type SecurityToggleId = "twoFactor" | "sso" | "sessionTimeout" | "ipAllowlist"
+// Security ------------------------------------------------------------------
 
+type SecurityToggleId = "twoFactor" | "sso" | "sessionTimeout" | "ipAllowlist"
 type SecurityState = Record<SecurityToggleId, boolean>
 
 const DEFAULT_SECURITY: SecurityState = {
@@ -129,8 +76,115 @@ const DEFAULT_SECURITY: SecurityState = {
   ipAllowlist: false,
 }
 
+// Integrations --------------------------------------------------------------
+
+type IntegrationKind = "kyt" | "kyc" | "messaging"
+type IntegrationStatus = "connected" | "not-connected"
+
+type Integration = {
+  id: string
+  kind: IntegrationKind
+  name: string
+  description: string
+  status: IntegrationStatus
+}
+
+const DEFAULT_INTEGRATIONS: Integration[] = [
+  // KYT
+  {
+    id: "trm",
+    kind: "kyt",
+    name: "TRM Labs",
+    description: "Wallet screening, risk scoring, sanctions exposure.",
+    status: "connected",
+  },
+  {
+    id: "chainalysis",
+    kind: "kyt",
+    name: "Chainalysis",
+    description: "KYT API for transaction risk and entity attribution.",
+    status: "not-connected",
+  },
+  {
+    id: "elliptic",
+    kind: "kyt",
+    name: "Elliptic",
+    description: "Sanctions screening, blockchain analytics.",
+    status: "not-connected",
+  },
+  // KYC
+  {
+    id: "sumsub",
+    kind: "kyc",
+    name: "Sumsub",
+    description: "Document verification, liveness, sanctions screening.",
+    status: "connected",
+  },
+  {
+    id: "persona",
+    kind: "kyc",
+    name: "Persona",
+    description: "Modular KYC flows with trust signals.",
+    status: "not-connected",
+  },
+  {
+    id: "onfido",
+    kind: "kyc",
+    name: "Onfido",
+    description: "Identity & document verification.",
+    status: "not-connected",
+  },
+  // Messaging
+  {
+    id: "slack",
+    kind: "messaging",
+    name: "Slack",
+    description: "Channel notifications and slash-commands.",
+    status: "connected",
+  },
+  {
+    id: "teams",
+    kind: "messaging",
+    name: "Microsoft Teams",
+    description: "Channel notifications via webhook.",
+    status: "not-connected",
+  },
+  {
+    id: "email",
+    kind: "messaging",
+    name: "Email",
+    description: "Daily digest and per-event email alerts.",
+    status: "connected",
+  },
+]
+
+// Notifications -------------------------------------------------------------
+
+type NotificationChannelId = "email" | "slack" | "inApp"
+type NotificationEventId =
+  | "criticalAlerts"
+  | "sanctionsHits"
+  | "thresholdCrossings"
+  | "dailySummary"
+  | "weeklyDigest"
+type NotificationToggleId = NotificationChannelId | NotificationEventId | "quietHours"
+
+type NotificationsState = Record<NotificationToggleId, boolean>
+
+const DEFAULT_NOTIFICATIONS: NotificationsState = {
+  email: true,
+  slack: true,
+  inApp: true,
+  criticalAlerts: true,
+  sanctionsHits: true,
+  thresholdCrossings: true,
+  dailySummary: true,
+  weeklyDigest: false,
+  quietHours: false,
+}
+
 // ---------------------------------------------------------------------------
-// Section helper
+// Section / Card helpers
 // ---------------------------------------------------------------------------
 
 type SectionProps = ComponentProps<"section"> & {
@@ -150,41 +204,127 @@ function Section({ title, description, className, children, ...props }: SectionP
   )
 }
 
+function SettingsCard({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      className={cn("overflow-hidden rounded-lg border border-border bg-card", className)}
+      {...props}
+    />
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Integration row — mirrors the Figma "API Key Row" pattern: title + status
+// badge + description + Test/Configure (or Connect) action.
+// ---------------------------------------------------------------------------
+
+type IntegrationRowProps = {
+  integration: Integration
+  onTest?: (id: string) => void
+  onConfigure?: (id: string) => void
+  onConnect?: (id: string) => void
+}
+
+function IntegrationRow({ integration, onTest, onConfigure, onConnect }: IntegrationRowProps) {
+  const isConnected = integration.status === "connected"
+  return (
+    <div
+      data-slot="integration-row"
+      data-status={integration.status}
+      className="flex items-center gap-4 px-5 py-4"
+    >
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-sm">{integration.name}</span>
+          <Badge variant={isConnected ? "mint" : "secondary"} size="sm">
+            {isConnected ? "Connected" : "Not connected"}
+          </Badge>
+        </div>
+        <p className="mt-1 font-mono text-muted-foreground text-xs">{integration.description}</p>
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
+        {isConnected && (
+          <Button variant="outline" size="sm" onClick={() => onTest?.(integration.id)}>
+            Test
+          </Button>
+        )}
+        <Button
+          size="sm"
+          onClick={() =>
+            isConnected ? onConfigure?.(integration.id) : onConnect?.(integration.id)
+          }
+        >
+          {isConnected ? "Configure" : "Connect"}
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+function IntegrationGroup({
+  title,
+  description,
+  rows,
+}: {
+  title: ReactNode
+  description: ReactNode
+  rows: ReactNode
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <h3 className="font-semibold text-base">{title}</h3>
+        <p className="mt-0.5 text-muted-foreground text-sm">{description}</p>
+      </div>
+      <SettingsCard>{rows}</SettingsCard>
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 // SettingsPage
 // ---------------------------------------------------------------------------
 
 type SettingsPageProps = Omit<ComponentProps<"div">, "children"> & {
-  /** Title of the page header. */
   title?: ReactNode
-  /** Subtitle below the title. */
   subtitle?: ReactNode
-  /** Quick access cards at the top of the General tab. */
-  quickAccess?: SettingsCardGridItem[]
-  /** API keys shown on the General tab. Defaults to sample data. */
-  apiKeys?: ApiKey[]
-  /** Team members shown on the General tab. Defaults to sample data. */
   members?: TeamMember[]
-  /** Usage meters shown next to Members on the General tab. Defaults to sample data. */
   usage?: UsageMeterProps[]
-  /** Initial security toggle states. */
+  integrations?: Integration[]
   security?: Partial<SecurityState>
+  notifications?: Partial<NotificationsState>
   onSecurityChange?: (key: SecurityToggleId, value: boolean) => void
-  onCreateApiKey?: () => void
-  onRevokeApiKey?: (id: string) => void
+  onNotificationChange?: (key: NotificationToggleId, value: boolean) => void
+  onTestIntegration?: (id: string) => void
+  onConfigureIntegration?: (id: string) => void
+  onConnectIntegration?: (id: string) => void
+  /** Initial outbound webhook URL */
+  webhookUrl?: string
+  /** Initial outbound webhook signing secret (display-only) */
+  webhookSecret?: string
+  onSaveWebhook?: (values: { url: string; secret: string }) => void
+  onSendTestWebhook?: () => void
+  onRotateWebhookSecret?: () => void
 }
 
 function SettingsPage({
   title = "Settings",
-  subtitle = "Manage your workspace, team, and billing.",
-  quickAccess = DEFAULT_QUICK_ACCESS,
-  apiKeys = DEFAULT_API_KEYS,
+  subtitle = "Manage your workspace, team, billing, and integrations.",
   members = DEFAULT_MEMBERS,
   usage = DEFAULT_USAGE,
+  integrations = DEFAULT_INTEGRATIONS,
   security: securityProp,
+  notifications: notificationsProp,
   onSecurityChange,
-  onCreateApiKey,
-  onRevokeApiKey,
+  onNotificationChange,
+  onTestIntegration,
+  onConfigureIntegration,
+  onConnectIntegration,
+  webhookUrl: webhookUrlProp = "https://example.com/cogentic/events",
+  webhookSecret: webhookSecretProp = "whsec_••••••••••••••••••••••••",
+  onSaveWebhook,
+  onSendTestWebhook,
+  onRotateWebhookSecret,
   className,
   ...props
 }: SettingsPageProps) {
@@ -193,10 +333,40 @@ function SettingsPage({
     if (securityProp) Object.assign(merged, securityProp)
     return merged
   })
+  const [notifications, setNotifications] = useState<NotificationsState>(() => {
+    const merged: NotificationsState = { ...DEFAULT_NOTIFICATIONS }
+    if (notificationsProp) Object.assign(merged, notificationsProp)
+    return merged
+  })
+  const [webhookUrl, setWebhookUrl] = useState(webhookUrlProp)
+  const [webhookSecret, setWebhookSecret] = useState(webhookSecretProp)
 
-  const setToggle = (key: SecurityToggleId, value: boolean) => {
+  const setSecurityToggle = (key: SecurityToggleId, value: boolean) => {
     setSecurity((s) => ({ ...s, [key]: value }))
     onSecurityChange?.(key, value)
+  }
+  const setNotificationToggle = (key: NotificationToggleId, value: boolean) => {
+    setNotifications((s) => ({ ...s, [key]: value }))
+    onNotificationChange?.(key, value)
+  }
+
+  // Group integrations by kind for the Integrations tab
+  const kytIntegrations = integrations.filter((i) => i.kind === "kyt")
+  const kycIntegrations = integrations.filter((i) => i.kind === "kyc")
+  const messagingIntegrations = integrations.filter((i) => i.kind === "messaging")
+
+  function renderIntegrationRows(items: Integration[]) {
+    return items.map((integration, i) => (
+      <div key={integration.id}>
+        <IntegrationRow
+          integration={integration}
+          onTest={onTestIntegration}
+          onConfigure={onConfigureIntegration}
+          onConnect={onConnectIntegration}
+        />
+        {i < items.length - 1 && <Separator />}
+      </div>
+    ))
   }
 
   return (
@@ -212,25 +382,22 @@ function SettingsPage({
           <TabsList>
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="members">Members</TabsTrigger>
-            <TabsTrigger value="api-keys">API keys</TabsTrigger>
+            <TabsTrigger value="integrations">Integrations</TabsTrigger>
             <TabsTrigger value="billing">Billing</TabsTrigger>
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
           </TabsList>
 
+          {/* General ------------------------------------------------------ */}
           <TabsContent value="general" className="space-y-12 pt-6">
-            <Section title="Quick access" description="Jump to common settings.">
-              <SettingsCardGrid items={quickAccess} columns={3} />
-            </Section>
-
             <Section title="Security" description="Authentication and sign-in policies.">
-              <div className="rounded-lg border border-border bg-card">
+              <SettingsCard>
                 <SettingRow
                   title="Two-factor authentication"
                   description="Require a verification code in addition to your password."
                   action={
                     <Switch
                       checked={security.twoFactor}
-                      onCheckedChange={(v) => setToggle("twoFactor", v)}
+                      onCheckedChange={(v) => setSecurityToggle("twoFactor", v)}
                       aria-label="Two-factor authentication"
                     />
                   }
@@ -242,7 +409,7 @@ function SettingsPage({
                   action={
                     <Switch
                       checked={security.sso}
-                      onCheckedChange={(v) => setToggle("sso", v)}
+                      onCheckedChange={(v) => setSecurityToggle("sso", v)}
                       aria-label="Single sign-on"
                     />
                   }
@@ -254,7 +421,7 @@ function SettingsPage({
                   action={
                     <Switch
                       checked={security.sessionTimeout}
-                      onCheckedChange={(v) => setToggle("sessionTimeout", v)}
+                      onCheckedChange={(v) => setSecurityToggle("sessionTimeout", v)}
                       aria-label="Session timeout"
                     />
                   }
@@ -266,63 +433,247 @@ function SettingsPage({
                   action={
                     <Switch
                       checked={security.ipAllowlist}
-                      onCheckedChange={(v) => setToggle("ipAllowlist", v)}
+                      onCheckedChange={(v) => setSecurityToggle("ipAllowlist", v)}
                       aria-label="IP allowlist"
                     />
                   }
                 />
-              </div>
+              </SettingsCard>
             </Section>
 
-            <Section title="API keys" description="Programmatic access to your workspace.">
-              <ApiKeyManager keys={apiKeys} onCreate={onCreateApiKey} onRevoke={onRevokeApiKey} />
+            <Section title="Usage" description="Current billing period.">
+              <SettingsCard className="flex flex-col gap-5 p-6">
+                {usage.map((u) => (
+                  <UsageMeter key={String(u.label)} {...u} />
+                ))}
+              </SettingsCard>
             </Section>
-
-            <div className="grid gap-12 lg:grid-cols-2">
-              <Section
-                title="Members"
-                description={`${members.length} team member${members.length === 1 ? "" : "s"}.`}
-              >
-                <TeamTable members={members} roles={DEFAULT_ROLES} />
-              </Section>
-
-              <Section title="Usage" description="Current billing period.">
-                <div className="flex flex-col gap-4">
-                  {usage.map((u) => (
-                    <UsageMeter key={String(u.label)} {...u} />
-                  ))}
-                </div>
-              </Section>
-            </div>
           </TabsContent>
 
+          {/* Members ------------------------------------------------------ */}
           <TabsContent value="members" className="pt-6">
             <Section title="Members" description="Manage team access and roles.">
               <TeamTable members={members} roles={DEFAULT_ROLES} />
             </Section>
           </TabsContent>
 
-          <TabsContent value="api-keys" className="pt-6">
-            <Section title="API keys" description="Programmatic access to your workspace.">
-              <ApiKeyManager keys={apiKeys} onCreate={onCreateApiKey} onRevoke={onRevokeApiKey} />
+          {/* Integrations ------------------------------------------------- */}
+          <TabsContent value="integrations" className="space-y-12 pt-6">
+            <Section
+              title="Integrations"
+              description="Connect compliance providers, messaging tools, and outbound webhooks."
+            >
+              <div className="flex flex-col gap-10">
+                <IntegrationGroup
+                  title="Transaction monitoring (KYT)"
+                  description="Resolve risk on counterparty wallets and entities."
+                  rows={renderIntegrationRows(kytIntegrations)}
+                />
+                <IntegrationGroup
+                  title="Identity verification (KYC)"
+                  description="Verify counterparties for travel-rule and onboarding."
+                  rows={renderIntegrationRows(kycIntegrations)}
+                />
+                <IntegrationGroup
+                  title="Notifications & messaging"
+                  description="Where your team gets pinged about new alerts and reviews."
+                  rows={renderIntegrationRows(messagingIntegrations)}
+                />
+
+                {/* Outbound webhooks */}
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h3 className="font-semibold text-base">Outbound webhooks</h3>
+                    <p className="mt-0.5 text-muted-foreground text-sm">
+                      Stream events to your own endpoint for archival and downstream processing.
+                    </p>
+                  </div>
+                  <SettingsCard className="flex flex-col gap-5 p-6">
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="settings-webhook-url">Webhook URL</Label>
+                      <Input
+                        id="settings-webhook-url"
+                        value={webhookUrl}
+                        onChange={(e) => setWebhookUrl(e.target.value)}
+                        className="font-mono text-xs"
+                      />
+                      <p className="text-muted-foreground text-xs">
+                        POST endpoint that receives event payloads.
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="settings-webhook-secret">Signing secret</Label>
+                      <Input
+                        id="settings-webhook-secret"
+                        value={webhookSecret}
+                        onChange={(e) => setWebhookSecret(e.target.value)}
+                        className="font-mono text-xs"
+                      />
+                      <p className="text-muted-foreground text-xs">
+                        Used to sign payloads — verify with HMAC-SHA256.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" onClick={onSendTestWebhook}>
+                        Send test event
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={onRotateWebhookSecret}>
+                        Rotate secret
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="ml-auto"
+                        onClick={() => onSaveWebhook?.({ url: webhookUrl, secret: webhookSecret })}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                  </SettingsCard>
+                </div>
+              </div>
             </Section>
           </TabsContent>
 
+          {/* Billing ------------------------------------------------------ */}
           <TabsContent value="billing" className="pt-6">
             <Section title="Billing" description="Plan, usage, and invoices.">
-              <div className="flex flex-col gap-4">
+              <SettingsCard className="flex flex-col gap-5 p-6">
                 {usage.map((u) => (
                   <UsageMeter key={String(u.label)} {...u} />
                 ))}
-              </div>
+              </SettingsCard>
             </Section>
           </TabsContent>
 
-          <TabsContent value="notifications" className="pt-6">
-            <Section title="Notifications" description="Where and when we ping you.">
-              <div className="rounded-lg border border-border bg-card p-6 text-muted-foreground text-sm">
-                Notification preferences go here.
-              </div>
+          {/* Notifications ------------------------------------------------ */}
+          <TabsContent value="notifications" className="space-y-12 pt-6">
+            <Section
+              title="Channels"
+              description="Where notifications are delivered when they fire."
+            >
+              <SettingsCard>
+                <SettingRow
+                  icon={<Mail className="size-4" />}
+                  title="Email"
+                  description="Send to your verified workspace email."
+                  action={
+                    <Switch
+                      checked={notifications.email}
+                      onCheckedChange={(v) => setNotificationToggle("email", v)}
+                      aria-label="Email notifications"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  icon={<MessageSquare className="size-4" />}
+                  title="Slack"
+                  description="Post to the connected Slack channel."
+                  action={
+                    <Switch
+                      checked={notifications.slack}
+                      onCheckedChange={(v) => setNotificationToggle("slack", v)}
+                      aria-label="Slack notifications"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  icon={<Bell className="size-4" />}
+                  title="In-app"
+                  description="Show alerts in the notification center."
+                  action={
+                    <Switch
+                      checked={notifications.inApp}
+                      onCheckedChange={(v) => setNotificationToggle("inApp", v)}
+                      aria-label="In-app notifications"
+                    />
+                  }
+                />
+              </SettingsCard>
+            </Section>
+
+            <Section title="Event types" description="Pick which events trigger a notification.">
+              <SettingsCard>
+                <SettingRow
+                  title="Critical alerts"
+                  description="Immediately notify on sanctions hits and high-risk transactions."
+                  action={
+                    <Switch
+                      checked={notifications.criticalAlerts}
+                      onCheckedChange={(v) => setNotificationToggle("criticalAlerts", v)}
+                      aria-label="Critical alerts"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  title="Sanctions hits"
+                  description="Any direct or 1-hop counterparty match on watchlists."
+                  action={
+                    <Switch
+                      checked={notifications.sanctionsHits}
+                      onCheckedChange={(v) => setNotificationToggle("sanctionsHits", v)}
+                      aria-label="Sanctions hits"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  title="Threshold crossings"
+                  description="Transactions that cross your configured value or risk thresholds."
+                  action={
+                    <Switch
+                      checked={notifications.thresholdCrossings}
+                      onCheckedChange={(v) => setNotificationToggle("thresholdCrossings", v)}
+                      aria-label="Threshold crossings"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  title="Daily summary"
+                  description="One email each morning with yesterday's queue and outcomes."
+                  action={
+                    <Switch
+                      checked={notifications.dailySummary}
+                      onCheckedChange={(v) => setNotificationToggle("dailySummary", v)}
+                      aria-label="Daily summary"
+                    />
+                  }
+                />
+                <Separator />
+                <SettingRow
+                  title="Weekly digest"
+                  description="Volume, risk-mix, and SLA trends — Mondays."
+                  action={
+                    <Switch
+                      checked={notifications.weeklyDigest}
+                      onCheckedChange={(v) => setNotificationToggle("weeklyDigest", v)}
+                      aria-label="Weekly digest"
+                    />
+                  }
+                />
+              </SettingsCard>
+            </Section>
+
+            <Section
+              title="Quiet hours"
+              description="Hold non-critical notifications outside business hours."
+            >
+              <SettingsCard>
+                <SettingRow
+                  title="Pause non-critical alerts"
+                  description="Critical alerts and sanctions hits always come through."
+                  action={
+                    <Switch
+                      checked={notifications.quietHours}
+                      onCheckedChange={(v) => setNotificationToggle("quietHours", v)}
+                      aria-label="Quiet hours"
+                    />
+                  }
+                />
+              </SettingsCard>
             </Section>
           </TabsContent>
         </Tabs>
@@ -331,5 +682,14 @@ function SettingsPage({
   )
 }
 
-export type { SecurityState, SecurityToggleId, SettingsPageProps }
+export type {
+  Integration,
+  IntegrationKind,
+  IntegrationStatus,
+  NotificationsState,
+  NotificationToggleId,
+  SecurityState,
+  SecurityToggleId,
+  SettingsPageProps,
+}
 export { SettingsPage }
