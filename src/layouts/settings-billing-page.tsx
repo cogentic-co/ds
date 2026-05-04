@@ -9,6 +9,14 @@
 import { UsageMeter } from "../blocks/usage-meter"
 import { Badge } from "../components/badge"
 import { Button } from "../components/button"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "../components/item"
 import { Separator } from "../components/separator"
 import { SettingsLayout } from "./settings-layout"
 
@@ -75,17 +83,23 @@ export default function SettingsBillingPage() {
             Card used for renewal and overage charges.
           </p>
         </div>
-        <div className="flex items-center gap-4 rounded-lg border border-border bg-card p-4 pl-5">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted font-semibold text-2xs tracking-wider">
-            VISA
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="font-medium text-sm">Visa ending in 4242</div>
-            <div className="text-muted-foreground text-sm">Expires 09/2027 · Mia Kowalski</div>
-          </div>
-          <Button variant="outline" size="sm">
-            Update
-          </Button>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
+          <Item>
+            <ItemMedia variant="default">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted font-semibold text-2xs tracking-wider">
+                VISA
+              </span>
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>Visa ending in 4242</ItemTitle>
+              <ItemDescription>Expires 09/2027 · Mia Kowalski</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Button variant="outline" size="sm">
+                Update
+              </Button>
+            </ItemActions>
+          </Item>
         </div>
       </section>
 
@@ -109,19 +123,21 @@ export default function SettingsBillingPage() {
         <div className="overflow-hidden rounded-lg border border-border bg-card">
           {INVOICES.map((inv, i) => (
             <div key={inv.id}>
-              <div className="flex items-center gap-4 px-5 py-3.5">
-                <div className="min-w-0 flex-1">
-                  <div className="font-medium font-mono text-sm">{inv.id}</div>
-                  <div className="text-muted-foreground text-xs">{inv.date}</div>
-                </div>
-                <div className="font-mono text-sm tabular-nums">{inv.amount}</div>
-                <Badge variant="secondary" size="sm">
-                  {inv.status}
-                </Badge>
-                <Button variant="outline" size="sm">
-                  Download
-                </Button>
-              </div>
+              <Item size="sm">
+                <ItemContent>
+                  <ItemTitle className="font-mono">{inv.id}</ItemTitle>
+                  <ItemDescription>{inv.date}</ItemDescription>
+                </ItemContent>
+                <ItemActions>
+                  <span className="font-mono text-sm tabular-nums">{inv.amount}</span>
+                  <Badge variant="secondary" size="sm">
+                    {inv.status}
+                  </Badge>
+                  <Button variant="outline" size="sm">
+                    Download
+                  </Button>
+                </ItemActions>
+              </Item>
               {i < INVOICES.length - 1 && <Separator />}
             </div>
           ))}

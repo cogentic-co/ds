@@ -1,8 +1,36 @@
 import { readFileSync } from "node:fs"
 import { join } from "node:path"
-import { CodeBlock } from "@/components/ui/code-block"
+import type { ComponentType } from "react"
 import { Separator } from "@/components/ui/separator"
-import { layoutPreviews } from "./previews"
+// Layout examples — server-rendered "View source" preview pages.
+// Each layout file at src/layouts/<slug>.tsx is read at request time and
+// shown alongside the live render. Layouts are NOT bundled into the
+// published package — they are copy/paste recipes.
+//
+// We import the layouts statically so the server→client boundary is a
+// single hop (one client component per slug) rather than going through
+// the giant compliance previews map.
+import DashboardPage from "@/src/layouts/dashboard-page"
+import SettingsBillingPage from "@/src/layouts/settings-billing-page"
+import SettingsIntegrationsPage from "@/src/layouts/settings-integrations-page"
+import SettingsMembersPage from "@/src/layouts/settings-members-page"
+import SettingsNotificationsPage from "@/src/layouts/settings-notifications-page"
+import SettingsPage from "@/src/layouts/settings-page"
+import TransactionDetailPage from "@/src/layouts/transaction-detail-page"
+import { highlightCode } from "@/src/lib/highlighter"
+import { shellPreviews } from "../../shells/[slug]/previews"
+import { LayoutSource } from "./layout-source"
+
+const layoutPreviews: Record<string, ComponentType> = {
+  "app-shell": shellPreviews["app-shell"],
+  "dashboard-page": DashboardPage,
+  "transaction-detail-page": TransactionDetailPage,
+  "settings-page": SettingsPage,
+  "settings-members-page": SettingsMembersPage,
+  "settings-integrations-page": SettingsIntegrationsPage,
+  "settings-billing-page": SettingsBillingPage,
+  "settings-notifications-page": SettingsNotificationsPage,
+}
 
 function toTitle(slug: string) {
   return slug
@@ -12,9 +40,6 @@ function toTitle(slug: string) {
 }
 
 function readLayoutSource(slug: string): string | null {
-  // Layouts are copy-source recipes living at src/layouts/<slug>.tsx.
-  // We read them at request time so the dev preview shows the exact file
-  // a consumer would copy/paste.
   try {
     return readFileSync(join(process.cwd(), "src", "layouts", `${slug}.tsx`), "utf8")
   } catch {
@@ -57,7 +82,12 @@ export default async function LayoutPage({ params }: { params: Promise<{ slug: s
             <h2 className="mb-3 font-medium text-muted-foreground text-sm">
               Source — <span className="font-mono">src/layouts/{slug}.tsx</span>
             </h2>
-            <CodeBlock code={source} language="tsx" showLineNumbers />
+            <LayoutSource
+              code={source}
+              filename={`src/layouts/${slug}.tsx`}
+              highlightedLight={await highlightCode(source, "tsx", "light")}
+              highlightedDark={await highlightCode(source, "tsx", "dark")}
+            />
           </div>
         </>
       )}
