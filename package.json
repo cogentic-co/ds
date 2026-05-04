@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -81,22 +81,40 @@
         "default": "./dist/card-stack.js"
       }
     },
-    "./chatbot": {
+    "./chat": {
       "import": {
-        "types": "./dist/chatbot.d.ts",
-        "default": "./dist/chatbot.js"
+        "types": "./dist/chat.d.ts",
+        "default": "./dist/chat.js"
       }
     },
-    "./chatbot/agent-progress": {
+    "./chat/agent-progress": {
       "import": {
-        "types": "./dist/chatbot/agent-progress.d.ts",
-        "default": "./dist/chatbot/agent-progress.js"
+        "types": "./dist/chat/agent-progress.d.ts",
+        "default": "./dist/chat/agent-progress.js"
       }
     },
-    "./chatbot/markdown": {
+    "./chat/markdown": {
       "import": {
-        "types": "./dist/chatbot/markdown.d.ts",
-        "default": "./dist/chatbot/markdown.js"
+        "types": "./dist/chat/markdown.d.ts",
+        "default": "./dist/chat/markdown.js"
+      }
+    },
+    "./chat/chat-block": {
+      "import": {
+        "types": "./dist/chat/chat-block.d.ts",
+        "default": "./dist/chat/chat-block.js"
+      }
+    },
+    "./chat/prompt-input-actions": {
+      "import": {
+        "types": "./dist/chat/prompt-input-actions.d.ts",
+        "default": "./dist/chat/prompt-input-actions.js"
+      }
+    },
+    "./chat/prompt-input-suggestions": {
+      "import": {
+        "types": "./dist/chat/prompt-input-suggestions.d.ts",
+        "default": "./dist/chat/prompt-input-suggestions.js"
       }
     },
     "./bento": {

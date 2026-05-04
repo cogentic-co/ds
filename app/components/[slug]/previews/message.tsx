@@ -10,7 +10,7 @@ import {
   MessageFeedbackActions,
   MessageRegenerateAction,
   MessageResponse,
-} from "@/src/chatbot"
+} from "@/src/chat"
 
 export default function MessagePreview() {
   return (

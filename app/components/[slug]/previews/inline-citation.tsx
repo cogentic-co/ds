@@ -1,6 +1,6 @@
 "use client"
 
-import { InlineCitation } from "@/src/chatbot"
+import { InlineCitation } from "@/src/chat"
 
 export default function InlineCitationPreview() {
   return (

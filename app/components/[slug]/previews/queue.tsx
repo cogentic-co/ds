@@ -11,7 +11,7 @@ import {
   QueueList,
   QueueSection,
   QueueSectionTrigger,
-} from "@/src/chatbot"
+} from "@/src/chat"
 import { Button } from "@/src/components/button"
 import { Section } from "./_shared"
 

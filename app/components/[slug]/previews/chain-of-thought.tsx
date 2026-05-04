@@ -5,7 +5,7 @@ import {
   ChainOfThoughtContent,
   ChainOfThoughtHeader,
   ChainOfThoughtStep,
-} from "@/src/chatbot"
+} from "@/src/chat"
 
 export default function ChainOfThoughtPreview() {
   return (

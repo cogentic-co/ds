@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Task, TaskContent, TaskItem, TaskTrigger } from "@/src/chatbot"
+import { Task, TaskContent, TaskItem, TaskTrigger } from "@/src/chat"
 import { Section } from "./_shared"
 
 function Code({ children }: { children: React.ReactNode }) {

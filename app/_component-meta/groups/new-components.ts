@@ -3,12 +3,12 @@ import type { ComponentMeta } from "../index"
 // ── New components (v0.5.0) ──
 export const newComponentsMeta: Record<string, ComponentMeta> = {
   // ── Chat blocks (v0.21.0) ──
-  chat: {
+  "chat-block": {
     status: "new",
     description:
       "Full chat block. Composes Conversation + Message + sticky PromptInput + empty state with optional suggestions. Self-managed by default; pass `messages` + `onMessagesChange` to control externally. Streaming-aware via `isLoading`.",
     since: "0.21.0",
-    importStatement: 'import { ChatBlock } from "@cogentic-co/ds/blocks/chat"',
+    importStatement: 'import { ChatBlock } from "@cogentic-co/ds/chat/chat-block"',
     dos: [
       "Wrap in a fixed-height container so the conversation can scroll",
       "Pass `suggestions` for an empty-state with starter prompts",
@@ -19,7 +19,7 @@ export const newComponentsMeta: Record<string, ComponentMeta> = {
       "Don't nest ChatBlock inside another scroll container",
       "Don't bypass `onSubmit` to mutate messages directly — use onMessagesChange",
     ],
-    codeExample: `import { ChatBlock } from "@cogentic-co/ds/blocks/chat"
+    codeExample: `import { ChatBlock } from "@cogentic-co/ds/chat/chat-block"
 
 <ChatBlock
   title="How can I help?"
@@ -36,14 +36,14 @@ export const newComponentsMeta: Record<string, ComponentMeta> = {
       "Polished PromptInput block with a row of action buttons (Plus, Search, More, Voice, Submit). Mirrors prompt-kit's PromptInputWithActions but built from our primitives.",
     since: "0.21.0",
     importStatement:
-      'import { PromptInputActionsBlock } from "@cogentic-co/ds/blocks/prompt-input-actions"',
+      'import { PromptInputActionsBlock } from "@cogentic-co/ds/chat/prompt-input-actions"',
     dos: [
       "Use as a standalone composer above a conversation",
       "Override `leftActions` / `rightActions` to add tools (model selector, attach, etc.)",
       "Set `isLoading` while a response streams — submit becomes a stop button",
     ],
     donts: ["Don't render this and ChatBlock together — ChatBlock has its own input"],
-    codeExample: `import { PromptInputActionsBlock } from "@cogentic-co/ds/blocks/prompt-input-actions"
+    codeExample: `import { PromptInputActionsBlock } from "@cogentic-co/ds/chat/prompt-input-actions"
 
 <PromptInputActionsBlock onSubmit={(text) => sendMessage(text)} />`,
   },
@@ -53,7 +53,7 @@ export const newComponentsMeta: Record<string, ComponentMeta> = {
       "PromptInput with a two-level suggestion picker. First click reveals a group's items; clicking an item pre-fills the input. Mirrors prompt-kit's PromptInputWithSuggestions.",
     since: "0.21.0",
     importStatement:
-      'import { PromptInputSuggestionsBlock } from "@cogentic-co/ds/blocks/prompt-input-suggestions"',
+      'import { PromptInputSuggestionsBlock } from "@cogentic-co/ds/chat/prompt-input-suggestions"',
     dos: [
       "Use 3–5 suggestion groups for a clean grid",
       "Set `highlight` on each group to bold the action verb in items",
@@ -63,7 +63,7 @@ export const newComponentsMeta: Record<string, ComponentMeta> = {
       "Don't use more than ~6 items per group — feels overwhelming",
       "Don't mix this with ChatBlock — ChatBlock has its own empty-state suggestions",
     ],
-    codeExample: `import { PromptInputSuggestionsBlock } from "@cogentic-co/ds/blocks/prompt-input-suggestions"
+    codeExample: `import { PromptInputSuggestionsBlock } from "@cogentic-co/ds/chat/prompt-input-suggestions"
 
 <PromptInputSuggestionsBlock
   groups={[

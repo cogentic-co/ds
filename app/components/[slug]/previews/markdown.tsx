@@ -1,6 +1,6 @@
 "use client"
 
-import { Markdown, Message, MessageAvatar, MessageContent, MessageResponse } from "@/src/chatbot"
+import { Markdown, Message, MessageAvatar, MessageContent, MessageResponse } from "@/src/chat"
 
 const sample = `## Travel Rule key points
 

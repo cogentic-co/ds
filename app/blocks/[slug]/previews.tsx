@@ -439,17 +439,17 @@ import {
 } from "lucide-react"
 import { ApiKeyManager } from "@/src/blocks/api-key-manager"
 import { Changelog } from "@/src/blocks/changelog"
-import { ChatBlock, type ChatMessage } from "@/src/blocks/chat"
 import { CommandPalette } from "@/src/blocks/command-palette"
 import { Invoice } from "@/src/blocks/invoice"
 import { Kanban, type KanbanCard } from "@/src/blocks/kanban"
 import { MultiStepForm } from "@/src/blocks/multi-step-form"
 import { NotificationCenter, type NotificationItem } from "@/src/blocks/notification-center"
-import { PromptInputActionsBlock } from "@/src/blocks/prompt-input-actions"
-import { PromptInputSuggestionsBlock } from "@/src/blocks/prompt-input-suggestions"
 import { type TeamMember, TeamTable } from "@/src/blocks/team-table"
 import { UsageMeter } from "@/src/blocks/usage-meter"
-import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chatbot/tool"
+import { ChatBlock, type ChatMessage } from "@/src/chat/chat-block"
+import { PromptInputActionsBlock } from "@/src/chat/prompt-input-actions"
+import { PromptInputSuggestionsBlock } from "@/src/chat/prompt-input-suggestions"
+import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chat/tool"
 import { CodeBlock } from "@/src/components/code-block"
 import { Input } from "@/src/components/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/tabs"
@@ -976,7 +976,7 @@ export function AIChat() {
 const aiSdkToolsCode = `"use client"
 import { useChat } from "@ai-sdk/react"
 import { ChatBlock, type ChatMessage } from "@cogentic-co/ds/blocks/chat"
-import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"
+import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chat"
 
 export function AIChatWithTools() {
   const { messages, sendMessage, status } = useChat({ api: "/api/chat" })
@@ -1209,7 +1209,7 @@ export const blockPreviews: Record<string, React.ComponentType> = {
       <TeamCard name="Carol Davis" role="Staff Engineer" />
     </div>
   ),
-  chat: ChatBlockPreview,
+  "chat-block": ChatBlockPreview,
   "prompt-input-actions": function PromptInputActionsPreview() {
     return (
       <div className="relative h-[200px] rounded-lg border bg-background">

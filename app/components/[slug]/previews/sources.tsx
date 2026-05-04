@@ -1,6 +1,6 @@
 "use client"
 
-import { Source, Sources, SourcesContent, SourcesTrigger } from "@/src/chatbot"
+import { Source, Sources, SourcesContent, SourcesTrigger } from "@/src/chat"
 
 export default function SourcesPreview() {
   return (

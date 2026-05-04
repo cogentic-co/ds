@@ -7,7 +7,7 @@ import {
   type AgentProgressDensity,
   type AgentProgressState,
   type AgentProgressStep,
-} from "@/src/chatbot"
+} from "@/src/chat"
 
 const baseSteps: AgentProgressStep[] = [
   {

@@ -8,7 +8,7 @@ import {
   ModelSelectorItem,
   ModelSelectorList,
   ModelSelectorTrigger,
-} from "@/src/chatbot"
+} from "@/src/chat"
 
 export default function ModelSelectorPreview() {
   return (

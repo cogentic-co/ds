@@ -236,10 +236,6 @@ const blockGroups: { label: string; items: string[] }[] = [
     label: "Onboarding",
     items: ["product-tour"],
   },
-  {
-    label: "Chat",
-    items: ["chat", "prompt-input-actions", "prompt-input-suggestions"],
-  },
 ]
 
 const chartItems = [
@@ -288,7 +284,7 @@ const workflowGroups: { label: string; items: string[] }[] = [
   },
 ]
 
-const chatbotGroups: { label: string; items: string[] }[] = [
+const chatGroups: { label: string; items: string[] }[] = [
   {
     label: "Conversation",
     items: ["message", "conversation", "prompt-input", "text-command", "suggestion"],
@@ -314,6 +310,9 @@ const chatbotGroups: { label: string; items: string[] }[] = [
     items: ["confirmation", "checkpoint", "queue", "model-selector"],
   },
 ]
+
+// Chat block slugs — rendered under /blocks/<slug> not /components/<slug>
+const chatBlockItems = ["chat-block", "prompt-input-actions", "prompt-input-suggestions"]
 
 const animationGroups: { label: string; items: string[] }[] = [
   {
@@ -505,15 +504,28 @@ function buildNav(pathname: string): NavGroup[] {
       })),
     },
     {
-      id: "chatbot",
+      id: "chat",
       icon: MessageSquare,
-      title: "AI / Chatbot",
+      title: "AI / Chat",
       items: [],
-      groups: chatbotGroups.map((group) => ({
-        title: group.label,
-        items: buildComponentItems(group.items),
-        defaultOpen: true,
-      })),
+      groups: [
+        ...chatGroups.map((group) => ({
+          title: group.label,
+          items: buildComponentItems(group.items),
+          defaultOpen: true,
+        })),
+        {
+          title: "Composed blocks",
+          items: chatBlockItems.map((slug) => ({
+            label: toTitle(slug),
+            icon: Component,
+            href: `/blocks/${slug}`,
+            isActive: pathname === `/blocks/${slug}`,
+            badge: buildBadge(slug),
+          })),
+          defaultOpen: true,
+        },
+      ],
     },
     {
       id: "compliance",

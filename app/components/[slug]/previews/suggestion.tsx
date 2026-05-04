@@ -1,7 +1,7 @@
 "use client"
 
 import { FileText, Lightbulb, Search, Sparkles } from "lucide-react"
-import { Suggestion, Suggestions } from "@/src/chatbot"
+import { Suggestion, Suggestions } from "@/src/chat"
 import { Section } from "./_shared"
 
 export default function SuggestionPreview() {

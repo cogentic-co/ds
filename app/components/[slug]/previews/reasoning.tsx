@@ -1,6 +1,6 @@
 "use client"
 
-import { Reasoning, ReasoningContent, ReasoningTrigger } from "@/src/chatbot"
+import { Reasoning, ReasoningContent, ReasoningTrigger } from "@/src/chat"
 
 export default function ReasoningPreview() {
   return (

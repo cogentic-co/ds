@@ -17,7 +17,7 @@ import {
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
-} from "@/src/chatbot"
+} from "@/src/chat"
 
 const commands = [
   { value: "deploy", label: "deploy", description: "Ship to production", icon: <Rocket /> },

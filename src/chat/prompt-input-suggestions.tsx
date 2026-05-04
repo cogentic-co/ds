@@ -3,11 +3,10 @@
 import { ArrowUp, Brain } from "lucide-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
-
-import { PromptInput, PromptInputFooter, PromptInputTextarea } from "../chatbot/prompt-input"
-import { Suggestion, Suggestions } from "../chatbot/suggestion"
 import { Button } from "../components/button"
 import { cn } from "../lib/utils"
+import { PromptInput, PromptInputFooter, PromptInputTextarea } from "./prompt-input"
+import { Suggestion, Suggestions } from "./suggestion"
 
 /**
  * Prompt input + a two-level suggestion picker. First click reveals a

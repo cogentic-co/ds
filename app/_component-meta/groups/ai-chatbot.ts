@@ -7,7 +7,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     description:
       "Live status card for an agent or workflow run. Composes Step/Stepper, Badge, Progress, Separator, and Button. Variants: State (running|completed|failed) × Density (compact|detailed).",
     since: "0.19.0",
-    importStatement: 'import { AgentProgress } from "@cogentic-co/ds/chatbot/agent-progress"',
+    importStatement: 'import { AgentProgress } from "@cogentic-co/ds/chat/agent-progress"',
     dos: [
       "Use for agent or workflow runs that have a fixed list of steps",
       "Pass step descriptions even in compact density — they're used by detailed mode",
@@ -19,7 +19,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't use for free-form workflows without discrete steps — use a Plan or Task list",
       "Don't override step status manually — flow through `status: 'done'|'active'|'pending'|'failed'|'skipped'`",
     ],
-    codeExample: `import { AgentProgress } from "@cogentic-co/ds/chatbot/agent-progress"
+    codeExample: `import { AgentProgress } from "@cogentic-co/ds/chat/agent-progress"
 
 <AgentProgress
   state="running"
@@ -43,7 +43,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     status: "new",
     description:
       "Streaming-aware Markdown renderer for AI output. Wraps Vercel's Streamdown with DS prose tokens — handles unterminated code/tables/links during streaming, supports GFM, code highlighting, and tables. Auto-rendered inside MessageResponse when children is a string.",
-    importStatement: 'import { Markdown } from "@cogentic-co/ds/chatbot"',
+    importStatement: 'import { Markdown } from "@cogentic-co/ds/chat"',
     dos: [
       "Use for any model output that may contain markdown (almost always)",
       "Pass model output as a plain string — Streamdown handles partial blocks",
@@ -55,7 +55,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't sanitize input yourself — Streamdown already sanitizes via rehype-sanitize",
       "Don't use for plain text that contains no markdown — it adds runtime cost",
     ],
-    codeExample: `import { Markdown } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Markdown } from "@cogentic-co/ds/chat"
 
 // Standalone
 <Markdown>{modelOutput}</Markdown>
@@ -71,7 +71,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     status: "new",
     description:
       "Animated shimmer text effect for loading states. Renders a gradient animation across text content.",
-    importStatement: 'import { Shimmer } from "@cogentic-co/ds/chatbot"',
+    importStatement: 'import { Shimmer } from "@cogentic-co/ds/chat"',
     dos: [
       "Use for AI-generated text that's still loading or streaming",
       "Keep shimmer text short — a few words that hint at what's coming",
@@ -82,7 +82,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't show shimmer for more than a few seconds — switch to a skeleton or spinner",
       "Don't use alongside a separate loading spinner on the same content",
     ],
-    codeExample: `import { Shimmer } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Shimmer } from "@cogentic-co/ds/chat"
 
 <Shimmer duration={2}>Generating response...</Shimmer>
 <Shimmer as="span" duration={3}>Loading</Shimmer>`,
@@ -90,7 +90,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
   suggestion: {
     status: "new",
     description: "Clickable suggestion pills for prompting user actions in a chat interface.",
-    importStatement: 'import { Suggestions, Suggestion } from "@cogentic-co/ds/chatbot"',
+    importStatement: 'import { Suggestions, Suggestion } from "@cogentic-co/ds/chat"',
     dos: [
       "Show 2–5 relevant suggestions based on conversation context",
       "Keep suggestion text concise — under 40 characters",
@@ -102,7 +102,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't use generic suggestions that don't relate to the current context",
       "Don't show more than 6 suggestions — it overwhelms the user",
     ],
-    codeExample: `import { Suggestions, Suggestion } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Suggestions, Suggestion } from "@cogentic-co/ds/chat"
 
 <Suggestions>
   <Suggestion onClick={() => send("Summarize this")}>Summarize this</Suggestion>
@@ -114,7 +114,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     description:
       "Collapsible reasoning/thinking panel. Shows AI chain-of-thought or reasoning steps.",
     importStatement:
-      'import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chatbot"',
+      'import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chat"',
     dos: [
       "Use to show AI thinking process for transparency",
       "Start collapsed by default — most users don't need to see reasoning",
@@ -126,7 +126,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't put the final answer inside the reasoning panel",
       "Don't use for error messages — use Callout or Alert instead",
     ],
-    codeExample: `import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Reasoning, ReasoningTrigger, ReasoningContent } from "@cogentic-co/ds/chat"
 
 <Reasoning>
   <ReasoningTrigger />
@@ -140,7 +140,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     description:
       "Collapsible citation sources panel. Display references and links used to generate a response.",
     importStatement:
-      'import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chatbot"',
+      'import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chat"',
     dos: [
       "Show source count in the trigger text (e.g. '3 sources')",
       "Include title and description for each source for scannability",
@@ -152,7 +152,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't link to sources the user can't access (paywalled, internal)",
       "Don't duplicate sources — deduplicate before rendering",
     ],
-    codeExample: `import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Sources, SourcesTrigger, SourcesContent, Source } from "@cogentic-co/ds/chat"
 
 <Sources>
   <SourcesTrigger>3 sources</SourcesTrigger>
@@ -165,7 +165,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     status: "new",
     description:
       "Inline citation with hover card. Shows a numbered superscript that reveals source details on hover.",
-    importStatement: 'import { InlineCitation } from "@cogentic-co/ds/chatbot"',
+    importStatement: 'import { InlineCitation } from "@cogentic-co/ds/chat"',
     dos: [
       "Number citations sequentially within a single response",
       "Wrap only the relevant phrase, not the entire sentence",
@@ -177,7 +177,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't use sequential numbers that skip (e.g. 1, 3, 5)",
       "Don't nest citations inside other interactive elements",
     ],
-    codeExample: `import { InlineCitation } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { InlineCitation } from "@cogentic-co/ds/chat"
 
 <p>
   This is a fact
@@ -191,7 +191,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     description:
       "Chat message bubble with role-based styling. Compound component with avatar, content, actions, and branching.",
     importStatement:
-      'import { Message, MessageContent, MessageResponse, MessageActions } from "@cogentic-co/ds/chatbot"',
+      'import { Message, MessageContent, MessageResponse, MessageActions } from "@cogentic-co/ds/chat"',
     dos: [
       "Always set the `from` prop to get correct alignment and bubble styling",
       "Use MessageAvatar for visual identity — initials, icon, or image",
@@ -208,7 +208,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     codeExample: `import {
   Message, MessageAvatar, MessageContent,
   MessageResponse, MessageActions, MessageCopyAction
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <Message from="assistant">
   <MessageAvatar>AI</MessageAvatar>
@@ -225,7 +225,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
     description:
       "Auto-scrolling conversation container with empty state and scroll-to-bottom button.",
     importStatement:
-      'import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chatbot"',
+      'import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chat"',
     dos: [
       "Set an explicit height on the Conversation container (h-[500px], h-screen, etc.)",
       "Use ConversationEmptyState when there are no messages",
@@ -237,7 +237,7 @@ export const aiChatbotMeta: Record<string, ComponentMeta> = {
       "Don't render the scroll-to-bottom button when already at bottom (handled automatically)",
       "Don't put the PromptInput inside Conversation — place it as a sibling below",
     ],
-    codeExample: `import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Conversation, ConversationContent, ConversationEmptyState } from "@cogentic-co/ds/chat"
 
 <Conversation className="h-[500px]">
   <ConversationContent>
@@ -293,7 +293,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Composable chat input with auto-resizing textarea, file attachments, and submit button.",
     importStatement:
-      'import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputSubmit } from "@cogentic-co/ds/chatbot"',
+      'import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputSubmit } from "@cogentic-co/ds/chat"',
     dos: [
       "Always include PromptInputSubmit for clear submit affordance",
       "Use Enter to submit, Shift+Enter for newline (built-in behaviour)",
@@ -310,7 +310,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
   PromptInput, PromptInputBody, PromptInputTextarea,
   PromptInputFooter, PromptInputTools, PromptInputAttachButton,
   PromptInputSubmit, PromptInputFiles
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <PromptInput onSubmit={(msg, files) => send(msg)}>
   <PromptInputFiles />
@@ -330,7 +330,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Step-by-step reasoning visualization. Collapsible panel showing sequential thinking steps with search results.",
     importStatement:
-      'import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep } from "@cogentic-co/ds/chatbot"',
+      'import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep } from "@cogentic-co/ds/chat"',
     dos: [
       "Number steps sequentially and update status as each completes",
       "Use descriptive step labels that explain what's happening",
@@ -345,7 +345,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     codeExample: `import {
   ChainOfThought, ChainOfThoughtHeader,
   ChainOfThoughtContent, ChainOfThoughtStep
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <ChainOfThought defaultOpen>
   <ChainOfThoughtHeader>Thinking...</ChainOfThoughtHeader>
@@ -361,7 +361,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Tool approval request UI. Shows a confirmation card when AI wants to execute a tool or action.",
     importStatement:
-      'import { Confirmation, ConfirmationRequest, ConfirmationActions, ConfirmationAction } from "@cogentic-co/ds/chatbot"',
+      'import { Confirmation, ConfirmationRequest, ConfirmationActions, ConfirmationAction } from "@cogentic-co/ds/chat"',
     dos: [
       "Clearly describe the action being requested in the title",
       "Show the exact input/parameters in the description for transparency",
@@ -376,7 +376,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     codeExample: `import {
   Confirmation, ConfirmationRequest,
   ConfirmationActions, ConfirmationAction
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <Confirmation status="pending">
   <ConfirmationRequest
@@ -394,7 +394,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Conversation bookmark marker. Visual indicator for saved points in a conversation.",
     importStatement:
-      'import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chatbot"',
+      'import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chat"',
     dos: [
       "Use meaningful labels that describe what was accomplished at this point",
       "Insert between messages at natural breakpoints in the conversation",
@@ -405,7 +405,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
       "Don't use vague labels like 'Checkpoint 1' — describe the milestone",
       "Don't checkpoint trivial exchanges",
     ],
-    codeExample: `import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@cogentic-co/ds/chat"
 
 <Checkpoint>
   <CheckpointIcon />
@@ -417,7 +417,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Collapsible execution plan display. Shows AI-generated plans with steps and actions.",
     importStatement:
-      'import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chatbot"',
+      'import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chat"',
     dos: [
       "Show the plan before execution so users can review and approve",
       "Use PlanFooter with an action button for explicit user confirmation",
@@ -429,7 +429,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
       "Don't show more than 10 steps — break into phases if needed",
       "Don't mix plan display with task progress — use Task component for execution tracking",
     ],
-    codeExample: `import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Plan, PlanTrigger, PlanContent, PlanFooter, PlanAction } from "@cogentic-co/ds/chat"
 
 <Plan>
   <PlanTrigger>Implementation Plan</PlanTrigger>
@@ -448,7 +448,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Collapsible task progress display. Shows task items with status indicators (pending, running, complete, error).",
     importStatement:
-      'import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chatbot"',
+      'import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chat"',
     dos: [
       "Update task item statuses in real-time as work progresses",
       "Use the running status with spinner for the currently active item",
@@ -460,7 +460,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
       "Don't have more than one item with 'running' status simultaneously",
       "Don't remove failed items — show them with error status for debugging",
     ],
-    codeExample: `import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Task, TaskTrigger, TaskContent, TaskItem } from "@cogentic-co/ds/chat"
 
 <Task>
   <TaskTrigger status="running">Installing dependencies</TaskTrigger>
@@ -475,7 +475,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     status: "new",
     description: "Collapsible tool invocation display. Shows tool name, status, input, and output.",
     importStatement:
-      'import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"',
+      'import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chat"',
     dos: [
       "Show the tool name in monospace font for technical clarity",
       "Display the status badge (pending, running, success, error) in the header",
@@ -487,7 +487,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
       "Don't truncate output without a 'show more' option",
       "Don't show tool invocations for internal/hidden tools the user doesn't need to see",
     ],
-    codeExample: `import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chatbot"
+    codeExample: `import { Tool, ToolHeader, ToolContent, ToolInput, ToolOutput } from "@cogentic-co/ds/chat"
 
 <Tool>
   <ToolHeader name="search_documents" status="success" />
@@ -502,7 +502,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Structured task/message queue list with collapsible sections. Indicators match Step styling (border-circle + status icon). Optional QueueItemDragHandle for reorderable backlogs — wire DnD via native HTML5 drag events or any DnD library.",
     importStatement:
-      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemDragHandle, QueueItemContent } from "@cogentic-co/ds/chatbot"',
+      'import { QueueSection, QueueSectionTrigger, QueueList, QueueItem, QueueItemIndicator, QueueItemDragHandle, QueueItemContent } from "@cogentic-co/ds/chat"',
     dos: [
       "Group related items into QueueSections with descriptive labels",
       "Show the item count in the section trigger",
@@ -518,7 +518,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     codeExample: `import {
   QueueSection, QueueSectionTrigger, QueueList,
   QueueItem, QueueItemIndicator, QueueItemContent
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <QueueSection>
   <QueueSectionTrigger>Pending Tasks (3)</QueueSectionTrigger>
@@ -535,7 +535,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
     description:
       "Searchable model picker dropdown. Select AI models with logos, descriptions, and grouping.",
     importStatement:
-      'import { ModelSelector, ModelSelectorTrigger, ModelSelectorContent, ModelSelectorItem } from "@cogentic-co/ds/chatbot"',
+      'import { ModelSelector, ModelSelectorTrigger, ModelSelectorContent, ModelSelectorItem } from "@cogentic-co/ds/chat"',
     dos: [
       "Group models by provider for easy scanning",
       "Include a short description of each model's strengths",
@@ -551,7 +551,7 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
   ModelSelector, ModelSelectorTrigger, ModelSelectorContent,
   ModelSelectorInput, ModelSelectorList, ModelSelectorGroup,
   ModelSelectorItem
-} from "@cogentic-co/ds/chatbot"
+} from "@cogentic-co/ds/chat"
 
 <ModelSelector value="claude-opus-4" onValueChange={setModel}>
   <ModelSelectorTrigger>Claude Opus 4</ModelSelectorTrigger>

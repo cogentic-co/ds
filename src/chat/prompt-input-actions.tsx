@@ -3,10 +3,9 @@
 import { ArrowUp, Globe, Mic, MoreHorizontal, Plus, Square } from "lucide-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
-
-import { PromptInput, PromptInputAction, PromptInputTextarea } from "../chatbot/prompt-input"
 import { Button } from "../components/button"
 import { cn } from "../lib/utils"
+import { PromptInput, PromptInputAction, PromptInputTextarea } from "./prompt-input"
 
 /**
  * Polished prompt input with a row of action buttons (left = Plus / Search /

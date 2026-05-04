@@ -1,6 +1,6 @@
 "use client"
 
-import { Plan, PlanAction, PlanContent, PlanFooter, PlanTrigger } from "@/src/chatbot"
+import { Plan, PlanAction, PlanContent, PlanFooter, PlanTrigger } from "@/src/chat"
 
 export default function PlanPreview() {
   return (

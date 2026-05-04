@@ -1,6 +1,6 @@
 "use client"
 
-import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chatbot"
+import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "@/src/chat"
 
 export default function ToolPreview() {
   return (

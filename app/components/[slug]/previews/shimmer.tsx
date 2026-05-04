@@ -1,6 +1,6 @@
 "use client"
 
-import { Shimmer } from "@/src/chatbot"
+import { Shimmer } from "@/src/chat"
 
 export default function ShimmerPreview() {
   return (

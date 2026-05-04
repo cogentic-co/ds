@@ -1,6 +1,6 @@
 "use client"
 
-import { Conversation, ConversationContent, ConversationEmptyState } from "@/src/chatbot"
+import { Conversation, ConversationContent, ConversationEmptyState } from "@/src/chat"
 
 export default function ConversationPreview() {
   return (

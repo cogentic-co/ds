@@ -1,6 +1,6 @@
 "use client"
 
-import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@/src/chatbot"
+import { Checkpoint, CheckpointIcon, CheckpointTrigger } from "@/src/chat"
 
 export default function CheckpointPreview() {
   return (

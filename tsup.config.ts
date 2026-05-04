@@ -166,9 +166,6 @@ export default defineConfig({
     "blocks/setting-row": "src/blocks/setting-row.tsx",
     "blocks/settings-card-grid": "src/blocks/settings-card-grid.tsx",
     "blocks/workspace-switcher": "src/blocks/workspace-switcher.tsx",
-    "blocks/chat": "src/blocks/chat.tsx",
-    "blocks/prompt-input-actions": "src/blocks/prompt-input-actions.tsx",
-    "blocks/prompt-input-suggestions": "src/blocks/prompt-input-suggestions.tsx",
     // Chart entry points — per-chart subpaths for tree-shaking
     charts: "src/charts/index.ts",
     "charts/area-chart": "src/charts/area-chart.tsx",
@@ -218,10 +215,13 @@ export default defineConfig({
     "compliance/transaction-detail": "src/compliance/transaction-detail.tsx",
     "compliance/transaction-filters": "src/compliance/transaction-filters.tsx",
     "compliance/transaction-row": "src/compliance/transaction-row.tsx",
-    // Chatbot entry point
-    chatbot: "src/chatbot/index.ts",
-    "chatbot/agent-progress": "src/chatbot/agent-progress.tsx",
-    "chatbot/markdown": "src/chatbot/markdown.tsx",
+    // Chat entry points (conversation, message, prompt-input, blocks, etc.)
+    chat: "src/chat/index.ts",
+    "chat/agent-progress": "src/chat/agent-progress.tsx",
+    "chat/markdown": "src/chat/markdown.tsx",
+    "chat/chat-block": "src/chat/chat-block.tsx",
+    "chat/prompt-input-actions": "src/chat/prompt-input-actions.tsx",
+    "chat/prompt-input-suggestions": "src/chat/prompt-input-suggestions.tsx",
     // Workflow diagram — inline SVG workflow renderer + animated beam
     "workflow-diagram": "src/workflow-diagram/index.ts",
     "workflow-diagram/workflow-diagram": "src/workflow-diagram/workflow-diagram.tsx",

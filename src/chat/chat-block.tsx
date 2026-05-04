@@ -2,8 +2,9 @@
 
 import { ArrowUp, Bot, Square, User as UserIcon } from "lucide-react"
 import { type ReactNode, useCallback, useState } from "react"
-
-import { Conversation, ConversationContent, ConversationEmptyState } from "../chatbot/conversation"
+import { Button } from "../components/button"
+import { cn } from "../lib/utils"
+import { Conversation, ConversationContent, ConversationEmptyState } from "./conversation"
 import {
   Message,
   MessageActions,
@@ -13,11 +14,9 @@ import {
   MessageFeedbackActions,
   MessageRegenerateAction,
   MessageResponse,
-} from "../chatbot/message"
-import { PromptInput, PromptInputFooter, PromptInputTextarea } from "../chatbot/prompt-input"
-import { Suggestion, Suggestions } from "../chatbot/suggestion"
-import { Button } from "../components/button"
-import { cn } from "../lib/utils"
+} from "./message"
+import { PromptInput, PromptInputFooter, PromptInputTextarea } from "./prompt-input"
+import { Suggestion, Suggestions } from "./suggestion"
 
 /**
  * Full chat block — `Conversation` + `Message` map + sticky `PromptInput`.
