@@ -1,31 +1,30 @@
 "use client"
 
-import type { ComponentProps } from "react"
+// Example: Settings → Integrations tab.
+//
+// Shows how to compose SettingsLayout + Item + Badge + Button to build a
+// list of KYT / KYC / messaging providers, plus a webhook config form.
+// Layouts are not bundled — copy this file into your app and edit freely.
+
 import { useState } from "react"
 
 import { Badge } from "../components/badge"
 import { Button } from "../components/button"
 import { Input } from "../components/input"
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "../components/item"
 import { Label } from "../components/label"
 import { Separator } from "../components/separator"
-import { cn } from "../lib/utils"
 import { SettingsLayout } from "./settings-layout"
-
-// Settings → Integrations tab. KYT, KYC, messaging providers + outbound
-// webhooks. Copy-source recipe.
-
-type IntegrationKind = "kyt" | "kyc" | "messaging"
-type IntegrationStatus = "connected" | "not-connected"
 
 type Integration = {
   id: string
-  kind: IntegrationKind
+  kind: "kyt" | "kyc" | "messaging"
   name: string
   description: string
-  status: IntegrationStatus
+  status: "connected" | "not-connected"
 }
 
-const DEFAULT_INTEGRATIONS: Integration[] = [
+const INTEGRATIONS: Integration[] = [
   // KYT
   {
     id: "trm",
@@ -94,75 +93,39 @@ const DEFAULT_INTEGRATIONS: Integration[] = [
   },
 ]
 
-function SettingsCard({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      className={cn("overflow-hidden rounded-lg border border-border bg-card", className)}
-      {...props}
-    />
-  )
-}
-
-function IntegrationRow({
-  integration,
-  onTest,
-  onConfigure,
-  onConnect,
-}: {
-  integration: Integration
-  onTest?: (id: string) => void
-  onConfigure?: (id: string) => void
-  onConnect?: (id: string) => void
-}) {
+function IntegrationItem({ integration }: { integration: Integration }) {
   const isConnected = integration.status === "connected"
   return (
-    <div
-      data-slot="integration-row"
-      data-status={integration.status}
-      className="flex items-center gap-4 px-5 py-4"
-    >
-      <div className="min-w-0 flex-1">
+    <Item data-slot="integration-row" data-status={integration.status} variant="default" size="sm">
+      <ItemContent>
         <div className="flex items-center gap-2">
-          <span className="font-medium text-sm">{integration.name}</span>
+          <ItemTitle className="font-medium">{integration.name}</ItemTitle>
           <Badge variant={isConnected ? "mint" : "secondary"} size="sm">
             {isConnected ? "Connected" : "Not connected"}
           </Badge>
         </div>
-        <p className="mt-1 font-mono text-muted-foreground text-xs">{integration.description}</p>
-      </div>
-      <div className="flex shrink-0 items-center gap-2">
+        <ItemDescription className="font-mono text-xs">{integration.description}</ItemDescription>
+      </ItemContent>
+      <ItemActions>
         {isConnected && (
-          <Button variant="outline" size="sm" onClick={() => onTest?.(integration.id)}>
+          <Button variant="outline" size="sm">
             Test
           </Button>
         )}
-        <Button
-          size="sm"
-          onClick={() =>
-            isConnected ? onConfigure?.(integration.id) : onConnect?.(integration.id)
-          }
-        >
-          {isConnected ? "Configure" : "Connect"}
-        </Button>
-      </div>
-    </div>
+        <Button size="sm">{isConnected ? "Configure" : "Connect"}</Button>
+      </ItemActions>
+    </Item>
   )
 }
 
 function IntegrationGroup({
   title,
   description,
-  integrations,
-  onTest,
-  onConfigure,
-  onConnect,
+  items,
 }: {
   title: string
   description: string
-  integrations: Integration[]
-  onTest?: (id: string) => void
-  onConfigure?: (id: string) => void
-  onConnect?: (id: string) => void
+  items: Integration[]
 }) {
   return (
     <div className="flex flex-col gap-4">
@@ -170,57 +133,28 @@ function IntegrationGroup({
         <h3 className="font-semibold text-base">{title}</h3>
         <p className="mt-0.5 text-muted-foreground text-sm">{description}</p>
       </div>
-      <SettingsCard>
-        {integrations.map((integration, i) => (
-          <div key={integration.id}>
-            <IntegrationRow
-              integration={integration}
-              onTest={onTest}
-              onConfigure={onConfigure}
-              onConnect={onConnect}
-            />
-            {i < integrations.length - 1 && <Separator />}
+      <div className="overflow-hidden rounded-lg border border-border bg-card">
+        {items.map((it, i) => (
+          <div key={it.id}>
+            <IntegrationItem integration={it} />
+            {i < items.length - 1 && <Separator />}
           </div>
         ))}
-      </SettingsCard>
+      </div>
     </div>
   )
 }
 
-type SettingsIntegrationsPageProps = {
-  integrations?: Integration[]
-  webhookUrl?: string
-  webhookSecret?: string
-  onTabChange?: (value: string) => void
-  onTestIntegration?: (id: string) => void
-  onConfigureIntegration?: (id: string) => void
-  onConnectIntegration?: (id: string) => void
-  onSaveWebhook?: (values: { url: string; secret: string }) => void
-  onSendTestWebhook?: () => void
-  onRotateWebhookSecret?: () => void
-}
+export default function SettingsIntegrationsPage() {
+  const [webhookUrl, setWebhookUrl] = useState("https://example.com/cogentic/events")
+  const [webhookSecret, setWebhookSecret] = useState("whsec_••••••••••••••••••••••••")
 
-function SettingsIntegrationsPage({
-  integrations = DEFAULT_INTEGRATIONS,
-  webhookUrl: webhookUrlProp = "https://example.com/cogentic/events",
-  webhookSecret: webhookSecretProp = "whsec_••••••••••••••••••••••••",
-  onTabChange,
-  onTestIntegration,
-  onConfigureIntegration,
-  onConnectIntegration,
-  onSaveWebhook,
-  onSendTestWebhook,
-  onRotateWebhookSecret,
-}: SettingsIntegrationsPageProps) {
-  const [webhookUrl, setWebhookUrl] = useState(webhookUrlProp)
-  const [webhookSecret, setWebhookSecret] = useState(webhookSecretProp)
-
-  const kyt = integrations.filter((i) => i.kind === "kyt")
-  const kyc = integrations.filter((i) => i.kind === "kyc")
-  const messaging = integrations.filter((i) => i.kind === "messaging")
+  const kyt = INTEGRATIONS.filter((i) => i.kind === "kyt")
+  const kyc = INTEGRATIONS.filter((i) => i.kind === "kyc")
+  const messaging = INTEGRATIONS.filter((i) => i.kind === "messaging")
 
   return (
-    <SettingsLayout activeTab="integrations" onTabChange={onTabChange}>
+    <SettingsLayout activeTab="integrations">
       <section className="flex flex-col gap-6">
         <div>
           <h2 className="font-semibold text-2xl tracking-tight">Integrations</h2>
@@ -233,28 +167,20 @@ function SettingsIntegrationsPage({
           <IntegrationGroup
             title="Transaction monitoring (KYT)"
             description="Resolve risk on counterparty wallets and entities."
-            integrations={kyt}
-            onTest={onTestIntegration}
-            onConfigure={onConfigureIntegration}
-            onConnect={onConnectIntegration}
+            items={kyt}
           />
           <IntegrationGroup
             title="Identity verification (KYC)"
             description="Verify counterparties for travel-rule and onboarding."
-            integrations={kyc}
-            onTest={onTestIntegration}
-            onConfigure={onConfigureIntegration}
-            onConnect={onConnectIntegration}
+            items={kyc}
           />
           <IntegrationGroup
             title="Notifications & messaging"
             description="Where your team gets pinged about new alerts and reviews."
-            integrations={messaging}
-            onTest={onTestIntegration}
-            onConfigure={onConfigureIntegration}
-            onConnect={onConnectIntegration}
+            items={messaging}
           />
 
+          {/* Outbound webhooks */}
           <div className="flex flex-col gap-4">
             <div>
               <h3 className="font-semibold text-base">Outbound webhooks</h3>
@@ -262,7 +188,7 @@ function SettingsIntegrationsPage({
                 Stream events to your own endpoint for archival and downstream processing.
               </p>
             </div>
-            <SettingsCard className="flex flex-col gap-5 p-6">
+            <div className="flex flex-col gap-5 rounded-lg border border-border bg-card p-6">
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="settings-webhook-url">Webhook URL</Label>
                 <Input
@@ -288,27 +214,20 @@ function SettingsIntegrationsPage({
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" onClick={onSendTestWebhook}>
+                <Button variant="outline" size="sm">
                   Send test event
                 </Button>
-                <Button variant="outline" size="sm" onClick={onRotateWebhookSecret}>
+                <Button variant="outline" size="sm">
                   Rotate secret
                 </Button>
-                <Button
-                  size="sm"
-                  className="ml-auto"
-                  onClick={() => onSaveWebhook?.({ url: webhookUrl, secret: webhookSecret })}
-                >
+                <Button size="sm" className="ml-auto">
                   Save
                 </Button>
               </div>
-            </SettingsCard>
+            </div>
           </div>
         </div>
       </section>
     </SettingsLayout>
   )
 }
-
-export type { Integration, IntegrationKind, IntegrationStatus, SettingsIntegrationsPageProps }
-export { SettingsIntegrationsPage }

@@ -6,7 +6,6 @@ import { shellPreviews } from "../../shells/[slug]/previews"
 
 export const layoutPreviews: Record<string, React.ComponentType> = {
   "app-shell": shellPreviews["app-shell"],
-  "sidebar-layout": shellPreviews["sidebar-layout"],
   "transaction-detail-page": compliancePreviews["transaction-detail-page"],
   "dashboard-page": compliancePreviews["dashboard-page"],
   "settings-page": compliancePreviews["settings-page"],

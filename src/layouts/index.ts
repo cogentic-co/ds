@@ -4,7 +4,6 @@
 // The dev preview app imports them from `@/src/layouts/<name>` directly.
 //
 // Available recipes:
-//   - sidebar-layout                  Generic settings sidebar + content layout
 //   - dashboard-page                  Compliance dashboard page
 //   - transaction-detail-page         Transaction detail page
 //   - settings-layout                 Shared chrome (Header + Tabs) for the Settings family

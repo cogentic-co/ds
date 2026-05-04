@@ -1,184 +1,113 @@
 "use client"
 
-import type { ComponentProps, ReactNode } from "react"
+// Example: Settings → Billing tab.
+//
+// Shows how to compose SettingsLayout + Badge + Button + UsageMeter into
+// a Plan / Payment method / Usage / Recent invoices layout. Layouts are
+// not bundled — copy this file into your app and edit freely.
 
-import { UsageMeter, type UsageMeterProps } from "../blocks/usage-meter"
+import { UsageMeter } from "../blocks/usage-meter"
 import { Badge } from "../components/badge"
 import { Button } from "../components/button"
 import { Separator } from "../components/separator"
-import { cn } from "../lib/utils"
 import { SettingsLayout } from "./settings-layout"
 
-// Settings → Billing tab. Plan + payment method + usage + recent invoices.
-// Copy-source recipe.
-
-const DEFAULT_USAGE: UsageMeterProps[] = [
+const USAGE = [
   { label: "Transactions / month", used: 45_120, limit: 100_000 },
   { label: "API requests / day", used: 5_800, limit: 10_000 },
   { label: "Team members", used: 12, limit: 25 },
 ]
 
-type BillingPlan = {
-  name: string
-  price: string
-  cadence: string
-  renewsOn: string
-  badge?: string
-}
-
-const DEFAULT_PLAN: BillingPlan = {
-  name: "Compliance Pro",
-  price: "$12,000 / year",
-  cadence: "$1,000 / month equivalent",
-  renewsOn: "Renews 22 Sep 2026 · billed yearly",
-  badge: "Annual",
-}
-
-type PaymentMethod = {
-  brand: string
-  last4: string
-  expiry: string
-  holder: string
-}
-
-const DEFAULT_PAYMENT: PaymentMethod = {
-  brand: "VISA",
-  last4: "4242",
-  expiry: "09/2027",
-  holder: "Mia Kowalski",
-}
-
-type Invoice = {
-  id: string
-  date: string
-  amount: string
-  status: "Paid" | "Refunded" | "Open" | "Void"
-}
-
-const DEFAULT_INVOICES: Invoice[] = [
+const INVOICES = [
   { id: "INV-2026-09", date: "Sep 22, 2026", amount: "$12,000.00", status: "Paid" },
   { id: "INV-2025-09", date: "Sep 22, 2025", amount: "$12,000.00", status: "Paid" },
   { id: "INV-2024-09", date: "Sep 22, 2024", amount: "$10,000.00", status: "Paid" },
   { id: "INV-2024-Q3", date: "Jul 04, 2024", amount: "$2,400.00", status: "Refunded" },
 ]
 
-type SectionProps = ComponentProps<"section"> & {
-  title: ReactNode
-  description?: ReactNode
-}
-
-function Section({ title, description, className, children, ...props }: SectionProps) {
+export default function SettingsBillingPage() {
   return (
-    <section className={cn("flex flex-col gap-6", className)} {...props}>
-      <div>
-        <h2 className="font-semibold text-2xl tracking-tight">{title}</h2>
-        {description && <p className="mt-1 text-muted-foreground text-sm">{description}</p>}
-      </div>
-      {children}
-    </section>
-  )
-}
-
-function SettingsCard({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      className={cn("overflow-hidden rounded-lg border border-border bg-card", className)}
-      {...props}
-    />
-  )
-}
-
-type SettingsBillingPageProps = {
-  plan?: BillingPlan
-  payment?: PaymentMethod
-  usage?: UsageMeterProps[]
-  invoices?: Invoice[]
-  onTabChange?: (value: string) => void
-  onChangePlan?: () => void
-  onCancelPlan?: () => void
-  onUpgradePlan?: () => void
-  onUpdatePayment?: () => void
-  onDownloadInvoice?: (id: string) => void
-}
-
-function SettingsBillingPage({
-  plan = DEFAULT_PLAN,
-  payment = DEFAULT_PAYMENT,
-  usage = DEFAULT_USAGE,
-  invoices = DEFAULT_INVOICES,
-  onTabChange,
-  onChangePlan,
-  onCancelPlan,
-  onUpgradePlan,
-  onUpdatePayment,
-  onDownloadInvoice,
-}: SettingsBillingPageProps) {
-  return (
-    <SettingsLayout activeTab="billing" onTabChange={onTabChange}>
-      <Section title="Plan" description="Your current Cogentic plan and renewal.">
-        <SettingsCard className="flex flex-col gap-4 p-6">
+    <SettingsLayout activeTab="billing">
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Plan</h2>
+          <p className="mt-1 text-muted-foreground text-sm">
+            Your current Cogentic plan and renewal.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-6">
           <div className="flex items-center justify-between gap-6">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-2xl tracking-tight">{plan.name}</span>
-                {plan.badge && (
-                  <Badge variant="secondary" size="sm">
-                    {plan.badge}
-                  </Badge>
-                )}
+                <span className="font-semibold text-2xl tracking-tight">Compliance Pro</span>
+                <Badge variant="secondary" size="sm">
+                  Annual
+                </Badge>
               </div>
-              <p className="mt-1 text-muted-foreground text-sm">{plan.renewsOn}</p>
+              <p className="mt-1 text-muted-foreground text-sm">
+                Renews 22 Sep 2026 · billed yearly
+              </p>
             </div>
             <div className="text-right">
-              <div className="font-semibold text-lg">{plan.price}</div>
-              <div className="text-muted-foreground text-sm">{plan.cadence}</div>
+              <div className="font-semibold text-lg">$12,000 / year</div>
+              <div className="text-muted-foreground text-sm">$1,000 / month equivalent</div>
             </div>
           </div>
           <Separator />
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={onChangePlan}>
+            <Button variant="outline" size="sm">
               Change plan
             </Button>
-            <Button variant="outline" size="sm" onClick={onCancelPlan}>
+            <Button variant="outline" size="sm">
               Cancel plan
             </Button>
-            <Button size="sm" className="ml-auto" onClick={onUpgradePlan}>
+            <Button size="sm" className="ml-auto">
               Upgrade
             </Button>
           </div>
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
 
-      <Section title="Payment method" description="Card used for renewal and overage charges.">
-        <SettingsCard className="flex items-center gap-4 p-4 pl-5">
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Payment method</h2>
+          <p className="mt-1 text-muted-foreground text-sm">
+            Card used for renewal and overage charges.
+          </p>
+        </div>
+        <div className="flex items-center gap-4 rounded-lg border border-border bg-card p-4 pl-5">
           <div className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted font-semibold text-2xs tracking-wider">
-            {payment.brand}
+            VISA
           </div>
           <div className="min-w-0 flex-1">
-            <div className="font-medium text-sm">
-              {payment.brand[0] + payment.brand.slice(1).toLowerCase()} ending in {payment.last4}
-            </div>
-            <div className="text-muted-foreground text-sm">
-              Expires {payment.expiry} · {payment.holder}
-            </div>
+            <div className="font-medium text-sm">Visa ending in 4242</div>
+            <div className="text-muted-foreground text-sm">Expires 09/2027 · Mia Kowalski</div>
           </div>
-          <Button variant="outline" size="sm" onClick={onUpdatePayment}>
+          <Button variant="outline" size="sm">
             Update
           </Button>
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
 
-      <Section title="Usage" description="Current billing period.">
-        <SettingsCard className="flex flex-col gap-5 p-6">
-          {usage.map((u) => (
-            <UsageMeter key={String(u.label)} {...u} />
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Usage</h2>
+          <p className="mt-1 text-muted-foreground text-sm">Current billing period.</p>
+        </div>
+        <div className="flex flex-col gap-5 rounded-lg border border-border bg-card p-6">
+          {USAGE.map((u) => (
+            <UsageMeter key={u.label} {...u} />
           ))}
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
 
-      <Section title="Recent invoices" description="Last 12 months.">
-        <SettingsCard>
-          {invoices.map((inv, i) => (
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Recent invoices</h2>
+          <p className="mt-1 text-muted-foreground text-sm">Last 12 months.</p>
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
+          {INVOICES.map((inv, i) => (
             <div key={inv.id}>
               <div className="flex items-center gap-4 px-5 py-3.5">
                 <div className="min-w-0 flex-1">
@@ -189,18 +118,15 @@ function SettingsBillingPage({
                 <Badge variant="secondary" size="sm">
                   {inv.status}
                 </Badge>
-                <Button variant="outline" size="sm" onClick={() => onDownloadInvoice?.(inv.id)}>
+                <Button variant="outline" size="sm">
                   Download
                 </Button>
               </div>
-              {i < invoices.length - 1 && <Separator />}
+              {i < INVOICES.length - 1 && <Separator />}
             </div>
           ))}
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
     </SettingsLayout>
   )
 }
-
-export type { BillingPlan, Invoice, PaymentMethod, SettingsBillingPageProps }
-export { SettingsBillingPage }

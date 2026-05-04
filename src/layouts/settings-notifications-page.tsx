@@ -1,101 +1,54 @@
 "use client"
 
+// Example: Settings → Notifications tab.
+//
+// Shows how to compose SettingsLayout + SettingRow + Switch into Channels +
+// Event types + Quiet hours sections. Layouts are not bundled — copy this
+// file into your app and edit freely.
+
 import { Bell, Mail, MessageSquare } from "lucide-react"
-import type { ComponentProps, ReactNode } from "react"
 import { useState } from "react"
 
 import { SettingRow } from "../blocks/setting-row"
 import { Separator } from "../components/separator"
 import { Switch } from "../components/switch"
-import { cn } from "../lib/utils"
 import { SettingsLayout } from "./settings-layout"
 
-// Settings → Notifications tab. Channels + Event types + Quiet hours.
-// Copy-source recipe.
-
-type NotificationChannelId = "email" | "slack" | "inApp"
-type NotificationEventId =
-  | "criticalAlerts"
-  | "sanctionsHits"
-  | "thresholdCrossings"
-  | "dailySummary"
-  | "weeklyDigest"
-type NotificationToggleId = NotificationChannelId | NotificationEventId | "quietHours"
-
-type NotificationsState = Record<NotificationToggleId, boolean>
-
-const DEFAULT_NOTIFICATIONS: NotificationsState = {
-  email: true,
-  slack: true,
-  inApp: true,
-  criticalAlerts: true,
-  sanctionsHits: true,
-  thresholdCrossings: true,
-  dailySummary: true,
-  weeklyDigest: false,
-  quietHours: false,
-}
-
-type SectionProps = ComponentProps<"section"> & {
-  title: ReactNode
-  description?: ReactNode
-}
-
-function Section({ title, description, className, children, ...props }: SectionProps) {
-  return (
-    <section className={cn("flex flex-col gap-6", className)} {...props}>
-      <div>
-        <h2 className="font-semibold text-2xl tracking-tight">{title}</h2>
-        {description && <p className="mt-1 text-muted-foreground text-sm">{description}</p>}
-      </div>
-      {children}
-    </section>
-  )
-}
-
-function SettingsCard({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      className={cn("overflow-hidden rounded-lg border border-border bg-card", className)}
-      {...props}
-    />
-  )
-}
-
-type SettingsNotificationsPageProps = {
-  notifications?: Partial<NotificationsState>
-  onTabChange?: (value: string) => void
-  onChange?: (key: NotificationToggleId, value: boolean) => void
-}
-
-function SettingsNotificationsPage({
-  notifications: notificationsProp,
-  onTabChange,
-  onChange,
-}: SettingsNotificationsPageProps) {
-  const [notifications, setNotifications] = useState<NotificationsState>(() => {
-    const merged: NotificationsState = { ...DEFAULT_NOTIFICATIONS }
-    if (notificationsProp) Object.assign(merged, notificationsProp)
-    return merged
+export default function SettingsNotificationsPage() {
+  const [n, setN] = useState({
+    email: true,
+    slack: true,
+    inApp: true,
+    criticalAlerts: true,
+    sanctionsHits: true,
+    thresholdCrossings: true,
+    dailySummary: true,
+    weeklyDigest: false,
+    quietHours: false,
   })
 
-  const setToggle = (key: NotificationToggleId, value: boolean) => {
-    setNotifications((s) => ({ ...s, [key]: value }))
-    onChange?.(key, value)
+  function toggle<K extends keyof typeof n>(key: K, value: boolean) {
+    setN((s) => ({ ...s, [key]: value }))
   }
 
   return (
-    <SettingsLayout activeTab="notifications" onTabChange={onTabChange}>
-      <Section title="Channels" description="Where notifications are delivered when they fire.">
-        <SettingsCard>
+    <SettingsLayout activeTab="notifications">
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Channels</h2>
+          <p className="mt-1 text-muted-foreground text-sm">
+            Where notifications are delivered when they fire.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
           <SettingRow
             icon={<Mail className="size-4" />}
             title="Email"
             description="Send to your verified workspace email."
             action={
               <Switch
-                checked={notifications.email}
-                onCheckedChange={(v) => setToggle("email", v)}
+                checked={n.email}
+                onCheckedChange={(v) => toggle("email", v)}
                 aria-label="Email notifications"
               />
             }
@@ -107,8 +60,8 @@ function SettingsNotificationsPage({
             description="Post to the connected Slack channel."
             action={
               <Switch
-                checked={notifications.slack}
-                onCheckedChange={(v) => setToggle("slack", v)}
+                checked={n.slack}
+                onCheckedChange={(v) => toggle("slack", v)}
                 aria-label="Slack notifications"
               />
             }
@@ -120,24 +73,30 @@ function SettingsNotificationsPage({
             description="Show alerts in the notification center."
             action={
               <Switch
-                checked={notifications.inApp}
-                onCheckedChange={(v) => setToggle("inApp", v)}
+                checked={n.inApp}
+                onCheckedChange={(v) => toggle("inApp", v)}
                 aria-label="In-app notifications"
               />
             }
           />
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
 
-      <Section title="Event types" description="Pick which events trigger a notification.">
-        <SettingsCard>
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Event types</h2>
+          <p className="mt-1 text-muted-foreground text-sm">
+            Pick which events trigger a notification.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
           <SettingRow
             title="Critical alerts"
             description="Immediately notify on sanctions hits and high-risk transactions."
             action={
               <Switch
-                checked={notifications.criticalAlerts}
-                onCheckedChange={(v) => setToggle("criticalAlerts", v)}
+                checked={n.criticalAlerts}
+                onCheckedChange={(v) => toggle("criticalAlerts", v)}
                 aria-label="Critical alerts"
               />
             }
@@ -148,8 +107,8 @@ function SettingsNotificationsPage({
             description="Any direct or 1-hop counterparty match on watchlists."
             action={
               <Switch
-                checked={notifications.sanctionsHits}
-                onCheckedChange={(v) => setToggle("sanctionsHits", v)}
+                checked={n.sanctionsHits}
+                onCheckedChange={(v) => toggle("sanctionsHits", v)}
                 aria-label="Sanctions hits"
               />
             }
@@ -160,8 +119,8 @@ function SettingsNotificationsPage({
             description="Transactions that cross your configured value or risk thresholds."
             action={
               <Switch
-                checked={notifications.thresholdCrossings}
-                onCheckedChange={(v) => setToggle("thresholdCrossings", v)}
+                checked={n.thresholdCrossings}
+                onCheckedChange={(v) => toggle("thresholdCrossings", v)}
                 aria-label="Threshold crossings"
               />
             }
@@ -172,8 +131,8 @@ function SettingsNotificationsPage({
             description="One email each morning with yesterday's queue and outcomes."
             action={
               <Switch
-                checked={notifications.dailySummary}
-                onCheckedChange={(v) => setToggle("dailySummary", v)}
+                checked={n.dailySummary}
+                onCheckedChange={(v) => toggle("dailySummary", v)}
                 aria-label="Daily summary"
               />
             }
@@ -184,42 +143,36 @@ function SettingsNotificationsPage({
             description="Volume, risk-mix, and SLA trends — Mondays."
             action={
               <Switch
-                checked={notifications.weeklyDigest}
-                onCheckedChange={(v) => setToggle("weeklyDigest", v)}
+                checked={n.weeklyDigest}
+                onCheckedChange={(v) => toggle("weeklyDigest", v)}
                 aria-label="Weekly digest"
               />
             }
           />
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
 
-      <Section
-        title="Quiet hours"
-        description="Hold non-critical notifications outside business hours."
-      >
-        <SettingsCard>
+      <section className="flex flex-col gap-6">
+        <div>
+          <h2 className="font-semibold text-2xl tracking-tight">Quiet hours</h2>
+          <p className="mt-1 text-muted-foreground text-sm">
+            Hold non-critical notifications outside business hours.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
           <SettingRow
             title="Pause non-critical alerts"
             description="Critical alerts and sanctions hits always come through."
             action={
               <Switch
-                checked={notifications.quietHours}
-                onCheckedChange={(v) => setToggle("quietHours", v)}
+                checked={n.quietHours}
+                onCheckedChange={(v) => toggle("quietHours", v)}
                 aria-label="Quiet hours"
               />
             }
           />
-        </SettingsCard>
-      </Section>
+        </div>
+      </section>
     </SettingsLayout>
   )
 }
-
-export type {
-  NotificationChannelId,
-  NotificationEventId,
-  NotificationsState,
-  NotificationToggleId,
-  SettingsNotificationsPageProps,
-}
-export { SettingsNotificationsPage }

@@ -478,14 +478,12 @@ function buildNav(pathname: string): NavGroup[] {
         {
           title: "Pages",
           defaultOpen: true,
-          items: ["app-shell", "sidebar-layout", "dashboard-page", "transaction-detail-page"].map(
-            (slug) => ({
-              label: toTitle(slug),
-              icon: LayoutDashboard,
-              href: `/layouts/${slug}`,
-              isActive: pathname === `/layouts/${slug}`,
-            }),
-          ),
+          items: ["app-shell", "dashboard-page", "transaction-detail-page"].map((slug) => ({
+            label: toTitle(slug),
+            icon: LayoutDashboard,
+            href: `/layouts/${slug}`,
+            isActive: pathname === `/layouts/${slug}`,
+          })),
         },
         {
           title: "Settings",

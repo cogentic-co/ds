@@ -1,11 +1,14 @@
 "use client"
 
+// Example: Settings → Members tab.
+//
+// Shows how to compose SettingsLayout + TeamTable. Layouts are not
+// bundled — copy this file into your app and edit freely.
+
 import { type TeamMember, TeamTable } from "../blocks/team-table"
 import { SettingsLayout } from "./settings-layout"
 
-// Settings → Members tab. Copy-source recipe.
-
-const DEFAULT_MEMBERS: TeamMember[] = [
+const MEMBERS: TeamMember[] = [
   {
     id: "u1",
     name: "Mia Kowalski",
@@ -36,50 +39,24 @@ const DEFAULT_MEMBERS: TeamMember[] = [
   },
 ]
 
-const DEFAULT_ROLES = [
+const ROLES = [
   { value: "owner", label: "Owner" },
   { value: "admin", label: "Admin" },
   { value: "member", label: "Member" },
 ]
 
-type SettingsMembersPageProps = {
-  members?: TeamMember[]
-  roles?: { value: string; label: string }[]
-  onTabChange?: (value: string) => void
-  onRoleChange?: (memberId: string, role: string) => void
-  onRemove?: (memberId: string) => void
-  onResendInvite?: (memberId: string) => void
-}
-
-function SettingsMembersPage({
-  members = DEFAULT_MEMBERS,
-  roles = DEFAULT_ROLES,
-  onTabChange,
-  onRoleChange,
-  onRemove,
-  onResendInvite,
-}: SettingsMembersPageProps) {
+export default function SettingsMembersPage() {
   return (
-    <SettingsLayout activeTab="members" onTabChange={onTabChange}>
+    <SettingsLayout activeTab="members">
       <section className="flex flex-col gap-6">
         <div>
           <h2 className="font-semibold text-2xl tracking-tight">Members</h2>
           <p className="mt-1 text-muted-foreground text-sm">
-            Manage team access and roles. {members.length} team member
-            {members.length === 1 ? "" : "s"}.
+            Manage team access and roles. {MEMBERS.length} team members.
           </p>
         </div>
-        <TeamTable
-          members={members}
-          roles={roles}
-          onRoleChange={onRoleChange}
-          onRemove={onRemove}
-          onResendInvite={onResendInvite}
-        />
+        <TeamTable members={MEMBERS} roles={ROLES} />
       </section>
     </SettingsLayout>
   )
 }
-
-export type { SettingsMembersPageProps }
-export { SettingsMembersPage }

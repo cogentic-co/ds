@@ -179,27 +179,6 @@ export const v013BlocksMeta: Record<string, ComponentMeta> = {
   currency="USD"
 />`,
   },
-  "sidebar-layout": {
-    status: "stable",
-    description:
-      "Generic sidebar + content page layout. Sticky left-rail nav with grouped items, scrollable main column. Copy-source recipe in src/layouts/.",
-    since: "0.13.0",
-    importStatement: `// Copy from src/layouts/sidebar-layout.tsx — layouts are not packaged.`,
-    dos: [
-      "Group nav items by domain (Workspace, Compliance, Billing)",
-      "Pass linkComponent={Link} for Next.js client-side navigation",
-      "Fork the file and tailor for your app",
-    ],
-    donts: ["Don't nest inside AppShell's main content column"],
-    codeExample: `<SidebarLayout
-  nav={[
-    { title: "Workspace", items: [{ label: "General", href: "/settings", isActive: true }, { label: "Members", href: "/settings/members" }] },
-  ]}
->
-  <h1>General</h1>
-  ...
-</SidebarLayout>`,
-  },
   "entity-graph": {
     status: "new",
     description:

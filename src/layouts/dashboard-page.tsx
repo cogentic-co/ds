@@ -1,7 +1,13 @@
 "use client"
 
+// Example: compliance dashboard page.
+//
+// This file shows how to compose KpiCard + TransactionFlowCard +
+// RiskExposureCard + AwaitingReviewCard + RecentTransactionsCard +
+// AlertsCard into a full dashboard. Layouts are not bundled — copy this
+// file into your app and edit freely.
+
 import { Download, Plus } from "lucide-react"
-import type { ComponentProps, ReactNode } from "react"
 import { AlertsCard } from "../compliance/alerts-card"
 import { AwaitingReviewCard } from "../compliance/awaiting-review-card"
 import { RecentTransactionsCard } from "../compliance/recent-transactions-card"
@@ -10,9 +16,8 @@ import { TransactionFlowCard } from "../compliance/transaction-flow-card"
 import type { Transaction } from "../compliance/types"
 import { Button } from "../components/button"
 import { KpiCard } from "../components/kpi-card"
-import { cn } from "../lib/utils"
 
-const DEFAULT_TXS: Transaction[] = [
+const TRANSACTIONS: Transaction[] = [
   {
     id: "d1",
     ref: "TX-1",
@@ -29,18 +34,8 @@ const DEFAULT_TXS: Transaction[] = [
     risk: 22,
     time: "Apr 17 · 14:32",
     flags: [],
-    from: {
-      lbl: "Binance",
-      addr: "0xaaaa",
-      type: "VASP",
-      verified: true,
-    },
-    to: {
-      lbl: "Kraken",
-      addr: "0xbbbb",
-      type: "VASP",
-      verified: true,
-    },
+    from: { lbl: "Binance", addr: "0xaaaa", type: "VASP", verified: true },
+    to: { lbl: "Kraken", addr: "0xbbbb", type: "VASP", verified: true },
   },
   {
     id: "d2",
@@ -58,18 +53,8 @@ const DEFAULT_TXS: Transaction[] = [
     risk: 78,
     time: "Apr 17 · 14:18",
     flags: ["high_value"],
-    from: {
-      lbl: "Cogentic Treasury",
-      addr: "0x742d",
-      type: "Internal",
-      verified: true,
-    },
-    to: {
-      lbl: "Unknown wallet",
-      addr: "0x9b2a",
-      type: "External · unverified",
-      verified: false,
-    },
+    from: { lbl: "Cogentic Treasury", addr: "0x742d", type: "Internal", verified: true },
+    to: { lbl: "Unknown wallet", addr: "0x9b2a", type: "External · unverified", verified: false },
   },
   {
     id: "d3",
@@ -87,18 +72,8 @@ const DEFAULT_TXS: Transaction[] = [
     risk: 8,
     time: "Apr 17 · 13:56",
     flags: [],
-    from: {
-      lbl: "Coinbase Prime",
-      addr: "0xcccc",
-      type: "VASP",
-      verified: true,
-    },
-    to: {
-      lbl: "Fireblocks Vault",
-      addr: "0xdddd",
-      type: "VASP",
-      verified: true,
-    },
+    from: { lbl: "Coinbase Prime", addr: "0xcccc", type: "VASP", verified: true },
+    to: { lbl: "Fireblocks Vault", addr: "0xdddd", type: "VASP", verified: true },
   },
   {
     id: "d4",
@@ -116,22 +91,12 @@ const DEFAULT_TXS: Transaction[] = [
     risk: 95,
     time: "Apr 17 · 12:44",
     flags: ["sanctions_match"],
-    from: {
-      lbl: "Sanctioned address",
-      addr: "0xdead",
-      type: "External",
-      verified: false,
-    },
-    to: {
-      lbl: "Cogentic Treasury",
-      addr: "0x742d",
-      type: "Internal",
-      verified: true,
-    },
+    from: { lbl: "Sanctioned address", addr: "0xdead", type: "External", verified: false },
+    to: { lbl: "Cogentic Treasury", addr: "0x742d", type: "Internal", verified: true },
   },
 ]
 
-const DEFAULT_ALERTS = [
+const ALERTS = [
   {
     id: "a1",
     tone: "blush" as const,
@@ -162,55 +127,27 @@ const DEFAULT_ALERTS = [
   },
 ]
 
-type DashboardPageProps = Omit<ComponentProps<"div">, "children"> & {
-  greeting?: string
-  tagline?: ReactNode
-  onExport?: () => void
-  onNewCase?: () => void
-  /** Recent transactions shown in the bottom-left card. Defaults to sample data. */
-  recentTransactions?: Transaction[]
-  /** Alerts shown in the bottom-right card. Defaults to sample data. */
-  alerts?: Array<{
-    id: string
-    tone: "highlight" | "blush" | "sky" | "lilac" | "mint"
-    title: string
-    body: ReactNode
-    time: string
-  }>
-  onViewAllTransactions?: () => void
-  onViewAllAlerts?: () => void
-  extraContent?: ReactNode
-}
-
-function DashboardPage({
-  greeting = "Good afternoon, Mia.",
-  tagline,
-  onExport,
-  onNewCase,
-  recentTransactions = DEFAULT_TXS,
-  alerts = DEFAULT_ALERTS,
-  onViewAllTransactions,
-  onViewAllAlerts,
-  extraContent,
-  className,
-  ...props
-}: DashboardPageProps) {
+export default function DashboardPage() {
   return (
-    <div data-slot="dashboard-page" className={cn("px-6 pt-5 pb-8", className)} {...props}>
+    <div data-slot="dashboard-page" className="px-6 pt-5 pb-8">
       {/* Welcome strip */}
       <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="font-semibold" style={{ fontSize: 22, letterSpacing: "-0.02em" }}>
-            {greeting}
+          <div className="font-semibold text-stat tracking-tight">Good afternoon, Mia.</div>
+          <div className="mt-1 text-muted-foreground text-sm-plus">
+            <span className="rounded-3xs bg-highlight px-1 py-px font-semibold text-highlight-ink">
+              3 items
+            </span>{" "}
+            need your eyes before end of day · queue cleared{" "}
+            <span className="font-mono font-semibold">68%</span> faster than last week
           </div>
-          {tagline && <div className="mt-1 text-muted-foreground text-sm-plus">{tagline}</div>}
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={onExport}>
-            <Download className="size-[13px]" /> Export report
+          <Button variant="outline">
+            <Download /> Export report
           </Button>
-          <Button onClick={onNewCase}>
-            <Plus className="size-[13px]" /> New case
+          <Button>
+            <Plus /> New case
           </Button>
         </div>
       </div>
@@ -303,17 +240,9 @@ function DashboardPage({
 
       {/* Recent transactions + Alerts */}
       <div className="mb-4 grid grid-cols-1 gap-3.5 lg:grid-cols-2">
-        <RecentTransactionsCard
-          transactions={recentTransactions}
-          onViewAll={onViewAllTransactions}
-        />
-        <AlertsCard alerts={alerts} onViewAll={onViewAllAlerts} />
+        <RecentTransactionsCard transactions={TRANSACTIONS} />
+        <AlertsCard alerts={ALERTS} />
       </div>
-
-      {extraContent}
     </div>
   )
 }
-
-export type { DashboardPageProps }
-export { DashboardPage }

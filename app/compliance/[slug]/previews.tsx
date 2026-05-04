@@ -34,13 +34,13 @@ import {
 } from "@/src/compliance"
 import { ComplianceScore } from "@/src/compliance/compliance-score"
 import { Button } from "@/src/components/button"
-import { DashboardPage } from "@/src/layouts/dashboard-page"
-import { SettingsBillingPage } from "@/src/layouts/settings-billing-page"
-import { SettingsIntegrationsPage } from "@/src/layouts/settings-integrations-page"
-import { SettingsMembersPage } from "@/src/layouts/settings-members-page"
-import { SettingsNotificationsPage } from "@/src/layouts/settings-notifications-page"
-import { SettingsPage } from "@/src/layouts/settings-page"
-import { TransactionDetailPage } from "@/src/layouts/transaction-detail-page"
+import DashboardPage from "@/src/layouts/dashboard-page"
+import SettingsBillingPage from "@/src/layouts/settings-billing-page"
+import SettingsIntegrationsPage from "@/src/layouts/settings-integrations-page"
+import SettingsMembersPage from "@/src/layouts/settings-members-page"
+import SettingsNotificationsPage from "@/src/layouts/settings-notifications-page"
+import SettingsPage from "@/src/layouts/settings-page"
+import TransactionDetailPage from "@/src/layouts/transaction-detail-page"
 import { Section } from "../../components/[slug]/previews/_shared"
 import { type ControlDefs, Playground, useControls } from "../../controls"
 
@@ -728,13 +728,7 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "transaction-detail-page": function TransactionDetailPagePreview() {
     return (
       <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <TransactionDetailPage
-          tx={sampleRichTx}
-          explorerHref="#"
-          onApprove={() => console.log("approve")}
-          onEscalate={() => console.log("escalate")}
-          onSubmitNote={(body) => console.log("note", body)}
-        />
+        <TransactionDetailPage />
       </div>
     )
   },
@@ -908,19 +902,7 @@ export const compliancePreviews: Record<string, React.ComponentType> = {
   "dashboard-page": function DashboardPagePreview() {
     return (
       <div className="overflow-hidden rounded-lg border border-border bg-background">
-        <DashboardPage
-          tagline={
-            <>
-              <span className="rounded-3xs bg-highlight px-1 py-px font-semibold text-highlight-ink">
-                3 items
-              </span>{" "}
-              need your eyes before end of day · queue cleared{" "}
-              <span className="font-mono font-semibold">68%</span> faster than last week
-            </>
-          }
-          onExport={() => console.log("export")}
-          onNewCase={() => console.log("new case")}
-        />
+        <DashboardPage />
       </div>
     )
   },
