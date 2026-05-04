@@ -644,4 +644,189 @@ const blocks = [
   {/* config fields */}
 </WorkflowInspector>`,
   },
+
+  // ── Previously undocumented utilities + cards ──
+  "code-block": {
+    status: "stable",
+    description:
+      "Display a block of code with a language label, a copy button, and shiki-powered syntax highlighting. Theme follows the document `dark` class by default; override with `theme`.",
+    since: "0.10.0",
+    importStatement: 'import { CodeBlock } from "@cogentic-co/ds"',
+    dos: [
+      "Pass `language` so the right tokens highlight (ts, tsx, js, py, json, sql, sh, etc.)",
+      "Use inside Markdown only when you need a standalone code block — Markdown already highlights fenced code",
+      "Use `showLineNumbers` for tutorial / documentation contexts",
+    ],
+    donts: [
+      "Don't use for inline code — that's a `<code>` element or rely on Markdown's inline code style",
+      "Don't pass massive blobs (1000+ lines) without a max-height wrapper",
+    ],
+    codeExample: `<CodeBlock
+  language="ts"
+  code={\`function risk(score: number) {
+  return score > 70 ? "high" : score > 40 ? "medium" : "low"
+}\`}
+/>`,
+  },
+  "copy-button": {
+    status: "stable",
+    description:
+      "Small button that copies a string to the clipboard and flips icon to a checkmark for 2s on success.",
+    since: "0.10.0",
+    importStatement: 'import { CopyButton } from "@cogentic-co/ds"',
+    dos: [
+      "Use next to read-only values (transaction hash, API key, address)",
+      "Pair with a tooltip if the affordance isn't obvious",
+    ],
+    donts: ["Don't use for editable text — let users select normally"],
+    codeExample: `<CopyButton value="0x742d…f44e" />`,
+  },
+  "file-upload": {
+    status: "stable",
+    description:
+      "Drop-zone + file picker with optional list of selected files. Drives multipart uploads, dataset imports, attachment pickers.",
+    since: "0.10.0",
+    importStatement: 'import { FileUpload } from "@cogentic-co/ds"',
+    dos: [
+      "Set `accept` to constrain types and `maxSize` to enforce per-file limits",
+      "Wire `onChange` to your upload mutation",
+    ],
+    donts: ["Don't use for chat attachments — use PromptInput's upload slot or Asset"],
+    codeExample: `<FileUpload accept="application/pdf" maxFiles={3} onChange={setFiles} />`,
+  },
+  "heatmap-chart": {
+    status: "stable",
+    description:
+      "2D heatmap chart for risk distribution / time-of-day analysis. Built on recharts.",
+    since: "0.16.0",
+    importStatement: 'import { HeatmapChart } from "@cogentic-co/ds/charts/heatmap-chart"',
+    dos: [
+      "Use for sparse 2D data (day × hour, jurisdiction × risk band)",
+      "Pick a sequential colour scale that maps to the data domain",
+    ],
+    donts: ["Don't use for dense matrices — a regular table is faster to scan"],
+    codeExample: `<HeatmapChart data={dataset} xKey="hour" yKey="weekday" valueKey="count" />`,
+  },
+  "inline-edit": {
+    status: "stable",
+    description:
+      "Click-to-edit text — renders as plain text until activated, then shows an input with save / cancel.",
+    since: "0.13.0",
+    importStatement: 'import { InlineEdit } from "@cogentic-co/ds"',
+    dos: [
+      "Use for fields that are read-only most of the time (case title, note text)",
+      "Validate on save and show errors inline",
+    ],
+    donts: ["Don't use for primary form fields — those should always be editable"],
+    codeExample: `<InlineEdit value={title} onSave={setTitle} />`,
+  },
+  "key-value-list": {
+    status: "stable",
+    description:
+      "Compact label/value list for entity metadata — case fields, transaction params, settings summaries.",
+    since: "0.13.0",
+    importStatement: 'import { KeyValueList } from "@cogentic-co/ds"',
+    dos: [
+      "Keep labels short and consistent (sentence case)",
+      "Use `dense` density inside cards or sidebars",
+    ],
+    donts: ["Don't use for editable forms — that's Field"],
+    codeExample: `<KeyValueList items={[{ label: "Status", value: "Open" }, { label: "Risk", value: "78" }]} />`,
+  },
+  "kpi-card": {
+    status: "stable",
+    description:
+      "Single metric card with label, large value, optional delta and sparkline. Replaces the deprecated StatCard.",
+    since: "0.13.0",
+    importStatement: 'import { KpiCard } from "@cogentic-co/ds"',
+    dos: [
+      "Use in 2–4 column grids for dashboard summaries",
+      "Pass `sparkline` for trend context",
+      "Use `deltaArrow` + `deltaTone` to colour-code direction",
+      "Keep values terse ($12.4k, 3.2%, 1,234)",
+    ],
+    donts: [
+      "Don't pile multiple deltas on one card",
+      "Don't use for full chart data — use a Chart component",
+    ],
+    codeExample: `<KpiCard label="Volume (24h)" value="$1.2M" delta="+12%" deltaTone="positive" deltaArrow sparkline={[1,2,3,4,5,6,7]} hint="vs 7d avg" />`,
+  },
+  "loading-overlay": {
+    status: "stable",
+    description:
+      "Full-cover loading veil with optional message. Anchors to its nearest positioned ancestor.",
+    since: "0.10.0",
+    importStatement: 'import { LoadingOverlay } from "@cogentic-co/ds"',
+    dos: [
+      "Use on cards/panels during refresh",
+      "Pair with optimistic UI when possible — avoid blocking the whole screen",
+    ],
+    donts: ["Don't use for full-page loads — use a Skeleton"],
+    codeExample: `<div className="relative">
+  {isLoading && <LoadingOverlay message="Loading…" />}
+  <DataTable …/>
+</div>`,
+  },
+  "number-input": {
+    status: "stable",
+    description: "Numeric input with stepper buttons, min/max clamping, and step increment.",
+    since: "0.13.0",
+    importStatement: 'import { NumberInput } from "@cogentic-co/ds"',
+    dos: ["Set `min`/`max` to constrain", "Use `step` for non-integer increments"],
+    donts: ["Don't use for currency without locale formatting"],
+    codeExample: `<NumberInput value={count} onValueChange={setCount} min={0} max={100} step={1} />`,
+  },
+  "ring-card": {
+    status: "stable",
+    description:
+      "Stacked glass-ring card composition. Pairs with brand visuals on marketing surfaces.",
+    since: "0.10.0",
+    importStatement: 'import { RingCard } from "@cogentic-co/ds"',
+    dos: ["Use sparingly on hero / feature sections"],
+    donts: ["Don't nest interactive content — purely decorative"],
+    codeExample: `<RingCard><RingCardInner>…</RingCardInner></RingCard>`,
+  },
+  "sidebar-card": {
+    status: "stable",
+    description:
+      "Generic compact list-row with leading status dot, mono reference, title, and meta line. Also exported as `ListCard` since it's not sidebar-specific.",
+    since: "0.25.0",
+    importStatement: 'import { SidebarCard, ListCard } from "@cogentic-co/ds"',
+    dos: [
+      "Use inside SidebarMenu for cases / investigations rails",
+      "Use as ListCard outside the sidebar wherever a 3-line entity row fits",
+      "Pass `status` for a leading StatusIndicator dot",
+    ],
+    donts: ["Don't use for primary action rows — use Item or SidebarMenuButton"],
+    codeExample: `<SidebarCard reference="CASE-72" title="Sanctions hit — Helix Labs" meta="P2 · 2d ago" status="busy" />`,
+  },
+  sparkline: {
+    status: "stable",
+    description: "Tiny inline trend line — used inside KpiCard or any compact metrics surface.",
+    since: "0.13.0",
+    importStatement: 'import { Sparkline } from "@cogentic-co/ds"',
+    dos: ["Pass 5–30 points for a readable shape", "Match `color` to the metric's tone"],
+    donts: ["Don't use for full charts — use AreaChart"],
+    codeExample: `<Sparkline points={[1,2,3,4,5,4,6]} color="var(--success)" fill />`,
+  },
+  stat: {
+    status: "stable",
+    description:
+      "Unstyled label + value primitive. Composes inside cards or use directly when KpiCard is too heavy.",
+    since: "0.10.0",
+    importStatement: 'import { Stat } from "@cogentic-co/ds"',
+    dos: ["Use inside cards / headers when you only need label + value"],
+    donts: ["Don't use when you need delta + sparkline — that's KpiCard"],
+    codeExample: `<Stat label="Open cases" value={42} />`,
+  },
+  "visually-hidden": {
+    status: "stable",
+    description:
+      "Hides content visually but keeps it available to screen readers. Use for labels on icon-only buttons, skip links, and live-region announcements.",
+    since: "0.10.0",
+    importStatement: 'import { VisuallyHidden } from "@cogentic-co/ds"',
+    dos: ["Always pair an icon-only button with a VisuallyHidden label"],
+    donts: ["Don't use to hide important information from sighted users"],
+    codeExample: `<button><Icon /><VisuallyHidden>Open menu</VisuallyHidden></button>`,
+  },
 }

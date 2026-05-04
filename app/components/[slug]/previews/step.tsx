@@ -2,10 +2,45 @@
 
 import { Badge } from "@/src/components/badge"
 import { Step, Stepper } from "@/src/components/step"
+import { type ControlDefs, Playground, useControls } from "./_shared"
+
+const stepControlDefs = {
+  status: {
+    type: "select",
+    options: ["done", "active", "pending", "failed", "skipped"],
+    defaultValue: "active",
+    label: "Status",
+  },
+  size: {
+    type: "radio",
+    options: ["compact", "detailed"],
+    defaultValue: "compact",
+    label: "Size",
+  },
+  title: { type: "text", defaultValue: "Run sanctions screening", label: "Title" },
+  description: { type: "text", defaultValue: "60/100 records checked", label: "Description" },
+} satisfies ControlDefs
 
 export default function StepPreview() {
+  const controls = useControls(stepControlDefs)
+  const size = controls.values.size as "compact" | "detailed"
   return (
     <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="w-full max-w-md">
+          <Stepper>
+            <Step
+              status={
+                controls.values.status as "done" | "active" | "pending" | "failed" | "skipped"
+              }
+              size={size}
+              title={controls.values.title}
+              description={size === "detailed" ? controls.values.description : undefined}
+            />
+          </Stepper>
+        </div>
+      </Playground>
+
       <section>
         <p className="mb-3 font-medium text-muted-foreground text-xs">Compact (single-line)</p>
         <Stepper>

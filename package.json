@@ -1,6 +1,6 @@
 {
   "name": "@cogentic-co/ds",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "description": "Cogentic Design System — UI components for building modern compliance applications",
   "license": "MIT",
   "type": "module",
@@ -906,6 +906,7 @@
     "pixelarticons": "^2.1.0",
     "react-day-picker": "^9.14.0",
     "react-resizable-panels": "^4.11.0",
+    "shiki": "^4.0.2",
     "sonner": "^2.0.7",
     "streamdown": "^2.5.0",
     "tailwind-merge": "^3.5.0",
@@ -931,7 +932,6 @@
     "jsdom": "^28.1.0",
     "next": "16.2.4",
     "react-docgen-typescript": "^2.4.0",
-    "shiki": "^4.0.2",
     "size-limit": "^12.1.0",
     "tailwindcss": "^4.2.4",
     "tsup": "^8.5.1",

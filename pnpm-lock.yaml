@@ -75,6 +75,9 @@ importers:
       recharts:
         specifier: ^3.0.0
         version: 3.8.1(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react-is@18.3.1)(react@19.2.5)(redux@5.0.1)
+      shiki:
+        specifier: ^4.0.2
+        version: 4.0.2
       sonner:
         specifier: ^2.0.7
         version: 2.0.7(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -145,9 +148,6 @@ importers:
       react-docgen-typescript:
         specifier: ^2.4.0
         version: 2.4.0(typescript@5.9.3)
-      shiki:
-        specifier: ^4.0.2
-        version: 4.0.2
       size-limit:
         specifier: ^12.1.0
         version: 12.1.0(jiti@2.6.1)

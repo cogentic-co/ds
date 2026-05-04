@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { SidebarCard, SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar"
-import { Code, PropTable, Row } from "./_shared"
+import { Code, type ControlDefs, Playground, PropTable, Row, useControls } from "./_shared"
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -15,9 +15,47 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
+const sidebarCardControlDefs = {
+  reference: { type: "text", defaultValue: "CASE-72", label: "Reference" },
+  title: { type: "text", defaultValue: "Sanctions hit — Helix Labs", label: "Title" },
+  meta: { type: "text", defaultValue: "P2 · 2d ago", label: "Meta" },
+  status: {
+    type: "select",
+    options: ["none", "online", "offline", "busy", "away", "pending"],
+    defaultValue: "busy",
+    label: "Status",
+  },
+  isActive: { type: "boolean", defaultValue: false, label: "Active" },
+} satisfies ControlDefs
+
 export default function SidebarCardPreview() {
+  const controls = useControls(sidebarCardControlDefs)
+  const status = controls.values.status as
+    | "none"
+    | "online"
+    | "offline"
+    | "busy"
+    | "away"
+    | "pending"
+
   return (
     <div className="space-y-8">
+      <Playground controls={controls}>
+        <div className="w-60 rounded-xl border border-border bg-card p-2 shadow-sm">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarCard
+                reference={controls.values.reference}
+                title={controls.values.title}
+                meta={controls.values.meta || undefined}
+                status={status === "none" ? undefined : status}
+                isActive={controls.values.isActive}
+              />
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </div>
+      </Playground>
+
       <PropTable
         title="<SidebarCard> props"
         rows={

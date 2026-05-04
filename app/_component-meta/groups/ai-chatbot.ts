@@ -608,4 +608,55 @@ fetch("/api/agent", { method: "POST", body: JSON.stringify(payload) })`,
   </TimelineItem>
 </Timeline>`,
   },
+  "response-stream": {
+    status: "new",
+    description:
+      "Token-by-token reveal for streaming AI output. Two modes: `typewriter` (chars appear progressively) or `fade` (words fade in word-by-word). Accepts a string or an `AsyncIterable<string>` for true streaming.",
+    since: "0.29.0",
+    importStatement: 'import { ResponseStream } from "@cogentic-co/ds/chat"',
+    dos: [
+      'Use `mode="typewriter"` for code-like or technical output where order matters',
+      'Use `mode="fade"` for prose where word-level reveal feels more natural',
+      "Pass an AsyncIterable when wired to a real stream (AI SDK / fetch stream)",
+      "Set `speed` (1–100) to tune perceived pace; default 20 is balanced",
+    ],
+    donts: [
+      "Don't wrap large already-rendered Markdown — use Markdown which already handles partial blocks",
+      "Don't restart on every token — pass a stable textStream reference",
+      "Don't use for static text that doesn't benefit from animation",
+    ],
+    codeExample: `import { ResponseStream } from "@cogentic-co/ds/chat"
+
+<ResponseStream
+  textStream="Reviewing transaction trail and counterparty history…"
+  mode="typewriter"
+  speed={45}
+  onComplete={() => console.log("done")}
+/>`,
+  },
+  asset: {
+    status: "new",
+    description:
+      "Generic chat-message attachment. One component covers image, audio, video, document, and generic file via `kind`. Auto-picks an icon from `mediaType`, formats `size` as KB/MB, and supports inline base64 / Uint8Array image data.",
+    since: "0.29.0",
+    importStatement: 'import { Asset, AssetGroup } from "@cogentic-co/ds/chat"',
+    dos: [
+      "Use one Asset per attachment; group with AssetGroup for multi-attach messages",
+      "Pass `mediaType` to get a content-aware icon (PDF, CSV, ZIP, code, etc.)",
+      "Use `actions` for trailing buttons (download, remove)",
+      "For images, prefer `src` URL when available; fall back to `base64` + `mediaType`",
+    ],
+    donts: [
+      "Don't use for file uploads in PromptInput — use the upload slot there",
+      "Don't pass both `src` and `base64` — `src` wins",
+      "Don't render plain text content in Asset — that's a Message",
+    ],
+    codeExample: `import { Asset, AssetGroup } from "@cogentic-co/ds/chat"
+
+<AssetGroup>
+  <Asset kind="image" src="/chart.png" alt="Risk chart" name="risk.png" />
+  <Asset kind="document" name="report.pdf" mediaType="application/pdf" size={2_457_600} />
+  <Asset kind="audio" name="call.mp3" src="/call.mp3" mediaType="audio/mpeg" />
+</AssetGroup>`,
+  },
 }

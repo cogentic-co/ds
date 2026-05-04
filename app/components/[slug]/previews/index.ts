@@ -8,6 +8,7 @@ import ApprovalActionsPreview from "./approval-actions"
 import AreaChartPreview from "./area-chart"
 import AsciiShaderPreview from "./ascii-shader"
 import AspectRatioPreview from "./aspect-ratio"
+import AssetPreview from "./asset"
 import AuditLogPreview from "./audit-log"
 import AvatarPreview from "./avatar"
 import BadgePreview from "./badge"
@@ -84,6 +85,7 @@ import RadialChartPreview from "./radial-chart"
 import RadioGroupPreview from "./radio-group"
 import ReasoningPreview from "./reasoning"
 import ResizablePreview from "./resizable"
+import ResponseStreamPreview from "./response-stream"
 import RingCardPreview from "./ring-card"
 import RiskGaugePreview from "./risk-gauge"
 import ScatterChartPreview from "./scatter-chart"
@@ -270,6 +272,8 @@ export const previews: Record<string, React.ComponentType> = {
   shimmer: ShimmerPreview,
   suggestion: SuggestionPreview,
   reasoning: ReasoningPreview,
+  "response-stream": ResponseStreamPreview,
+  asset: AssetPreview,
   sources: SourcesPreview,
   "inline-citation": InlineCitationPreview,
   markdown: MarkdownPreview,

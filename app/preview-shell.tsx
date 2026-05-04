@@ -293,6 +293,7 @@ const chatGroups: { label: string; items: string[] }[] = [
     label: "Streaming",
     items: [
       "markdown",
+      "response-stream",
       "shimmer",
       "reasoning",
       "chain-of-thought",
@@ -303,7 +304,7 @@ const chatGroups: { label: string; items: string[] }[] = [
   },
   {
     label: "Rich content",
-    items: ["sources", "inline-citation", "tool"],
+    items: ["sources", "inline-citation", "tool", "asset"],
   },
   {
     label: "Controls",
